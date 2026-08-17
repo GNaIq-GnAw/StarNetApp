@@ -25,11 +25,7 @@ export function useTabbar() {
 
     const setTabbarItemActive = name => {
         tabbarItems.value.forEach(item => {
-            if (item.name === name) {
-                item.active = true;
-            } else {
-                item.active = false;
-            }
+            item.active = item.name === name;
         });
     };
 
