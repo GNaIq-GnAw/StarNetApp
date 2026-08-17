@@ -1,0 +1,56 @@
+/**
+ * uts-sqlite 统一接口声明
+ *
+ * 各平台在 utssdk/{app-android, app-ios, app-harmony}/index.uts 中实现并导出 sqlite 对象，
+ * 外部（含 JS 业务代码）一律通过 `import {sqlite} from "@/uni_modules/uts-sqlite"` 使用，
+ * 平台分发由编译器按目标平台自动选择，业务层无需关心。
+ */
+
+/** 打开数据库参数 */
+export interface OpenDatabaseOptions {
+  /** 库名（对应 plus.sqlite 的 name / 鸿蒙 StoreConfig 的 name） */
+  name : string
+  /** 路径（App 端可选；鸿蒙端无 path 概念，忽略） */
+  path? : string
+  /** 安全级别（仅鸿蒙端生效，缺省 S1） */
+  securityLevel? : string
+}
+
+/** 写操作参数 */
+export interface ExecuteOptions {
+  /** 库名 */
+  name : string
+  /** 单条 SQL 或 SQL 数组（数组按顺序逐条执行） */
+  sql : string | Array<string>
+}
+
+/** 查询参数 */
+export interface SelectOptions {
+  /** 库名 */
+  name : string
+  /** 单条查询 SQL */
+  sql : string
+}
+
+/**
+ * 跨端 SQLite 适配器
+ * 与 useSqlite core/adapter.js 的 plusAdapter 完全同构：5 个基础方法 + 3 个事务原语
+ */
+export interface SqliteAdapter {
+  /** 打开（不存在则创建）数据库；重复打开同一库应幂等 */
+  openDatabase (options : OpenDatabaseOptions) : Promise<void>
+  /** 库是否已打开（plus 端 path 必选，判断依赖 name+path，调用方需传全） */
+  isOpenDatabase (options : OpenDatabaseOptions) : Promise<boolean>
+  /** 关闭数据库（鸿蒙端 close 后需重新 open 才能使用） */
+  closeDatabase (name : string) : Promise<void>
+  /** 执行写操作：string 单条 / Array 顺序执行 */
+  executeSql (options : ExecuteOptions) : Promise<any>
+  /** 执行查询，返回对象数组（每行字段名为列名） */
+  selectSql (options : SelectOptions) : Promise<Array<UTSJSONObject>>
+  /** 事务原语：开启事务 */
+  beginTransaction (name : string) : Promise<void>
+  /** 事务原语：提交 */
+  commit (name : string) : Promise<void>
+  /** 事务原语：回滚 */
+  rollBack (name : string) : Promise<void>
+}

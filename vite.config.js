@@ -10,27 +10,18 @@ import Optimization from "@uni-ku/bundle-optimizer";
 import UniRoot from "@uni-ku/root";
 import UnoCSS from "unocss/vite";
 import AutoImport from "unplugin-auto-import/vite";
-import {defineConfig, loadEnv} from "vite";
+import {defineConfig} from "vite";
 import {handlePageName} from "./builds/page.js";
 
 const resolvePath = dir => {
     return fileURLToPath(new URL(dir, import.meta.url));
 };
 
-export default defineConfig(async configEnv => {
+export default defineConfig(() => {
     const envDir = resolvePath("./env");
-    const env = loadEnv(configEnv.mode, envDir);
 
     return {
-        // #ifdef H5
-        base: env.VITE_BASE_PATH,
-        // #endif
         envDir,
-        resolve: {
-            alias: {
-                "@": resolvePath("./src")
-            }
-        },
         plugins: [
             // https://uni-helper.js.org/vite-plugin-uni-manifest
             UniManifest(),

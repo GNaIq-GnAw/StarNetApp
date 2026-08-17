@@ -1,0 +1,93 @@
+{
+  "id": "uts-sqlite",
+  "displayName": "uts-sqlite",
+  "version": "0.1.0",
+  "description": "跨端 SQLite 适配器（App / HarmonyOS），统一 openDatabase、executeSql、selectSql、事务等接口，供 useSqlite 的 adapter 层按平台分发",
+  "keywords": [
+    "uts-sqlite"
+  ],
+  "repository": "",
+  "engines": {
+    "HBuilderX": "^4.0",
+    "uni-app": "^4.75",
+    "uni-app-x": "^4.75"
+  },
+  "dcloudext": {
+    "type": "uts",
+    "sale": {
+      "regular": {
+        "price": "0.00"
+      },
+      "sourcecode": {
+        "price": "0.00"
+      }
+    },
+    "contact": {
+      "qq": ""
+    },
+    "declaration": {
+      "ads": "无",
+      "data": "无",
+      "permissions": "无"
+    },
+    "npmurl": "",
+    "darkmode": "x",
+    "i18n": "x",
+    "widescreen": "x"
+  },
+  "uni_modules": {
+    "dependencies": [],
+    "encrypt": [],
+    "platforms": {
+      "client": {
+        "uni-app": {
+          "vue": {
+            "vue2": {
+              "extVersion": "1.0.0",
+              "minVersion": ""
+            },
+            "vue3": {
+              "extVersion": "1.0.0",
+              "minVersion": ""
+            }
+          },
+          "app": {
+            "vue": {
+              "extVersion": "1.0.0",
+              "minVersion": ""
+            },
+            "nvue": "-",
+            "android": {
+              "extVersion": "1.0.0",
+              "minVersion": "21"
+            },
+            "ios": {
+              "extVersion": "1.0.0",
+              "minVersion": "12"
+            },
+            "harmony": {
+              "extVersion": "1.0.0",
+              "minVersion": "5.0.0"
+            }
+          }
+        },
+        "uni-app-x": {
+          "app": {
+            "android": {
+              "extVersion": "1.0.0",
+              "minVersion": "21"
+            },
+            "ios": {
+              "extVersion": "1.0.0",
+              "minVersion": "12"
+            },
+            "harmony": {
+              "extVersion": "1.0.0",
+              "minVersion": "5.0.0"
+            }
+          }
+        }
+      }
+    }
+  }
+}

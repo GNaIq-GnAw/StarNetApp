@@ -6,21 +6,21 @@ const env = loadEnv(process.env.NODE_ENV, path.resolve(process.cwd(), "env"));
 
 export default defineUniPages({
     pages: [
-        {
-            path: "uni_modules/uni-upgrade-center-app/pages/upgrade-popup",
-            style: {
-                disableScroll: true,
-                "app-plus": {
-                    backgroundColorTop: "transparent",
-                    background: "transparent",
-                    titleNView: false,
-                    scrollIndicator: false,
-                    popGesture: "none",
-                    animationType: "fade-in",
-                    animationDuration: 200
-                }
-            }
-        }
+        // {
+        //     path: "uni_modules/uni-upgrade-center-app/pages/upgrade-popup",
+        //     style: {
+        //         disableScroll: true,
+        //         "app-plus": {
+        //             backgroundColorTop: "transparent",
+        //             background: "transparent",
+        //             titleNView: false,
+        //             scrollIndicator: false,
+        //             popGesture: "none",
+        //             animationType: "fade-in",
+        //             animationDuration: 200
+        //         }
+        //     }
+        // }
     ],
     subPackages: [],
     globalStyle: {

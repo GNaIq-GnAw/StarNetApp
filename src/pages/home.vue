@@ -1,6 +1,4 @@
 <script setup>
-    import {Apis} from "@/api1";
-
     definePage({
         name: "home",
         layout: "tabbar",

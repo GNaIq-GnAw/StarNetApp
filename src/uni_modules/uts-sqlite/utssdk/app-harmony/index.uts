@@ -1,0 +1,127 @@
+import { relationalStore } from '@kit.ArkData'
+import { common } from '@kit.AbilityKit'
+import { getAbilityContext } from '@dcloudio/uni-runtime'
+import { SqliteAdapter, OpenDatabaseOptions, ExecuteOptions, SelectOptions } from '../interface.uts'
+
+/**
+ * HarmonyOS 端实现：@ohos.data.relationalStore（底层引擎即 SQLite）
+ *
+ * 与 plus.sqlite 的差异全部在适配层内部消化：
+ *  - getRdbStore 需 context（通过 getAbilityContext 获取，与 uts-openSchema 一致）
+ *  - querySql 返回 ResultSet，需手动遍历 + 必须 rs.close()
+ *  - 无 isOpen 查询 API，用本地 Set 登记
+ *  - 事务用 store.beginTransaction()/commit()/rollBack()，不走原生 SQL
+ *
+ * TODO（真机联调时逐项验证）：
+ *  1. StoreConfig.name 与 plus 端库名对齐（必要时自动补 .db 后缀）
+ *  2. ResultSet 取值按 ValueType 精确分支（当前简化：先数值后字符串，BLOB 未处理）
+ *  3. securityLevel 目前固定 S1，后续可从 OpenDatabaseOptions 透传
+ */
+class HarmonySqliteAdapter implements SqliteAdapter {
+
+  /** 按库名缓存 RdbStore（getRdbStore 不负责幂等，需自行管理） */
+  private storeMap : Map<string, relationalStore.RdbStore> = new Map()
+  /** 本模块登记已打开的库 */
+  private opened : Set<string> = new Set()
+
+  private getContext () : common.UIAbilityContext {
+    return getAbilityContext() as common.UIAbilityContext
+  }
+
+  private requireStore (name : string) : relationalStore.RdbStore {
+    const store = this.storeMap.get(name)
+    if (store == null) {
+      throw new Error(`[uts-sqlite] 数据库未打开：${name}`)
+    }
+    return store
+  }
+
+  async openDatabase (options : OpenDatabaseOptions) : Promise<void> {
+    // 幂等：已打开则直接返回（与 plus 端 openDatabase 语义一致）
+    if (this.opened.has(options.name)) {
+      return
+    }
+
+    const config : relationalStore.StoreConfig = {
+      name: options.name,
+      securityLevel: relationalStore.SecurityLevel.S1
+    }
+    const store = await relationalStore.getRdbStore(this.getContext(), config)
+    this.storeMap.set(options.name, store)
+    this.opened.add(options.name)
+  }
+
+  isOpenDatabase (options : OpenDatabaseOptions) : Promise<boolean> {
+    return Promise.resolve(this.opened.has(options.name))
+  }
+
+  async closeDatabase (name : string) : Promise<void> {
+    const store = this.storeMap.get(name)
+    if (store) {
+      store.close()
+      this.storeMap.delete(name)
+    }
+    this.opened.delete(name)
+  }
+
+  async executeSql (options : ExecuteOptions) : Promise<any> {
+    const store = this.requireStore(options.name)
+
+    if (typeof options.sql === 'string') {
+      return store.executeSql(options.sql)
+    }
+    // 数组：逐条顺序执行（与 plus 端 executeSql 数组语义一致）
+    for (let i = 0; i < options.sql.length; i++) {
+      await store.executeSql(options.sql[i])
+    }
+  }
+
+  async selectSql (options : SelectOptions) : Promise<Array<UTSJSONObject>> {
+    const store = this.requireStore(options.name)
+    const rs = await store.querySql(options.sql)
+    const rows : Array<UTSJSONObject> = []
+
+    try {
+      const columnCount = rs.columnCount
+      const names : string[] = []
+      for (let i = 0; i < columnCount; i++) {
+        names.push(rs.getColumnName(i))
+      }
+
+      while (rs.goToNextRow()) {
+        const row : UTSJSONObject = {}
+        for (let i = 0; i < columnCount; i++) {
+          if (rs.isColumnNull(i)) {
+            row[names[i]] = null
+          } else {
+            // 骨架简化：先按数值取，取不到再按字符串
+            // TODO: 真机验证后按 ValueType 精确分支，并补 BLOB -> base64
+            try {
+              row[names[i]] = rs.getDouble(i)
+            } catch (e) {
+              row[names[i]] = rs.getString(i)
+            }
+          }
+        }
+        rows.push(row)
+      }
+    } finally {
+      rs.close() // 必须关闭，否则连接泄漏
+    }
+    return rows
+  }
+
+  async beginTransaction (name : string) : Promise<void> {
+    this.requireStore(name).beginTransaction()
+  }
+
+  async commit (name : string) : Promise<void> {
+    this.requireStore(name).commit()
+  }
+
+  async rollBack (name : string) : Promise<void> {
+    this.requireStore(name).rollBack()
+  }
+}
+
+export const sqlite : SqliteAdapter = new HarmonySqliteAdapter()
