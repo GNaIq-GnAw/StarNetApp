@@ -1,0 +1,10 @@
+out
+dist
+pnpm-lock.yaml
+LICENSE.md
+jsconfig.json
+tsconfig.json
+/src/uni_modules/
+/src/api/
+node_modules
+.idea

@@ -1,0 +1,21 @@
+export default {
+    arrowParens: "avoid",
+    bracketSameLine: false,
+    bracketSpacing: false,
+    embeddedLanguageFormatting: "auto",
+    htmlWhitespaceSensitivity: "ignore",
+    insertPragma: false,
+    jsxSingleQuote: false,
+    printWidth: 120,
+    proseWrap: "preserve",
+    quoteProps: "preserve",
+    requirePragma: false,
+    semi: true,
+    singleQuote: false,
+    tabWidth: 4,
+    trailingComma: "none",
+    useTabs: false,
+    vueIndentScriptAndStyle: true,
+    singleAttributePerLine: false,
+    endOfLine: "auto"
+};
