@@ -1,0 +1,30 @@
+{
+    "signingConfigs": [
+        {
+            "name": "default",
+            "type": "HarmonyOS",
+            "material": {
+                "certpath": "C:/Users/SDZH-PC/.ohos/config/default_app-harmony_jeQ81ZlyV6xvy09BbypHyaZL0QgFyD5IByYrD2IBLgA=.cer",
+                "keyAlias": "debugKey",
+                "keyPassword": "0000001A5A56705766DFB067968CDE9687965451E8AC6D0B3EA218485D68004184C7553ECF0082BC8059",
+                "profile": "C:/Users/SDZH-PC/.ohos/config/default_app-harmony_jeQ81ZlyV6xvy09BbypHyaZL0QgFyD5IByYrD2IBLgA=.p7b",
+                "signAlg": "SHA256withECDSA",
+                "storeFile": "C:/Users/SDZH-PC/.ohos/config/default_app-harmony_jeQ81ZlyV6xvy09BbypHyaZL0QgFyD5IByYrD2IBLgA=.p12",
+                "storePassword": "0000001AB0C816F6512AD9D98474EFC321EFB51744BE144AFA0B7C4A7EA1E851457AC9941672844D7E7F"
+            }
+        },
+        {
+            "name": "release",
+            "type": "HarmonyOS",
+            "material": {
+                "certpath": "D:/huawei/$$key/ohos/cn.yujianbeili.partner.cer",
+                "keyAlias": "cn.yujianbeili.partner",
+                "keyPassword": "0000001EAD8E3F155A037C339BEAFB560A716B3033D06F27E7DE12326BF791881B385B59A8ECA3456D2BDF033868",
+                "profile": "D:/huawei/$$key/ohos/cn.yujianbeili.partnerRelease.p7b",
+                "signAlg": "SHA256withECDSA",
+                "storeFile": "D:/huawei/$$key/ohos/cn.yujianbeili.partner.p12",
+                "storePassword": "0000001E8EC73857781A3A4957882C8AE5BF6DCE953DB0B33E2C9ADB850F9D9F62346A966F78C7672350EA79F360"
+            }
+        }
+    ]
+}

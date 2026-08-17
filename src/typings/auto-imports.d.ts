@@ -10,50 +10,29 @@ export {}
 declare global {
   const $$userConfigMap: typeof import('../api/index.js').$$userConfigMap
   const Apis: typeof import('../api/index.js').Apis
-  const CHAT_MIGRATIONS: typeof import('../hooks/useSqlite/db/chat-db.js').CHAT_MIGRATIONS
-  const CHAT_SCHEMA_VERSION: typeof import('../hooks/useSqlite/db/chat-db.js').CHAT_SCHEMA_VERSION
-  const CHAT_TABLE_FIELDS: typeof import('../hooks/useSqlite/db/chat-db.js').CHAT_TABLE_FIELDS
-  const CHAT_TABLE_NAMES: typeof import('../hooks/useSqlite/db/chat-db.js').CHAT_TABLE_NAMES
   const Cache: typeof import('../enums/Cache.js').default
   const CommonUtil: typeof import('@wot-ui/ui').CommonUtil
-  const DEFAULT_OPTIONS: typeof import('../hooks/useSqlite/core/utils.js').DEFAULT_OPTIONS
   const EffectScope: typeof import('vue').EffectScope
   const HttpResponse: typeof import('../enums/HttpResponse.js').default
   const Pinia: typeof import('../stores/index.js').Pinia
   const Regex: typeof import('../enums/Regex.js').default
   const Theme: typeof import('../enums/Theme.js').default
-  const USER_MIGRATIONS: typeof import('../hooks/useSqlite/db/user-db.js').USER_MIGRATIONS
-  const USER_SCHEMA_VERSION: typeof import('../hooks/useSqlite/db/user-db.js').USER_SCHEMA_VERSION
-  const USER_TABLE_FIELDS: typeof import('../hooks/useSqlite/db/user-db.js').USER_TABLE_FIELDS
-  const USER_TABLE_NAMES: typeof import('../hooks/useSqlite/db/user-db.js').USER_TABLE_NAMES
   const acceptHMRUpdate: typeof import('pinia').acceptHMRUpdate
-  const adapter: typeof import('../hooks/useSqlite/core/adapter.js').adapter
   const alovaInstance: typeof import('../api/index.js').alovaInstance
   const api: typeof import('../api/index.js').default
   const apiDefinitions: typeof import('../api/apiDefinitions.js').default
-  const assertDbName: typeof import('../hooks/useSqlite/core/utils.js').assertDbName
-  const assertIdentifier: typeof import('../hooks/useSqlite/core/utils.js').assertIdentifier
-  const base64ToLocalURL: typeof import('../hooks/useFileUpload/shared.js').base64ToLocalURL
-  const buildInsertSql: typeof import('../hooks/useSqlite/core/builder.js').buildInsertSql
-  const buildTableFields: typeof import('../hooks/useSqlite/core/schema.js').buildTableFields
-  const buildTableSqls: typeof import('../hooks/useSqlite/core/schema.js').buildTableSqls
-  const buildUpdateSql: typeof import('../hooks/useSqlite/core/builder.js').buildUpdateSql
-  const buildWhereSql: typeof import('../hooks/useSqlite/core/builder.js').buildWhereSql
-  const chatDb: typeof import('../hooks/useSqlite/db/chat-db.js').default
   const computed: typeof import('vue').computed
   const createApis: typeof import('../api/createApis.js').createApis
   const createApp: typeof import('vue').createApp
   const createPinia: typeof import('pinia').createPinia
   const createPromiseWithResolvers: typeof import('../utils/index.js').createPromiseWithResolvers
   const createRouter: typeof import('@wot-ui/router').createRouter
-  const createTableSql: typeof import('../hooks/useSqlite/core/schema.js').createTableSql
   const customRef: typeof import('vue').customRef
   const defineAsyncComponent: typeof import('vue').defineAsyncComponent
   const defineComponent: typeof import('vue').defineComponent
   const defineSqlite: typeof import('../hooks/useSqlite/index.js').defineSqlite
   const defineStore: typeof import('pinia').defineStore
   const effectScope: typeof import('vue').effectScope
-  const escapeSqlValue: typeof import('../hooks/useSqlite/core/utils.js').escapeSqlValue
   const formatDate: typeof import('../utils/date.js').formatDate
   const formatDatetime: typeof import('../utils/date.js').formatDatetime
   const formatRichData: typeof import('../utils/index.js').formatRichData
@@ -62,8 +41,6 @@ declare global {
   const getCurrentPath: typeof import('../utils/index.js').getCurrentPath
   const getCurrentScope: typeof import('vue').getCurrentScope
   const getCurrentWatcher: typeof import('vue').getCurrentWatcher
-  const getFileInfo: typeof import('../hooks/useFileUpload/shared.js').getFileInfo
-  const getFileMD5: typeof import('../hooks/useFileUpload/shared.js').getFileMD5
   const getSystemInfo: typeof import('../hooks/useSystemInfo.js').getSystemInfo
   const h: typeof import('vue').h
   const inject: typeof import('vue').inject
@@ -72,14 +49,12 @@ declare global {
   const isReadonly: typeof import('vue').isReadonly
   const isRef: typeof import('vue').isRef
   const isShallow: typeof import('vue').isShallow
-  const isSqlValid: typeof import('../hooks/useSqlite/core/utils.js').isSqlValid
   const mapActions: typeof import('pinia').mapActions
   const mapGetters: typeof import('pinia').mapGetters
   const mapState: typeof import('pinia').mapState
   const mapStores: typeof import('pinia').mapStores
   const mapWritableState: typeof import('pinia').mapWritableState
   const markRaw: typeof import('vue').markRaw
-  const migrate: typeof import('../hooks/useSqlite/core/migrate.js').migrate
   const mountApis: typeof import('../api/createApis.js').mountApis
   const nextTick: typeof import('vue').nextTick
   const onActivated: typeof import('vue').onActivated
@@ -141,11 +116,11 @@ declare global {
   const toRaw: typeof import('vue').toRaw
   const toRef: typeof import('vue').toRef
   const toRefs: typeof import('vue').toRefs
-  const toSqlLiteral: typeof import('../hooks/useSqlite/core/builder.js').toSqlLiteral
   const toValue: typeof import('vue').toValue
   const triggerRef: typeof import('vue').triggerRef
   const tryJSONParse: typeof import('../utils/index.js').tryJSONParse
   const unref: typeof import('vue').unref
+  const useAppInitialize: typeof import('../hooks/useAppInitialize.js').useAppInitialize
   const useAttrs: typeof import('vue').useAttrs
   const useCaptcha: typeof import('../hooks/useCaptcha.js').useCaptcha
   const useCssModule: typeof import('vue').useCssModule
@@ -174,7 +149,6 @@ declare global {
   const useToggle: typeof import('../hooks/useToggle.js').useToggle
   const useUserStore: typeof import('../stores/user.js').useUserStore
   const useWotForm: typeof import('../hooks/useForm.js').useWotForm
-  const userDb: typeof import('../hooks/useSqlite/db/user-db.js').default
   const watch: typeof import('vue').watch
   const watchEffect: typeof import('vue').watchEffect
   const watchPostEffect: typeof import('vue').watchPostEffect
@@ -308,6 +282,7 @@ declare module 'vue' {
     readonly triggerRef: UnwrapRef<typeof import('vue')['triggerRef']>
     readonly tryJSONParse: UnwrapRef<typeof import('../utils/index.js')['tryJSONParse']>
     readonly unref: UnwrapRef<typeof import('vue')['unref']>
+    readonly useAppInitialize: UnwrapRef<typeof import('../hooks/useAppInitialize.js')['useAppInitialize']>
     readonly useAttrs: UnwrapRef<typeof import('vue')['useAttrs']>
     readonly useCaptcha: UnwrapRef<typeof import('../hooks/useCaptcha.js')['useCaptcha']>
     readonly useCssModule: UnwrapRef<typeof import('vue')['useCssModule']>

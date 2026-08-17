@@ -1,0 +1,30 @@
+{
+    "signingConfigs": [
+        {
+            "name": "default",
+            "type": "HarmonyOS",
+            "material": {
+                "certpath": "C:/Users/YourName/.ohos/config/default_app-harmony_xxx.cer",
+                "keyAlias": "debugKey",
+                "keyPassword": "0000001A5A56705766...",
+                "profile": "C:/Users/YourName/.ohos/config/default_app-harmony_xxx.p7b",
+                "signAlg": "SHA256withECDSA",
+                "storeFile": "C:/Users/YourName/.ohos/config/default_app-harmony_xxx.p12",
+                "storePassword": "0000001AB0C816F65..."
+            }
+        },
+        {
+            "name": "release",
+            "type": "HarmonyOS",
+            "material": {
+                "certpath": "D:/huawei/key/ohos/your-app.cer",
+                "keyAlias": "your.bundle.id",
+                "keyPassword": "0000001EAD8E3F15...",
+                "profile": "D:/huawei/key/ohos/your-appRelease.p7b",
+                "signAlg": "SHA256withECDSA",
+                "storeFile": "D:/huawei/key/ohos/your-app.p12",
+                "storePassword": "0000001E8EC73857..."
+            }
+        }
+    ]
+}

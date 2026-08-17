@@ -509,6 +509,7 @@
     "triggerRef": true,
     "tryJSONParse": true,
     "unref": true,
+    "useAppInitialize": true,
     "useAttrs": true,
     "useCaptcha": true,
     "useCssModule": true,

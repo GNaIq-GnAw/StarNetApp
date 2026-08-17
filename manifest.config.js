@@ -24,7 +24,6 @@ export default defineManifestConfig({
         },
         /* 模块配置 */
         modules: {
-            Share: {},
             Camera: {},
             VideoPlayer: {},
             SQLite: {}
@@ -54,86 +53,16 @@ export default defineManifestConfig({
                 ]
             },
             /* ios打包配置 */
-            ios: {
-                capabilities: {
-                    entitlements: {
-                        "com.apple.developer.associated-domains": ["applinks:cloud.yjbljz.cn"]
-                    }
-                },
-                privacyDescription: {
-                    NSPhotoLibraryUsageDescription:
-                        "我们需要访问您的相册，以便您在创建收款账户、申请提现时上传企业资质、身份证明等图片资料。",
-                    NSPhotoLibraryAddUsageDescription: "我们需要保存权限，以便您将个人头像等图片下载并保存至手机相册。"
-                }
-            },
+            ios: {},
             /* SDK配置 */
-            sdkConfigs: {
-                share: {
-                    weixin: {
-                        appid: env.VITE_APP_ID,
-                        UniversalLinks: "https://cloud.yjbljz.cn/uni-universallinks/__UNI__164B3DD/"
-                    }
-                }
-            },
-            icons: {
-                android: {
-                    hdpi: "unpackage/res/icons/72x72.png",
-                    xhdpi: "unpackage/res/icons/96x96.png",
-                    xxhdpi: "unpackage/res/icons/144x144.png",
-                    xxxhdpi: "unpackage/res/icons/192x192.png"
-                },
-                ios: {
-                    appstore: "unpackage/res/icons/1024x1024.png",
-                    ipad: {
-                        app: "unpackage/res/icons/76x76.png",
-                        "app@2x": "unpackage/res/icons/152x152.png",
-                        notification: "unpackage/res/icons/20x20.png",
-                        "notification@2x": "unpackage/res/icons/40x40.png",
-                        "proapp@2x": "unpackage/res/icons/167x167.png",
-                        settings: "unpackage/res/icons/29x29.png",
-                        "settings@2x": "unpackage/res/icons/58x58.png",
-                        spotlight: "unpackage/res/icons/40x40.png",
-                        "spotlight@2x": "unpackage/res/icons/80x80.png"
-                    },
-                    iphone: {
-                        "app@2x": "unpackage/res/icons/120x120.png",
-                        "app@3x": "unpackage/res/icons/180x180.png",
-                        "notification@2x": "unpackage/res/icons/40x40.png",
-                        "notification@3x": "unpackage/res/icons/60x60.png",
-                        "settings@2x": "unpackage/res/icons/58x58.png",
-                        "settings@3x": "unpackage/res/icons/87x87.png",
-                        "spotlight@2x": "unpackage/res/icons/80x80.png",
-                        "spotlight@3x": "unpackage/res/icons/120x120.png"
-                    }
-                }
-            },
+            sdkConfigs: {},
             splashscreen: {
                 useOriginalMsgbox: true
             }
         },
         nativePlugins: {}
     },
-    "app-harmony": {
-        distribute: {
-            bundleName: "cn.yujianbeili.partner",
-            signingConfigs: {},
-            icons: {
-                foreground: "",
-                background: ""
-            },
-            splashScreens: {
-                startWindowIcon: "",
-                startWindowBackground: "#ffffff"
-            },
-            modules: {
-                "uni-share": {
-                    weixin: {
-                        appid: env.VITE_APP_ID
-                    }
-                }
-            }
-        }
-    },
+    "app-harmony": {},
     "mp-harmony": {
         "distribute": {}
     },
@@ -165,6 +94,5 @@ export default defineManifestConfig({
         enable: false
     },
     vueVersion: "3",
-    h5: {},
-    _spaceID: "mp-353b4c2e-65e5-4136-98cc-6a2205c57602"
+    h5: {}
 });

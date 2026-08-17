@@ -55,7 +55,8 @@
         "lint": "eslint .",
         "lint:fix": "eslint . --fix",
         "format": "prettier --write src/",
-        "worma:gen": "worma gen -f"
+        "worma:gen": "worma gen -f",
+        "harmony-profile:gen": "node builds/harmony-signing/gen-harmony-profile.js"
     },
     "dependencies": {
         "@alova/adapter-uniapp": "^2.0.18",
