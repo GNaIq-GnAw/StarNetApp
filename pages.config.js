@@ -30,11 +30,5 @@ export default defineUniPages({
         "app-plus": {
             bounce: "none"
         }
-    },
-    preloadRule: {
-        "app/entrance/pages/index": {
-            network: "all",
-            packages: ["__APP__"]
-        }
     }
 });

@@ -2,7 +2,14 @@
     const {systemInfo} = useSystemInfo();
 
     const themeVars = computed(() => {
-        return {};
+        return {
+            primary6: Theme.primary6,
+            textMain: Theme.primary6,
+            borderMain: "#E9EAEC",
+            buttonHeightSmall: "60rpx",
+            buttonHeightMedium: "80rpx",
+            buttonHeightLarge: "88rpx",
+        };
     });
 </script>
 

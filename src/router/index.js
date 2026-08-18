@@ -1,4 +1,3 @@
-import {createRouter} from "@wot-ui/router";
 import {pages, subPackages} from "virtual:uni-pages";
 
 export {setupNavigate} from "./navigate.js";
