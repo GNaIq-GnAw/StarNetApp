@@ -8,7 +8,7 @@
             borderMain: "#E9EAEC",
             buttonHeightSmall: "60rpx",
             buttonHeightMedium: "80rpx",
-            buttonHeightLarge: "88rpx",
+            buttonHeightLarge: "88rpx"
         };
     });
 </script>
@@ -19,7 +19,7 @@
             :style="{
                 '--safe-area-bottom': `${systemInfo?.safeAreaInsets?.bottom}px`
             }"
-            class="app"
+            class="app bg-#F3F4F4"
         >
             <ku-root-view />
         </view>

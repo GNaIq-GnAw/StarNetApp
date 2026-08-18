@@ -23,6 +23,7 @@
         uni.hideTabBar();
         // #endif
         nextTick(() => {
+            console.log("route", route.name);
             if (route.name && route.name !== activeTabbar.value.name) {
                 setTabbarItemActive(route.name);
             }
@@ -37,27 +38,30 @@
         </view>
         <view
             :style="{
-                '--wot-tabbar-height': '108rpx',
-                '--wot-tabbar-item-title-font-size': '20rpx',
+                '--wot-tabbar-height': '132rpx',
+                '--wot-tabbar-item-title-font-size': '28rpx',
                 '--wot-tabbar-item-title-line-height': '40rpx'
             }"
         >
-            <wd-tabbar
-                :model-value="activeTabbar.name"
-                bordered
-                safe-area-inset-bottom
-                fixed
-                @change="handleTabbarChange"
-            >
+            <wd-tabbar :model-value="activeTabbar.name" bordered @change="handleTabbarChange">
                 <wd-tabbar-item
                     v-for="(item, index) in tabbarList"
                     :key="index"
-                    :icon="item.icon"
                     :name="item.name"
                     :title="item.title"
                     :value="getTabbarItemValue(item.name)"
-                />
+                >
+                    <template #icon="{active}">
+                        <view :class="item.icon" class="mb-12rpx size-40rpx" />
+                    </template>
+                </wd-tabbar-item>
             </wd-tabbar>
         </view>
     </view>
 </template>
+
+<style lang="scss" scoped>
+    :deep(.wd-tabbar) {
+        @apply rd-t-40rpx;
+    }
+</style>

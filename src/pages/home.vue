@@ -19,10 +19,16 @@
 </script>
 
 <template>
-    <view>
-        <wd-button size="small" type="primary" @click="$Router.push({name: 'PagesForm'})">form</wd-button>
-        <wd-button size="small" type="primary" @click="$Router.push({name: 'PagesImage'})">image</wd-button>
-        <wd-button size="small" type="primary" @click="onUpload()">upload</wd-button>
+    <view class="h-full bg-#F3F4F4">
+        <wd-button size="small" type="primary" @click="$Router.push({name: 'PagesForm'})">
+            form
+        </wd-button>
+        <wd-button size="small" type="primary" @click="$Router.push({name: 'PagesImage'})">
+            image
+        </wd-button>
+        <wd-button size="small" type="primary" @click="onUpload()">
+            upload
+        </wd-button>
         <wd-qr-code text="https://wot-ui.cn" :size="rpx2px(400)" />
     </view>
 </template>
