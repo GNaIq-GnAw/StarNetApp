@@ -122,7 +122,7 @@
         "@uni-helper/vite-plugin-uni-pages": "^0.4.9",
         "@uni-ku/bundle-optimizer": "^2.2.0",
         "@uni-ku/root": "^1.5.0",
-        "@unocss/eslint-plugin": "^66.7.5",
+        "@unocss/eslint-plugin": "^66.8.0",
         "@vue/runtime-core": "~3.4.38",
         "eslint": "^10.8.1",
         "miniprogram-api-typings": "^5.2.3",
