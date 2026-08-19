@@ -1,8 +1,7 @@
-// @unocss-include
 const tabbarItems = ref([
-    {name: "PageHome", active: true, title: "人脉", icon: "iconfont icon-connection"},
-    {name: "about", active: false, title: "收支", icon: "i-ant-design:account-book-outlined"},
-    {name: "user", active: false, title: "我的", icon: "i-ant-design:user-outlined"}
+    {name: "PageHome", active: true, title: "人脉", icon: "icon-if-connection"},
+    {name: "about", active: false, title: "收支", icon: "icon-antOutline-account-book"},
+    {name: "user", active: false, title: "我的", icon: "icon-antOutline-user"}
 ]);
 
 export function useTabbar() {

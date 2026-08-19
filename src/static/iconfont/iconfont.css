@@ -1,8 +1,8 @@
 @font-face {
   font-family: "iconfont"; /* Project id 5224457 */
-  src: url('iconfont.woff2?t=1787047059863') format('woff2'),
-       url('iconfont.woff?t=1787047059863') format('woff'),
-       url('iconfont.ttf?t=1787047059863') format('truetype');
+  src: url('iconfont.woff2?t=1787104859319') format('woff2'),
+       url('iconfont.woff?t=1787104859319') format('woff'),
+       url('iconfont.ttf?t=1787104859319') format('truetype');
 }
 
 .iconfont {
@@ -13,11 +13,15 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-a-if-connectionCopy:before {
-  content: "\e60a";
+.icon-antOutline-account-book:before {
+  content: "\e602";
 }
 
-.icon-connection:before {
-  content: "\e609";
+.icon-antOutline-user:before {
+  content: "\e601";
+}
+
+.icon-if-connection:before {
+  content: "\e600";
 }
 

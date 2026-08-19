@@ -29,6 +29,8 @@ export default defineUniPages({
         navigationStyle: "custom",
         "app-plus": {
             bounce: "none"
-        }
+        },
+        rpxCalcBaseDeviceWidth: 393,
+        rpxCalcIncludeWidth: 786
     }
 });

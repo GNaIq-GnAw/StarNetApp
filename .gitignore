@@ -14,6 +14,7 @@ dist
 unpackage/release/
 harmony-configs/build-profile.json5
 .worma-cache
+/.workbuddy/
 
 # Editor directories and files
 .idea
