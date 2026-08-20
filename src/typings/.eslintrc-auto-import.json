@@ -530,7 +530,6 @@
     "useRouter": true,
     "useSlots": true,
     "useSqlite": true,
-    "useSyncRef": true,
     "useSystemInfo": true,
     "useTabbar": true,
     "useTemplateRef": true,

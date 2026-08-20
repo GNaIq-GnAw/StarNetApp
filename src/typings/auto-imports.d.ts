@@ -141,7 +141,6 @@ declare global {
   const useRouter: typeof import('@wot-ui/router').useRouter
   const useSlots: typeof import('vue').useSlots
   const useSqlite: typeof import('../hooks/useSqlite/index.js').useSqlite
-  const useSyncRef: typeof import('../hooks/useSyncRef.js').useSyncRef
   const useSystemInfo: typeof import('../hooks/useSystemInfo.js').useSystemInfo
   const useTabbar: typeof import('../hooks/useTabbar.js').useTabbar
   const useTemplateRef: typeof import('vue').useTemplateRef
@@ -303,7 +302,6 @@ declare module 'vue' {
     readonly useRouter: UnwrapRef<typeof import('@wot-ui/router')['useRouter']>
     readonly useSlots: UnwrapRef<typeof import('vue')['useSlots']>
     readonly useSqlite: UnwrapRef<typeof import('../hooks/useSqlite/index.js')['useSqlite']>
-    readonly useSyncRef: UnwrapRef<typeof import('../hooks/useSyncRef.js')['useSyncRef']>
     readonly useSystemInfo: UnwrapRef<typeof import('../hooks/useSystemInfo.js')['useSystemInfo']>
     readonly useTabbar: UnwrapRef<typeof import('../hooks/useTabbar.js')['useTabbar']>
     readonly useTemplateRef: UnwrapRef<typeof import('vue')['useTemplateRef']>
