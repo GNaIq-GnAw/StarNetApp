@@ -102,7 +102,6 @@ declare global {
   const readonly: typeof import('vue').readonly
   const ref: typeof import('vue').ref
   const resolveComponent: typeof import('vue').resolveComponent
-  const resolveRelativePage: typeof import('../hooks/usePage.js').resolveRelativePage
   const setActivePinia: typeof import('pinia').setActivePinia
   const setMapStoreSuffix: typeof import('pinia').setMapStoreSuffix
   const setupStore: typeof import('../stores/index.js').setupStore
@@ -125,11 +124,10 @@ declare global {
   const useCaptcha: typeof import('../hooks/useCaptcha.js').useCaptcha
   const useCssModule: typeof import('vue').useCssModule
   const useCssVars: typeof import('vue').useCssVars
-  const useCurrentPage: typeof import('../hooks/usePage.js').useCurrentPage
+  const useCurrentPage: typeof import('../hooks/useCurrentPage.js').useCurrentPage
   const useDialog: typeof import('@wot-ui/ui').useDialog
   const useFileDownload: typeof import('../hooks/useFileUpload/index.js').useFileDownload
   const useFileUpload: typeof import('../hooks/useFileUpload/index.js').useFileUpload
-  const useFormRules: typeof import('../hooks/useForm.js').useFormRules
   const useGlobalDialog: typeof import('../hooks/useGlobalDialog.js').useGlobalDialog
   const useGlobalToast: typeof import('../hooks/useGlobalToast.js').useGlobalToast
   const useId: typeof import('vue').useId
@@ -147,7 +145,6 @@ declare global {
   const useToast: typeof import('@wot-ui/ui').useToast
   const useToggle: typeof import('../hooks/useToggle.js').useToggle
   const useUserStore: typeof import('../stores/user.js').useUserStore
-  const useWotForm: typeof import('../hooks/useForm.js').useWotForm
   const watch: typeof import('vue').watch
   const watchEffect: typeof import('vue').watchEffect
   const watchPostEffect: typeof import('vue').watchPostEffect
@@ -263,7 +260,6 @@ declare module 'vue' {
     readonly readonly: UnwrapRef<typeof import('vue')['readonly']>
     readonly ref: UnwrapRef<typeof import('vue')['ref']>
     readonly resolveComponent: UnwrapRef<typeof import('vue')['resolveComponent']>
-    readonly resolveRelativePage: UnwrapRef<typeof import('../hooks/usePage.js')['resolveRelativePage']>
     readonly setActivePinia: UnwrapRef<typeof import('pinia')['setActivePinia']>
     readonly setMapStoreSuffix: UnwrapRef<typeof import('pinia')['setMapStoreSuffix']>
     readonly setupStore: UnwrapRef<typeof import('../stores/index.js')['setupStore']>
@@ -286,11 +282,10 @@ declare module 'vue' {
     readonly useCaptcha: UnwrapRef<typeof import('../hooks/useCaptcha.js')['useCaptcha']>
     readonly useCssModule: UnwrapRef<typeof import('vue')['useCssModule']>
     readonly useCssVars: UnwrapRef<typeof import('vue')['useCssVars']>
-    readonly useCurrentPage: UnwrapRef<typeof import('../hooks/usePage.js')['useCurrentPage']>
+    readonly useCurrentPage: UnwrapRef<typeof import('../hooks/useCurrentPage.js')['useCurrentPage']>
     readonly useDialog: UnwrapRef<typeof import('@wot-ui/ui')['useDialog']>
     readonly useFileDownload: UnwrapRef<typeof import('../hooks/useFileUpload/index.js')['useFileDownload']>
     readonly useFileUpload: UnwrapRef<typeof import('../hooks/useFileUpload/index.js')['useFileUpload']>
-    readonly useFormRules: UnwrapRef<typeof import('../hooks/useForm.js')['useFormRules']>
     readonly useGlobalDialog: UnwrapRef<typeof import('../hooks/useGlobalDialog.js')['useGlobalDialog']>
     readonly useGlobalToast: UnwrapRef<typeof import('../hooks/useGlobalToast.js')['useGlobalToast']>
     readonly useId: UnwrapRef<typeof import('vue')['useId']>
@@ -308,7 +303,6 @@ declare module 'vue' {
     readonly useToast: UnwrapRef<typeof import('@wot-ui/ui')['useToast']>
     readonly useToggle: UnwrapRef<typeof import('../hooks/useToggle.js')['useToggle']>
     readonly useUserStore: UnwrapRef<typeof import('../stores/user.js')['useUserStore']>
-    readonly useWotForm: UnwrapRef<typeof import('../hooks/useForm.js')['useWotForm']>
     readonly watch: UnwrapRef<typeof import('vue')['watch']>
     readonly watchEffect: UnwrapRef<typeof import('vue')['watchEffect']>
     readonly watchPostEffect: UnwrapRef<typeof import('vue')['watchPostEffect']>
