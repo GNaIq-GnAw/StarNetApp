@@ -1,20 +1,3 @@
-// 解构Promise
-const createPromiseWithResolvers = () => {
-    // 低版本不支持此api
-    if (Promise?.withResolvers) return Promise.withResolvers();
-
-    // 兼容写法
-    let resolve = null;
-    let reject = null;
-
-    const promise = new Promise((_resolve, _reject) => {
-        resolve = _resolve;
-        reject = _reject;
-    });
-
-    return {promise, resolve, reject};
-};
-
 const {promise, resolve} = createPromiseWithResolvers();
 
 export const useAppInitialize = () => {

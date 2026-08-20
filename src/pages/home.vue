@@ -16,6 +16,12 @@
 
         console.log("file", URL.createObjectURL(file));
     };
+
+    const {user} = useSqlite();
+
+    onLoad(() => {
+        console.log("user", user);
+    });
 </script>
 
 <template>

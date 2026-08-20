@@ -9,7 +9,7 @@ export const useFileUpload = (options = null) => {
         try {
             let res;
 
-            // #ifdef APP-PLUS
+            // #ifdef APP
             res = await Apis.oss.chunkUpload({
                 params: formData,
                 data: {name: "file", filePath: file.url},

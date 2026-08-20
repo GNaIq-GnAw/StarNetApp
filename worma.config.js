@@ -6,7 +6,10 @@ export default defineConfig({
         {
             output: "src/api1",
             type: "module",
-            plugins: [swagger("./api-docs.json"), alovaGlobals()],
+            plugins: [
+                swagger("https://test.rongdaufun.com/xw/client/v2/api-docs?group=%E6%8E%A5%E5%8F%A3"),
+                alovaGlobals()
+            ],
             handleApi: apiDescriptor => {
                 // 跳过弃用接口
                 if (apiDescriptor.deprecated) return undefined;
