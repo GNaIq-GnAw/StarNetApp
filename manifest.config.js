@@ -34,6 +34,7 @@ export default defineManifestConfig({
             android: {
                 enableOAID: false,
                 targetSdkVersion: 30,
+                abiFilters: ["armeabi-v7a", "arm64-v8a", "x86"],
                 permissions: [
                     "<uses-permission android:name='android.permission.CHANGE_NETWORK_STATE'/>",
                     "<uses-permission android:name='android.permission.MOUNT_UNMOUNT_FILESYSTEMS'/>",
@@ -57,7 +58,45 @@ export default defineManifestConfig({
             /* SDK配置 */
             sdkConfigs: {},
             splashscreen: {
-                useOriginalMsgbox: true
+                useOriginalMsgbox: true,
+                androidStyle: "default",
+                android: {
+                    hdpi: "unpackage/res/splash/splash_480x762_preview.png",
+                    xhdpi: "unpackage/res/splash/splash_720x1242_preview.png",
+                    xxhdpi: "unpackage/res/splash/splash_1080x1882_preview.png"
+                }
+            },
+            icons: {
+                android: {
+                    hdpi: "unpackage/res/icons/72x72.png",
+                    xhdpi: "unpackage/res/icons/96x96.png",
+                    xxhdpi: "unpackage/res/icons/144x144.png",
+                    xxxhdpi: "unpackage/res/icons/192x192.png"
+                },
+                ios: {
+                    appstore: "unpackage/res/icons/1024x1024.png",
+                    ipad: {
+                        "app": "unpackage/res/icons/76x76.png",
+                        "app@2x": "unpackage/res/icons/152x152.png",
+                        "notification": "unpackage/res/icons/20x20.png",
+                        "notification@2x": "unpackage/res/icons/40x40.png",
+                        "proapp@2x": "unpackage/res/icons/167x167.png",
+                        "settings": "unpackage/res/icons/29x29.png",
+                        "settings@2x": "unpackage/res/icons/58x58.png",
+                        "spotlight": "unpackage/res/icons/40x40.png",
+                        "spotlight@2x": "unpackage/res/icons/80x80.png"
+                    },
+                    iphone: {
+                        "app@2x": "unpackage/res/icons/120x120.png",
+                        "app@3x": "unpackage/res/icons/180x180.png",
+                        "notification@2x": "unpackage/res/icons/40x40.png",
+                        "notification@3x": "unpackage/res/icons/60x60.png",
+                        "settings@2x": "unpackage/res/icons/58x58.png",
+                        "settings@3x": "unpackage/res/icons/87x87.png",
+                        "spotlight@2x": "unpackage/res/icons/80x80.png",
+                        "spotlight@3x": "unpackage/res/icons/120x120.png"
+                    }
+                }
             }
         },
         nativePlugins: {}

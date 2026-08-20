@@ -17,11 +17,11 @@
         console.log("file", URL.createObjectURL(file));
     };
 
-    const {user} = useSqlite();
+    // const {user} = useSqlite();
 
-    onLoad(() => {
-        console.log("user", user);
-    });
+    // onLoad(() => {
+    //     console.log("user", user);
+    // });
 </script>
 
 <template>

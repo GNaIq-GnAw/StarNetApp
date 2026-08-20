@@ -34,32 +34,32 @@ export const setupRouter = app => {
     router.beforeEach(async (to, from, next) => {
         console.log("router -> beforeEach", to, from);
 
-        // const auth = to?.meta?.auth ?? true;
-        //
-        // const userStore = useUserStore();
-        //
-        // // 未登录状态
-        // if (!userStore.token) {
-        //     if (!auth) {
-        //         next();
-        //
-        //         return;
-        //     }
-        //
-        //     // 重定向到登录页
-        //     next({name: "PagesLogin", navType: "replaceAll"});
-        //
-        //     return;
-        // }
-        //
-        // if (to?.name === "PagesLogin") {
-        //     next({...from, navType: "replaceAll"});
-        //
-        //     return;
-        // }
-        //
-        // // 获取用户信息
-        // if (auth && !userStore.userInfo) await userStore.getUserInfo();
+        const auth = to?.meta?.auth ?? true;
+
+        const userStore = useUserStore();
+
+        // 未登录状态
+        if (!userStore.token) {
+            if (!auth) {
+                next();
+
+                return;
+            }
+
+            // 重定向到登录页
+            next({name: "PagesLogin", navType: "replaceAll"});
+
+            return;
+        }
+
+        if (to?.name === "PagesLogin") {
+            next({...from, navType: "replaceAll"});
+
+            return;
+        }
+
+        // 获取用户信息
+        if (auth && !userStore.userInfo) await userStore.getUserInfo();
 
         next();
     });
