@@ -3,8 +3,16 @@
 
     const themeVars = computed(() => {
         return {
+            primary1: Theme.primary1,
+            primary2: Theme.primary2,
+            primary3: Theme.primary3,
+            primary4: Theme.primary4,
+            primary5: Theme.primary5,
             primary6: Theme.primary6,
             primary7: Theme.primary7,
+            primary8: Theme.primary8,
+            primary9: Theme.primary9,
+            primary10: Theme.primary10,
             textMain: Theme.primary6,
             borderMain: "#E9EAEC",
             buttonHeightSmall: "60rpx",

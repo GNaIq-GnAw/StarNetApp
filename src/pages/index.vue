@@ -16,6 +16,7 @@
             // });
 
             await router.replaceAll({path: "/pages/home"});
+
             // #ifdef APP-PLUS
             plus.navigator.closeSplashscreen();
             // #endif
