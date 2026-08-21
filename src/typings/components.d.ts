@@ -26,6 +26,7 @@ declare module 'vue' {
     WdQrCode: typeof import('@wot-ui/ui/components/wd-qr-code/wd-qr-code.vue')['WdQrCode']
     WdTabbar: typeof import('@wot-ui/ui/components/wd-tabbar/wd-tabbar.vue')['WdTabbar']
     WdTabbarItem: typeof import('@wot-ui/ui/components/wd-tabbar-item/wd-tabbar-item.vue')['WdTabbarItem']
+    WdText: typeof import('@wot-ui/ui/components/wd-text/wd-text.vue')['WdText']
     WdToast: typeof import('@wot-ui/ui/components/wd-toast/wd-toast.vue')['WdToast']
   }
 }
@@ -46,5 +47,6 @@ declare global {
   const WdQrCode: typeof import('@wot-ui/ui/components/wd-qr-code/wd-qr-code.vue')['WdQrCode']
   const WdTabbar: typeof import('@wot-ui/ui/components/wd-tabbar/wd-tabbar.vue')['WdTabbar']
   const WdTabbarItem: typeof import('@wot-ui/ui/components/wd-tabbar-item/wd-tabbar-item.vue')['WdTabbarItem']
+  const WdText: typeof import('@wot-ui/ui/components/wd-text/wd-text.vue')['WdText']
   const WdToast: typeof import('@wot-ui/ui/components/wd-toast/wd-toast.vue')['WdToast']
 }

@@ -41,7 +41,7 @@
             }"
             class="mx-150rpx mt-100rpx"
         >
-            <wd-form layout="vertical">
+            <wd-form layout="vertical" title-width="100%">
                 <view class="mb-40rpx">
                     <wd-form-item prop="value1" title="手机号码">
                         <view class="b-(2rpx primary6/10 solid) rd-8rpx p-[10rpx_20rpx]">
@@ -50,9 +50,17 @@
                     </wd-form-item>
                 </view>
                 <view>
-                    <wd-form-item prop="value2" title="密码">
+                    <wd-form-item prop="value2" title="验证码">
+                        <template #title>
+                            <view class="w-full flex items-center">
+                                <view>验证码</view>
+                                <view class="ml-auto">
+                                    <wd-text color="#2F59F4" line-height="40rpx" size="20rpx" text="获取验证码" />
+                                </view>
+                            </view>
+                        </template>
                         <view class="b-(2rpx primary6/10 solid) rd-8rpx p-[10rpx_20rpx]">
-                            <wd-input placeholder="请输入密码" show-password type="safe-password" />
+                            <wd-input inputmode="numeric" placeholder="请输入验证码" type="digit" />
                         </view>
                     </wd-form-item>
                 </view>
@@ -77,13 +85,17 @@
             class="mx-150rpx mt-100rpx"
         >
             <wd-button block size="medium">
-                登录
+                登录/注册
             </wd-button>
         </view>
-        <view class="mx-auto mt-40rpx text-20rpx c-#2F59F4 lh-40rpx" @click="$Router.push({name: 'PagesRegister'})">
-            验证码登录/注册
+        <view class="mx-auto mt-40rpx text-20rpx c-#2F59F4 lh-40rpx" @click="$Router.replaceAll({name: 'PagesLogin'})">
+            密码登录
         </view>
     </view>
 </template>
 
-<style scoped></style>
+<style lang="scss" scoped>
+    :deep(.wd-cell__title) {
+        width: 100% !important;
+    }
+</style>

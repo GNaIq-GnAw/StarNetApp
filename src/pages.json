@@ -52,7 +52,27 @@
         }
       },
       "name": "PagesLogin"
+    },
+    // #ifdef H5
+    {
+      "path": "pages/register",
+      "type": "page",
+      "meta": {
+        "auth": false
+      },
+      "style": {
+        "disableScroll": true,
+        "navigationBarTextStyle": "black",
+        "app-plus": {
+          "softinputMode": "adjustPan"
+        },
+        "app-harmony": {
+          "softinputMode": "adjustPan"
+        }
+      },
+      "name": "PagesRegister"
     }
+    // #endif
   ],
   "subPackages": []
 }
