@@ -16,11 +16,18 @@
     });
 
     const isAgree = ref(false);
+
+    const {systemInfo} = useSystemInfo();
 </script>
 
 <template>
-    <view class="h-full flex flex-col bg-#ffffff">
-        <view class="mx-auto mt-100rpx size-160rpx rd-20rpx wot-bg-primary" />
+    <view
+        :style="{
+            'padding-top': `${systemInfo?.safeAreaInsets?.top}px`
+        }"
+        class="box-border h-full flex flex-col of-hidden bg-#ffffff"
+    >
+        <image class="mx-auto mt-100rpx size-160rpx rd-20rpx" src="@/static/logo.png" />
         <view class="mx-auto mt-20rpx text-28rpx c-primary6/50 fw-600 lh-40rpx">
             无他，惟手熟尔
         </view>

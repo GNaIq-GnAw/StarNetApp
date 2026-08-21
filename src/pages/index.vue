@@ -15,7 +15,10 @@
             //     return {user};
             // });
 
-            router.replaceAll({path: "/pages/home"});
+            await router.replaceAll({path: "/pages/home"});
+            // #ifdef APP-PLUS
+            plus.navigator.closeSplashscreen();
+            // #endif
         } catch (e) {
             console.log("defineSqlite -> failed", e);
         }

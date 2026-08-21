@@ -8,8 +8,8 @@ export default defineManifestConfig({
     name: env.VITE_APP_NAME,
     appid: "__UNI__12A2B2B",
     description: "",
-    versionName: "1.0.0",
-    versionCode: "100",
+    versionName: "1.0.7",
+    versionCode: "107",
     transformPx: false,
     /* 5+App特有相关 */
     "app-plus": {
@@ -60,10 +60,11 @@ export default defineManifestConfig({
             splashscreen: {
                 useOriginalMsgbox: true,
                 androidStyle: "default",
+                androidTranslucent: true,
                 android: {
-                    hdpi: "unpackage/res/splash/splash_480x762_preview.png",
-                    xhdpi: "unpackage/res/splash/splash_720x1242_preview.png",
-                    xxhdpi: "unpackage/res/splash/splash_1080x1882_preview.png"
+                    hdpi: "unpackage/res/splash/drawable-hdpi/splash.9.png",
+                    xhdpi: "unpackage/res/splash/drawable-xhdpi/splash.9.png",
+                    xxhdpi: "unpackage/res/splash/drawable-xxhdpi/splash.9.png"
                 }
             },
             icons: {

@@ -16,6 +16,17 @@ declare module 'vue' {
     GlobalToast: typeof import('./../components/GlobalToast.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    WdButton: typeof import('@wot-ui/ui/components/wd-button/wd-button.vue')['WdButton']
+    WdCheckbox: typeof import('@wot-ui/ui/components/wd-checkbox/wd-checkbox.vue')['WdCheckbox']
+    WdConfigProvider: typeof import('@wot-ui/ui/components/wd-config-provider/wd-config-provider.vue')['WdConfigProvider']
+    WdDialog: typeof import('@wot-ui/ui/components/wd-dialog/wd-dialog.vue')['WdDialog']
+    WdForm: typeof import('@wot-ui/ui/components/wd-form/wd-form.vue')['WdForm']
+    WdFormItem: typeof import('@wot-ui/ui/components/wd-form-item/wd-form-item.vue')['WdFormItem']
+    WdInput: typeof import('@wot-ui/ui/components/wd-input/wd-input.vue')['WdInput']
+    WdQrCode: typeof import('@wot-ui/ui/components/wd-qr-code/wd-qr-code.vue')['WdQrCode']
+    WdTabbar: typeof import('@wot-ui/ui/components/wd-tabbar/wd-tabbar.vue')['WdTabbar']
+    WdTabbarItem: typeof import('@wot-ui/ui/components/wd-tabbar-item/wd-tabbar-item.vue')['WdTabbarItem']
+    WdToast: typeof import('@wot-ui/ui/components/wd-toast/wd-toast.vue')['WdToast']
   }
 }
 
@@ -25,4 +36,15 @@ declare global {
   const GlobalToast: typeof import('./../components/GlobalToast.vue')['default']
   const RouterLink: typeof import('vue-router')['RouterLink']
   const RouterView: typeof import('vue-router')['RouterView']
+  const WdButton: typeof import('@wot-ui/ui/components/wd-button/wd-button.vue')['WdButton']
+  const WdCheckbox: typeof import('@wot-ui/ui/components/wd-checkbox/wd-checkbox.vue')['WdCheckbox']
+  const WdConfigProvider: typeof import('@wot-ui/ui/components/wd-config-provider/wd-config-provider.vue')['WdConfigProvider']
+  const WdDialog: typeof import('@wot-ui/ui/components/wd-dialog/wd-dialog.vue')['WdDialog']
+  const WdForm: typeof import('@wot-ui/ui/components/wd-form/wd-form.vue')['WdForm']
+  const WdFormItem: typeof import('@wot-ui/ui/components/wd-form-item/wd-form-item.vue')['WdFormItem']
+  const WdInput: typeof import('@wot-ui/ui/components/wd-input/wd-input.vue')['WdInput']
+  const WdQrCode: typeof import('@wot-ui/ui/components/wd-qr-code/wd-qr-code.vue')['WdQrCode']
+  const WdTabbar: typeof import('@wot-ui/ui/components/wd-tabbar/wd-tabbar.vue')['WdTabbar']
+  const WdTabbarItem: typeof import('@wot-ui/ui/components/wd-tabbar-item/wd-tabbar-item.vue')['WdTabbarItem']
+  const WdToast: typeof import('@wot-ui/ui/components/wd-toast/wd-toast.vue')['WdToast']
 }

@@ -68,8 +68,5 @@ export const setupRouter = app => {
         console.log("router -> afterEach", to, from);
         // 逻辑代码
         if (to?.redirectPage) router.replaceAll(to.redirectPage);
-        // #ifdef APP-PLUS
-        plus.navigator.closeSplashscreen();
-        // #endif
     });
 };

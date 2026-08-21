@@ -4,6 +4,7 @@
     const themeVars = computed(() => {
         return {
             primary6: Theme.primary6,
+            primary7: Theme.primary7,
             textMain: Theme.primary6,
             borderMain: "#E9EAEC",
             buttonHeightSmall: "60rpx",
