@@ -2388,52 +2388,6 @@ declare global {
         config: Config
       ): Alova2Method<_List_ContactNoteResponseDTO_, 'contactNote.list', Config>;
     };
-    demo: {
-      /**
-       * ---
-       *
-       * [GET] demo
-       *
-       * **path:** /demo/tt
-       *
-       * ---
-       *
-       * **Query Parameters**
-       * ```ts
-       * type QueryParameters = {
-       *   // str
-       *   str?: string
-       * }
-       * ```
-       *
-       * ---
-       *
-       * **Response**
-       * ```ts
-       * type Response = {
-       *   // 响应业务码
-       *   code?: number
-       *   // 响应内容
-       *   data?: string
-       *   // 响应消息
-       *   msg?: string
-       * }
-       * ```
-       */
-      demo<
-        Config extends Alova2MethodConfig<_string_> & {
-          params: {
-            /**
-             * str
-             */
-
-            str?: string;
-          };
-        }
-      >(
-        config: Config
-      ): Alova2Method<_string_, 'demo.demo', Config>;
-    };
     district: {
       /**
        * ---

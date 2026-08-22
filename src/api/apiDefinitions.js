@@ -33,7 +33,6 @@ const apiDefinitions = {
   'contact.getContactOverview': ['GET', '/contact/{id}/overview'],
   'contactNote.create': ['POST', '/contact-note'],
   'contactNote.list': ['GET', '/contact-note/contact/{contactId}'],
-  'demo.demo': ['GET', '/demo/tt'],
   'district.list': ['GET', '/district/list'],
   'district.getDistrictTree': ['GET', '/district/tree'],
   'file.uploadToken': ['GET', '/file/token'],

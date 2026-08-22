@@ -1,5 +1,5 @@
 import {defineConfig} from "wormajs";
-import {alovaGlobals, swagger, tagModifier} from "wormajs/plugin";
+import {alovaGlobals, apiFilter, swagger, tagModifier} from "wormajs/plugin";
 
 export default defineConfig({
     generator: [
@@ -18,7 +18,8 @@ export default defineConfig({
                             return part.charAt(0).toUpperCase() + part.slice(1);
                         })
                         .join("");
-                })
+                }),
+                apiFilter({exclude: "/demo/tt"})
             ],
             handleApi: apiDescriptor => {
                 // 跳过弃用接口
