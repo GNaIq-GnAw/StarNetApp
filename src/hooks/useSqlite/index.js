@@ -14,7 +14,7 @@ import {
 const getField = (row, key) => row[key] ?? row[key.toLowerCase()] ?? row[key.toUpperCase()];
 
 /** 创建全新 SQLite 实例，返回 {open, close, execute, select, page, pageByCursor, initialize, transaction} */
-const withInstance = (options = null) => {
+const resolveInstance = (options = null) => {
     const $options = {...DEFAULT_OPTIONS, ...options};
 
     // 在途开库 Promise 缓存：并发调用复用同一 Promise，避免重复 openDatabase 竞态
@@ -24,7 +24,7 @@ const withInstance = (options = null) => {
     const opened = new Set();
 
     // 解析库身份：优先方法参数，缺省回落到实例 name 选项；两者皆无则报错
-    const resolve = () => {
+    const resolveName = () => {
         const {name, path} = $options;
 
         assertDbName(name);
@@ -38,11 +38,12 @@ const withInstance = (options = null) => {
 
     /** 打开数据库（幂等、并发安全），返回库名 */
     const open = async () => {
-        const {name: $name, key, path} = resolve();
+        const {name: $name, key, path} = resolveName();
 
         // 以底层为准（跨实例可见）：已打开则直接复用
         if (await adapter.isOpenDatabase({name: $name, path})) {
             opened.add(key);
+
             return $name;
         }
         // 本地标记残留（库被其他实例 close 过）时作废，重新打开
@@ -56,6 +57,7 @@ const withInstance = (options = null) => {
         const pending = (async () => {
             await adapter.openDatabase({name: $name, path});
             opened.add(key);
+
             return $name;
         })();
 
@@ -71,7 +73,7 @@ const withInstance = (options = null) => {
 
     /** 关闭数据库 */
     const close = async () => {
-        const {name: $name, key, path} = resolve();
+        const {name: $name, key, path} = resolveName();
 
         // 等待在途开库完成，避免 close 与 open 竞态
         if (opening.has(key)) {
@@ -85,6 +87,7 @@ const withInstance = (options = null) => {
         // 库确实没开（以底层为准）则跳过，并清理本地残留标记
         if (!await adapter.isOpenDatabase({name: $name, path})) {
             opened.delete(key);
+
             return;
         }
 
@@ -298,10 +301,10 @@ let collecting = null;
 
 /**
  * 定义并收集一组 sqlite 实例。
- * 工厂函数接收 withInstance 参数，用它创建实例并返回实例对象；可为 async（如 await initialize 建表）。
+ * 工厂函数接收 resolveInstance 参数，用它创建实例并返回实例对象；可为 async（如 await initialize 建表）。
  * 收集完成后，useSqlite() 无参调用即可解构出全部实例，如 const {chat, goods} = useSqlite()。
  * 重复调用返回同一个 Promise（单例），工厂不会重复执行；收集失败后复位，可重新定义。
- * @param factory 工厂函数，接收 withInstance 并返回实例对象
+ * @param factory 工厂函数，接收 resolveInstance 并返回实例对象
  * @returns {Promise<object>} 收集的实例对象；await 可等待收集/初始化完成
  */
 export const defineSqlite = factory => {
@@ -315,7 +318,7 @@ export const defineSqlite = factory => {
     // 收集逻辑：成功存 collected，失败复位状态并向上抛
     const collect = async () => {
         try {
-            collected = await factory(withInstance);
+            collected = await factory(resolveInstance);
 
             return collected;
         } catch (e) {
@@ -338,6 +341,6 @@ export const defineSqlite = factory => {
  * 获取 defineSqlite 收集的实例对象（门面，无参）：
  * - useSqlite()：返回收集的实例对象（如 {chat, goods}），可直接解构使用
  * - 尚未 defineSqlite 时返回 undefined
- * 创建实例请通过 defineSqlite 工厂的 withInstance 参数完成，本函数不再接受 options
+ * 创建实例请通过 defineSqlite 工厂的 resolveInstance 参数完成，本函数不再接受 options
  */
 export const useSqlite = () => collected;

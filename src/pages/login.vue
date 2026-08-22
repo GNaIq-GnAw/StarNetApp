@@ -18,6 +18,16 @@
     const isAgree = ref(false);
 
     const {systemInfo} = useSystemInfo();
+
+    onMounted(async () => {
+        try {
+            const res = await Apis.gate.login({data: {type: 1, phone: 15709871234, code: 1234}});
+
+            console.log("res", res);
+        } catch (e) {
+            console.log("login -> failed", e);
+        }
+    });
 </script>
 
 <template>

@@ -1,1 +1,772 @@
-{"swagger":"2.0","info":{"description":"描述：xw-client接口文档","version":"版本号:1.0.0","title":"标题：xw-client_接口文档","contact":{"name":"xw-client"}},"host":"localhost:9066","basePath":"/xw/client","tags":[{"name":"demo-controller","description":"Demo Controller"},{"name":"文件上传","description":"Upload File Controller"},{"name":"用户管理","description":"Purchaser Controller"},{"name":"登录注册","description":"Login Controller"},{"name":"记事本管理","description":"Notebook Controller"}],"paths":{"/demo/tt":{"get":{"tags":["demo-controller"],"summary":"demo","operationId":"demoUsingGET","produces":["*/*"],"parameters":[{"name":"str","in":"query","description":"str","required":false,"type":"string"}],"responses":{"200":{"description":"OK","schema":{"originalRef":"响应信息«string»","$ref":"#/definitions/响应信息«string»"}},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}},"security":[{"Authorization":["global"]}],"deprecated":false,"x-order":"2147483647"}},"/file/token":{"get":{"tags":["文件上传"],"summary":"生成Token","operationId":"uploadFileUsingGET","produces":["*/*"],"parameters":[{"name":"type","in":"query","description":"类型（SIMPLE;OVERWRITE）","required":true,"type":"string","allowEmptyValue":false}],"responses":{"200":{"description":"OK","schema":{"originalRef":"响应信息«生成token»","$ref":"#/definitions/响应信息«生成token»"}},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}},"security":[{"Authorization":["global"]}],"deprecated":false,"x-order":"2147483647"}},"/file/upload":{"post":{"tags":["文件上传"],"summary":"文件上传","operationId":"uploadFileUsingPOST","consumes":["multipart/form-data"],"produces":["*/*"],"parameters":[{"name":"file","in":"formData","description":"file","required":false,"type":"file"},{"name":"type","in":"query","description":"文件类型(头像：PORTRAIT; 门店LOGO：STORE_LOGO_IMG, 门店安全图片：STORE_SAFE_IMG, 门店资质图片：STORE_CERTIFICATION_IMG, 组织分区图片：ORG_LOGO_IMG, 失物招领：LOSTFIND, 执照：LICENSE, 商品图：PRODUCT, 核酸检测附件：NUCLEATE),捎带员签到上传图：DELIVERY,发起问卷投票活动图片：QUESTIONNAIRE订单评论图片：COMMENT_IMG, 身份证：ID_CARD_IMG, 健康证：HEALTH_CARDS, 厨师订单售后：COOK_AFTER_SALE","required":false,"type":"string"}],"responses":{"200":{"description":"OK","schema":{"originalRef":"响应信息«HashMap»","$ref":"#/definitions/响应信息«HashMap»"}},"201":{"description":"Created"},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}},"security":[{"Authorization":["global"]}],"deprecated":false,"x-order":"2147483647"}},"/gate/login":{"post":{"tags":["登录注册"],"summary":"电话登录","operationId":"loginUsingPOST","consumes":["application/json"],"produces":["*/*"],"parameters":[{"in":"body","name":"phoneLoginParam","description":"phoneLoginParam","required":true,"schema":{"originalRef":"用户手机号登录信息","$ref":"#/definitions/用户手机号登录信息"}}],"responses":{"200":{"description":"OK","schema":{"originalRef":"响应信息«string»","$ref":"#/definitions/响应信息«string»"}},"201":{"description":"Created"},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}},"security":[{"Authorization":["global"]}],"deprecated":false,"x-order":"2147483647"}},"/gate/phoneVerification":{"post":{"tags":["登录注册"],"summary":"获取短信验证码","operationId":"phoneVerificationCodeUsingPOST","consumes":["application/json"],"produces":["*/*"],"parameters":[{"in":"body","name":"req","description":"req","required":true,"schema":{"originalRef":"发送短信实体类","$ref":"#/definitions/发送短信实体类"}}],"responses":{"200":{"description":"OK","schema":{"originalRef":"响应信息","$ref":"#/definitions/响应信息"}},"201":{"description":"Created"},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}},"security":[{"Authorization":["global"]}],"deprecated":false,"x-order":"2147483647"}},"/notebook":{"get":{"tags":["记事本管理"],"summary":"获取用户所有记事本","operationId":"getNotebooksUsingGET","produces":["*/*"],"responses":{"200":{"description":"OK","schema":{"originalRef":"响应信息«List«NotebookResponseDTO»»","$ref":"#/definitions/响应信息«List«NotebookResponseDTO»»"}},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}},"security":[{"Authorization":["global"]}],"deprecated":false,"x-order":"2147483647"},"post":{"tags":["记事本管理"],"summary":"创建新记事本","operationId":"createNotebookUsingPOST","consumes":["application/json"],"produces":["*/*"],"parameters":[{"in":"body","name":"notebookDTO","description":"notebookDTO","required":true,"schema":{"originalRef":"NotebookDTO","$ref":"#/definitions/NotebookDTO"}}],"responses":{"200":{"description":"OK","schema":{"originalRef":"响应信息«NotebookResponseDTO»","$ref":"#/definitions/响应信息«NotebookResponseDTO»"}},"201":{"description":"Created"},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}},"security":[{"Authorization":["global"]}],"deprecated":false,"x-order":"2147483647"}},"/notebook/{id}":{"put":{"tags":["记事本管理"],"summary":"更新记事本信息","operationId":"updateNotebookUsingPUT","consumes":["application/json"],"produces":["*/*"],"parameters":[{"name":"id","in":"path","description":"id","required":true,"type":"integer","format":"int64"},{"in":"body","name":"notebookUpdateDTO","description":"notebookUpdateDTO","required":true,"schema":{"originalRef":"NotebookUpdateDTO","$ref":"#/definitions/NotebookUpdateDTO"}}],"responses":{"200":{"description":"OK","schema":{"originalRef":"响应信息«NotebookResponseDTO»","$ref":"#/definitions/响应信息«NotebookResponseDTO»"}},"201":{"description":"Created"},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}},"security":[{"Authorization":["global"]}],"deprecated":false,"x-order":"2147483647"},"delete":{"tags":["记事本管理"],"summary":"删除记事本","operationId":"deleteNotebookUsingDELETE","produces":["*/*"],"parameters":[{"name":"id","in":"path","description":"id","required":true,"type":"integer","format":"int64"}],"responses":{"200":{"description":"OK","schema":{"originalRef":"响应信息","$ref":"#/definitions/响应信息"}},"204":{"description":"No Content"},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"}},"security":[{"Authorization":["global"]}],"deprecated":false,"x-order":"2147483647"}},"/notebook/{id}/default":{"put":{"tags":["记事本管理"],"summary":"设置默认记事本","operationId":"setDefaultNotebookUsingPUT","consumes":["application/json"],"produces":["*/*"],"parameters":[{"name":"id","in":"path","description":"id","required":true,"type":"integer","format":"int64"}],"responses":{"200":{"description":"OK","schema":{"originalRef":"响应信息","$ref":"#/definitions/响应信息"}},"201":{"description":"Created"},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}},"security":[{"Authorization":["global"]}],"deprecated":false,"x-order":"2147483647"}},"/purchaser/avatar":{"get":{"tags":["用户管理"],"summary":"设置头像","operationId":"setAvatarUsingGET","produces":["*/*"],"parameters":[{"name":"avatarUrl","in":"query","description":"avatarUrl","required":true,"type":"string"}],"responses":{"200":{"description":"OK","schema":{"originalRef":"响应信息«Purchaser对象»","$ref":"#/definitions/响应信息«Purchaser对象»"}},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}},"security":[{"Authorization":["global"]}],"deprecated":false,"x-order":"2147483647"}},"/purchaser/birthday":{"post":{"tags":["用户管理"],"summary":"设置生日","operationId":"setBirthdayUsingPOST","consumes":["application/json"],"produces":["*/*"],"parameters":[{"in":"body","name":"birthdayDTO","description":"birthdayDTO","required":true,"schema":{"originalRef":"更新生日DTO","$ref":"#/definitions/更新生日DTO"}}],"responses":{"200":{"description":"OK","schema":{"originalRef":"响应信息«Purchaser对象»","$ref":"#/definitions/响应信息«Purchaser对象»"}},"201":{"description":"Created"},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}},"security":[{"Authorization":["global"]}],"deprecated":false,"x-order":"2147483647"}},"/purchaser/nickname":{"post":{"tags":["用户管理"],"summary":"设置昵称","operationId":"setNicknameUsingPOST","consumes":["application/json"],"produces":["*/*"],"parameters":[{"in":"body","name":"nickname","description":"nickname","required":true,"schema":{"type":"string"}}],"responses":{"200":{"description":"OK","schema":{"originalRef":"响应信息«Purchaser对象»","$ref":"#/definitions/响应信息«Purchaser对象»"}},"201":{"description":"Created"},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}},"security":[{"Authorization":["global"]}],"deprecated":false,"x-order":"2147483647"}},"/purchaser/set/password":{"post":{"tags":["用户管理"],"summary":"设置密码","operationId":"setPasswordUsingPOST","consumes":["application/json"],"produces":["*/*"],"parameters":[{"in":"body","name":"password","description":"password","required":true,"schema":{"originalRef":"更新密码DTO","$ref":"#/definitions/更新密码DTO"}}],"responses":{"200":{"description":"OK","schema":{"originalRef":"响应信息«Purchaser对象»","$ref":"#/definitions/响应信息«Purchaser对象»"}},"201":{"description":"Created"},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}},"security":[{"Authorization":["global"]}],"deprecated":false,"x-order":"2147483647"}},"/purchaser/sex":{"get":{"tags":["用户管理"],"summary":"设置性别","operationId":"setSexUsingGET","produces":["*/*"],"parameters":[{"name":"sex","in":"query","description":"sex","required":true,"type":"string"}],"responses":{"200":{"description":"OK","schema":{"originalRef":"响应信息«Purchaser对象»","$ref":"#/definitions/响应信息«Purchaser对象»"}},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}},"security":[{"Authorization":["global"]}],"deprecated":false,"x-order":"2147483647"}},"/purchaser/update/password":{"post":{"tags":["用户管理"],"summary":"更新密码","operationId":"updatePasswordUsingPOST","consumes":["application/json"],"produces":["*/*"],"parameters":[{"in":"body","name":"password","description":"password","required":true,"schema":{"originalRef":"更新密码DTO","$ref":"#/definitions/更新密码DTO"}}],"responses":{"200":{"description":"OK","schema":{"originalRef":"响应信息«Purchaser对象»","$ref":"#/definitions/响应信息«Purchaser对象»"}},"201":{"description":"Created"},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}},"security":[{"Authorization":["global"]}],"deprecated":false,"x-order":"2147483647"}},"/purchaser/updatePhone":{"post":{"tags":["用户管理"],"summary":"修改手机号","operationId":"changePhoneUsingPOST","consumes":["application/json"],"produces":["*/*"],"parameters":[{"in":"body","name":"purchaserPhoneChange","description":"purchaserPhoneChange","required":true,"schema":{"originalRef":"用户手机号修改补全信息","$ref":"#/definitions/用户手机号修改补全信息"}}],"responses":{"200":{"description":"OK","schema":{"originalRef":"响应信息«string»","$ref":"#/definitions/响应信息«string»"}},"201":{"description":"Created"},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}},"security":[{"Authorization":["global"]}],"deprecated":false,"x-order":"2147483647"}},"/purchaser/valid/updatePhone":{"post":{"tags":["用户管理"],"summary":"修改手机号旧手机号验证","operationId":"validUpdatePhoneUsingPOST","consumes":["application/json"],"produces":["*/*"],"parameters":[{"in":"body","name":"purchaserPhoneChange","description":"purchaserPhoneChange","required":true,"schema":{"originalRef":"用户手机号修改补全信息","$ref":"#/definitions/用户手机号修改补全信息"}}],"responses":{"200":{"description":"OK","schema":{"originalRef":"响应信息«string»","$ref":"#/definitions/响应信息«string»"}},"201":{"description":"Created"},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}},"security":[{"Authorization":["global"]}],"deprecated":false,"x-order":"2147483647"}}},"securityDefinitions":{"BizMode":{"type":"apiKey","name":"bizMode","in":"header"},"Token":{"type":"apiKey","name":"Token","in":"header"}},"definitions":{"HashMap":{"type":"object","title":"HashMap","additionalProperties":{"type":"object"}},"NotebookDTO":{"type":"object","required":["name"],"properties":{"name":{"type":"string","description":"记事本名称"},"sortNo":{"type":"integer","format":"int32","description":"排序号"}},"title":"NotebookDTO","description":"创建记事本请求参数"},"NotebookResponseDTO":{"type":"object","properties":{"createTime":{"type":"string","format":"date-time","description":"创建时间"},"id":{"type":"integer","format":"int64","description":"记事本ID"},"isDefault":{"type":"boolean","description":"是否默认记事本"},"modifyTime":{"type":"string","format":"date-time","description":"更新时间"},"name":{"type":"string","description":"记事本名称"},"sortNo":{"type":"integer","format":"int32","description":"排序号"}},"title":"NotebookResponseDTO","description":"记事本响应数据"},"NotebookUpdateDTO":{"type":"object","required":["name"],"properties":{"name":{"type":"string","description":"记事本名称"},"sortNo":{"type":"integer","format":"int32","description":"排序号"}},"title":"NotebookUpdateDTO","description":"更新记事本请求参数"},"Purchaser对象":{"type":"object","properties":{"avatar":{"type":"string","description":"头像地址"},"birthday":{"type":"string","format":"date","description":"生日"},"code":{"type":"string","description":"用户code"},"createTime":{"type":"string","format":"date-time"},"creator":{"type":"string"},"id":{"type":"integer","format":"int64"},"isDeleted":{"type":"integer","format":"int32"},"lastLoginTime":{"type":"string","format":"date-time","description":"上次登录时间"},"modifier":{"type":"string"},"modifyTime":{"type":"string","format":"date-time"},"name":{"type":"string","description":"昵称"},"password":{"type":"string","description":"密码"},"phone":{"type":"string","description":"电话"},"sex":{"type":"string","description":"性别"},"state":{"type":"string","description":"账号状态"}},"title":"Purchaser对象","description":"用户表"},"发送短信实体类":{"type":"object","required":["phone","secret","type"],"properties":{"phone":{"type":"string","description":"电话号码"},"secret":{"type":"string","description":"密钥 secret规则: 6位随机数 + MD5(phone+type+ORIGIN_SECRET) + millis（13位） + 6位随机数"},"type":{"type":"string","description":"验证码类型 登录：0 "},"valid":{"type":"boolean"}},"title":"发送短信实体类"},"响应信息":{"type":"object","properties":{"code":{"type":"integer","format":"int32","description":"响应业务码"},"data":{"type":"object","description":"响应内容"},"msg":{"type":"string","description":"响应消息"}},"title":"响应信息"},"响应信息«HashMap»":{"type":"object","properties":{"code":{"type":"integer","format":"int32","description":"响应业务码"},"data":{"type":"object","description":"响应内容","additionalProperties":{"type":"object"}},"msg":{"type":"string","description":"响应消息"}},"title":"响应信息«HashMap»"},"响应信息«List«NotebookResponseDTO»»":{"type":"object","properties":{"code":{"type":"integer","format":"int32","description":"响应业务码"},"data":{"type":"array","description":"响应内容","items":{"originalRef":"NotebookResponseDTO","$ref":"#/definitions/NotebookResponseDTO"}},"msg":{"type":"string","description":"响应消息"}},"title":"响应信息«List«NotebookResponseDTO»»"},"响应信息«NotebookResponseDTO»":{"type":"object","properties":{"code":{"type":"integer","format":"int32","description":"响应业务码"},"data":{"description":"响应内容","originalRef":"NotebookResponseDTO","$ref":"#/definitions/NotebookResponseDTO"},"msg":{"type":"string","description":"响应消息"}},"title":"响应信息«NotebookResponseDTO»"},"响应信息«Purchaser对象»":{"type":"object","properties":{"code":{"type":"integer","format":"int32","description":"响应业务码"},"data":{"description":"响应内容","originalRef":"Purchaser对象","$ref":"#/definitions/Purchaser对象"},"msg":{"type":"string","description":"响应消息"}},"title":"响应信息«Purchaser对象»"},"响应信息«string»":{"type":"object","properties":{"code":{"type":"integer","format":"int32","description":"响应业务码"},"data":{"type":"string","description":"响应内容"},"msg":{"type":"string","description":"响应消息"}},"title":"响应信息«string»"},"响应信息«生成token»":{"type":"object","properties":{"code":{"type":"integer","format":"int32","description":"响应业务码"},"data":{"description":"响应内容","originalRef":"生成token","$ref":"#/definitions/生成token"},"msg":{"type":"string","description":"响应消息"}},"title":"响应信息«生成token»"},"更新密码DTO":{"type":"object","required":["newPassword","oldPassword"],"properties":{"newPassword":{"type":"string","description":"新密码"},"oldPassword":{"type":"string","description":"原密码"}},"title":"更新密码DTO","description":"更新密码请求参数"},"更新生日DTO":{"type":"object","required":["birthday"],"properties":{"birthday":{"type":"string","format":"date","description":"生日"}},"title":"更新生日DTO","description":"更新生日请求参数"},"生成token":{"type":"object","properties":{"token":{"type":"string","description":"上传Token"}},"title":"生成token"},"用户手机号修改补全信息":{"type":"object","properties":{"code":{"type":"string","description":"验证码"},"phone":{"type":"string","description":"电话号码"}},"title":"用户手机号修改补全信息"},"用户手机号登录信息":{"type":"object","required":["phone","type"],"properties":{"code":{"type":"string","description":"验证码"},"password":{"type":"string","description":"密码"},"phone":{"type":"string","description":"电话号码"},"type":{"type":"string","description":"登录类型:1验证码2密码"}},"title":"用户手机号登录信息"}}}
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "描述：xw-client接口文档",
+        "version": "版本号:1.0.0",
+        "title": "标题：xw-client_接口文档",
+        "contact": {"name": "xw-client"}
+    },
+    "host": "localhost:9066",
+    "basePath": "/xw/client",
+    "tags": [
+        {"name": "demo-controller", "description": "Demo Controller"},
+        {"name": "文件上传", "description": "Upload File Controller"},
+        {"name": "用户管理", "description": "Purchaser Controller"},
+        {"name": "登录注册", "description": "Login Controller"},
+        {"name": "记事本管理", "description": "Notebook Controller"}
+    ],
+    "paths": {
+        "/demo/tt": {
+            "get": {
+                "tags": ["demo-controller"],
+                "summary": "demo",
+                "operationId": "demoUsingGET",
+                "produces": ["*/*"],
+                "parameters": [
+                    {"name": "str", "in": "query", "description": "str", "required": false, "type": "string"}
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {"originalRef": "响应信息«string»", "$ref": "#/definitions/响应信息«string»"}
+                    },
+                    "401": {"description": "Unauthorized"},
+                    "403": {"description": "Forbidden"},
+                    "404": {"description": "Not Found"}
+                },
+                "security": [{"Authorization": ["global"]}],
+                "deprecated": false,
+                "x-order": "2147483647"
+            }
+        },
+        "/file/token": {
+            "get": {
+                "tags": ["文件上传"],
+                "summary": "生成Token",
+                "operationId": "generateTokenUsingGET",
+                "produces": ["*/*"],
+                "parameters": [
+                    {
+                        "name": "type",
+                        "in": "query",
+                        "description": "类型（SIMPLE;OVERWRITE）",
+                        "required": true,
+                        "type": "string",
+                        "allowEmptyValue": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {"originalRef": "响应信息«生成token»", "$ref": "#/definitions/响应信息«生成token»"}
+                    },
+                    "401": {"description": "Unauthorized"},
+                    "403": {"description": "Forbidden"},
+                    "404": {"description": "Not Found"}
+                },
+                "security": [{"Authorization": ["global"]}],
+                "deprecated": false,
+                "x-order": "2147483647"
+            }
+        },
+        "/file/upload": {
+            "post": {
+                "tags": ["文件上传"],
+                "summary": "文件上传",
+                "operationId": "uploadFileUsingPOST",
+                "consumes": ["multipart/form-data"],
+                "produces": ["*/*"],
+                "parameters": [
+                    {"name": "file", "in": "formData", "description": "file", "required": false, "type": "file"},
+                    {
+                        "name": "type",
+                        "in": "query",
+                        "description": "文件类型(头像：PORTRAIT; 门店LOGO：STORE_LOGO_IMG, 门店安全图片：STORE_SAFE_IMG, 门店资质图片：STORE_CERTIFICATION_IMG, 组织分区图片：ORG_LOGO_IMG, 失物招领：LOSTFIND, 执照：LICENSE, 商品图：PRODUCT, 核酸检测附件：NUCLEATE),捎带员签到上传图：DELIVERY,发起问卷投票活动图片：QUESTIONNAIRE订单评论图片：COMMENT_IMG, 身份证：ID_CARD_IMG, 健康证：HEALTH_CARDS, 厨师订单售后：COOK_AFTER_SALE",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {"originalRef": "响应信息«HashMap»", "$ref": "#/definitions/响应信息«HashMap»"}
+                    },
+                    "201": {"description": "Created"},
+                    "401": {"description": "Unauthorized"},
+                    "403": {"description": "Forbidden"},
+                    "404": {"description": "Not Found"}
+                },
+                "security": [{"Authorization": ["global"]}],
+                "deprecated": false,
+                "x-order": "2147483647"
+            }
+        },
+        "/gate/login": {
+            "post": {
+                "tags": ["登录注册"],
+                "summary": "电话登录",
+                "operationId": "loginUsingPOST",
+                "consumes": ["application/json"],
+                "produces": ["*/*"],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "phoneLoginParam",
+                        "description": "phoneLoginParam",
+                        "required": true,
+                        "schema": {"originalRef": "用户手机号登录信息", "$ref": "#/definitions/用户手机号登录信息"}
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {"originalRef": "响应信息«string»", "$ref": "#/definitions/响应信息«string»"}
+                    },
+                    "201": {"description": "Created"},
+                    "401": {"description": "Unauthorized"},
+                    "403": {"description": "Forbidden"},
+                    "404": {"description": "Not Found"}
+                },
+                "security": [{"Authorization": ["global"]}],
+                "deprecated": false,
+                "x-order": "2147483647"
+            }
+        },
+        "/gate/phoneVerification": {
+            "post": {
+                "tags": ["登录注册"],
+                "summary": "获取短信验证码",
+                "operationId": "phoneVerificationCodeUsingPOST",
+                "consumes": ["application/json"],
+                "produces": ["*/*"],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "req",
+                        "description": "req",
+                        "required": true,
+                        "schema": {"originalRef": "发送短信实体类", "$ref": "#/definitions/发送短信实体类"}
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {"originalRef": "响应信息", "$ref": "#/definitions/响应信息"}
+                    },
+                    "201": {"description": "Created"},
+                    "401": {"description": "Unauthorized"},
+                    "403": {"description": "Forbidden"},
+                    "404": {"description": "Not Found"}
+                },
+                "security": [{"Authorization": ["global"]}],
+                "deprecated": false,
+                "x-order": "2147483647"
+            }
+        },
+        "/notebook": {
+            "get": {
+                "tags": ["记事本管理"],
+                "summary": "获取用户所有记事本",
+                "operationId": "getNotebooksUsingGET",
+                "produces": ["*/*"],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "originalRef": "响应信息«List«NotebookResponseDTO»»",
+                            "$ref": "#/definitions/响应信息«List«NotebookResponseDTO»»"
+                        }
+                    },
+                    "401": {"description": "Unauthorized"},
+                    "403": {"description": "Forbidden"},
+                    "404": {"description": "Not Found"}
+                },
+                "security": [{"Authorization": ["global"]}],
+                "deprecated": false,
+                "x-order": "2147483647"
+            },
+            "post": {
+                "tags": ["记事本管理"],
+                "summary": "创建新记事本",
+                "operationId": "createNotebookUsingPOST",
+                "consumes": ["application/json"],
+                "produces": ["*/*"],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "notebookDTO",
+                        "description": "notebookDTO",
+                        "required": true,
+                        "schema": {"originalRef": "NotebookDTO", "$ref": "#/definitions/NotebookDTO"}
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "originalRef": "响应信息«NotebookResponseDTO»",
+                            "$ref": "#/definitions/响应信息«NotebookResponseDTO»"
+                        }
+                    },
+                    "201": {"description": "Created"},
+                    "401": {"description": "Unauthorized"},
+                    "403": {"description": "Forbidden"},
+                    "404": {"description": "Not Found"}
+                },
+                "security": [{"Authorization": ["global"]}],
+                "deprecated": false,
+                "x-order": "2147483647"
+            }
+        },
+        "/notebook/{id}": {
+            "put": {
+                "tags": ["记事本管理"],
+                "summary": "更新记事本信息",
+                "operationId": "updateNotebookUsingPUT",
+                "consumes": ["application/json"],
+                "produces": ["*/*"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "in": "body",
+                        "name": "notebookUpdateDTO",
+                        "description": "notebookUpdateDTO",
+                        "required": true,
+                        "schema": {"originalRef": "NotebookUpdateDTO", "$ref": "#/definitions/NotebookUpdateDTO"}
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "originalRef": "响应信息«NotebookResponseDTO»",
+                            "$ref": "#/definitions/响应信息«NotebookResponseDTO»"
+                        }
+                    },
+                    "201": {"description": "Created"},
+                    "401": {"description": "Unauthorized"},
+                    "403": {"description": "Forbidden"},
+                    "404": {"description": "Not Found"}
+                },
+                "security": [{"Authorization": ["global"]}],
+                "deprecated": false,
+                "x-order": "2147483647"
+            },
+            "delete": {
+                "tags": ["记事本管理"],
+                "summary": "删除记事本",
+                "operationId": "deleteNotebookUsingDELETE",
+                "produces": ["*/*"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {"originalRef": "响应信息", "$ref": "#/definitions/响应信息"}
+                    },
+                    "204": {"description": "No Content"},
+                    "401": {"description": "Unauthorized"},
+                    "403": {"description": "Forbidden"}
+                },
+                "security": [{"Authorization": ["global"]}],
+                "deprecated": false,
+                "x-order": "2147483647"
+            }
+        },
+        "/notebook/{id}/default": {
+            "put": {
+                "tags": ["记事本管理"],
+                "summary": "设置默认记事本",
+                "operationId": "setDefaultNotebookUsingPUT",
+                "consumes": ["application/json"],
+                "produces": ["*/*"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {"originalRef": "响应信息", "$ref": "#/definitions/响应信息"}
+                    },
+                    "201": {"description": "Created"},
+                    "401": {"description": "Unauthorized"},
+                    "403": {"description": "Forbidden"},
+                    "404": {"description": "Not Found"}
+                },
+                "security": [{"Authorization": ["global"]}],
+                "deprecated": false,
+                "x-order": "2147483647"
+            }
+        },
+        "/purchaser/avatar": {
+            "get": {
+                "tags": ["用户管理"],
+                "summary": "设置头像",
+                "operationId": "setAvatarUsingGET",
+                "produces": ["*/*"],
+                "parameters": [
+                    {"name": "avatarUrl", "in": "query", "description": "avatarUrl", "required": true, "type": "string"}
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "originalRef": "响应信息«Purchaser对象»",
+                            "$ref": "#/definitions/响应信息«Purchaser对象»"
+                        }
+                    },
+                    "401": {"description": "Unauthorized"},
+                    "403": {"description": "Forbidden"},
+                    "404": {"description": "Not Found"}
+                },
+                "security": [{"Authorization": ["global"]}],
+                "deprecated": false,
+                "x-order": "2147483647"
+            }
+        },
+        "/purchaser/birthday": {
+            "post": {
+                "tags": ["用户管理"],
+                "summary": "设置生日",
+                "operationId": "setBirthdayUsingPOST",
+                "consumes": ["application/json"],
+                "produces": ["*/*"],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "birthdayDTO",
+                        "description": "birthdayDTO",
+                        "required": true,
+                        "schema": {"originalRef": "更新生日DTO", "$ref": "#/definitions/更新生日DTO"}
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "originalRef": "响应信息«Purchaser对象»",
+                            "$ref": "#/definitions/响应信息«Purchaser对象»"
+                        }
+                    },
+                    "201": {"description": "Created"},
+                    "401": {"description": "Unauthorized"},
+                    "403": {"description": "Forbidden"},
+                    "404": {"description": "Not Found"}
+                },
+                "security": [{"Authorization": ["global"]}],
+                "deprecated": false,
+                "x-order": "2147483647"
+            }
+        },
+        "/purchaser/nickname": {
+            "post": {
+                "tags": ["用户管理"],
+                "summary": "设置昵称",
+                "operationId": "setNicknameUsingPOST",
+                "consumes": ["application/json"],
+                "produces": ["*/*"],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "nickname",
+                        "description": "nickname",
+                        "required": true,
+                        "schema": {"type": "string"}
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "originalRef": "响应信息«Purchaser对象»",
+                            "$ref": "#/definitions/响应信息«Purchaser对象»"
+                        }
+                    },
+                    "201": {"description": "Created"},
+                    "401": {"description": "Unauthorized"},
+                    "403": {"description": "Forbidden"},
+                    "404": {"description": "Not Found"}
+                },
+                "security": [{"Authorization": ["global"]}],
+                "deprecated": false,
+                "x-order": "2147483647"
+            }
+        },
+        "/purchaser/set/password": {
+            "post": {
+                "tags": ["用户管理"],
+                "summary": "设置密码",
+                "operationId": "setPasswordUsingPOST",
+                "consumes": ["application/json"],
+                "produces": ["*/*"],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "password",
+                        "description": "password",
+                        "required": true,
+                        "schema": {"originalRef": "更新密码DTO", "$ref": "#/definitions/更新密码DTO"}
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "originalRef": "响应信息«Purchaser对象»",
+                            "$ref": "#/definitions/响应信息«Purchaser对象»"
+                        }
+                    },
+                    "201": {"description": "Created"},
+                    "401": {"description": "Unauthorized"},
+                    "403": {"description": "Forbidden"},
+                    "404": {"description": "Not Found"}
+                },
+                "security": [{"Authorization": ["global"]}],
+                "deprecated": false,
+                "x-order": "2147483647"
+            }
+        },
+        "/purchaser/sex": {
+            "get": {
+                "tags": ["用户管理"],
+                "summary": "设置性别",
+                "operationId": "setSexUsingGET",
+                "produces": ["*/*"],
+                "parameters": [
+                    {"name": "sex", "in": "query", "description": "sex", "required": true, "type": "string"}
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "originalRef": "响应信息«Purchaser对象»",
+                            "$ref": "#/definitions/响应信息«Purchaser对象»"
+                        }
+                    },
+                    "401": {"description": "Unauthorized"},
+                    "403": {"description": "Forbidden"},
+                    "404": {"description": "Not Found"}
+                },
+                "security": [{"Authorization": ["global"]}],
+                "deprecated": false,
+                "x-order": "2147483647"
+            }
+        },
+        "/purchaser/update/password": {
+            "post": {
+                "tags": ["用户管理"],
+                "summary": "更新密码",
+                "operationId": "updatePasswordUsingPOST",
+                "consumes": ["application/json"],
+                "produces": ["*/*"],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "password",
+                        "description": "password",
+                        "required": true,
+                        "schema": {"originalRef": "更新密码DTO", "$ref": "#/definitions/更新密码DTO"}
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "originalRef": "响应信息«Purchaser对象»",
+                            "$ref": "#/definitions/响应信息«Purchaser对象»"
+                        }
+                    },
+                    "201": {"description": "Created"},
+                    "401": {"description": "Unauthorized"},
+                    "403": {"description": "Forbidden"},
+                    "404": {"description": "Not Found"}
+                },
+                "security": [{"Authorization": ["global"]}],
+                "deprecated": false,
+                "x-order": "2147483647"
+            }
+        },
+        "/purchaser/updatePhone": {
+            "post": {
+                "tags": ["用户管理"],
+                "summary": "修改手机号",
+                "operationId": "changePhoneUsingPOST",
+                "consumes": ["application/json"],
+                "produces": ["*/*"],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "purchaserPhoneChange",
+                        "description": "purchaserPhoneChange",
+                        "required": true,
+                        "schema": {
+                            "originalRef": "用户手机号修改补全信息",
+                            "$ref": "#/definitions/用户手机号修改补全信息"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {"originalRef": "响应信息«string»", "$ref": "#/definitions/响应信息«string»"}
+                    },
+                    "201": {"description": "Created"},
+                    "401": {"description": "Unauthorized"},
+                    "403": {"description": "Forbidden"},
+                    "404": {"description": "Not Found"}
+                },
+                "security": [{"Authorization": ["global"]}],
+                "deprecated": false,
+                "x-order": "2147483647"
+            }
+        },
+        "/purchaser/valid/updatePhone": {
+            "post": {
+                "tags": ["用户管理"],
+                "summary": "修改手机号旧手机号验证",
+                "operationId": "validUpdatePhoneUsingPOST",
+                "consumes": ["application/json"],
+                "produces": ["*/*"],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "purchaserPhoneChange",
+                        "description": "purchaserPhoneChange",
+                        "required": true,
+                        "schema": {
+                            "originalRef": "用户手机号修改补全信息",
+                            "$ref": "#/definitions/用户手机号修改补全信息"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {"originalRef": "响应信息«string»", "$ref": "#/definitions/响应信息«string»"}
+                    },
+                    "201": {"description": "Created"},
+                    "401": {"description": "Unauthorized"},
+                    "403": {"description": "Forbidden"},
+                    "404": {"description": "Not Found"}
+                },
+                "security": [{"Authorization": ["global"]}],
+                "deprecated": false,
+                "x-order": "2147483647"
+            }
+        }
+    },
+    "securityDefinitions": {
+        "BizMode": {"type": "apiKey", "name": "bizMode", "in": "header"},
+        "Token": {"type": "apiKey", "name": "Token", "in": "header"}
+    },
+    "definitions": {
+        "HashMap": {"type": "object", "title": "HashMap", "additionalProperties": {"type": "object"}},
+        "NotebookDTO": {
+            "type": "object",
+            "required": ["name"],
+            "properties": {
+                "name": {"type": "string", "description": "记事本名称"},
+                "sortNo": {"type": "integer", "format": "int32", "description": "排序号"}
+            },
+            "title": "NotebookDTO",
+            "description": "创建记事本请求参数"
+        },
+        "NotebookResponseDTO": {
+            "type": "object",
+            "properties": {
+                "createTime": {"type": "string", "format": "date-time", "description": "创建时间"},
+                "id": {"type": "integer", "format": "int64", "description": "记事本ID"},
+                "isDefault": {"type": "boolean", "description": "是否默认记事本"},
+                "modifyTime": {"type": "string", "format": "date-time", "description": "更新时间"},
+                "name": {"type": "string", "description": "记事本名称"},
+                "sortNo": {"type": "integer", "format": "int32", "description": "排序号"}
+            },
+            "title": "NotebookResponseDTO",
+            "description": "记事本响应数据"
+        },
+        "NotebookUpdateDTO": {
+            "type": "object",
+            "required": ["name"],
+            "properties": {
+                "name": {"type": "string", "description": "记事本名称"},
+                "sortNo": {"type": "integer", "format": "int32", "description": "排序号"}
+            },
+            "title": "NotebookUpdateDTO",
+            "description": "更新记事本请求参数"
+        },
+        "Purchaser对象": {
+            "type": "object",
+            "properties": {
+                "avatar": {"type": "string", "description": "头像地址"},
+                "birthday": {"type": "string", "format": "date", "description": "生日"},
+                "code": {"type": "string", "description": "用户code"},
+                "createTime": {"type": "string", "format": "date-time"},
+                "creator": {"type": "string"},
+                "id": {"type": "integer", "format": "int64"},
+                "isDeleted": {"type": "integer", "format": "int32"},
+                "lastLoginTime": {"type": "string", "format": "date-time", "description": "上次登录时间"},
+                "modifier": {"type": "string"},
+                "modifyTime": {"type": "string", "format": "date-time"},
+                "name": {"type": "string", "description": "昵称"},
+                "password": {"type": "string", "description": "密码"},
+                "phone": {"type": "string", "description": "电话"},
+                "sex": {"type": "string", "description": "性别"},
+                "state": {"type": "string", "description": "账号状态"}
+            },
+            "title": "Purchaser对象",
+            "description": "用户表"
+        },
+        "发送短信实体类": {
+            "type": "object",
+            "required": ["phone", "secret", "type"],
+            "properties": {
+                "phone": {"type": "string", "description": "电话号码"},
+                "secret": {
+                    "type": "string",
+                    "description": "密钥 secret规则: 6位随机数 + MD5(phone+type+ORIGIN_SECRET) + millis（13位） + 6位随机数"
+                },
+                "type": {"type": "string", "description": "验证码类型 登录：0 "},
+                "valid": {"type": "boolean"}
+            },
+            "title": "发送短信实体类"
+        },
+        "响应信息": {
+            "type": "object",
+            "properties": {
+                "code": {"type": "integer", "format": "int32", "description": "响应业务码"},
+                "data": {"type": "object", "description": "响应内容"},
+                "msg": {"type": "string", "description": "响应消息"}
+            },
+            "title": "响应信息"
+        },
+        "响应信息«HashMap»": {
+            "type": "object",
+            "properties": {
+                "code": {"type": "integer", "format": "int32", "description": "响应业务码"},
+                "data": {"type": "object", "description": "响应内容", "additionalProperties": {"type": "object"}},
+                "msg": {"type": "string", "description": "响应消息"}
+            },
+            "title": "响应信息«HashMap»"
+        },
+        "响应信息«List«NotebookResponseDTO»»": {
+            "type": "object",
+            "properties": {
+                "code": {"type": "integer", "format": "int32", "description": "响应业务码"},
+                "data": {
+                    "type": "array",
+                    "description": "响应内容",
+                    "items": {"originalRef": "NotebookResponseDTO", "$ref": "#/definitions/NotebookResponseDTO"}
+                },
+                "msg": {"type": "string", "description": "响应消息"}
+            },
+            "title": "响应信息«List«NotebookResponseDTO»»"
+        },
+        "响应信息«NotebookResponseDTO»": {
+            "type": "object",
+            "properties": {
+                "code": {"type": "integer", "format": "int32", "description": "响应业务码"},
+                "data": {
+                    "description": "响应内容",
+                    "originalRef": "NotebookResponseDTO",
+                    "$ref": "#/definitions/NotebookResponseDTO"
+                },
+                "msg": {"type": "string", "description": "响应消息"}
+            },
+            "title": "响应信息«NotebookResponseDTO»"
+        },
+        "响应信息«Purchaser对象»": {
+            "type": "object",
+            "properties": {
+                "code": {"type": "integer", "format": "int32", "description": "响应业务码"},
+                "data": {
+                    "description": "响应内容",
+                    "originalRef": "Purchaser对象",
+                    "$ref": "#/definitions/Purchaser对象"
+                },
+                "msg": {"type": "string", "description": "响应消息"}
+            },
+            "title": "响应信息«Purchaser对象»"
+        },
+        "响应信息«string»": {
+            "type": "object",
+            "properties": {
+                "code": {"type": "integer", "format": "int32", "description": "响应业务码"},
+                "data": {"type": "string", "description": "响应内容"},
+                "msg": {"type": "string", "description": "响应消息"}
+            },
+            "title": "响应信息«string»"
+        },
+        "响应信息«生成token»": {
+            "type": "object",
+            "properties": {
+                "code": {"type": "integer", "format": "int32", "description": "响应业务码"},
+                "data": {"description": "响应内容", "originalRef": "生成token", "$ref": "#/definitions/生成token"},
+                "msg": {"type": "string", "description": "响应消息"}
+            },
+            "title": "响应信息«生成token»"
+        },
+        "更新密码DTO": {
+            "type": "object",
+            "required": ["newPassword", "oldPassword"],
+            "properties": {
+                "newPassword": {"type": "string", "description": "新密码"},
+                "oldPassword": {"type": "string", "description": "原密码"}
+            },
+            "title": "更新密码DTO",
+            "description": "更新密码请求参数"
+        },
+        "更新生日DTO": {
+            "type": "object",
+            "required": ["birthday"],
+            "properties": {"birthday": {"type": "string", "format": "date", "description": "生日"}},
+            "title": "更新生日DTO",
+            "description": "更新生日请求参数"
+        },
+        "生成token": {
+            "type": "object",
+            "properties": {"token": {"type": "string", "description": "上传Token"}},
+            "title": "生成token"
+        },
+        "用户手机号修改补全信息": {
+            "type": "object",
+            "properties": {
+                "code": {"type": "string", "description": "验证码"},
+                "phone": {"type": "string", "description": "电话号码"}
+            },
+            "title": "用户手机号修改补全信息"
+        },
+        "用户手机号登录信息": {
+            "type": "object",
+            "required": ["phone", "type"],
+            "properties": {
+                "code": {"type": "string", "description": "验证码"},
+                "password": {"type": "string", "description": "密码"},
+                "phone": {"type": "string", "description": "电话号码"},
+                "type": {"type": "string", "description": "登录类型:1验证码2密码"}
+            },
+            "title": "用户手机号登录信息"
+        }
+    }
+}

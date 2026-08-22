@@ -1,14 +1,24 @@
 import {defineConfig} from "wormajs";
-import {alovaGlobals, swagger} from "wormajs/plugin";
+import {alovaGlobals, swagger, tagModifier} from "wormajs/plugin";
 
 export default defineConfig({
     generator: [
         {
-            output: "src/api1",
+            output: "src/api",
             type: "module",
             plugins: [
                 swagger("https://test.rongdaufun.com/xw/client/v2/api-docs?group=%E6%8E%A5%E5%8F%A3"),
-                alovaGlobals()
+                alovaGlobals(),
+                tagModifier(tag => {
+                    return tag
+                        .split(/[_-]/)
+                        .map((part, index) => {
+                            if (index === 0) return part;
+
+                            return part.charAt(0).toUpperCase() + part.slice(1);
+                        })
+                        .join("");
+                })
             ],
             handleApi: apiDescriptor => {
                 // 跳过弃用接口
