@@ -10,15 +10,16 @@ import Optimization from "@uni-ku/bundle-optimizer";
 import UniRoot from "@uni-ku/root";
 import UnoCSS from "unocss/vite";
 import AutoImport from "unplugin-auto-import/vite";
-import {defineConfig} from "vite";
+import {defineConfig, loadEnv} from "vite";
 import {handlePageName} from "./builds/page.js";
 
 const resolvePath = dir => {
     return fileURLToPath(new URL(dir, import.meta.url));
 };
 
-export default defineConfig(() => {
+export default defineConfig(configEnv => {
     const envDir = resolvePath("./env");
+    const env = loadEnv(configEnv.mode, envDir);
 
     return {
         envDir,
@@ -102,6 +103,14 @@ export default defineConfig(() => {
         },
         optimizeDeps: {
             exclude: ["@wot-ui/ui"]
+        },
+        server: {
+            proxy: {
+                [env.VITE_API_URL]: {
+                    target: env.VITE_PROXY_TARGET, // 后端接口的真实地址
+                    changeOrigin: true, // 开启代理，会把请求头中的Origin改成目标地址
+                }
+            }
         }
     };
 });

@@ -6,6 +6,7 @@
 
     onLoad(async () => {
         try {
+            // #ifdef APP-PLUS
             await defineSqlite(async resolveInstance => {
                 const user = resolveInstance({name: "user"});
 
@@ -16,7 +17,6 @@
                 return {user};
             });
 
-            // #ifdef APP-PLUS
             await sleep(3000);
             plus.navigator.closeSplashscreen();
             // #endif
