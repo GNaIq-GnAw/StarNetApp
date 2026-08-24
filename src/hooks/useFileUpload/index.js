@@ -10,7 +10,7 @@ export const useFileUpload = (options = null) => {
             let res;
 
             // #ifdef APP
-            res = await Apis.oss.chunkUpload({
+            res = await Apis.file.uploadFile({
                 params: formData,
                 data: {name: "file", filePath: file.url},
                 requestType: "upload"
@@ -18,7 +18,7 @@ export const useFileUpload = (options = null) => {
             // #endif
 
             // #ifdef H5
-            res = await Apis.oss.chunkUpload({
+            res = await Apis.file.uploadFile({
                 data: {name: "file", filePath: URL.createObjectURL(file), ...formData},
                 requestType: "upload"
             });
@@ -26,7 +26,7 @@ export const useFileUpload = (options = null) => {
 
             return Promise.resolve(res.data);
         } catch (e) {
-            console.log("createUploadTask.fail", e);
+            console.log("createUploadTask -> failed", e);
             return Promise.reject(e);
         }
     };

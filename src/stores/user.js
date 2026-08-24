@@ -4,13 +4,30 @@ export const useUserStore = defineStore("user", () => {
     const userInfo = ref(uni.getStorageSync(Cache.UserInfo) || null);
 
     const updateUserToken = data => {
-        token.value = data?.accessToken || "";
-        refreshToken.value = data?.refreshToken || "";
+        token.value = data || "";
     };
 
-    const login = async params => {
+    const login = async $data => {
         try {
-            const {data} = await Apis.login.appLoginByTel({params, meta: {authRole: "login"}});
+            const {data} = await Apis.gate.login({data: {type: 2, ...$data}, meta: {authRole: "login"}});
+
+            console.log("data", data);
+
+            updateUserToken(data);
+
+            return true;
+        } catch (e) {
+            console.log("login -> failed", e);
+            updateUserToken();
+
+            return Promise.reject(e);
+        }
+    };
+
+    // 验证码登录
+    const loginByCode = async $data => {
+        try {
+            const {data} = await Apis.gate.login({data: {type: 1, ...$data}, meta: {authRole: "login"}});
 
             updateUserToken(data);
 
@@ -65,6 +82,7 @@ export const useUserStore = defineStore("user", () => {
         refreshToken,
         userInfo,
         login,
+        loginByCode,
         logout,
         updateUserToken,
         getUserInfo,

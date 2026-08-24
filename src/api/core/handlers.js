@@ -35,10 +35,8 @@ export const onAlovaError = async (error, method) => {
 
 export const handleTokenData = (data = null) => {
     if (data) {
-        uni.setStorageSync(Cache.Token, data.accessToken);
-        uni.setStorageSync(Cache.RefreshToken, data.refreshToken);
+        uni.setStorageSync(Cache.Token, data);
     } else {
         uni.removeStorageSync(Cache.Token);
-        uni.removeStorageSync(Cache.RefreshToken);
     }
 };

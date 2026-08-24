@@ -11,7 +11,7 @@ const {onAuthRequired, onResponseRefreshToken} = createServerTokenAuthentication
         const token = uni.getStorageSync(Cache.Token);
 
         if (token) {
-            method.config.headers.Authorization = `Bearer ${token}`;
+            method.config.headers.Token = token;
         }
     },
     refreshTokenOnSuccess: {
@@ -19,11 +19,6 @@ const {onAuthRequired, onResponseRefreshToken} = createServerTokenAuthentication
         // 当服务端返回40102时，表示token过期
         isExpired: response => {
             console.log("refreshTokenOnSuccess -> isExpired", response);
-            if (response?.data?.code === HttpResponse.OtherDeviceLogin) {
-                onLogin();
-
-                return false;
-            }
 
             return response?.data?.code === HttpResponse.TokenFailure;
         },
