@@ -35,11 +35,7 @@ export const useFileUpload = (options = null) => {
         if (!files?.filter?.(Boolean)?.length) return Promise.reject(new Error("请选择上传文件"));
 
         // 创建任务
-        const tasks = files.map(file => {
-            return () => {
-                return createUploadTask(file, formData);
-            };
-        });
+        const tasks = files.map(file => () => createUploadTask(file, formData));
 
         // 每个任务的进度占比
         const proportion = 100 / tasks.length;
@@ -105,12 +101,13 @@ export const useFileUpload = (options = null) => {
         }
     };
 
-    const fileChoose = async () => {
+    const fileChoose = async (options = null) => {
         const {tempFilePaths, tempFiles} = await new Promise((resolve, reject) => {
             uni.chooseImage({
-                count: 1, // 默认9
+                // count: 1, // 默认9
                 sizeType: ["original", "compressed"], // 可以指定是原图还是压缩图，默认二者都有
                 sourceType: ["album"], // 从相册选择
+                ...options,
                 success: resolve,
                 fail: reject
             });
@@ -122,11 +119,11 @@ export const useFileUpload = (options = null) => {
         console.log("tempFiles", tempFiles);
 
         // #ifdef H5
-        return tempFiles?.[0];
+        return tempFiles;
         // #endif
 
         // #ifndef H5
-        return {url: tempFilePaths?.[0]};
+        return tempFilePaths?.map(url => ({url}));
         // #endif
     };
 

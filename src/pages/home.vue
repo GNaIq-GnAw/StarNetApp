@@ -11,6 +11,14 @@
 
     const {systemInfo} = useSystemInfo();
 
+    const {fileChoose} = useFileUpload();
+
+    const onUpload = async () => {
+        const [res] = await fileChoose({count: 1});
+
+        console.log("res", res);
+    };
+
     onMounted(async () => {
         try {
             const res = await Apis.contact.getContacts();
@@ -69,6 +77,9 @@
                 </view>
             </view>
         </view>
+        <wd-button @click="onUpload()">
+            上传
+        </wd-button>
     </view>
 </template>
 
