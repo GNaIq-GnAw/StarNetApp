@@ -28,21 +28,24 @@ export default defineConfig({
                 if (apiDescriptor.deprecated) return undefined;
 
                 // 获取接口url前缀作为tag
-                const [tag, path] = apiDescriptor.url
+                const [prefix, ...rest] = apiDescriptor.url
                     .replace(/\/\{[^}]*\}/g, "")
                     .split("/")
                     .filter(Boolean);
 
-                apiDescriptor.tags = [tag];
-
                 // 处理接口名称定义
-                const operationId = apiDescriptor.operationId.replace(/Using.*$/, "");
+                apiDescriptor.operationId = apiDescriptor.operationId.replace(/Using.*$/, "");
 
-                if (["create", "delete", "update", "list"].includes(operationId.toLowerCase())) {
-                    apiDescriptor.operationId = camelCase(`${path}-${operationId}`);
-                } else {
-                    apiDescriptor.operationId = operationId;
-                }
+                // 自定义tag
+                const customTag = (() => {
+                    const path = rest.slice(0, -1)?.[0];
+
+                    if (path && !apiDescriptor.operationId.includes(path)) return `${prefix}-${path}`;
+
+                    return prefix;
+                })();
+
+                apiDescriptor.tags = [customTag];
 
                 return apiDescriptor;
             }

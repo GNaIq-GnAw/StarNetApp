@@ -1982,7 +1982,7 @@ declare global {
        * }
        * ```
        */
-      contactList<
+      list<
         Config extends Alova2MethodConfig<_List_ContactNoteResponseDTO_> & {
           pathParams: {
             /**
@@ -2001,329 +2001,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<_List_ContactNoteResponseDTO_, 'contactNote.contactList', Config>;
-      /**
-       * ---
-       *
-       * [POST] 记录电话联系
-       *
-       * **path:** /contact-note/contact/{contactId}/call
-       *
-       * ---
-       *
-       * **Path Parameters**
-       * ```ts
-       * type PathParameters = {
-       *   // contactId
-       *   contactId: number
-       * }
-       * ```
-       *
-       * ---
-       *
-       * **RequestBody**
-       * ```ts
-       * type RequestBody = {
-       *   // 通话时长，单位：秒
-       *   callDuration?: number
-       *   // 通话类型：in-呼入，out-呼出，默认out
-       *   callType?: string
-       *   // 联系备注
-       *   content?: string
-       *   // 事件发生时间，格式：yyyy-MM-dd HH:mm:ss
-       *   eventTime?: string
-       *   // 联系电话，必须是当前联系人的已保存号码
-       *   phone: string
-       * }
-       * ```
-       *
-       * ---
-       *
-       * **Response**
-       * ```ts
-       * type Response = {
-       *   // 响应业务码
-       *   code?: number
-       *   // [title] ContactNoteResponseDTO
-       *   // 跟进记事响应数据
-       *   data?: {
-       *     // 通话时长，单位：秒
-       *     callDuration?: number
-       *     // 通话类型
-       *     callType?: string
-       *     // 联系人ID
-       *     contactId?: number
-       *     // 记事内容
-       *     content?: string
-       *     // 创建时间，格式：yyyy-MM-dd HH:mm:ss
-       *     createTime?: string
-       *     // 事件发生时间，格式：yyyy-MM-dd HH:mm:ss
-       *     eventTime?: string
-       *     // 跟进记事ID
-       *     id?: number
-       *     // 拜访纬度
-       *     lat?: number
-       *     // 拜访经度
-       *     lng?: number
-       *     // 更新时间，格式：yyyy-MM-dd HH:mm:ss
-       *     modifyTime?: string
-       *     // 记事类型：call-电话联系，sms-短信联系，normal-普通记事，visit-拜访记事
-       *     noteType?: string
-       *     // 记事本ID
-       *     notebookId?: number
-       *     // 联系电话
-       *     phone?: string
-       *     // 短信类型
-       *     smsType?: string
-       *     // 拜访地址
-       *     visitAddress?: string
-       *   }
-       *   // 响应消息
-       *   msg?: string
-       * }
-       * ```
-       */
-      createCall<
-        Config extends Alova2MethodConfig<_ContactNoteResponseDTO_> & {
-          pathParams: {
-            /**
-             * contactId
-             */
-
-            contactId: number;
-          };
-          data: ContactCallDTO;
-        }
-      >(
-        config: Config
-      ): Alova2Method<_ContactNoteResponseDTO_, 'contactNote.createCall', Config>;
-      /**
-       * ---
-       *
-       * [GET] 分页查询跟进记事
-       *
-       * **path:** /contact-note/contact/{contactId}/page
-       *
-       * ---
-       *
-       * **Path Parameters**
-       * ```ts
-       * type PathParameters = {
-       *   // contactId
-       *   contactId: number
-       * }
-       * ```
-       *
-       * ---
-       *
-       * **Query Parameters**
-       * ```ts
-       * type QueryParameters = {
-       *   // endTime
-       *   endTime?: string
-       *   // noteType
-       *   noteType?: string
-       *   // pageNo
-       *   pageNo?: number
-       *   // pageSize
-       *   pageSize?: number
-       *   // startTime
-       *   startTime?: string
-       * }
-       * ```
-       *
-       * ---
-       *
-       * **Response**
-       * ```ts
-       * type Response = {
-       *   // 响应业务码
-       *   code?: number
-       *   // [title] ContactNotePageResponseDTO
-       *   // 跟进记事分页响应数据
-       *   data?: {
-       *     // 当前页码，从 1 开始
-       *     pageNo?: number
-       *     // 每页数量
-       *     pageSize?: number
-       *     // 当前页数据
-       *     // [items] start
-       *     // [title] ContactNoteResponseDTO
-       *     // 跟进记事响应数据
-       *     // [items] end
-       *     records?: Array<{
-       *       // 通话时长，单位：秒
-       *       callDuration?: number
-       *       // 通话类型
-       *       callType?: string
-       *       // 联系人ID
-       *       contactId?: number
-       *       // 记事内容
-       *       content?: string
-       *       // 创建时间，格式：yyyy-MM-dd HH:mm:ss
-       *       createTime?: string
-       *       // 事件发生时间，格式：yyyy-MM-dd HH:mm:ss
-       *       eventTime?: string
-       *       // 跟进记事ID
-       *       id?: number
-       *       // 拜访纬度
-       *       lat?: number
-       *       // 拜访经度
-       *       lng?: number
-       *       // 更新时间，格式：yyyy-MM-dd HH:mm:ss
-       *       modifyTime?: string
-       *       // 记事类型：call-电话联系，sms-短信联系，normal-普通记事，visit-拜访记事
-       *       noteType?: string
-       *       // 记事本ID
-       *       notebookId?: number
-       *       // 联系电话
-       *       phone?: string
-       *       // 短信类型
-       *       smsType?: string
-       *       // 拜访地址
-       *       visitAddress?: string
-       *     }>
-       *     // 总记录数
-       *     total?: number
-       *   }
-       *   // 响应消息
-       *   msg?: string
-       * }
-       * ```
-       */
-      page<
-        Config extends Alova2MethodConfig<_ContactNotePageResponseDTO_> & {
-          pathParams: {
-            /**
-             * contactId
-             */
-
-            contactId: number;
-          };
-          params: {
-            /**
-             * endTime
-             */
-
-            endTime?: string;
-            /**
-             * noteType
-             */
-
-            noteType?: string;
-            /**
-             * pageNo
-             */
-
-            pageNo?: number;
-            /**
-             * pageSize
-             */
-
-            pageSize?: number;
-            /**
-             * startTime
-             */
-
-            startTime?: string;
-          };
-        }
-      >(
-        config: Config
-      ): Alova2Method<_ContactNotePageResponseDTO_, 'contactNote.page', Config>;
-      /**
-       * ---
-       *
-       * [POST] 记录短信联系
-       *
-       * **path:** /contact-note/contact/{contactId}/sms
-       *
-       * ---
-       *
-       * **Path Parameters**
-       * ```ts
-       * type PathParameters = {
-       *   // contactId
-       *   contactId: number
-       * }
-       * ```
-       *
-       * ---
-       *
-       * **RequestBody**
-       * ```ts
-       * type RequestBody = {
-       *   // 短信内容或联系备注
-       *   content?: string
-       *   // 事件发生时间，格式：yyyy-MM-dd HH:mm:ss
-       *   eventTime?: string
-       *   // 联系电话，必须是当前联系人的已保存号码
-       *   phone: string
-       *   // 短信类型：in-接收，out-发送，默认out
-       *   smsType?: string
-       * }
-       * ```
-       *
-       * ---
-       *
-       * **Response**
-       * ```ts
-       * type Response = {
-       *   // 响应业务码
-       *   code?: number
-       *   // [title] ContactNoteResponseDTO
-       *   // 跟进记事响应数据
-       *   data?: {
-       *     // 通话时长，单位：秒
-       *     callDuration?: number
-       *     // 通话类型
-       *     callType?: string
-       *     // 联系人ID
-       *     contactId?: number
-       *     // 记事内容
-       *     content?: string
-       *     // 创建时间，格式：yyyy-MM-dd HH:mm:ss
-       *     createTime?: string
-       *     // 事件发生时间，格式：yyyy-MM-dd HH:mm:ss
-       *     eventTime?: string
-       *     // 跟进记事ID
-       *     id?: number
-       *     // 拜访纬度
-       *     lat?: number
-       *     // 拜访经度
-       *     lng?: number
-       *     // 更新时间，格式：yyyy-MM-dd HH:mm:ss
-       *     modifyTime?: string
-       *     // 记事类型：call-电话联系，sms-短信联系，normal-普通记事，visit-拜访记事
-       *     noteType?: string
-       *     // 记事本ID
-       *     notebookId?: number
-       *     // 联系电话
-       *     phone?: string
-       *     // 短信类型
-       *     smsType?: string
-       *     // 拜访地址
-       *     visitAddress?: string
-       *   }
-       *   // 响应消息
-       *   msg?: string
-       * }
-       * ```
-       */
-      createSms<
-        Config extends Alova2MethodConfig<_ContactNoteResponseDTO_> & {
-          pathParams: {
-            /**
-             * contactId
-             */
-
-            contactId: number;
-          };
-          data: ContactSmsDTO;
-        }
-      >(
-        config: Config
-      ): Alova2Method<_ContactNoteResponseDTO_, 'contactNote.createSms', Config>;
+      ): Alova2Method<_List_ContactNoteResponseDTO_, 'contactNote.list', Config>;
       /**
        * ---
        *
@@ -2409,13 +2087,13 @@ declare global {
        * }
        * ```
        */
-      createCreate<
+      create<
         Config extends Alova2MethodConfig<_ContactNoteResponseDTO_> & {
           data: ContactNoteDTO;
         }
       >(
         config: Config
-      ): Alova2Method<_ContactNoteResponseDTO_, 'contactNote.createCreate', Config>;
+      ): Alova2Method<_ContactNoteResponseDTO_, 'contactNote.create', Config>;
       /**
        * ---
        *
@@ -2583,7 +2261,7 @@ declare global {
        * }
        * ```
        */
-      undefinedUpdate<
+      update<
         Config extends Alova2MethodConfig<_ContactNoteResponseDTO_> & {
           pathParams: {
             /**
@@ -2596,7 +2274,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<_ContactNoteResponseDTO_, 'contactNote.undefinedUpdate', Config>;
+      ): Alova2Method<_ContactNoteResponseDTO_, 'contactNote.update', Config>;
       /**
        * ---
        *
@@ -2626,7 +2304,7 @@ declare global {
        * }
        * ```
        */
-      undefinedDelete<
+      delete<
         Config extends Alova2MethodConfig<_Void_> & {
           pathParams: {
             /**
@@ -2638,7 +2316,331 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<_Void_, 'contactNote.undefinedDelete', Config>;
+      ): Alova2Method<_Void_, 'contactNote.delete', Config>;
+    };
+    contactNoteContact: {
+      /**
+       * ---
+       *
+       * [POST] 记录电话联系
+       *
+       * **path:** /contact-note/contact/{contactId}/call
+       *
+       * ---
+       *
+       * **Path Parameters**
+       * ```ts
+       * type PathParameters = {
+       *   // contactId
+       *   contactId: number
+       * }
+       * ```
+       *
+       * ---
+       *
+       * **RequestBody**
+       * ```ts
+       * type RequestBody = {
+       *   // 通话时长，单位：秒
+       *   callDuration?: number
+       *   // 通话类型：in-呼入，out-呼出，默认out
+       *   callType?: string
+       *   // 联系备注
+       *   content?: string
+       *   // 事件发生时间，格式：yyyy-MM-dd HH:mm:ss
+       *   eventTime?: string
+       *   // 联系电话，必须是当前联系人的已保存号码
+       *   phone: string
+       * }
+       * ```
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = {
+       *   // 响应业务码
+       *   code?: number
+       *   // [title] ContactNoteResponseDTO
+       *   // 跟进记事响应数据
+       *   data?: {
+       *     // 通话时长，单位：秒
+       *     callDuration?: number
+       *     // 通话类型
+       *     callType?: string
+       *     // 联系人ID
+       *     contactId?: number
+       *     // 记事内容
+       *     content?: string
+       *     // 创建时间，格式：yyyy-MM-dd HH:mm:ss
+       *     createTime?: string
+       *     // 事件发生时间，格式：yyyy-MM-dd HH:mm:ss
+       *     eventTime?: string
+       *     // 跟进记事ID
+       *     id?: number
+       *     // 拜访纬度
+       *     lat?: number
+       *     // 拜访经度
+       *     lng?: number
+       *     // 更新时间，格式：yyyy-MM-dd HH:mm:ss
+       *     modifyTime?: string
+       *     // 记事类型：call-电话联系，sms-短信联系，normal-普通记事，visit-拜访记事
+       *     noteType?: string
+       *     // 记事本ID
+       *     notebookId?: number
+       *     // 联系电话
+       *     phone?: string
+       *     // 短信类型
+       *     smsType?: string
+       *     // 拜访地址
+       *     visitAddress?: string
+       *   }
+       *   // 响应消息
+       *   msg?: string
+       * }
+       * ```
+       */
+      createCall<
+        Config extends Alova2MethodConfig<_ContactNoteResponseDTO_> & {
+          pathParams: {
+            /**
+             * contactId
+             */
+
+            contactId: number;
+          };
+          data: ContactCallDTO;
+        }
+      >(
+        config: Config
+      ): Alova2Method<_ContactNoteResponseDTO_, 'contactNoteContact.createCall', Config>;
+      /**
+       * ---
+       *
+       * [GET] 分页查询跟进记事
+       *
+       * **path:** /contact-note/contact/{contactId}/page
+       *
+       * ---
+       *
+       * **Path Parameters**
+       * ```ts
+       * type PathParameters = {
+       *   // contactId
+       *   contactId: number
+       * }
+       * ```
+       *
+       * ---
+       *
+       * **Query Parameters**
+       * ```ts
+       * type QueryParameters = {
+       *   // endTime
+       *   endTime?: string
+       *   // noteType
+       *   noteType?: string
+       *   // pageNo
+       *   pageNo?: number
+       *   // pageSize
+       *   pageSize?: number
+       *   // startTime
+       *   startTime?: string
+       * }
+       * ```
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = {
+       *   // 响应业务码
+       *   code?: number
+       *   // [title] ContactNotePageResponseDTO
+       *   // 跟进记事分页响应数据
+       *   data?: {
+       *     // 当前页码，从 1 开始
+       *     pageNo?: number
+       *     // 每页数量
+       *     pageSize?: number
+       *     // 当前页数据
+       *     // [items] start
+       *     // [title] ContactNoteResponseDTO
+       *     // 跟进记事响应数据
+       *     // [items] end
+       *     records?: Array<{
+       *       // 通话时长，单位：秒
+       *       callDuration?: number
+       *       // 通话类型
+       *       callType?: string
+       *       // 联系人ID
+       *       contactId?: number
+       *       // 记事内容
+       *       content?: string
+       *       // 创建时间，格式：yyyy-MM-dd HH:mm:ss
+       *       createTime?: string
+       *       // 事件发生时间，格式：yyyy-MM-dd HH:mm:ss
+       *       eventTime?: string
+       *       // 跟进记事ID
+       *       id?: number
+       *       // 拜访纬度
+       *       lat?: number
+       *       // 拜访经度
+       *       lng?: number
+       *       // 更新时间，格式：yyyy-MM-dd HH:mm:ss
+       *       modifyTime?: string
+       *       // 记事类型：call-电话联系，sms-短信联系，normal-普通记事，visit-拜访记事
+       *       noteType?: string
+       *       // 记事本ID
+       *       notebookId?: number
+       *       // 联系电话
+       *       phone?: string
+       *       // 短信类型
+       *       smsType?: string
+       *       // 拜访地址
+       *       visitAddress?: string
+       *     }>
+       *     // 总记录数
+       *     total?: number
+       *   }
+       *   // 响应消息
+       *   msg?: string
+       * }
+       * ```
+       */
+      page<
+        Config extends Alova2MethodConfig<_ContactNotePageResponseDTO_> & {
+          pathParams: {
+            /**
+             * contactId
+             */
+
+            contactId: number;
+          };
+          params: {
+            /**
+             * endTime
+             */
+
+            endTime?: string;
+            /**
+             * noteType
+             */
+
+            noteType?: string;
+            /**
+             * pageNo
+             */
+
+            pageNo?: number;
+            /**
+             * pageSize
+             */
+
+            pageSize?: number;
+            /**
+             * startTime
+             */
+
+            startTime?: string;
+          };
+        }
+      >(
+        config: Config
+      ): Alova2Method<_ContactNotePageResponseDTO_, 'contactNoteContact.page', Config>;
+      /**
+       * ---
+       *
+       * [POST] 记录短信联系
+       *
+       * **path:** /contact-note/contact/{contactId}/sms
+       *
+       * ---
+       *
+       * **Path Parameters**
+       * ```ts
+       * type PathParameters = {
+       *   // contactId
+       *   contactId: number
+       * }
+       * ```
+       *
+       * ---
+       *
+       * **RequestBody**
+       * ```ts
+       * type RequestBody = {
+       *   // 短信内容或联系备注
+       *   content?: string
+       *   // 事件发生时间，格式：yyyy-MM-dd HH:mm:ss
+       *   eventTime?: string
+       *   // 联系电话，必须是当前联系人的已保存号码
+       *   phone: string
+       *   // 短信类型：in-接收，out-发送，默认out
+       *   smsType?: string
+       * }
+       * ```
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = {
+       *   // 响应业务码
+       *   code?: number
+       *   // [title] ContactNoteResponseDTO
+       *   // 跟进记事响应数据
+       *   data?: {
+       *     // 通话时长，单位：秒
+       *     callDuration?: number
+       *     // 通话类型
+       *     callType?: string
+       *     // 联系人ID
+       *     contactId?: number
+       *     // 记事内容
+       *     content?: string
+       *     // 创建时间，格式：yyyy-MM-dd HH:mm:ss
+       *     createTime?: string
+       *     // 事件发生时间，格式：yyyy-MM-dd HH:mm:ss
+       *     eventTime?: string
+       *     // 跟进记事ID
+       *     id?: number
+       *     // 拜访纬度
+       *     lat?: number
+       *     // 拜访经度
+       *     lng?: number
+       *     // 更新时间，格式：yyyy-MM-dd HH:mm:ss
+       *     modifyTime?: string
+       *     // 记事类型：call-电话联系，sms-短信联系，normal-普通记事，visit-拜访记事
+       *     noteType?: string
+       *     // 记事本ID
+       *     notebookId?: number
+       *     // 联系电话
+       *     phone?: string
+       *     // 短信类型
+       *     smsType?: string
+       *     // 拜访地址
+       *     visitAddress?: string
+       *   }
+       *   // 响应消息
+       *   msg?: string
+       * }
+       * ```
+       */
+      createSms<
+        Config extends Alova2MethodConfig<_ContactNoteResponseDTO_> & {
+          pathParams: {
+            /**
+             * contactId
+             */
+
+            contactId: number;
+          };
+          data: ContactSmsDTO;
+        }
+      >(
+        config: Config
+      ): Alova2Method<_ContactNoteResponseDTO_, 'contactNoteContact.createSms', Config>;
     };
     contact: {
       /**
@@ -2941,617 +2943,6 @@ declare global {
       /**
        * ---
        *
-       * [POST] 批量导入通讯录联系人
-       *
-       * **path:** /contact/notebook/{notebookId}/batch-import
-       *
-       * ---
-       *
-       * **Path Parameters**
-       * ```ts
-       * type PathParameters = {
-       *   // notebookId
-       *   notebookId: number
-       * }
-       * ```
-       *
-       * ---
-       *
-       * **RequestBody**
-       * ```ts
-       * type RequestBody = {
-       *   // 待导入联系人，单次最多500个
-       *   // [items] start
-       *   // [title] ContactImportItemDTO
-       *   // 通讯录批量导入的联系人数据
-       *   // [items] end
-       *   contacts: Array<{
-       *     // 生日，格式：yyyy-MM-dd
-       *     birthday?: string
-       *     // 公司地址
-       *     companyAddress?: string
-       *     // 公司名称
-       *     companyName?: string
-       *     // 部门
-       *     department?: string
-       *     // 家庭地址
-       *     homeAddress?: string
-       *     // 是否关注
-       *     isFollow?: boolean
-       *     // 联系人姓名
-       *     name: string
-       *     // 联系电话列表
-       *     // [items] start
-       *     // [title] ContactPhoneDTO
-       *     // 联系电话信息DTO
-       *     // [items] end
-       *     phones: Array<{
-       *       // 联系电话
-       *       phone?: string
-       *       // 电话类型
-       *       type?: string
-       *     }>
-       *     // 职位
-       *     position?: string
-       *     // 性别
-       *     sex?: string
-       *     // 联系人来源
-       *     source?: string
-       *   }>
-       *   // 是否过滤已导入手机号，默认true
-       *   skipExisting?: boolean
-       * }
-       * ```
-       *
-       * ---
-       *
-       * **Response**
-       * ```ts
-       * type Response = {
-       *   // 响应业务码
-       *   code?: number
-       *   // [title] ContactBatchImportResponseDTO
-       *   // 通讯录批量导入结果
-       *   data?: {
-       *     // 成功导入的联系人
-       *     // [items] start
-       *     // [title] ContactResponseDTO
-       *     // 联系人响应DTO
-       *     // [items] end
-       *     importedContacts?: Array<{
-       *       // 生日
-       *       birthday?: string
-       *       // 公司地址
-       *       companyAddress?: string
-       *       // 公司名称
-       *       companyName?: string
-       *       // 创建时间
-       *       createTime?: string
-       *       // 部门
-       *       department?: string
-       *       // 家庭地址
-       *       homeAddress?: string
-       *       // 联系人ID
-       *       id?: number
-       *       // 是否关注
-       *       isFollow?: boolean
-       *       // 更新时间
-       *       modifyTime?: string
-       *       // 联系人姓名
-       *       name?: string
-       *       // 记事本ID
-       *       notebookId?: number
-       *       // 联系电话列表
-       *       // [items] start
-       *       // [title] ContactPhoneDTO
-       *       // 联系电话信息DTO
-       *       // [items] end
-       *       phones?: Array<{
-       *         // 联系电话
-       *         phone?: string
-       *         // 电话类型
-       *         type?: string
-       *       }>
-       *       // 职位
-       *       position?: string
-       *       // 性别
-       *       sex?: string
-       *       // 来源
-       *       source?: string
-       *     }>
-       *     // 成功导入联系人数量
-       *     importedCount?: number
-       *     // 被过滤手机号数量
-       *     skippedCount?: number
-       *     // 被过滤的已存在手机号
-       *     // [items] start
-       *     // [items] end
-       *     skippedPhones?: string[]
-       *   }
-       *   // 响应消息
-       *   msg?: string
-       * }
-       * ```
-       */
-      batchImport<
-        Config extends Alova2MethodConfig<_ContactBatchImportResponseDTO_> & {
-          pathParams: {
-            /**
-             * notebookId
-             */
-
-            notebookId: number;
-          };
-          data: ContactBatchImportDTO;
-        }
-      >(
-        config: Config
-      ): Alova2Method<_ContactBatchImportResponseDTO_, 'contact.batchImport', Config>;
-      /**
-       * ---
-       *
-       * [GET] 查询联系人展示设置
-       *
-       * **path:** /contact/notebook/{notebookId}/display-settings
-       *
-       * ---
-       *
-       * **Path Parameters**
-       * ```ts
-       * type PathParameters = {
-       *   // notebookId
-       *   notebookId: number
-       * }
-       * ```
-       *
-       * ---
-       *
-       * **Response**
-       * ```ts
-       * type Response = {
-       *   // 响应业务码
-       *   code?: number
-       *   // [title] ContactDisplaySettingResponseDTO
-       *   // 联系人展示设置响应
-       *   data?: {
-       *     // 结束时间
-       *     endTime?: string
-       *     // 设置更新时间
-       *     modifyTime?: string
-       *     // 跟进事件类型：call、sms、normal、visit
-       *     noteType?: string
-       *     // 是否只看关注联系人
-       *     onlyFollow?: boolean
-       *     // 分页大小
-       *     pageSize?: number
-       *     // 开始时间
-       *     startTime?: string
-       *   }
-       *   // 响应消息
-       *   msg?: string
-       * }
-       * ```
-       */
-      getDisplaySetting<
-        Config extends Alova2MethodConfig<_ContactDisplaySettingResponseDTO_> & {
-          pathParams: {
-            /**
-             * notebookId
-             */
-
-            notebookId: number;
-          };
-        }
-      >(
-        config: Config
-      ): Alova2Method<_ContactDisplaySettingResponseDTO_, 'contact.getDisplaySetting', Config>;
-      /**
-       * ---
-       *
-       * [PUT] 保存联系人展示设置
-       *
-       * **path:** /contact/notebook/{notebookId}/display-settings
-       *
-       * ---
-       *
-       * **Path Parameters**
-       * ```ts
-       * type PathParameters = {
-       *   // notebookId
-       *   notebookId: number
-       * }
-       * ```
-       *
-       * ---
-       *
-       * **RequestBody**
-       * ```ts
-       * type RequestBody = {
-       *   // 结束时间，格式：yyyy-MM-dd HH:mm:ss
-       *   endTime?: string
-       *   // 跟进事件类型：call、sms、normal、visit
-       *   noteType?: string
-       *   // 是否只看关注联系人
-       *   onlyFollow?: boolean
-       *   // 分页大小，范围1到100
-       *   pageSize?: number
-       *   // 开始时间，格式：yyyy-MM-dd HH:mm:ss
-       *   startTime?: string
-       * }
-       * ```
-       *
-       * ---
-       *
-       * **Response**
-       * ```ts
-       * type Response = {
-       *   // 响应业务码
-       *   code?: number
-       *   // [title] ContactDisplaySettingResponseDTO
-       *   // 联系人展示设置响应
-       *   data?: {
-       *     // 结束时间
-       *     endTime?: string
-       *     // 设置更新时间
-       *     modifyTime?: string
-       *     // 跟进事件类型：call、sms、normal、visit
-       *     noteType?: string
-       *     // 是否只看关注联系人
-       *     onlyFollow?: boolean
-       *     // 分页大小
-       *     pageSize?: number
-       *     // 开始时间
-       *     startTime?: string
-       *   }
-       *   // 响应消息
-       *   msg?: string
-       * }
-       * ```
-       */
-      saveDisplaySetting<
-        Config extends Alova2MethodConfig<_ContactDisplaySettingResponseDTO_> & {
-          pathParams: {
-            /**
-             * notebookId
-             */
-
-            notebookId: number;
-          };
-          data: ContactDisplaySettingDTO;
-        }
-      >(
-        config: Config
-      ): Alova2Method<_ContactDisplaySettingResponseDTO_, 'contact.saveDisplaySetting', Config>;
-      /**
-       * ---
-       *
-       * [POST] 查询已导入手机号
-       *
-       * **path:** /contact/notebook/{notebookId}/imported-check
-       *
-       * ---
-       *
-       * **Path Parameters**
-       * ```ts
-       * type PathParameters = {
-       *   // notebookId
-       *   notebookId: number
-       * }
-       * ```
-       *
-       * ---
-       *
-       * **RequestBody**
-       * ```ts
-       * type RequestBody = {
-       *   // 待检查手机号，单次最多1000个
-       *   // [items] start
-       *   // [items] end
-       *   phones: string[]
-       * }
-       * ```
-       *
-       * ---
-       *
-       * **Response**
-       * ```ts
-       * type Response = {
-       *   // 响应业务码
-       *   code?: number
-       *   // 响应内容
-       *   // [items] start
-       *   // [title] ContactImportedPhoneDTO
-       *   // 已导入手机号及关联联系人信息
-       *   // [items] end
-       *   data?: Array<{
-       *     // 联系人ID
-       *     contactId?: number
-       *     // 联系人姓名
-       *     contactName?: string
-       *     // 手机号
-       *     phone?: string
-       *   }>
-       *   // 响应消息
-       *   msg?: string
-       * }
-       * ```
-       */
-      findImportedPhones<
-        Config extends Alova2MethodConfig<_List_ContactImportedPhoneDTO_> & {
-          pathParams: {
-            /**
-             * notebookId
-             */
-
-            notebookId: number;
-          };
-          data: ContactImportedPhoneCheckDTO;
-        }
-      >(
-        config: Config
-      ): Alova2Method<_List_ContactImportedPhoneDTO_, 'contact.findImportedPhones', Config>;
-      /**
-       * ---
-       *
-       * [GET] 分页查询联系人和统计
-       *
-       * **path:** /contact/notebook/{notebookId}/page
-       *
-       * ---
-       *
-       * **Path Parameters**
-       * ```ts
-       * type PathParameters = {
-       *   // notebookId
-       *   notebookId: number
-       * }
-       * ```
-       *
-       * ---
-       *
-       * **Query Parameters**
-       * ```ts
-       * type QueryParameters = {
-       *   // endTime
-       *   endTime?: string
-       *   // keyword
-       *   keyword?: string
-       *   // noteType
-       *   noteType?: string
-       *   // onlyFollow
-       *   onlyFollow?: boolean
-       *   // pageNo
-       *   pageNo?: number
-       *   // pageSize
-       *   pageSize?: number
-       *   // startTime
-       *   startTime?: string
-       * }
-       * ```
-       *
-       * ---
-       *
-       * **Response**
-       * ```ts
-       * type Response = {
-       *   // 响应业务码
-       *   code?: number
-       *   // [title] ContactPageResponseDTO
-       *   // 人脉分页查询响应数据
-       *   data?: {
-       *     // 当前页码，从1开始
-       *     pageNo?: number
-       *     // 每页数量
-       *     pageSize?: number
-       *     // 当前页数据
-       *     // [items] start
-       *     // [title] ContactResponseDTO
-       *     // 联系人响应DTO
-       *     // [items] end
-       *     records?: Array<{
-       *       // 生日
-       *       birthday?: string
-       *       // 公司地址
-       *       companyAddress?: string
-       *       // 公司名称
-       *       companyName?: string
-       *       // 创建时间
-       *       createTime?: string
-       *       // 部门
-       *       department?: string
-       *       // 家庭地址
-       *       homeAddress?: string
-       *       // 联系人ID
-       *       id?: number
-       *       // 是否关注
-       *       isFollow?: boolean
-       *       // 更新时间
-       *       modifyTime?: string
-       *       // 联系人姓名
-       *       name?: string
-       *       // 记事本ID
-       *       notebookId?: number
-       *       // 联系电话列表
-       *       // [items] start
-       *       // [title] ContactPhoneDTO
-       *       // 联系电话信息DTO
-       *       // [items] end
-       *       phones?: Array<{
-       *         // 联系电话
-       *         phone?: string
-       *         // 电话类型
-       *         type?: string
-       *       }>
-       *       // 职位
-       *       position?: string
-       *       // 性别
-       *       sex?: string
-       *       // 来源
-       *       source?: string
-       *     }>
-       *     // [title] ContactListStatsDTO
-       *     // 人脉列表统计数据
-       *     stats?: {
-       *       // 电话联系记事次数
-       *       callNoteCount?: number
-       *       // 产生成交的联系人数量
-       *       dealContacts?: number
-       *       // 产生支出的联系人数量
-       *       expenseContacts?: number
-       *       // 新增人脉数量
-       *       newContacts?: number
-       *       // 普通记事次数
-       *       normalNoteCount?: number
-       *       // 短信联系记事次数
-       *       smsNoteCount?: number
-       *       // 拜访记事次数
-       *       visitNoteCount?: number
-       *     }
-       *     // 总记录数
-       *     total?: number
-       *   }
-       *   // 响应消息
-       *   msg?: string
-       * }
-       * ```
-       */
-      pageContacts<
-        Config extends Alova2MethodConfig<_ContactPageResponseDTO_> & {
-          pathParams: {
-            /**
-             * notebookId
-             */
-
-            notebookId: number;
-          };
-          params: {
-            /**
-             * endTime
-             */
-
-            endTime?: string;
-            /**
-             * keyword
-             */
-
-            keyword?: string;
-            /**
-             * noteType
-             */
-
-            noteType?: string;
-            /**
-             * onlyFollow
-             */
-
-            onlyFollow?: boolean;
-            /**
-             * pageNo
-             */
-
-            pageNo?: number;
-            /**
-             * pageSize
-             */
-
-            pageSize?: number;
-            /**
-             * startTime
-             */
-
-            startTime?: string;
-          };
-        }
-      >(
-        config: Config
-      ): Alova2Method<_ContactPageResponseDTO_, 'contact.pageContacts', Config>;
-      /**
-       * ---
-       *
-       * [GET] 查询联系人统计
-       *
-       * **path:** /contact/notebook/{notebookId}/stats
-       *
-       * ---
-       *
-       * **Path Parameters**
-       * ```ts
-       * type PathParameters = {
-       *   // notebookId
-       *   notebookId: number
-       * }
-       * ```
-       *
-       * ---
-       *
-       * **Query Parameters**
-       * ```ts
-       * type QueryParameters = {
-       *   // endTime
-       *   endTime?: string
-       *   // startTime
-       *   startTime?: string
-       * }
-       * ```
-       *
-       * ---
-       *
-       * **Response**
-       * ```ts
-       * type Response = {
-       *   // 响应业务码
-       *   code?: number
-       *   // [title] ContactListStatsDTO
-       *   // 人脉列表统计数据
-       *   data?: {
-       *     // 电话联系记事次数
-       *     callNoteCount?: number
-       *     // 产生成交的联系人数量
-       *     dealContacts?: number
-       *     // 产生支出的联系人数量
-       *     expenseContacts?: number
-       *     // 新增人脉数量
-       *     newContacts?: number
-       *     // 普通记事次数
-       *     normalNoteCount?: number
-       *     // 短信联系记事次数
-       *     smsNoteCount?: number
-       *     // 拜访记事次数
-       *     visitNoteCount?: number
-       *   }
-       *   // 响应消息
-       *   msg?: string
-       * }
-       * ```
-       */
-      getContactStatistics<
-        Config extends Alova2MethodConfig<_ContactListStatsDTO_> & {
-          pathParams: {
-            /**
-             * notebookId
-             */
-
-            notebookId: number;
-          };
-          params: {
-            /**
-             * endTime
-             */
-
-            endTime?: string;
-            /**
-             * startTime
-             */
-
-            startTime?: string;
-          };
-        }
-      >(
-        config: Config
-      ): Alova2Method<_ContactListStatsDTO_, 'contact.getContactStatistics', Config>;
-      /**
-       * ---
-       *
        * [GET] 查询联系人搜索历史
        *
        * **path:** /contact/search-history
@@ -3597,545 +2988,6 @@ declare global {
       clearSearchHistory<Config extends Alova2MethodConfig<_Void_>>(
         config?: Config
       ): Alova2Method<_Void_, 'contact.clearSearchHistory', Config>;
-      /**
-       * ---
-       *
-       * [POST] 创建联系人关系
-       *
-       * **path:** /contact/{contactId}/relation/create
-       *
-       * ---
-       *
-       * **Path Parameters**
-       * ```ts
-       * type PathParameters = {
-       *   // contactId
-       *   contactId: number
-       * }
-       * ```
-       *
-       * ---
-       *
-       * **RequestBody**
-       * ```ts
-       * type RequestBody = {
-       *   // 关系人生日，格式：yyyy-MM-dd
-       *   birthday?: string
-       *   // 关系人姓名
-       *   name: string
-       *   // 关系类型
-       *   relation: string
-       * }
-       * ```
-       *
-       * ---
-       *
-       * **Response**
-       * ```ts
-       * type Response = {
-       *   // 响应业务码
-       *   code?: number
-       *   // [title] ContactRelationResponseDTO
-       *   // 联系人关系响应数据
-       *   data?: {
-       *     // 关系人生日，格式：yyyy-MM-dd
-       *     birthday?: string
-       *     // 联系人 ID
-       *     contactId?: number
-       *     // 创建时间，格式：yyyy-MM-dd HH:mm:ss
-       *     createTime?: string
-       *     // 关系记录 ID
-       *     id?: number
-       *     // 修改时间，格式：yyyy-MM-dd HH:mm:ss
-       *     modifyTime?: string
-       *     // 关系人姓名
-       *     name?: string
-       *     // 关系类型
-       *     relation?: string
-       *   }
-       *   // 响应消息
-       *   msg?: string
-       * }
-       * ```
-       */
-      relationCreate<
-        Config extends Alova2MethodConfig<_ContactRelationResponseDTO_> & {
-          pathParams: {
-            /**
-             * contactId
-             */
-
-            contactId: number;
-          };
-          data: ContactRelationDTO;
-        }
-      >(
-        config: Config
-      ): Alova2Method<_ContactRelationResponseDTO_, 'contact.relationCreate', Config>;
-      /**
-       * ---
-       *
-       * [DELETE] 删除联系人关系
-       *
-       * **path:** /contact/{contactId}/relation/delete/{id}
-       *
-       * ---
-       *
-       * **Path Parameters**
-       * ```ts
-       * type PathParameters = {
-       *   // contactId
-       *   contactId: number
-       *   // id
-       *   id: number
-       * }
-       * ```
-       *
-       * ---
-       *
-       * **Response**
-       * ```ts
-       * type Response = {
-       *   // 响应业务码
-       *   code?: number
-       *   // 响应消息
-       *   msg?: string
-       * }
-       * ```
-       */
-      relationDelete<
-        Config extends Alova2MethodConfig<_Void_> & {
-          pathParams: {
-            /**
-             * contactId
-             */
-
-            contactId: number;
-            /**
-             * id
-             */
-
-            id: number;
-          };
-        }
-      >(
-        config: Config
-      ): Alova2Method<_Void_, 'contact.relationDelete', Config>;
-      /**
-       * ---
-       *
-       * [GET] 查询联系人关系
-       *
-       * **path:** /contact/{contactId}/relation/list
-       *
-       * ---
-       *
-       * **Path Parameters**
-       * ```ts
-       * type PathParameters = {
-       *   // contactId
-       *   contactId: number
-       * }
-       * ```
-       *
-       * ---
-       *
-       * **Response**
-       * ```ts
-       * type Response = {
-       *   // 响应业务码
-       *   code?: number
-       *   // 响应内容
-       *   // [items] start
-       *   // [title] ContactRelationResponseDTO
-       *   // 联系人关系响应数据
-       *   // [items] end
-       *   data?: Array<{
-       *     // 关系人生日，格式：yyyy-MM-dd
-       *     birthday?: string
-       *     // 联系人 ID
-       *     contactId?: number
-       *     // 创建时间，格式：yyyy-MM-dd HH:mm:ss
-       *     createTime?: string
-       *     // 关系记录 ID
-       *     id?: number
-       *     // 修改时间，格式：yyyy-MM-dd HH:mm:ss
-       *     modifyTime?: string
-       *     // 关系人姓名
-       *     name?: string
-       *     // 关系类型
-       *     relation?: string
-       *   }>
-       *   // 响应消息
-       *   msg?: string
-       * }
-       * ```
-       */
-      relationList<
-        Config extends Alova2MethodConfig<_List_ContactRelationResponseDTO_> & {
-          pathParams: {
-            /**
-             * contactId
-             */
-
-            contactId: number;
-          };
-        }
-      >(
-        config: Config
-      ): Alova2Method<_List_ContactRelationResponseDTO_, 'contact.relationList', Config>;
-      /**
-       * ---
-       *
-       * [PUT] 修改联系人关系
-       *
-       * **path:** /contact/{contactId}/relation/update/{id}
-       *
-       * ---
-       *
-       * **Path Parameters**
-       * ```ts
-       * type PathParameters = {
-       *   // contactId
-       *   contactId: number
-       *   // id
-       *   id: number
-       * }
-       * ```
-       *
-       * ---
-       *
-       * **RequestBody**
-       * ```ts
-       * type RequestBody = {
-       *   // 关系人生日，格式：yyyy-MM-dd
-       *   birthday?: string
-       *   // 关系人姓名
-       *   name: string
-       *   // 关系类型
-       *   relation: string
-       * }
-       * ```
-       *
-       * ---
-       *
-       * **Response**
-       * ```ts
-       * type Response = {
-       *   // 响应业务码
-       *   code?: number
-       *   // [title] ContactRelationResponseDTO
-       *   // 联系人关系响应数据
-       *   data?: {
-       *     // 关系人生日，格式：yyyy-MM-dd
-       *     birthday?: string
-       *     // 联系人 ID
-       *     contactId?: number
-       *     // 创建时间，格式：yyyy-MM-dd HH:mm:ss
-       *     createTime?: string
-       *     // 关系记录 ID
-       *     id?: number
-       *     // 修改时间，格式：yyyy-MM-dd HH:mm:ss
-       *     modifyTime?: string
-       *     // 关系人姓名
-       *     name?: string
-       *     // 关系类型
-       *     relation?: string
-       *   }
-       *   // 响应消息
-       *   msg?: string
-       * }
-       * ```
-       */
-      relationUpdate<
-        Config extends Alova2MethodConfig<_ContactRelationResponseDTO_> & {
-          pathParams: {
-            /**
-             * contactId
-             */
-
-            contactId: number;
-            /**
-             * id
-             */
-
-            id: number;
-          };
-          data: ContactRelationDTO;
-        }
-      >(
-        config: Config
-      ): Alova2Method<_ContactRelationResponseDTO_, 'contact.relationUpdate', Config>;
-      /**
-       * ---
-       *
-       * [POST] 创建联系人喜好禁忌
-       *
-       * **path:** /contact/{contactId}/tag/create
-       *
-       * ---
-       *
-       * **Path Parameters**
-       * ```ts
-       * type PathParameters = {
-       *   // contactId
-       *   contactId: number
-       * }
-       * ```
-       *
-       * ---
-       *
-       * **RequestBody**
-       * ```ts
-       * type RequestBody = {
-       *   // 标签内容
-       *   tagContent: string
-       *   // 标签类型：like-喜好，hate-禁忌
-       *   tagType: string
-       * }
-       * ```
-       *
-       * ---
-       *
-       * **Response**
-       * ```ts
-       * type Response = {
-       *   // 响应业务码
-       *   code?: number
-       *   // [title] ContactTagResponseDTO
-       *   // 联系人喜好或禁忌响应数据
-       *   data?: {
-       *     // 联系人 ID
-       *     contactId?: number
-       *     // 创建时间，格式：yyyy-MM-dd HH:mm:ss
-       *     createTime?: string
-       *     // 标签记录 ID
-       *     id?: number
-       *     // 标签内容
-       *     tagContent?: string
-       *     // 标签类型：like-喜好，hate-禁忌
-       *     tagType?: string
-       *   }
-       *   // 响应消息
-       *   msg?: string
-       * }
-       * ```
-       */
-      tagCreate<
-        Config extends Alova2MethodConfig<_ContactTagResponseDTO_> & {
-          pathParams: {
-            /**
-             * contactId
-             */
-
-            contactId: number;
-          };
-          data: ContactTagDTO;
-        }
-      >(
-        config: Config
-      ): Alova2Method<_ContactTagResponseDTO_, 'contact.tagCreate', Config>;
-      /**
-       * ---
-       *
-       * [DELETE] 删除联系人喜好禁忌
-       *
-       * **path:** /contact/{contactId}/tag/delete/{id}
-       *
-       * ---
-       *
-       * **Path Parameters**
-       * ```ts
-       * type PathParameters = {
-       *   // contactId
-       *   contactId: number
-       *   // id
-       *   id: number
-       * }
-       * ```
-       *
-       * ---
-       *
-       * **Response**
-       * ```ts
-       * type Response = {
-       *   // 响应业务码
-       *   code?: number
-       *   // 响应消息
-       *   msg?: string
-       * }
-       * ```
-       */
-      tagDelete<
-        Config extends Alova2MethodConfig<_Void_> & {
-          pathParams: {
-            /**
-             * contactId
-             */
-
-            contactId: number;
-            /**
-             * id
-             */
-
-            id: number;
-          };
-        }
-      >(
-        config: Config
-      ): Alova2Method<_Void_, 'contact.tagDelete', Config>;
-      /**
-       * ---
-       *
-       * [GET] 查询联系人喜好禁忌
-       *
-       * **path:** /contact/{contactId}/tag/list
-       *
-       * ---
-       *
-       * **Path Parameters**
-       * ```ts
-       * type PathParameters = {
-       *   // contactId
-       *   contactId: number
-       * }
-       * ```
-       *
-       * ---
-       *
-       * **Query Parameters**
-       * ```ts
-       * type QueryParameters = {
-       *   // tagType
-       *   tagType?: string
-       * }
-       * ```
-       *
-       * ---
-       *
-       * **Response**
-       * ```ts
-       * type Response = {
-       *   // 响应业务码
-       *   code?: number
-       *   // 响应内容
-       *   // [items] start
-       *   // [title] ContactTagResponseDTO
-       *   // 联系人喜好或禁忌响应数据
-       *   // [items] end
-       *   data?: Array<{
-       *     // 联系人 ID
-       *     contactId?: number
-       *     // 创建时间，格式：yyyy-MM-dd HH:mm:ss
-       *     createTime?: string
-       *     // 标签记录 ID
-       *     id?: number
-       *     // 标签内容
-       *     tagContent?: string
-       *     // 标签类型：like-喜好，hate-禁忌
-       *     tagType?: string
-       *   }>
-       *   // 响应消息
-       *   msg?: string
-       * }
-       * ```
-       */
-      tagList<
-        Config extends Alova2MethodConfig<_List_ContactTagResponseDTO_> & {
-          pathParams: {
-            /**
-             * contactId
-             */
-
-            contactId: number;
-          };
-          params: {
-            /**
-             * tagType
-             */
-
-            tagType?: string;
-          };
-        }
-      >(
-        config: Config
-      ): Alova2Method<_List_ContactTagResponseDTO_, 'contact.tagList', Config>;
-      /**
-       * ---
-       *
-       * [PUT] 修改联系人喜好禁忌
-       *
-       * **path:** /contact/{contactId}/tag/update/{id}
-       *
-       * ---
-       *
-       * **Path Parameters**
-       * ```ts
-       * type PathParameters = {
-       *   // contactId
-       *   contactId: number
-       *   // id
-       *   id: number
-       * }
-       * ```
-       *
-       * ---
-       *
-       * **RequestBody**
-       * ```ts
-       * type RequestBody = {
-       *   // 标签内容
-       *   tagContent: string
-       *   // 标签类型：like-喜好，hate-禁忌
-       *   tagType: string
-       * }
-       * ```
-       *
-       * ---
-       *
-       * **Response**
-       * ```ts
-       * type Response = {
-       *   // 响应业务码
-       *   code?: number
-       *   // [title] ContactTagResponseDTO
-       *   // 联系人喜好或禁忌响应数据
-       *   data?: {
-       *     // 联系人 ID
-       *     contactId?: number
-       *     // 创建时间，格式：yyyy-MM-dd HH:mm:ss
-       *     createTime?: string
-       *     // 标签记录 ID
-       *     id?: number
-       *     // 标签内容
-       *     tagContent?: string
-       *     // 标签类型：like-喜好，hate-禁忌
-       *     tagType?: string
-       *   }
-       *   // 响应消息
-       *   msg?: string
-       * }
-       * ```
-       */
-      tagUpdate<
-        Config extends Alova2MethodConfig<_ContactTagResponseDTO_> & {
-          pathParams: {
-            /**
-             * contactId
-             */
-
-            contactId: number;
-            /**
-             * id
-             */
-
-            id: number;
-          };
-          data: ContactTagDTO;
-        }
-      >(
-        config: Config
-      ): Alova2Method<_ContactTagResponseDTO_, 'contact.tagUpdate', Config>;
       /**
        * ---
        *
@@ -4717,6 +3569,1162 @@ declare global {
         config: Config
       ): Alova2Method<_ContactOverviewResponseDTO_, 'contact.getContactOverview', Config>;
     };
+    contactNotebook: {
+      /**
+       * ---
+       *
+       * [POST] 批量导入通讯录联系人
+       *
+       * **path:** /contact/notebook/{notebookId}/batch-import
+       *
+       * ---
+       *
+       * **Path Parameters**
+       * ```ts
+       * type PathParameters = {
+       *   // notebookId
+       *   notebookId: number
+       * }
+       * ```
+       *
+       * ---
+       *
+       * **RequestBody**
+       * ```ts
+       * type RequestBody = {
+       *   // 待导入联系人，单次最多500个
+       *   // [items] start
+       *   // [title] ContactImportItemDTO
+       *   // 通讯录批量导入的联系人数据
+       *   // [items] end
+       *   contacts: Array<{
+       *     // 生日，格式：yyyy-MM-dd
+       *     birthday?: string
+       *     // 公司地址
+       *     companyAddress?: string
+       *     // 公司名称
+       *     companyName?: string
+       *     // 部门
+       *     department?: string
+       *     // 家庭地址
+       *     homeAddress?: string
+       *     // 是否关注
+       *     isFollow?: boolean
+       *     // 联系人姓名
+       *     name: string
+       *     // 联系电话列表
+       *     // [items] start
+       *     // [title] ContactPhoneDTO
+       *     // 联系电话信息DTO
+       *     // [items] end
+       *     phones: Array<{
+       *       // 联系电话
+       *       phone?: string
+       *       // 电话类型
+       *       type?: string
+       *     }>
+       *     // 职位
+       *     position?: string
+       *     // 性别
+       *     sex?: string
+       *     // 联系人来源
+       *     source?: string
+       *   }>
+       *   // 是否过滤已导入手机号，默认true
+       *   skipExisting?: boolean
+       * }
+       * ```
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = {
+       *   // 响应业务码
+       *   code?: number
+       *   // [title] ContactBatchImportResponseDTO
+       *   // 通讯录批量导入结果
+       *   data?: {
+       *     // 成功导入的联系人
+       *     // [items] start
+       *     // [title] ContactResponseDTO
+       *     // 联系人响应DTO
+       *     // [items] end
+       *     importedContacts?: Array<{
+       *       // 生日
+       *       birthday?: string
+       *       // 公司地址
+       *       companyAddress?: string
+       *       // 公司名称
+       *       companyName?: string
+       *       // 创建时间
+       *       createTime?: string
+       *       // 部门
+       *       department?: string
+       *       // 家庭地址
+       *       homeAddress?: string
+       *       // 联系人ID
+       *       id?: number
+       *       // 是否关注
+       *       isFollow?: boolean
+       *       // 更新时间
+       *       modifyTime?: string
+       *       // 联系人姓名
+       *       name?: string
+       *       // 记事本ID
+       *       notebookId?: number
+       *       // 联系电话列表
+       *       // [items] start
+       *       // [title] ContactPhoneDTO
+       *       // 联系电话信息DTO
+       *       // [items] end
+       *       phones?: Array<{
+       *         // 联系电话
+       *         phone?: string
+       *         // 电话类型
+       *         type?: string
+       *       }>
+       *       // 职位
+       *       position?: string
+       *       // 性别
+       *       sex?: string
+       *       // 来源
+       *       source?: string
+       *     }>
+       *     // 成功导入联系人数量
+       *     importedCount?: number
+       *     // 被过滤手机号数量
+       *     skippedCount?: number
+       *     // 被过滤的已存在手机号
+       *     // [items] start
+       *     // [items] end
+       *     skippedPhones?: string[]
+       *   }
+       *   // 响应消息
+       *   msg?: string
+       * }
+       * ```
+       */
+      batchImport<
+        Config extends Alova2MethodConfig<_ContactBatchImportResponseDTO_> & {
+          pathParams: {
+            /**
+             * notebookId
+             */
+
+            notebookId: number;
+          };
+          data: ContactBatchImportDTO;
+        }
+      >(
+        config: Config
+      ): Alova2Method<_ContactBatchImportResponseDTO_, 'contactNotebook.batchImport', Config>;
+      /**
+       * ---
+       *
+       * [GET] 查询联系人展示设置
+       *
+       * **path:** /contact/notebook/{notebookId}/display-settings
+       *
+       * ---
+       *
+       * **Path Parameters**
+       * ```ts
+       * type PathParameters = {
+       *   // notebookId
+       *   notebookId: number
+       * }
+       * ```
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = {
+       *   // 响应业务码
+       *   code?: number
+       *   // [title] ContactDisplaySettingResponseDTO
+       *   // 联系人展示设置响应
+       *   data?: {
+       *     // 结束时间
+       *     endTime?: string
+       *     // 设置更新时间
+       *     modifyTime?: string
+       *     // 跟进事件类型：call、sms、normal、visit
+       *     noteType?: string
+       *     // 是否只看关注联系人
+       *     onlyFollow?: boolean
+       *     // 分页大小
+       *     pageSize?: number
+       *     // 开始时间
+       *     startTime?: string
+       *   }
+       *   // 响应消息
+       *   msg?: string
+       * }
+       * ```
+       */
+      getDisplaySetting<
+        Config extends Alova2MethodConfig<_ContactDisplaySettingResponseDTO_> & {
+          pathParams: {
+            /**
+             * notebookId
+             */
+
+            notebookId: number;
+          };
+        }
+      >(
+        config: Config
+      ): Alova2Method<_ContactDisplaySettingResponseDTO_, 'contactNotebook.getDisplaySetting', Config>;
+      /**
+       * ---
+       *
+       * [PUT] 保存联系人展示设置
+       *
+       * **path:** /contact/notebook/{notebookId}/display-settings
+       *
+       * ---
+       *
+       * **Path Parameters**
+       * ```ts
+       * type PathParameters = {
+       *   // notebookId
+       *   notebookId: number
+       * }
+       * ```
+       *
+       * ---
+       *
+       * **RequestBody**
+       * ```ts
+       * type RequestBody = {
+       *   // 结束时间，格式：yyyy-MM-dd HH:mm:ss
+       *   endTime?: string
+       *   // 跟进事件类型：call、sms、normal、visit
+       *   noteType?: string
+       *   // 是否只看关注联系人
+       *   onlyFollow?: boolean
+       *   // 分页大小，范围1到100
+       *   pageSize?: number
+       *   // 开始时间，格式：yyyy-MM-dd HH:mm:ss
+       *   startTime?: string
+       * }
+       * ```
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = {
+       *   // 响应业务码
+       *   code?: number
+       *   // [title] ContactDisplaySettingResponseDTO
+       *   // 联系人展示设置响应
+       *   data?: {
+       *     // 结束时间
+       *     endTime?: string
+       *     // 设置更新时间
+       *     modifyTime?: string
+       *     // 跟进事件类型：call、sms、normal、visit
+       *     noteType?: string
+       *     // 是否只看关注联系人
+       *     onlyFollow?: boolean
+       *     // 分页大小
+       *     pageSize?: number
+       *     // 开始时间
+       *     startTime?: string
+       *   }
+       *   // 响应消息
+       *   msg?: string
+       * }
+       * ```
+       */
+      saveDisplaySetting<
+        Config extends Alova2MethodConfig<_ContactDisplaySettingResponseDTO_> & {
+          pathParams: {
+            /**
+             * notebookId
+             */
+
+            notebookId: number;
+          };
+          data: ContactDisplaySettingDTO;
+        }
+      >(
+        config: Config
+      ): Alova2Method<_ContactDisplaySettingResponseDTO_, 'contactNotebook.saveDisplaySetting', Config>;
+      /**
+       * ---
+       *
+       * [POST] 查询已导入手机号
+       *
+       * **path:** /contact/notebook/{notebookId}/imported-check
+       *
+       * ---
+       *
+       * **Path Parameters**
+       * ```ts
+       * type PathParameters = {
+       *   // notebookId
+       *   notebookId: number
+       * }
+       * ```
+       *
+       * ---
+       *
+       * **RequestBody**
+       * ```ts
+       * type RequestBody = {
+       *   // 待检查手机号，单次最多1000个
+       *   // [items] start
+       *   // [items] end
+       *   phones: string[]
+       * }
+       * ```
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = {
+       *   // 响应业务码
+       *   code?: number
+       *   // 响应内容
+       *   // [items] start
+       *   // [title] ContactImportedPhoneDTO
+       *   // 已导入手机号及关联联系人信息
+       *   // [items] end
+       *   data?: Array<{
+       *     // 联系人ID
+       *     contactId?: number
+       *     // 联系人姓名
+       *     contactName?: string
+       *     // 手机号
+       *     phone?: string
+       *   }>
+       *   // 响应消息
+       *   msg?: string
+       * }
+       * ```
+       */
+      findImportedPhones<
+        Config extends Alova2MethodConfig<_List_ContactImportedPhoneDTO_> & {
+          pathParams: {
+            /**
+             * notebookId
+             */
+
+            notebookId: number;
+          };
+          data: ContactImportedPhoneCheckDTO;
+        }
+      >(
+        config: Config
+      ): Alova2Method<_List_ContactImportedPhoneDTO_, 'contactNotebook.findImportedPhones', Config>;
+      /**
+       * ---
+       *
+       * [GET] 分页查询联系人和统计
+       *
+       * **path:** /contact/notebook/{notebookId}/page
+       *
+       * ---
+       *
+       * **Path Parameters**
+       * ```ts
+       * type PathParameters = {
+       *   // notebookId
+       *   notebookId: number
+       * }
+       * ```
+       *
+       * ---
+       *
+       * **Query Parameters**
+       * ```ts
+       * type QueryParameters = {
+       *   // endTime
+       *   endTime?: string
+       *   // keyword
+       *   keyword?: string
+       *   // noteType
+       *   noteType?: string
+       *   // onlyFollow
+       *   onlyFollow?: boolean
+       *   // pageNo
+       *   pageNo?: number
+       *   // pageSize
+       *   pageSize?: number
+       *   // startTime
+       *   startTime?: string
+       * }
+       * ```
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = {
+       *   // 响应业务码
+       *   code?: number
+       *   // [title] ContactPageResponseDTO
+       *   // 人脉分页查询响应数据
+       *   data?: {
+       *     // 当前页码，从1开始
+       *     pageNo?: number
+       *     // 每页数量
+       *     pageSize?: number
+       *     // 当前页数据
+       *     // [items] start
+       *     // [title] ContactResponseDTO
+       *     // 联系人响应DTO
+       *     // [items] end
+       *     records?: Array<{
+       *       // 生日
+       *       birthday?: string
+       *       // 公司地址
+       *       companyAddress?: string
+       *       // 公司名称
+       *       companyName?: string
+       *       // 创建时间
+       *       createTime?: string
+       *       // 部门
+       *       department?: string
+       *       // 家庭地址
+       *       homeAddress?: string
+       *       // 联系人ID
+       *       id?: number
+       *       // 是否关注
+       *       isFollow?: boolean
+       *       // 更新时间
+       *       modifyTime?: string
+       *       // 联系人姓名
+       *       name?: string
+       *       // 记事本ID
+       *       notebookId?: number
+       *       // 联系电话列表
+       *       // [items] start
+       *       // [title] ContactPhoneDTO
+       *       // 联系电话信息DTO
+       *       // [items] end
+       *       phones?: Array<{
+       *         // 联系电话
+       *         phone?: string
+       *         // 电话类型
+       *         type?: string
+       *       }>
+       *       // 职位
+       *       position?: string
+       *       // 性别
+       *       sex?: string
+       *       // 来源
+       *       source?: string
+       *     }>
+       *     // [title] ContactListStatsDTO
+       *     // 人脉列表统计数据
+       *     stats?: {
+       *       // 电话联系记事次数
+       *       callNoteCount?: number
+       *       // 产生成交的联系人数量
+       *       dealContacts?: number
+       *       // 产生支出的联系人数量
+       *       expenseContacts?: number
+       *       // 新增人脉数量
+       *       newContacts?: number
+       *       // 普通记事次数
+       *       normalNoteCount?: number
+       *       // 短信联系记事次数
+       *       smsNoteCount?: number
+       *       // 拜访记事次数
+       *       visitNoteCount?: number
+       *     }
+       *     // 总记录数
+       *     total?: number
+       *   }
+       *   // 响应消息
+       *   msg?: string
+       * }
+       * ```
+       */
+      pageContacts<
+        Config extends Alova2MethodConfig<_ContactPageResponseDTO_> & {
+          pathParams: {
+            /**
+             * notebookId
+             */
+
+            notebookId: number;
+          };
+          params: {
+            /**
+             * endTime
+             */
+
+            endTime?: string;
+            /**
+             * keyword
+             */
+
+            keyword?: string;
+            /**
+             * noteType
+             */
+
+            noteType?: string;
+            /**
+             * onlyFollow
+             */
+
+            onlyFollow?: boolean;
+            /**
+             * pageNo
+             */
+
+            pageNo?: number;
+            /**
+             * pageSize
+             */
+
+            pageSize?: number;
+            /**
+             * startTime
+             */
+
+            startTime?: string;
+          };
+        }
+      >(
+        config: Config
+      ): Alova2Method<_ContactPageResponseDTO_, 'contactNotebook.pageContacts', Config>;
+      /**
+       * ---
+       *
+       * [GET] 查询联系人统计
+       *
+       * **path:** /contact/notebook/{notebookId}/stats
+       *
+       * ---
+       *
+       * **Path Parameters**
+       * ```ts
+       * type PathParameters = {
+       *   // notebookId
+       *   notebookId: number
+       * }
+       * ```
+       *
+       * ---
+       *
+       * **Query Parameters**
+       * ```ts
+       * type QueryParameters = {
+       *   // endTime
+       *   endTime?: string
+       *   // startTime
+       *   startTime?: string
+       * }
+       * ```
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = {
+       *   // 响应业务码
+       *   code?: number
+       *   // [title] ContactListStatsDTO
+       *   // 人脉列表统计数据
+       *   data?: {
+       *     // 电话联系记事次数
+       *     callNoteCount?: number
+       *     // 产生成交的联系人数量
+       *     dealContacts?: number
+       *     // 产生支出的联系人数量
+       *     expenseContacts?: number
+       *     // 新增人脉数量
+       *     newContacts?: number
+       *     // 普通记事次数
+       *     normalNoteCount?: number
+       *     // 短信联系记事次数
+       *     smsNoteCount?: number
+       *     // 拜访记事次数
+       *     visitNoteCount?: number
+       *   }
+       *   // 响应消息
+       *   msg?: string
+       * }
+       * ```
+       */
+      getContactStatistics<
+        Config extends Alova2MethodConfig<_ContactListStatsDTO_> & {
+          pathParams: {
+            /**
+             * notebookId
+             */
+
+            notebookId: number;
+          };
+          params: {
+            /**
+             * endTime
+             */
+
+            endTime?: string;
+            /**
+             * startTime
+             */
+
+            startTime?: string;
+          };
+        }
+      >(
+        config: Config
+      ): Alova2Method<_ContactListStatsDTO_, 'contactNotebook.getContactStatistics', Config>;
+    };
+    contactRelation: {
+      /**
+       * ---
+       *
+       * [POST] 创建联系人关系
+       *
+       * **path:** /contact/{contactId}/relation/create
+       *
+       * ---
+       *
+       * **Path Parameters**
+       * ```ts
+       * type PathParameters = {
+       *   // contactId
+       *   contactId: number
+       * }
+       * ```
+       *
+       * ---
+       *
+       * **RequestBody**
+       * ```ts
+       * type RequestBody = {
+       *   // 关系人生日，格式：yyyy-MM-dd
+       *   birthday?: string
+       *   // 关系人姓名
+       *   name: string
+       *   // 关系类型
+       *   relation: string
+       * }
+       * ```
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = {
+       *   // 响应业务码
+       *   code?: number
+       *   // [title] ContactRelationResponseDTO
+       *   // 联系人关系响应数据
+       *   data?: {
+       *     // 关系人生日，格式：yyyy-MM-dd
+       *     birthday?: string
+       *     // 联系人 ID
+       *     contactId?: number
+       *     // 创建时间，格式：yyyy-MM-dd HH:mm:ss
+       *     createTime?: string
+       *     // 关系记录 ID
+       *     id?: number
+       *     // 修改时间，格式：yyyy-MM-dd HH:mm:ss
+       *     modifyTime?: string
+       *     // 关系人姓名
+       *     name?: string
+       *     // 关系类型
+       *     relation?: string
+       *   }
+       *   // 响应消息
+       *   msg?: string
+       * }
+       * ```
+       */
+      create<
+        Config extends Alova2MethodConfig<_ContactRelationResponseDTO_> & {
+          pathParams: {
+            /**
+             * contactId
+             */
+
+            contactId: number;
+          };
+          data: ContactRelationDTO;
+        }
+      >(
+        config: Config
+      ): Alova2Method<_ContactRelationResponseDTO_, 'contactRelation.create', Config>;
+      /**
+       * ---
+       *
+       * [DELETE] 删除联系人关系
+       *
+       * **path:** /contact/{contactId}/relation/delete/{id}
+       *
+       * ---
+       *
+       * **Path Parameters**
+       * ```ts
+       * type PathParameters = {
+       *   // contactId
+       *   contactId: number
+       *   // id
+       *   id: number
+       * }
+       * ```
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = {
+       *   // 响应业务码
+       *   code?: number
+       *   // 响应消息
+       *   msg?: string
+       * }
+       * ```
+       */
+      delete<
+        Config extends Alova2MethodConfig<_Void_> & {
+          pathParams: {
+            /**
+             * contactId
+             */
+
+            contactId: number;
+            /**
+             * id
+             */
+
+            id: number;
+          };
+        }
+      >(
+        config: Config
+      ): Alova2Method<_Void_, 'contactRelation.delete', Config>;
+      /**
+       * ---
+       *
+       * [GET] 查询联系人关系
+       *
+       * **path:** /contact/{contactId}/relation/list
+       *
+       * ---
+       *
+       * **Path Parameters**
+       * ```ts
+       * type PathParameters = {
+       *   // contactId
+       *   contactId: number
+       * }
+       * ```
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = {
+       *   // 响应业务码
+       *   code?: number
+       *   // 响应内容
+       *   // [items] start
+       *   // [title] ContactRelationResponseDTO
+       *   // 联系人关系响应数据
+       *   // [items] end
+       *   data?: Array<{
+       *     // 关系人生日，格式：yyyy-MM-dd
+       *     birthday?: string
+       *     // 联系人 ID
+       *     contactId?: number
+       *     // 创建时间，格式：yyyy-MM-dd HH:mm:ss
+       *     createTime?: string
+       *     // 关系记录 ID
+       *     id?: number
+       *     // 修改时间，格式：yyyy-MM-dd HH:mm:ss
+       *     modifyTime?: string
+       *     // 关系人姓名
+       *     name?: string
+       *     // 关系类型
+       *     relation?: string
+       *   }>
+       *   // 响应消息
+       *   msg?: string
+       * }
+       * ```
+       */
+      list<
+        Config extends Alova2MethodConfig<_List_ContactRelationResponseDTO_> & {
+          pathParams: {
+            /**
+             * contactId
+             */
+
+            contactId: number;
+          };
+        }
+      >(
+        config: Config
+      ): Alova2Method<_List_ContactRelationResponseDTO_, 'contactRelation.list', Config>;
+      /**
+       * ---
+       *
+       * [PUT] 修改联系人关系
+       *
+       * **path:** /contact/{contactId}/relation/update/{id}
+       *
+       * ---
+       *
+       * **Path Parameters**
+       * ```ts
+       * type PathParameters = {
+       *   // contactId
+       *   contactId: number
+       *   // id
+       *   id: number
+       * }
+       * ```
+       *
+       * ---
+       *
+       * **RequestBody**
+       * ```ts
+       * type RequestBody = {
+       *   // 关系人生日，格式：yyyy-MM-dd
+       *   birthday?: string
+       *   // 关系人姓名
+       *   name: string
+       *   // 关系类型
+       *   relation: string
+       * }
+       * ```
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = {
+       *   // 响应业务码
+       *   code?: number
+       *   // [title] ContactRelationResponseDTO
+       *   // 联系人关系响应数据
+       *   data?: {
+       *     // 关系人生日，格式：yyyy-MM-dd
+       *     birthday?: string
+       *     // 联系人 ID
+       *     contactId?: number
+       *     // 创建时间，格式：yyyy-MM-dd HH:mm:ss
+       *     createTime?: string
+       *     // 关系记录 ID
+       *     id?: number
+       *     // 修改时间，格式：yyyy-MM-dd HH:mm:ss
+       *     modifyTime?: string
+       *     // 关系人姓名
+       *     name?: string
+       *     // 关系类型
+       *     relation?: string
+       *   }
+       *   // 响应消息
+       *   msg?: string
+       * }
+       * ```
+       */
+      update<
+        Config extends Alova2MethodConfig<_ContactRelationResponseDTO_> & {
+          pathParams: {
+            /**
+             * contactId
+             */
+
+            contactId: number;
+            /**
+             * id
+             */
+
+            id: number;
+          };
+          data: ContactRelationDTO;
+        }
+      >(
+        config: Config
+      ): Alova2Method<_ContactRelationResponseDTO_, 'contactRelation.update', Config>;
+    };
+    contactTag: {
+      /**
+       * ---
+       *
+       * [POST] 创建联系人喜好禁忌
+       *
+       * **path:** /contact/{contactId}/tag/create
+       *
+       * ---
+       *
+       * **Path Parameters**
+       * ```ts
+       * type PathParameters = {
+       *   // contactId
+       *   contactId: number
+       * }
+       * ```
+       *
+       * ---
+       *
+       * **RequestBody**
+       * ```ts
+       * type RequestBody = {
+       *   // 标签内容
+       *   tagContent: string
+       *   // 标签类型：like-喜好，hate-禁忌
+       *   tagType: string
+       * }
+       * ```
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = {
+       *   // 响应业务码
+       *   code?: number
+       *   // [title] ContactTagResponseDTO
+       *   // 联系人喜好或禁忌响应数据
+       *   data?: {
+       *     // 联系人 ID
+       *     contactId?: number
+       *     // 创建时间，格式：yyyy-MM-dd HH:mm:ss
+       *     createTime?: string
+       *     // 标签记录 ID
+       *     id?: number
+       *     // 标签内容
+       *     tagContent?: string
+       *     // 标签类型：like-喜好，hate-禁忌
+       *     tagType?: string
+       *   }
+       *   // 响应消息
+       *   msg?: string
+       * }
+       * ```
+       */
+      create<
+        Config extends Alova2MethodConfig<_ContactTagResponseDTO_> & {
+          pathParams: {
+            /**
+             * contactId
+             */
+
+            contactId: number;
+          };
+          data: ContactTagDTO;
+        }
+      >(
+        config: Config
+      ): Alova2Method<_ContactTagResponseDTO_, 'contactTag.create', Config>;
+      /**
+       * ---
+       *
+       * [DELETE] 删除联系人喜好禁忌
+       *
+       * **path:** /contact/{contactId}/tag/delete/{id}
+       *
+       * ---
+       *
+       * **Path Parameters**
+       * ```ts
+       * type PathParameters = {
+       *   // contactId
+       *   contactId: number
+       *   // id
+       *   id: number
+       * }
+       * ```
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = {
+       *   // 响应业务码
+       *   code?: number
+       *   // 响应消息
+       *   msg?: string
+       * }
+       * ```
+       */
+      delete<
+        Config extends Alova2MethodConfig<_Void_> & {
+          pathParams: {
+            /**
+             * contactId
+             */
+
+            contactId: number;
+            /**
+             * id
+             */
+
+            id: number;
+          };
+        }
+      >(
+        config: Config
+      ): Alova2Method<_Void_, 'contactTag.delete', Config>;
+      /**
+       * ---
+       *
+       * [GET] 查询联系人喜好禁忌
+       *
+       * **path:** /contact/{contactId}/tag/list
+       *
+       * ---
+       *
+       * **Path Parameters**
+       * ```ts
+       * type PathParameters = {
+       *   // contactId
+       *   contactId: number
+       * }
+       * ```
+       *
+       * ---
+       *
+       * **Query Parameters**
+       * ```ts
+       * type QueryParameters = {
+       *   // tagType
+       *   tagType?: string
+       * }
+       * ```
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = {
+       *   // 响应业务码
+       *   code?: number
+       *   // 响应内容
+       *   // [items] start
+       *   // [title] ContactTagResponseDTO
+       *   // 联系人喜好或禁忌响应数据
+       *   // [items] end
+       *   data?: Array<{
+       *     // 联系人 ID
+       *     contactId?: number
+       *     // 创建时间，格式：yyyy-MM-dd HH:mm:ss
+       *     createTime?: string
+       *     // 标签记录 ID
+       *     id?: number
+       *     // 标签内容
+       *     tagContent?: string
+       *     // 标签类型：like-喜好，hate-禁忌
+       *     tagType?: string
+       *   }>
+       *   // 响应消息
+       *   msg?: string
+       * }
+       * ```
+       */
+      list<
+        Config extends Alova2MethodConfig<_List_ContactTagResponseDTO_> & {
+          pathParams: {
+            /**
+             * contactId
+             */
+
+            contactId: number;
+          };
+          params: {
+            /**
+             * tagType
+             */
+
+            tagType?: string;
+          };
+        }
+      >(
+        config: Config
+      ): Alova2Method<_List_ContactTagResponseDTO_, 'contactTag.list', Config>;
+      /**
+       * ---
+       *
+       * [PUT] 修改联系人喜好禁忌
+       *
+       * **path:** /contact/{contactId}/tag/update/{id}
+       *
+       * ---
+       *
+       * **Path Parameters**
+       * ```ts
+       * type PathParameters = {
+       *   // contactId
+       *   contactId: number
+       *   // id
+       *   id: number
+       * }
+       * ```
+       *
+       * ---
+       *
+       * **RequestBody**
+       * ```ts
+       * type RequestBody = {
+       *   // 标签内容
+       *   tagContent: string
+       *   // 标签类型：like-喜好，hate-禁忌
+       *   tagType: string
+       * }
+       * ```
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = {
+       *   // 响应业务码
+       *   code?: number
+       *   // [title] ContactTagResponseDTO
+       *   // 联系人喜好或禁忌响应数据
+       *   data?: {
+       *     // 联系人 ID
+       *     contactId?: number
+       *     // 创建时间，格式：yyyy-MM-dd HH:mm:ss
+       *     createTime?: string
+       *     // 标签记录 ID
+       *     id?: number
+       *     // 标签内容
+       *     tagContent?: string
+       *     // 标签类型：like-喜好，hate-禁忌
+       *     tagType?: string
+       *   }
+       *   // 响应消息
+       *   msg?: string
+       * }
+       * ```
+       */
+      update<
+        Config extends Alova2MethodConfig<_ContactTagResponseDTO_> & {
+          pathParams: {
+            /**
+             * contactId
+             */
+
+            contactId: number;
+            /**
+             * id
+             */
+
+            id: number;
+          };
+          data: ContactTagDTO;
+        }
+      >(
+        config: Config
+      ): Alova2Method<_ContactTagResponseDTO_, 'contactTag.update', Config>;
+    };
     district: {
       /**
        * ---
@@ -4757,9 +4765,9 @@ declare global {
        * }
        * ```
        */
-      listList<Config extends Alova2MethodConfig<_List_DistrictLevelDto_>>(
+      list<Config extends Alova2MethodConfig<_List_DistrictLevelDto_>>(
         config?: Config
-      ): Alova2Method<_List_DistrictLevelDto_, 'district.listList', Config>;
+      ): Alova2Method<_List_DistrictLevelDto_, 'district.list', Config>;
       /**
        * ---
        *
@@ -5011,13 +5019,13 @@ declare global {
        * }
        * ```
        */
-      createCreate<
+      create<
         Config extends Alova2MethodConfig<_FinanceRecordResponseDTO_> & {
           data: FinanceRecordDTO;
         }
       >(
         config: Config
-      ): Alova2Method<_FinanceRecordResponseDTO_, 'financeRecord.createCreate', Config>;
+      ): Alova2Method<_FinanceRecordResponseDTO_, 'financeRecord.create', Config>;
       /**
        * ---
        *
@@ -5096,7 +5104,7 @@ declare global {
        * }
        * ```
        */
-      notebookList<
+      list<
         Config extends Alova2MethodConfig<_List_FinanceRecordResponseDTO_> & {
           pathParams: {
             /**
@@ -5135,7 +5143,216 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<_List_FinanceRecordResponseDTO_, 'financeRecord.notebookList', Config>;
+      ): Alova2Method<_List_FinanceRecordResponseDTO_, 'financeRecord.list', Config>;
+      /**
+       * ---
+       *
+       * [GET] 查询收支记录详情
+       *
+       * **path:** /finance-record/{id}
+       *
+       * ---
+       *
+       * **Path Parameters**
+       * ```ts
+       * type PathParameters = {
+       *   // id
+       *   id: number
+       * }
+       * ```
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = {
+       *   // 响应业务码
+       *   code?: number
+       *   // [title] FinanceRecordResponseDTO
+       *   // 收支记录响应数据
+       *   data?: {
+       *     // 金额
+       *     amount?: number
+       *     // 收支分类：成交、支出
+       *     category?: string
+       *     // 联系人ID
+       *     contactId?: number
+       *     // 创建时间，格式：yyyy-MM-dd HH:mm:ss
+       *     createTime?: string
+       *     // 发生时间，格式：yyyy-MM-dd HH:mm:ss
+       *     eventTime?: string
+       *     // 收支记录ID
+       *     id?: number
+       *     // 是否退款
+       *     isRefund?: boolean
+       *     // 更新时间，格式：yyyy-MM-dd HH:mm:ss
+       *     modifyTime?: string
+       *     // 记事本ID
+       *     notebookId?: number
+       *     // 备注
+       *     remark?: string
+       *     // 收支类型ID
+       *     typeId?: number
+       *     // 收支类型名称
+       *     typeName?: string
+       *   }
+       *   // 响应消息
+       *   msg?: string
+       * }
+       * ```
+       */
+      getDetail<
+        Config extends Alova2MethodConfig<_FinanceRecordResponseDTO_> & {
+          pathParams: {
+            /**
+             * id
+             */
+
+            id: number;
+          };
+        }
+      >(
+        config: Config
+      ): Alova2Method<_FinanceRecordResponseDTO_, 'financeRecord.getDetail', Config>;
+      /**
+       * ---
+       *
+       * [PUT] 更新收支记录
+       *
+       * **path:** /finance-record/{id}
+       *
+       * ---
+       *
+       * **Path Parameters**
+       * ```ts
+       * type PathParameters = {
+       *   // id
+       *   id: number
+       * }
+       * ```
+       *
+       * ---
+       *
+       * **RequestBody**
+       * ```ts
+       * type RequestBody = {
+       *   // 金额，必须大于0
+       *   amount: number
+       *   // 收支分类：成交、支出
+       *   category: string
+       *   // 联系人ID，可为空
+       *   contactId?: number
+       *   // 发生时间，格式：yyyy-MM-dd HH:mm:ss
+       *   eventTime?: string
+       *   // 是否退款，退款记录不计入统计
+       *   isRefund?: boolean
+       *   // 记事本ID
+       *   notebookId: number
+       *   // 备注
+       *   remark?: string
+       *   // 收支类型ID
+       *   typeId?: number
+       * }
+       * ```
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = {
+       *   // 响应业务码
+       *   code?: number
+       *   // [title] FinanceRecordResponseDTO
+       *   // 收支记录响应数据
+       *   data?: {
+       *     // 金额
+       *     amount?: number
+       *     // 收支分类：成交、支出
+       *     category?: string
+       *     // 联系人ID
+       *     contactId?: number
+       *     // 创建时间，格式：yyyy-MM-dd HH:mm:ss
+       *     createTime?: string
+       *     // 发生时间，格式：yyyy-MM-dd HH:mm:ss
+       *     eventTime?: string
+       *     // 收支记录ID
+       *     id?: number
+       *     // 是否退款
+       *     isRefund?: boolean
+       *     // 更新时间，格式：yyyy-MM-dd HH:mm:ss
+       *     modifyTime?: string
+       *     // 记事本ID
+       *     notebookId?: number
+       *     // 备注
+       *     remark?: string
+       *     // 收支类型ID
+       *     typeId?: number
+       *     // 收支类型名称
+       *     typeName?: string
+       *   }
+       *   // 响应消息
+       *   msg?: string
+       * }
+       * ```
+       */
+      update<
+        Config extends Alova2MethodConfig<_FinanceRecordResponseDTO_> & {
+          pathParams: {
+            /**
+             * id
+             */
+
+            id: number;
+          };
+          data: FinanceRecordDTO;
+        }
+      >(
+        config: Config
+      ): Alova2Method<_FinanceRecordResponseDTO_, 'financeRecord.update', Config>;
+      /**
+       * ---
+       *
+       * [DELETE] 删除收支记录
+       *
+       * **path:** /finance-record/{id}
+       *
+       * ---
+       *
+       * **Path Parameters**
+       * ```ts
+       * type PathParameters = {
+       *   // id
+       *   id: number
+       * }
+       * ```
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = {
+       *   // 响应业务码
+       *   code?: number
+       *   // 响应消息
+       *   msg?: string
+       * }
+       * ```
+       */
+      delete<
+        Config extends Alova2MethodConfig<_Void_> & {
+          pathParams: {
+            /**
+             * id
+             */
+
+            id: number;
+          };
+        }
+      >(
+        config: Config
+      ): Alova2Method<_Void_, 'financeRecord.delete', Config>;
+    };
+    financeRecordNotebook: {
       /**
        * ---
        *
@@ -5295,214 +5512,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<_FinanceRecordPageResponseDTO_, 'financeRecord.page', Config>;
-      /**
-       * ---
-       *
-       * [GET] 查询收支记录详情
-       *
-       * **path:** /finance-record/{id}
-       *
-       * ---
-       *
-       * **Path Parameters**
-       * ```ts
-       * type PathParameters = {
-       *   // id
-       *   id: number
-       * }
-       * ```
-       *
-       * ---
-       *
-       * **Response**
-       * ```ts
-       * type Response = {
-       *   // 响应业务码
-       *   code?: number
-       *   // [title] FinanceRecordResponseDTO
-       *   // 收支记录响应数据
-       *   data?: {
-       *     // 金额
-       *     amount?: number
-       *     // 收支分类：成交、支出
-       *     category?: string
-       *     // 联系人ID
-       *     contactId?: number
-       *     // 创建时间，格式：yyyy-MM-dd HH:mm:ss
-       *     createTime?: string
-       *     // 发生时间，格式：yyyy-MM-dd HH:mm:ss
-       *     eventTime?: string
-       *     // 收支记录ID
-       *     id?: number
-       *     // 是否退款
-       *     isRefund?: boolean
-       *     // 更新时间，格式：yyyy-MM-dd HH:mm:ss
-       *     modifyTime?: string
-       *     // 记事本ID
-       *     notebookId?: number
-       *     // 备注
-       *     remark?: string
-       *     // 收支类型ID
-       *     typeId?: number
-       *     // 收支类型名称
-       *     typeName?: string
-       *   }
-       *   // 响应消息
-       *   msg?: string
-       * }
-       * ```
-       */
-      getDetail<
-        Config extends Alova2MethodConfig<_FinanceRecordResponseDTO_> & {
-          pathParams: {
-            /**
-             * id
-             */
-
-            id: number;
-          };
-        }
-      >(
-        config: Config
-      ): Alova2Method<_FinanceRecordResponseDTO_, 'financeRecord.getDetail', Config>;
-      /**
-       * ---
-       *
-       * [PUT] 更新收支记录
-       *
-       * **path:** /finance-record/{id}
-       *
-       * ---
-       *
-       * **Path Parameters**
-       * ```ts
-       * type PathParameters = {
-       *   // id
-       *   id: number
-       * }
-       * ```
-       *
-       * ---
-       *
-       * **RequestBody**
-       * ```ts
-       * type RequestBody = {
-       *   // 金额，必须大于0
-       *   amount: number
-       *   // 收支分类：成交、支出
-       *   category: string
-       *   // 联系人ID，可为空
-       *   contactId?: number
-       *   // 发生时间，格式：yyyy-MM-dd HH:mm:ss
-       *   eventTime?: string
-       *   // 是否退款，退款记录不计入统计
-       *   isRefund?: boolean
-       *   // 记事本ID
-       *   notebookId: number
-       *   // 备注
-       *   remark?: string
-       *   // 收支类型ID
-       *   typeId?: number
-       * }
-       * ```
-       *
-       * ---
-       *
-       * **Response**
-       * ```ts
-       * type Response = {
-       *   // 响应业务码
-       *   code?: number
-       *   // [title] FinanceRecordResponseDTO
-       *   // 收支记录响应数据
-       *   data?: {
-       *     // 金额
-       *     amount?: number
-       *     // 收支分类：成交、支出
-       *     category?: string
-       *     // 联系人ID
-       *     contactId?: number
-       *     // 创建时间，格式：yyyy-MM-dd HH:mm:ss
-       *     createTime?: string
-       *     // 发生时间，格式：yyyy-MM-dd HH:mm:ss
-       *     eventTime?: string
-       *     // 收支记录ID
-       *     id?: number
-       *     // 是否退款
-       *     isRefund?: boolean
-       *     // 更新时间，格式：yyyy-MM-dd HH:mm:ss
-       *     modifyTime?: string
-       *     // 记事本ID
-       *     notebookId?: number
-       *     // 备注
-       *     remark?: string
-       *     // 收支类型ID
-       *     typeId?: number
-       *     // 收支类型名称
-       *     typeName?: string
-       *   }
-       *   // 响应消息
-       *   msg?: string
-       * }
-       * ```
-       */
-      undefinedUpdate<
-        Config extends Alova2MethodConfig<_FinanceRecordResponseDTO_> & {
-          pathParams: {
-            /**
-             * id
-             */
-
-            id: number;
-          };
-          data: FinanceRecordDTO;
-        }
-      >(
-        config: Config
-      ): Alova2Method<_FinanceRecordResponseDTO_, 'financeRecord.undefinedUpdate', Config>;
-      /**
-       * ---
-       *
-       * [DELETE] 删除收支记录
-       *
-       * **path:** /finance-record/{id}
-       *
-       * ---
-       *
-       * **Path Parameters**
-       * ```ts
-       * type PathParameters = {
-       *   // id
-       *   id: number
-       * }
-       * ```
-       *
-       * ---
-       *
-       * **Response**
-       * ```ts
-       * type Response = {
-       *   // 响应业务码
-       *   code?: number
-       *   // 响应消息
-       *   msg?: string
-       * }
-       * ```
-       */
-      undefinedDelete<
-        Config extends Alova2MethodConfig<_Void_> & {
-          pathParams: {
-            /**
-             * id
-             */
-
-            id: number;
-          };
-        }
-      >(
-        config: Config
-      ): Alova2Method<_Void_, 'financeRecord.undefinedDelete', Config>;
+      ): Alova2Method<_FinanceRecordPageResponseDTO_, 'financeRecordNotebook.page', Config>;
     };
     financeType: {
       /**
@@ -5554,13 +5564,13 @@ declare global {
        * }
        * ```
        */
-      createCreate<
+      create<
         Config extends Alova2MethodConfig<_FinanceTypeResponseDTO_> & {
           data: FinanceTypeDTO;
         }
       >(
         config: Config
-      ): Alova2Method<_FinanceTypeResponseDTO_, 'financeType.createCreate', Config>;
+      ): Alova2Method<_FinanceTypeResponseDTO_, 'financeType.create', Config>;
       /**
        * ---
        *
@@ -5599,9 +5609,9 @@ declare global {
        * }
        * ```
        */
-      listList<Config extends Alova2MethodConfig<_List_FinanceTypeResponseDTO_>>(
+      list<Config extends Alova2MethodConfig<_List_FinanceTypeResponseDTO_>>(
         config?: Config
-      ): Alova2Method<_List_FinanceTypeResponseDTO_, 'financeType.listList', Config>;
+      ): Alova2Method<_List_FinanceTypeResponseDTO_, 'financeType.list', Config>;
       /**
        * ---
        *
@@ -5661,7 +5671,7 @@ declare global {
        * }
        * ```
        */
-      undefinedUpdate<
+      update<
         Config extends Alova2MethodConfig<_FinanceTypeResponseDTO_> & {
           pathParams: {
             /**
@@ -5674,7 +5684,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<_FinanceTypeResponseDTO_, 'financeType.undefinedUpdate', Config>;
+      ): Alova2Method<_FinanceTypeResponseDTO_, 'financeType.update', Config>;
       /**
        * ---
        *
@@ -5704,7 +5714,7 @@ declare global {
        * }
        * ```
        */
-      undefinedDelete<
+      delete<
         Config extends Alova2MethodConfig<_Void_> & {
           pathParams: {
             /**
@@ -5716,7 +5726,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<_Void_, 'financeType.undefinedDelete', Config>;
+      ): Alova2Method<_Void_, 'financeType.delete', Config>;
     };
     gate: {
       /**
