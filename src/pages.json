@@ -17,11 +17,6 @@
       "name": "PagesIndex"
     },
     {
-      "path": "pages/form",
-      "type": "page",
-      "name": "PagesForm"
-    },
-    {
       "path": "pages/home",
       "type": "page",
       "name": "PagesHome",
@@ -29,11 +24,6 @@
       "style": {
         "navigationBarTitleText": "首页"
       }
-    },
-    {
-      "path": "pages/image",
-      "type": "page",
-      "name": "PagesImage"
     },
     {
       "path": "pages/login",

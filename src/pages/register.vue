@@ -103,7 +103,7 @@
             >
                 <view class="mb-40rpx">
                     <wd-form-item prop="phone" title="手机号码">
-                        <view class="b-(2rpx primary6/10 solid) rd-8rpx p-[10rpx_20rpx]">
+                        <view class="b-(1px primary6/10 solid) rd-8rpx p-[10rpx_20rpx]">
                             <wd-input v-model="model.phone" placeholder="请输入手机号码" type="text" />
                         </view>
                     </wd-form-item>
@@ -121,7 +121,7 @@
                                 </view>
                             </view>
                         </template>
-                        <view class="b-(2rpx primary6/10 solid) rd-8rpx p-[10rpx_20rpx]">
+                        <view class="b-(1px primary6/10 solid) rd-8rpx p-[10rpx_20rpx]">
                             <wd-input
                                 v-model="model.code"
                                 inputmode="numeric"

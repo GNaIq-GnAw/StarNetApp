@@ -9,7 +9,10 @@
             buttonHeightSmall: "60rpx",
             buttonHeightMedium: "80rpx",
             buttonHeightLarge: "88rpx",
-            checkboxIconSize: "28rpx"
+            checkboxIconSize: "28rpx",
+            checkboxLabelFontSize: "20rpx",
+            checkboxLabelLineHeight: "40rpx",
+            checkboxLabelMargin: "12rpx"
         };
     });
 </script>
@@ -20,12 +23,12 @@
             :style="{
                 '--safe-area-bottom': `${systemInfo?.safeAreaInsets?.bottom}px`
             }"
-            class="app bg-#F3F4F4"
+            class="app"
         >
             <ku-root-view />
         </view>
-        <wd-toast position="middle" />
         <wd-dialog />
+        <wd-toast position="middle" />
         <global-dialog />
         <global-toast />
     </wd-config-provider>

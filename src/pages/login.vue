@@ -85,14 +85,14 @@
             <wd-form ref="formRef" :model="model" :schema="schema" error-type="toast" hide-asterisk layout="vertical">
                 <view class="mb-40rpx">
                     <wd-form-item prop="phone" title="手机号码">
-                        <view class="b-(2rpx primary6/10 solid) rd-8rpx p-[10rpx_20rpx]">
+                        <view class="b-(1px primary6/10 solid) rd-8rpx p-[10rpx_20rpx]">
                             <wd-input v-model="model.phone" placeholder="请输入手机号码" type="text" />
                         </view>
                     </wd-form-item>
                 </view>
                 <view>
                     <wd-form-item prop="password" title="密码">
-                        <view class="b-(2rpx primary6/10 solid) rd-8rpx p-[10rpx_20rpx]">
+                        <view class="b-(1px primary6/10 solid) rd-8rpx p-[10rpx_20rpx]">
                             <wd-input
                                 v-model="model.password"
                                 placeholder="请输入密码"

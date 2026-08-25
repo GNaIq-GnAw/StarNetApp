@@ -31,7 +31,7 @@
 </script>
 
 <template>
-    <view class="h-full flex flex-col">
+    <view class="h-full flex flex-col bg-#F3F4F4">
         <view class="flex-1 of-hidden">
             <slot />
         </view>
@@ -39,8 +39,10 @@
             :style="{
                 '--wot-tabbar-height': '132rpx',
                 '--wot-tabbar-item-title-font-size': '28rpx',
-                '--wot-tabbar-item-title-line-height': '40rpx'
+                '--wot-tabbar-item-title-line-height': '40rpx',
+                'box-shadow': '0px 2px 6px 0px rgba(0,0,0,0.4)'
             }"
+            class="z-1 rd-t-40rpx"
         >
             <wd-tabbar :model-value="activeTabbar.name" inactive-color="#9396a0" @change="handleTabbarChange">
                 <wd-tabbar-item
