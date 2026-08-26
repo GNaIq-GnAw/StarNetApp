@@ -1,7 +1,19 @@
 <script setup>
+    import {zodAdapter} from "@wot-ui/ui";
+    import {z} from "zod";
+
     const formRef = ref(null);
 
-    const radio = ref(1);
+    const model = reactive({name: "", isPrivate: 1});
+
+    const schema = zodAdapter(
+        z.object({
+            name: z.string().min(1, "请输入记事本名称")
+        }),
+        {
+            isRequired: path => path === "name"
+        }
+    );
 </script>
 
 <template>
@@ -14,16 +26,29 @@
             @click-left="$navigateBack()"
         />
         <view class="flex-1 of-auto">
-            <wd-form ref="formRef" error-type="toast" hide-asterisk layout="vertical" title-width="100%">
+            <wd-form
+                ref="formRef"
+                :model="model"
+                :schema="schema"
+                error-type="toast"
+                layout="vertical"
+                title-width="100%"
+                hide-asterisk
+            >
                 <view class="mt-20rpx bg-#ffffff p-[40rpx_20rpx]">
                     <view class="mx-20rpx">
-                        <wd-form-item
-                            label="可由汉字、英文与数字构成，最长不超过10个字符"
-                            prop="xxx1"
-                            title="记事本名称"
-                        >
+                        <wd-form-item label="可由汉字、英文与数字构成，最长不超过10个字符" prop="name">
+                            <template #title>
+                                <text>记事本名称</text>
+                                <text class="ml-8rpx text-24rpx c-[var(--wot-danger-main)] lh-40rpx">*</text>
+                            </template>
                             <view class="b-(1px primary6/10 solid) rd-8rpx p-[10rpx_20rpx]">
-                                <wd-input placeholder="请输入记事本名称" type="text" />
+                                <wd-input
+                                    v-model="model.name"
+                                    :maxlength="10"
+                                    placeholder="请输入记事本名称"
+                                    type="text"
+                                />
                             </view>
                         </wd-form-item>
                     </view>
@@ -31,10 +56,10 @@
                     <view class="mx-20rpx">
                         <wd-form-item
                             label="记事本如果设置为隐私状态，使用时需要先进行解密操作"
-                            prop="xxx2"
+                            prop="isPrivate"
                             title="是否为隐私记事"
                         >
-                            <wd-radio-group v-model="radio" direction="horizontal">
+                            <wd-radio-group v-model="model.isPrivate" direction="horizontal">
                                 <wd-radio :value="1">
                                     <template #icon="{isChecked}">
                                         <wd-button :type="isChecked ? 'primary' : 'info'" size="small">正常</wd-button>
