@@ -1,8 +1,8 @@
 <script setup>
+    import {resolvePage} from "@/router/resolve.js";
     import HomeBgT from "@/static/home-bg-t.png";
 
     definePage({
-        name: "home",
         layout: "tabbar",
         style: {
             navigationBarTitleText: "首页"
@@ -17,7 +17,7 @@
 
     const queryList = async (pageNum, pageSize) => {
         try {
-            pagingRef.value.complete([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+            pagingRef.value.completeByTotal([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 10);
         } catch {
             pagingRef.value.complete(false);
         }
@@ -25,6 +25,14 @@
 
     const onListChange = vlist => {
         list.value = vlist;
+    };
+
+    const onUseNotebook = () => {
+        const to = resolvePage({name: "UserNotebookUse"});
+
+        uni.navigateTo({
+            url: to.path
+        });
     };
 
     onMounted(async () => {
@@ -38,7 +46,7 @@
 </script>
 
 <template>
-    <view class="h-full flex flex-col">
+    <view class="h-full flex flex-col bg-#f3f4f4">
         <view
             :style="{
                 'background': `url(${HomeBgT}) no-repeat`,
@@ -48,8 +56,8 @@
             class="px-40rpx pb-40rpx c-#ffffff"
         >
             <view class="mb-24rpx flex items-center">
-                <view class="flex items-center">
-                    <text class="text-32rpx lh-40rpx">默认记事</text>
+                <view class="flex items-center" @click="onUseNotebook">
+                    <text class="text-32rpx lh-40rpx">默认记事本</text>
                     <text class="i-carbon:chevron-down ml-12rpx size-40rpx" />
                 </view>
                 <view class="ml-auto">
@@ -107,8 +115,13 @@
                 @query="queryList"
                 @virtual-list-change="onListChange"
             >
-                <view v-for="row in list" :id="`zp-id-${row.zp_index}`" :key="row.zp_index" class="bg-#ffffff px-20rpx">
-                    <view class="b-b-(1px primary6/10 solid) p-20rpx">
+                <view class="bg-#ffffff">
+                    <view
+                        v-for="row in list"
+                        :id="`zp-id-${row.zp_index}`"
+                        :key="row.zp_index"
+                        class="mx-20rpx b-b-(1px primary6/10 solid) bg-#ffffff p-20rpx last:b-b-none"
+                    >
                         <view class="flex">
                             <view class="size-80rpx rd-20rpx bg-red" />
                             <view class="ml-20rpx flex-1">

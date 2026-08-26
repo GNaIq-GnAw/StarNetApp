@@ -15,6 +15,23 @@ export default uniHelper(
         rules: {
             "style/comma-dangle": "off",
             "style/object-curly-spacing": ["error", "never"],
+            "style/indent": "off",
+            "style/arrow-parens": "off",
+            "style/brace-style": "off",
+            "no-console": "off",
+            "antfu/top-level-function": "off",
+            "style/quote-props": "off",
+            "antfu/if-newline": "off",
+            "ts/no-use-before-define": "off",
+            "no-use-before-define": "off",
+            "eslint-comments/no-unlimited-disable": "off",
+            eqeqeq: ["error", "always"]
+        }
+    },
+    {
+        files: ["**/*.vue"],
+        rules: {
+            "vue/singleline-html-element-content-newline": "off",
             "vue/script-indent": [
                 "error",
                 4,
@@ -24,22 +41,10 @@ export default uniHelper(
                     ignores: []
                 }
             ],
-            "style/indent": "off",
-            "style/arrow-parens": "off",
-            "style/brace-style": "off",
-            "no-console": "off",
-            "antfu/top-level-function": "off",
             "vue/object-curly-spacing": ["error", "never"],
-            "style/quote-props": "off",
-            "vue/singleline-html-element-content-newline": "off",
-            "antfu/if-newline": "off",
-            "ts/no-use-before-define": "off",
-            "no-use-before-define": "off",
             "vue/comma-dangle": "off",
             "vue/brace-style": "off",
-            "vue/operator-linebreak": "off",
-            "eslint-comments/no-unlimited-disable": "off",
-            eqeqeq: ["error", "always"]
+            "vue/operator-linebreak": "off"
         }
     },
     ...compat.config({

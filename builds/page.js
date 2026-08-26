@@ -1,5 +1,6 @@
-const pascalCase = str => {
-    return str
+const resolveRes = path => {
+    return path
+        .replace(/(^|\/)(packages|pages)(?:\/|$)/g, "$1")
         .replace(/[_.-]/g, "/")
         .split("/") // 按斜杠分割成单词数组
         .map(part => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase()) // 首字母大写，其余小写
@@ -12,10 +13,10 @@ export const handlePageName = ctx => {
     pages.forEach(page => {
         if (page?.root) {
             page.pages.forEach(subPage => {
-                subPage.name = pascalCase(`${page.root}/${subPage.path}`);
+                subPage.name = resolveRes(`${page.root}/${subPage.path}`);
             });
         } else {
-            page.name = pascalCase(page.path);
+            page.name = resolveRes(page.path);
         }
     });
 };

@@ -47,12 +47,12 @@ export const setupRouter = app => {
             }
 
             // 重定向到登录页
-            next({name: "PagesLogin", navType: "replaceAll"});
+            next({name: "Login", navType: "replaceAll"});
 
             return;
         }
 
-        if (to?.name === "PagesLogin") {
+        if (to?.name === "Login") {
             next({...from, navType: "replaceAll"});
 
             return;

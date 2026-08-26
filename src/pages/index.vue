@@ -23,7 +23,7 @@
 
             uni.showLoading({mask: true});
 
-            await router.replaceAll({path: "/pages/home"});
+            await router.replaceAll({name: "Home"});
 
             uni.hideLoading();
         } catch (e) {

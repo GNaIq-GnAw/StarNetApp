@@ -6,6 +6,6 @@
 
 <style lang="scss">
     @use "@wot-ui/ui/styles/theme/index.scss" as *;
-    @use "@/styles/app.scss";
+    @use "@/styles/presets.scss";
     @use "@/static/iconfont/index.scss";
 </style>

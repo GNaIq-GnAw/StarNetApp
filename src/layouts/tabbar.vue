@@ -31,7 +31,7 @@
 </script>
 
 <template>
-    <view class="h-full flex flex-col bg-#F3F4F4">
+    <view class="h-full flex flex-col">
         <view class="flex-1 of-hidden">
             <slot />
         </view>

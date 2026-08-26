@@ -1,7 +1,7 @@
 const tabbarItems = ref([
-    {name: "PageHome", active: true, title: "人脉", icon: "icon-if-connection"},
+    {name: "Home", active: true, title: "人脉", icon: "icon-if-connection"},
     {name: "about", active: false, title: "收支", icon: "icon-antOutline-account-book"},
-    {name: "user", active: false, title: "我的", icon: "icon-antOutline-user"}
+    {name: "UserHome", active: false, title: "我的", icon: "icon-antOutline-user"}
 ]);
 
 export function useTabbar() {
