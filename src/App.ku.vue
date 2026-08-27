@@ -42,7 +42,7 @@
 </script>
 
 <template>
-    <wd-config-provider :theme-vars="themeVars">
+    <wd-config-provider :theme-vars="themeVars" custom-class="page-wraper">
         <view
             :style="{
                 '--safe-area-bottom': `${systemInfo?.safeAreaInsets?.bottom}px`
