@@ -8,35 +8,35 @@
             textMain: Theme.primary6,
             borderMain: "#E9EAEC",
             // button
-            buttonRadiusMain: "8rpx",
-            buttonHeightSmall: "60rpx",
-            buttonHeightMedium: "80rpx",
-            buttonHeightLarge: "88rpx",
-            buttonFontSizeMedium: "28rpx",
+            buttonRadiusMain: "7.63rpx",
+            buttonHeightSmall: "57.25rpx",
+            buttonHeightMedium: "76.34rpx",
+            buttonHeightLarge: "83.97rpx",
+            buttonFontSizeMedium: "26.72rpx",
             // checkbox
-            checkboxIconSize: "28rpx",
-            checkboxLabelFontSize: "20rpx",
-            checkboxLabelLineHeight: "40rpx",
-            checkboxLabelMargin: "12rpx",
+            checkboxIconSize: "26.72rpx",
+            checkboxLabelFontSize: "19.08rpx",
+            checkboxLabelLineHeight: "38.17rpx",
+            checkboxLabelMargin: "11.45rpx",
             // navbar
-            navbarArrowSize: "40rpx",
+            navbarArrowSize: "38.17rpx",
             navbarColor: "#101010",
-            navbarDescFontSize: "32rpx",
-            navbarHeight: "88rpx",
-            navbarLeftPadding: "0 40rpx",
+            navbarDescFontSize: "30.53rpx",
+            navbarHeight: "83.97rpx",
+            navbarLeftPadding: "0 38.17rpx",
             navbarDescColor: "#101010",
             // cell
             cellPadding: 0,
-            cellTitleFontSize: "24rpx",
-            cellTitleLineHeight: "40rpx",
-            cellVerticalPaddingTop: "20rpx",
-            cellLabelFontSize: "24rpx",
-            cellLabelLineHeight: "40rpx",
+            cellTitleFontSize: "22.9rpx",
+            cellTitleLineHeight: "38.17rpx",
+            cellVerticalPaddingTop: "19.08rpx",
+            cellLabelFontSize: "22.9rpx",
+            cellLabelLineHeight: "38.17rpx",
             cellLabelMarginTop: 0,
             // input
-            inputInnerHeight: "40rpx",
+            inputInnerHeight: "38.17rpx",
             // radio
-            radioHorizontalMargin: "0 20rpx 0 0"
+            radioHorizontalMargin: "0 19.08rpx 0 0"
         };
     });
 </script>
