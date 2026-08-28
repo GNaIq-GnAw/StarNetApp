@@ -37,12 +37,12 @@
         </view>
         <view
             :style="{
-                '--wot-tabbar-height': '132rpx',
-                '--wot-tabbar-item-title-font-size': '28rpx',
-                '--wot-tabbar-item-title-line-height': '40rpx',
+                '--wot-tabbar-height': '125.95rpx',
+                '--wot-tabbar-item-title-font-size': '26.72rpx',
+                '--wot-tabbar-item-title-line-height': '38.17rpx',
                 'box-shadow': '0px 2px 6px 0px rgba(0,0,0,0.4)'
             }"
-            class="z-1 rd-t-40rpx"
+            class="z-1 rd-t-38.17rpx"
         >
             <wd-tabbar :model-value="activeTabbar.name" inactive-color="#9396a0" @change="handleTabbarChange">
                 <wd-tabbar-item
@@ -55,7 +55,7 @@
                     <template #icon="{active}">
                         <view
                             :class="[item.icon, active ? 'c-primary6' : 'c-#9396a0']"
-                            class="iconfont mb-12rpx text-40rpx"
+                            class="iconfont mb-11.45rpx text-38.17rpx"
                         />
                     </template>
                 </wd-tabbar-item>
@@ -66,7 +66,7 @@
 
 <style lang="scss" scoped>
     :deep(.wd-tabbar) {
-        @apply rd-t-40rpx;
+        @apply rd-t-38.17rpx;
         .wd-tabbar-item__body-title {
             font-weight: 600;
         }

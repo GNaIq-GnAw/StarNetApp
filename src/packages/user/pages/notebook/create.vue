@@ -35,14 +35,14 @@
                 title-width="100%"
                 hide-asterisk
             >
-                <view class="mt-20rpx bg-#ffffff p-[40rpx_20rpx]">
-                    <view class="mx-20rpx">
+                <view class="mt-19.08rpx bg-#ffffff p-[38.17rpx_19.08rpx]">
+                    <view class="mx-19.08rpx">
                         <wd-form-item label="可由汉字、英文与数字构成，最长不超过10个字符" prop="name">
                             <template #title>
                                 <text>记事本名称</text>
-                                <text class="ml-8rpx text-24rpx c-[var(--wot-danger-main)] lh-40rpx">*</text>
+                                <text class="ml-7.63rpx text-22.9rpx c-[var(--wot-danger-main)] lh-38.17rpx">*</text>
                             </template>
-                            <view class="b-(1px primary6/10 solid) rd-8rpx p-[10rpx_20rpx]">
+                            <view class="b-(1px primary6/10 solid) rd-7.63rpx p-[9.54rpx_19.08rpx]">
                                 <wd-input
                                     v-model="model.name"
                                     :maxlength="10"
@@ -52,8 +52,8 @@
                             </view>
                         </wd-form-item>
                     </view>
-                    <view class="my-40rpx h-1px bg-primary6/10" />
-                    <view class="mx-20rpx">
+                    <view class="my-38.17rpx h-1px bg-primary6/10" />
+                    <view class="mx-19.08rpx">
                         <wd-form-item
                             label="记事本如果设置为隐私状态，使用时需要先进行解密操作"
                             prop="isPrivate"
@@ -74,15 +74,15 @@
                         </wd-form-item>
                     </view>
                 </view>
-                <view class="mt-20rpx bg-#ffffff p-[40rpx_20rpx]">
-                    <view class="mx-20rpx">
+                <view class="mt-19.08rpx bg-#ffffff p-[38.17rpx_19.08rpx]">
+                    <view class="mx-19.08rpx">
                         <wd-form-item label="可为记事本添加独特皮肤，彰显私人个性" prop="xxx3" title="记事本皮肤">
-                            <view class="flex flex-wrap -m-10rpx">
+                            <view class="flex flex-wrap -m-9.54rpx">
                                 <image
                                     v-for="i in 10"
                                     :key="i"
                                     :class="{'outline-(2px solid #fbc050)': i === 1}"
-                                    class="m-10rpx h-120rpx w-200rpx rd-8rpx"
+                                    class="m-9.54rpx h-114.5rpx w-190.84rpx rd-7.63rpx"
                                     src="@/static/home-bg-t.png"
                                 />
                             </view>
@@ -91,11 +91,11 @@
                 </view>
             </wd-form>
         </view>
-        <view class="flex items-center rd-8rpx bg-#ffffff p-[20rpx_40rpx]">
-            <view class="w-200rpx">
+        <view class="flex items-center rd-7.63rpx bg-#ffffff p-[19.08rpx_38.17rpx]">
+            <view class="w-190.84rpx">
                 <wd-button block variant="plain">取消</wd-button>
             </view>
-            <view class="ml-20rpx flex-1">
+            <view class="ml-19.08rpx flex-1">
                 <wd-button block>保存</wd-button>
             </view>
         </view>

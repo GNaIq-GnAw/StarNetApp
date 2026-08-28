@@ -78,22 +78,22 @@
         }"
         class="box-border h-full flex flex-col of-hidden bg-#ffffff"
     >
-        <image class="mx-auto mt-100rpx size-160rpx rd-20rpx" src="@/static/logo.png" />
-        <view class="mx-auto mt-20rpx text-28rpx c-primary6/50 fw-600 lh-40rpx">无他，惟手熟尔</view>
+        <image class="mx-auto mt-95.42rpx size-152.67rpx rd-19.08rpx" src="@/static/logo.png" />
+        <view class="mx-auto mt-19.08rpx text-26.72rpx c-primary6/50 fw-600 lh-38.17rpx">无他，惟手熟尔</view>
         <view
             :style="{
-                '--wot-input-inner-height': '40rpx',
+                '--wot-input-inner-height': '38.17rpx',
                 '--wot-cell-padding': 0,
-                '--wot-cell-title-font-size': '24rpx',
-                '--wot-cell-title-line-height': '40rpx',
-                '--wot-cell-vertical-padding-top': '20rpx'
+                '--wot-cell-title-font-size': '22.9rpx',
+                '--wot-cell-title-line-height': '38.17rpx',
+                '--wot-cell-vertical-padding-top': '19.08rpx'
             }"
-            class="mx-150rpx mt-100rpx"
+            class="mx-143.13rpx mt-95.42rpx"
         >
             <wd-form ref="formRef" :model="model" :schema="schema" error-type="toast" hide-asterisk layout="vertical">
-                <view class="mb-40rpx">
+                <view class="mb-38.17rpx">
                     <wd-form-item prop="phone" title="手机号码">
-                        <view class="b-(1px primary6/10 solid) rd-8rpx p-[10rpx_20rpx]">
+                        <view class="b-(1px primary6/10 solid) rd-7.63rpx p-[9.54rpx_19.08rpx]">
                             <wd-input v-model="model.phone" placeholder="请输入手机号码" type="text" />
                         </view>
                     </wd-form-item>
@@ -103,7 +103,7 @@
                         <template #title>
                             <view class="w-full flex items-center">
                                 <view>验证码</view>
-                                <view class="ml-auto text-20rpx lh-40rpx">
+                                <view class="ml-auto text-19.08rpx lh-38.17rpx">
                                     <text v-if="isCounting" class="c-primary6/50">{{ countDown }}秒后重新获取</text>
                                     <text v-else class="c-#2F59F4" @click="getCaptcha({phone: model.phone})">
                                         获取验证码
@@ -111,7 +111,7 @@
                                 </view>
                             </view>
                         </template>
-                        <view class="b-(1px primary6/10 solid) rd-8rpx p-[10rpx_20rpx]">
+                        <view class="b-(1px primary6/10 solid) rd-7.63rpx p-[9.54rpx_19.08rpx]">
                             <wd-input
                                 v-model="model.code"
                                 inputmode="numeric"
@@ -123,9 +123,9 @@
                 </view>
             </wd-form>
         </view>
-        <view class="mx-auto mt-20rpx">
+        <view class="mx-auto mt-19.08rpx">
             <wd-checkbox v-model="isAgree" type="square">
-                <view class="flex items-center text-20rpx c-primary6/50 lh-40rpx">
+                <view class="flex items-center text-19.08rpx c-primary6/50 lh-38.17rpx">
                     <view>我已阅读并同意</view>
                     <view class="c-#2F59F4">《隐私协议》</view>
                     <view>与</view>
@@ -134,12 +134,12 @@
             </wd-checkbox>
         </view>
         <view
-            :style="{'--wot-button-radius-main': '20rpx', '--wot-button-font-size-large': '28rpx'}"
-            class="mx-150rpx mt-100rpx"
+            :style="{'--wot-button-radius-main': '19.08rpx', '--wot-button-font-size-large': '26.72rpx'}"
+            class="mx-143.13rpx mt-95.42rpx"
         >
             <wd-button :disabled="!isAgree" block size="medium" @click="onSubmit()">登录/注册</wd-button>
         </view>
-        <view class="mx-auto mt-40rpx text-20rpx c-#2F59F4 lh-40rpx" @click="$Router.push({name: 'Login'})">
+        <view class="mx-auto mt-38.17rpx text-19.08rpx c-#2F59F4 lh-38.17rpx" @click="$Router.push({name: 'Login'})">
             密码登录
         </view>
     </view>
