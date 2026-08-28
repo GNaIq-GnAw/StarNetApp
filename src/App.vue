@@ -10,6 +10,6 @@
     @use "@/static/iconfont/index.scss";
 
     .page-wraper {
-        //background: #f3f4f4;
+        background: #f3f4f4;
     }
 </style>
