@@ -149,6 +149,7 @@ declare global {
   const watchEffect: typeof import('vue').watchEffect
   const watchPostEffect: typeof import('vue').watchPostEffect
   const watchSyncEffect: typeof import('vue').watchSyncEffect
+  const withAlpha: typeof import('../utils/index.js').withAlpha
   const withConfigType: typeof import('../api/createApis.js').withConfigType
 }
 // for type re-export
@@ -307,6 +308,7 @@ declare module 'vue' {
     readonly watchEffect: UnwrapRef<typeof import('vue')['watchEffect']>
     readonly watchPostEffect: UnwrapRef<typeof import('vue')['watchPostEffect']>
     readonly watchSyncEffect: UnwrapRef<typeof import('vue')['watchSyncEffect']>
+    readonly withAlpha: UnwrapRef<typeof import('../utils/index.js')['withAlpha']>
     readonly withConfigType: UnwrapRef<typeof import('../api/createApis.js')['withConfigType']>
   }
 }

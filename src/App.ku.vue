@@ -1,6 +1,8 @@
 <script setup>
     const {systemInfo} = useSystemInfo();
 
+    const primary6$50 = withAlpha(Theme.primary6, 0.5);
+
     const themeVars = computed(() => {
         return {
             // base
@@ -26,13 +28,19 @@
             navbarLeftPadding: "0 38.17rpx",
             navbarDescColor: "#101010",
             // cell
-            cellPadding: 0,
             cellTitleFontSize: "22.9rpx",
             cellTitleLineHeight: "38.17rpx",
             cellVerticalPaddingTop: "19.08rpx",
             cellLabelFontSize: "22.9rpx",
             cellLabelLineHeight: "38.17rpx",
             cellLabelMarginTop: 0,
+            // cellArrowSize: "38.17rpx",
+            // cellArrowMarginLeft: "19.08rpx",
+            cellValueFontSize: "19.08rpx",
+            cellValueLineHeight: "38.17rpx",
+            cellValueColor: primary6$50,
+            cellIconSize: "38.17rpx",
+            cellIconColor: primary6$50,
             // input
             inputInnerHeight: "38.17rpx",
             // radio

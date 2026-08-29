@@ -76,3 +76,20 @@ export const createPromiseWithResolvers = () => {
 
     return {promise, resolve, reject};
 };
+
+// 色值设置透明度
+export const withAlpha = (hex, alpha) => {
+    const h = hex.replace("#", "");
+
+    const full = (() => {
+        if (h.length === 3) {
+            return h.split("").map(c => c + c).join("");
+        }
+
+        return h;
+    })();
+
+    const a = Math.round(alpha * 255).toString(16).padStart(2, "0");
+
+    return `#${full}${a}`;
+};

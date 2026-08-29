@@ -25,7 +25,7 @@
             safe-area-inset-top
             @click-left="$navigateBack()"
         />
-        <view class="flex-1 of-auto">
+        <view :style="{'--wot-cell-padding': 0}" class="flex-1 of-auto">
             <wd-form
                 ref="formRef"
                 :model="model"

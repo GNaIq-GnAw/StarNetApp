@@ -80,16 +80,7 @@
     >
         <image class="mx-auto mt-95.42rpx size-152.67rpx rd-19.08rpx" src="@/static/logo.png" />
         <view class="mx-auto mt-19.08rpx text-26.72rpx c-primary6/50 fw-600 lh-38.17rpx">无他，惟手熟尔</view>
-        <view
-            :style="{
-                '--wot-input-inner-height': '38.17rpx',
-                '--wot-cell-padding': 0,
-                '--wot-cell-title-font-size': '22.9rpx',
-                '--wot-cell-title-line-height': '38.17rpx',
-                '--wot-cell-vertical-padding-top': '19.08rpx'
-            }"
-            class="mx-143.13rpx mt-95.42rpx"
-        >
+        <view :style="{'--wot-cell-padding': 0}" class="mx-143.13rpx mt-95.42rpx">
             <wd-form ref="formRef" :model="model" :schema="schema" error-type="toast" hide-asterisk layout="vertical">
                 <view class="mb-38.17rpx">
                     <wd-form-item prop="phone" title="手机号码">

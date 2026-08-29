@@ -11,7 +11,14 @@
 
 <template>
     <view :style="{'padding-top': `${systemInfo?.safeAreaInsets?.top}px`}" class="box-border h-full of-auto bg-#f3f4f4">
-        <view class="p-[38.17rpx_19.08rpx]">
+        <view
+            :style="{
+                '--wot-cell-padding': '19.08rpx 38.17rpx',
+                '--wot-cell-group-bg': 'transparent',
+                '--wot-cell-bg': 'transparent'
+            }"
+            class="p-[38.17rpx_19.08rpx]"
+        >
             <view class="mx-19.08rpx mb-38.17rpx flex">
                 <view class="size-95.42rpx rd-47.71rpx bg-red" />
                 <view class="ml-19.08rpx">
@@ -32,14 +39,63 @@
             <view class="rd-19.08rpx bg-#ffffff p-[19.08rpx_38.17rpx]">
                 <view class="mb-38.17rpx text-22.9rpx fw-600 lh-38.17rpx">更多功能</view>
                 <view class="m-[-19.08rpx_-48.66rpx] flex flex-wrap px-19.08rpx">
-                    <view v-for="i in 10" :key="i" class="m-[19.08rpx_48.66rpx] flex flex-col items-center">
-                        <view class="size-38.17rpx bg-red" />
-                        <view class="text-19.08rpx lh-38.17rpx">收支日历</view>
+                    <view class="m-[19.08rpx_48.66rpx] flex flex-col items-center">
+                        <view class="i-ri:calendar-line size-38.17rpx c-primary6/50" />
+                        <view class="text-19.08rpx c-primary6 lh-38.17rpx">收支日历</view>
+                    </view>
+                    <view class="m-[19.08rpx_48.66rpx] flex flex-col items-center">
+                        <view class="i-icon-park-outline:chart-proportion size-38.17rpx c-primary6/50" />
+                        <view class="text-19.08rpx c-primary6 lh-38.17rpx">收支分析</view>
+                    </view>
+                    <view class="m-[19.08rpx_48.66rpx] flex flex-col items-center">
+                        <view class="i-icon-park-outline:chart-histogram size-38.17rpx c-primary6/50" />
+                        <view class="text-19.08rpx c-primary6 lh-38.17rpx">人脉分析</view>
+                    </view>
+                    <view class="m-[19.08rpx_48.66rpx] flex flex-col items-center">
+                        <view class="i-ant-design:import-outlined size-38.17rpx c-primary6/50" />
+                        <view class="text-19.08rpx c-primary6 lh-38.17rpx">数据导入</view>
+                    </view>
+                    <view class="m-[19.08rpx_48.66rpx] flex flex-col items-center">
+                        <view class="i-ant-design:export-outlined size-38.17rpx c-primary6/50" />
+                        <view class="text-19.08rpx c-primary6 lh-38.17rpx">数据导出</view>
                     </view>
                 </view>
+            </view>
+            <view class="mt-19.08rpx rd-19.08rpx bg-#ffffff">
+                <wd-cell-group title-width="91.6rpx">
+                    <wd-cell clickable css-icon suffix-icon="i-carbon-chevron-right !size-38.17rpx" title="个人中心">
+                        <view class="c-#F95585">未设置手机号码与密码，账号存在风险</view>
+                    </wd-cell>
+                    <wd-cell clickable css-icon suffix-icon="i-carbon-chevron-right !size-38.17rpx" title="记事本" />
+                    <wd-cell clickable css-icon suffix-icon="i-carbon-chevron-right !size-38.17rpx" title="收支类型" />
+                    <wd-cell title="提醒设置" value="下午08:30">
+                        <view class="flex items-center justify-end">
+                            <view class="c-primary6/50">下午08:30</view>
+                            <view class="ml-19.08rpx">
+                                <wd-switch size="38.17rpx" />
+                            </view>
+                        </view>
+                    </wd-cell>
+                </wd-cell-group>
+            </view>
+            <view class="mt-19.08rpx rd-19.08rpx bg-#ffffff">
+                <wd-cell
+                    clickable
+                    css-icon
+                    suffix-icon="i-carbon-chevron-right !size-38.17rpx"
+                    title="隐私管理"
+                    title-width="91.6rpx"
+                    value="未开启"
+                />
+            </view>
+            <view class="mt-19.08rpx rd-19.08rpx bg-#ffffff">
+                <wd-cell-group title-width="91.6rpx">
+                    <wd-cell clickable css-icon suffix-icon="i-carbon-chevron-right !size-38.17rpx" title="反馈意见" />
+                    <wd-cell clickable css-icon suffix-icon="i-carbon-chevron-right !size-38.17rpx" title="关于" />
+                </wd-cell-group>
             </view>
         </view>
     </view>
 </template>
 
-<style scoped></style>
+<style lang="scss" scoped></style>

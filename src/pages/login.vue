@@ -72,7 +72,7 @@
             <wd-img width="152.67rpx" height="152.67rpx" radius="19.08rpx" src="@/static/logo.png" />
         </view>
         <view class="mx-auto mt-19.08rpx text-26.72rpx c-primary6/50 fw-600 lh-38.17rpx">无他，惟手熟尔</view>
-        <view class="mx-143.13rpx mt-95.42rpx">
+        <view :style="{'--wot-cell-padding': 0}" class="mx-143.13rpx mt-95.42rpx">
             <wd-form ref="formRef" :model="model" :schema="schema" error-type="toast" hide-asterisk layout="vertical">
                 <view class="mb-38.17rpx">
                     <wd-form-item prop="phone" title="手机号码">
