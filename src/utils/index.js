@@ -81,15 +81,17 @@ export const createPromiseWithResolvers = () => {
 export const withAlpha = (hex, alpha) => {
     const h = hex.replace("#", "");
 
-    const full = (() => {
-        if (h.length === 3) {
-            return h.split("").map(c => c + c).join("");
-        }
+    const full
+        = h.length === 3
+            ? h
+                  .split("")
+                  .map(c => c + c)
+                  .join("")
+            : h;
 
-        return h;
-    })();
-
-    const a = Math.round(alpha * 255).toString(16).padStart(2, "0");
+    const a = Math.round(alpha * 255)
+        .toString(16)
+        .padStart(2, "0");
 
     return `#${full}${a}`;
 };

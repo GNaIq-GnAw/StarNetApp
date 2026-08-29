@@ -88,6 +88,11 @@
           "path": "pages/notebook/use",
           "type": "page",
           "name": "UserNotebookUse"
+        },
+        {
+          "path": "pages/notebook/manage",
+          "type": "page",
+          "name": "UserNotebookManage"
         }
       ]
     }

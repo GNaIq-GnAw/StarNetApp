@@ -35,6 +35,13 @@
         });
     };
 
+    const isScroll = ref(false);
+
+    const onScroll = (e) => {
+        console.log("onScroll", e);
+        isScroll.value = e.detail.scrollTop > 0;
+    };
+
     onMounted(async () => {
         try {
             const res = await Apis.contact.getContacts();
@@ -48,6 +55,38 @@
 <template>
     <view class="h-full flex flex-col bg-#f3f4f4">
         <view
+            v-if="isScroll"
+            :style="{
+                'padding-top': `calc(${systemInfo?.safeAreaInsets?.top}px + 19.08rpx)`
+            }"
+            class="bg-#ffffff pb-19.08rpx"
+        >
+            <view class="mx-38.17rpx mb-19.08rpx flex items-center">
+                <view class="h-38.17rpx w-257.63rpx rd-19.08rpx bg-primary6" />
+                <view class="ml-auto">
+                    <text class="i-carbon:search size-38.17rpx" />
+                    <text class="i-carbon:add-large ml-30.53rpx size-38.17rpx" />
+                </view>
+            </view>
+            <view class="flex items-center">
+                <view class="pl-38.17rpx pr-101.15rpx">
+                    <view class="text-19.08rpx c-primary6/50 lh-38.17rpx">新增人脉(名)</view>
+                    <view class="text-30.53rpx c-primary6 fw-600 lh-38.17rpx">300</view>
+                </view>
+                <view class="h-19.08rpx w-1px bg-#bbbbbb" />
+                <view class="pl-38.17rpx pr-101.15rpx">
+                    <view class="text-19.08rpx c-primary6/50 lh-38.17rpx">产生成交(名)</view>
+                    <view class="text-30.53rpx c-primary6 fw-600 lh-38.17rpx">22</view>
+                </view>
+                <view class="h-19.08rpx w-1px bg-#bbbbbb" />
+                <view class="pl-38.17rpx pr-101.15rpx">
+                    <view class="text-19.08rpx c-primary6/50 lh-38.17rpx">产生支出(名)</view>
+                    <view class="text-30.53rpx c-primary6 fw-600 lh-38.17rpx">30</view>
+                </view>
+            </view>
+        </view>
+        <view
+            v-else
             :style="{
                 'background': `url(${HomeBgT}) no-repeat`,
                 'background-size': `100% calc(${systemInfo?.safeAreaInsets?.top}px + 274.81rpx)`,
@@ -67,16 +106,10 @@
             </view>
             <view class="mb-19.08rpx flex">
                 <view>
-                    <view class="text-22.9rpx lh-38.17rpx">
-                        新增人脉
-                    </view>
+                    <view class="text-22.9rpx lh-38.17rpx">新增人脉</view>
                     <view class="my-5.73rpx flex items-center lh-none">
-                        <view class="text-45.8rpx">
-                            300
-                        </view>
-                        <view class="ml-11.45rpx text-22.9rpx">
-                            名
-                        </view>
+                        <view class="text-45.8rpx">300</view>
+                        <view class="ml-11.45rpx text-22.9rpx">名</view>
                     </view>
                 </view>
                 <view class="ml-auto h-38.17rpx w-143.13rpx rd-19.08rpx bg-#ffffff" />
@@ -98,9 +131,7 @@
                 <text class="c-primary6/50">仅看关注</text>
             </wd-checkbox>
             <view class="ml-auto flex items-center c-primary6/50">
-                <view class="text-19.08rpx lh-38.17rpx">
-                    新增
-                </view>
+                <view class="text-19.08rpx lh-38.17rpx">新增</view>
                 <view class="i-icon-park-outline:filter ml-11.45rpx size-19.08rpx" />
             </view>
         </view>
@@ -113,6 +144,7 @@
                 force-close-inner-list
                 use-virtual-list
                 @query="queryList"
+                @scroll="onScroll"
                 @virtual-list-change="onListChange"
             >
                 <view class="bg-#ffffff">
@@ -126,19 +158,19 @@
                             <view class="size-76.34rpx rd-19.08rpx bg-red" />
                             <view class="ml-19.08rpx flex-1">
                                 <view class="flex items-center">
-                                    <view class="text-22.9rpx lh-38.17rpx">
-                                        柳东
-                                    </view>
-                                    <view class="ml-19.08rpx text-19.08rpx c-primary6/50 lh-38.17rpx">
-                                        产品经理
-                                    </view>
+                                    <view class="text-22.9rpx lh-38.17rpx">柳东</view>
+                                    <view class="ml-19.08rpx text-19.08rpx c-primary6/50 lh-38.17rpx">产品经理</view>
                                 </view>
                                 <view class="text-19.08rpx c-primary6/50 lh-38.17rpx">
                                     山东销掌门信息科技有限公司 · 产品技术中心
                                 </view>
                                 <view class="mt-9.54rpx">
                                     <view class="flex flex-wrap text-19.08rpx c-#ffffff lh-26.72rpx -m-4.77rpx">
-                                        <view v-for="i in 5" :key="i" class="m-4.77rpx rd-19.08rpx bg-#FBC050 px-9.54rpx">
+                                        <view
+                                            v-for="i in 5"
+                                            :key="i"
+                                            class="m-4.77rpx rd-19.08rpx bg-#FBC050 px-9.54rpx"
+                                        >
                                             电话联系 5次
                                         </view>
                                     </view>
@@ -146,7 +178,9 @@
                             </view>
                             <view class="i-ri:more-line size-38.17rpx c-primary6/50" />
                         </view>
-                        <view class="mt-19.08rpx rd-7.63rpx bg-#F3F4F4 p-[9.54rpx_19.08rpx] text-19.08rpx c-primary6/50 lh-28.63rpx">
+                        <view
+                            class="mt-19.08rpx rd-7.63rpx bg-#F3F4F4 p-[9.54rpx_19.08rpx] text-19.08rpx c-primary6/50 lh-28.63rpx"
+                        >
                             记事：Chrome浏览器默认的最小字体大小取决于不同的版本和配置。在最新的Chrome浏览器版本中，最小字体大小通常设置为12px。此外，还可...
                         </view>
                     </view>
