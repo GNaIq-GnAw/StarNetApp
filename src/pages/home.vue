@@ -17,9 +17,12 @@
 
     const list = ref([]);
 
-    const queryList = async (pageNum, pageSize) => {
+    const queryList = async () => {
         try {
-            pagingRef.value.completeByTotal([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 10);
+            const notebookId = notebookStore.defaultNotebook.id;
+            const {data} = await Apis.contact.getContactsByNotebook({pathParams: {notebookId}});
+
+            pagingRef.value.complete(data);
         } catch {
             pagingRef.value.complete(false);
         }
@@ -47,6 +50,7 @@
     const loadHomeData = async () => {
         try {
             await notebookStore.getNotebooks();
+            pagingRef.value?.reload();
         } catch (e) {
             console.log("loadHomeData -> failed", e);
         }
@@ -141,6 +145,7 @@
         <view class="flex-1">
             <z-paging
                 ref="pagingRef"
+                :auto="false"
                 :empty-view-center="false"
                 auto-show-system-loading
                 cell-height-mode="dynamic"
@@ -188,6 +193,15 @@
                         </view>
                     </view>
                 </view>
+                <template #empty>
+                    <view class="bg-#ffffff py-57.25rpx">
+                        <view class="flex flex-col items-center">
+                            <view class="i-icon-park-outline:termination-file size-76.34rpx c-primary6/10" />
+                            <view class="mt-19.08rpx text-22.90rpx c-primary6/50 lh-38.17rpx">千里之行，始于足下</view>
+                            <view class="text-19.08rpx c-#492FD3 lh-38.17rpx">添加一条试试</view>
+                        </view>
+                    </view>
+                </template>
             </z-paging>
         </view>
     </view>

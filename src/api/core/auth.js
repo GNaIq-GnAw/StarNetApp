@@ -20,7 +20,7 @@ const {onAuthRequired, onResponseRefreshToken} = createServerTokenAuthentication
         isExpired: response => {
             console.log("refreshTokenOnSuccess -> isExpired", response);
 
-            return response?.data?.code === HttpResponse.TokenFailure;
+            return response.statusCode === HttpResponse.Unauthorized;
         },
         // 当token过期时触发，在此函数中触发刷新token
         handler: async () => {

@@ -1,7 +1,5 @@
 export default {
-    StatusCode: 200,
+    Ok: 200,
+    Unauthorized: 401,
     Success: 0,
-    TokenFailure: 40102,
-    RefreshTokenFailure: 40103,
-    OtherDeviceLogin: 40104
 };

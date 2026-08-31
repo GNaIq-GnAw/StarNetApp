@@ -23,9 +23,9 @@ export const useNotebookStore = defineStore("notebook", () => {
         try {
             const {data} = await Apis.notebook.getNotebooks();
 
-            list.value = data;
+            list.value = data.sort((a, b) => b.createTime - a.createTime);
 
-            return data;
+            return list.value;
         } catch (e) {
             console.log("getNotebooks -> failed", e);
             return Promise.reject(e);

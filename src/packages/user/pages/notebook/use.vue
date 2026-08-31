@@ -77,7 +77,7 @@
                     >
                         <view class="lh-38.17rpx">
                             <view class="text-22.9rpx fw-600">{{ row.name }}</view>
-                            <view class="text-19.08rpx c-primary6/50">联系人记录30条 · 收支记录442条</view>
+                            <!--                            <view class="text-19.08rpx c-primary6/50">联系人记录30条 · 收支记录442条</view> -->
                         </view>
                         <view v-if="row.isDefault" class="i-icon-park-outline:check-small ml-auto size-38.17rpx" />
                     </view>

@@ -12,7 +12,7 @@ export const onLogin = () => {
 // 响应处理
 export const onAlovaResponse = async ({statusCode, data}) => {
     // 抛出错误或返回reject状态的Promise实例时，此请求将抛出错误
-    if (statusCode !== HttpResponse.StatusCode) throw data.error;
+    if (statusCode !== HttpResponse.Ok) throw data.error;
 
     // 兼容处理json字符串
     const responseData = tryJSONParse(data);
