@@ -132,6 +132,7 @@ declare global {
   const useGlobalToast: typeof import('../hooks/useGlobalToast.js').useGlobalToast
   const useId: typeof import('vue').useId
   const useModel: typeof import('vue').useModel
+  const useNotebookStore: typeof import('../stores/notebook.js').useNotebookStore
   const useNotify: typeof import('@wot-ui/ui').useNotify
   const usePagination: typeof import('alova/client').usePagination
   const useRequest: typeof import('alova/client').useRequest
@@ -291,6 +292,7 @@ declare module 'vue' {
     readonly useGlobalToast: UnwrapRef<typeof import('../hooks/useGlobalToast.js')['useGlobalToast']>
     readonly useId: UnwrapRef<typeof import('vue')['useId']>
     readonly useModel: UnwrapRef<typeof import('vue')['useModel']>
+    readonly useNotebookStore: UnwrapRef<typeof import('../stores/notebook.js')['useNotebookStore']>
     readonly useNotify: UnwrapRef<typeof import('@wot-ui/ui')['useNotify']>
     readonly usePagination: UnwrapRef<typeof import('alova/client')['usePagination']>
     readonly useRequest: UnwrapRef<typeof import('alova/client')['useRequest']>

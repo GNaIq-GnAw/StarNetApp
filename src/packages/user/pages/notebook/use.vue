@@ -5,9 +5,13 @@
 
     const list = ref([]);
 
-    const queryList = async (pageNum, pageSize) => {
+    const notebookStore = useNotebookStore();
+
+    const queryList = async () => {
         try {
-            pagingRef.value.completeByTotal([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 10);
+            const data = await notebookStore.getNotebooks();
+
+            pagingRef.value.complete(data);
         } catch {
             pagingRef.value.complete(false);
         }
@@ -21,8 +25,17 @@
         const to = resolvePage({name: "UserNotebookCreate"});
 
         uni.navigateTo({
-            url: to.path
+            url: to.path,
+            events: {
+                "reload:data": () => {
+                    pagingRef.value.reload();
+                }
+            }
         });
+    };
+
+    const setDefaultNotebook = id => {
+        notebookStore.defaultNotebook = id;
     };
 </script>
 
@@ -59,17 +72,14 @@
                         v-for="row in list"
                         :id="`zp-id-${row.zp_index}`"
                         :key="row.zp_index"
-                        class="mx-19.08rpx flex items-center b-b-(1px primary6/10 solid) bg-#ffffff p-38.17rpx"
+                        class="mx-19.08rpx flex items-center b-b-(1px primary6/10 solid) bg-#ffffff p-38.17rpx last:b-b-none"
+                        @click="setDefaultNotebook(row.id)"
                     >
                         <view class="lh-38.17rpx">
-                            <view class="text-22.9rpx fw-600">
-                                默认记事
-                            </view>
-                            <view class="text-19.08rpx c-primary6/50">
-                                联系人记录30条 · 收支记录442条
-                            </view>
+                            <view class="text-22.9rpx fw-600">{{ row.name }}</view>
+                            <view class="text-19.08rpx c-primary6/50">联系人记录30条 · 收支记录442条</view>
                         </view>
-                        <view class="i-icon-park-outline:check-small ml-auto size-38.17rpx" />
+                        <view v-if="row.isDefault" class="i-icon-park-outline:check-small ml-auto size-38.17rpx" />
                     </view>
                 </view>
             </z-paging>

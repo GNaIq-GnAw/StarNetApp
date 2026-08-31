@@ -215,6 +215,7 @@
     "useGlobalToast": true,
     "useId": true,
     "useModel": true,
+    "useNotebookStore": true,
     "useNotify": true,
     "usePagination": true,
     "useRequest": true,

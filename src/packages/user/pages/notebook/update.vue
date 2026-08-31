@@ -7,7 +7,7 @@
 
     const formRef = ref(null);
 
-    const model = reactive({name: ""});
+    const model = reactive({id: null, name: ""});
 
     const schema = zodAdapter(
         z.object({
@@ -28,12 +28,13 @@
         uni.showLoading({mask: true});
 
         try {
-            await Apis.notebook.createNotebook({data: {...model}});
+            const {id, ...rest} = model;
+            await Apis.notebook.updateNotebook({pathParams: {id}, data: {...rest}});
 
             uni.hideLoading();
 
             uni.showToast({
-                title: "创建成功",
+                title: "修改成功",
                 icon: "success",
                 mask: true,
                 success: () => {
@@ -49,6 +50,13 @@
             uni.hideLoading();
         }
     };
+
+    onLoad(() => {
+        eventChannel.on("update:row", data => {
+            model.id = data.id;
+            model.name = data.name;
+        });
+    });
 </script>
 
 <template>
@@ -56,7 +64,7 @@
         <wd-navbar
             :bordered="false"
             left-arrow
-            left-text="添加记事本"
+            left-text="编辑记事本"
             safe-area-inset-top
             @click-left="$navigateBack()"
         />

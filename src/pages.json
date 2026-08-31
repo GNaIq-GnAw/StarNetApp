@@ -93,7 +93,14 @@
           "path": "pages/notebook/manage",
           "type": "page",
           "name": "UserNotebookManage"
+        },
+        // #ifdef H5
+        {
+          "path": "pages/notebook/update",
+          "type": "page",
+          "name": "UserNotebookUpdate"
         }
+        // #endif
       ]
     }
   ]

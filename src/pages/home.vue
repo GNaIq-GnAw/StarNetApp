@@ -11,6 +11,8 @@
 
     const {systemInfo} = useSystemInfo();
 
+    const notebookStore = useNotebookStore();
+
     const pagingRef = ref(null);
 
     const list = ref([]);
@@ -37,19 +39,20 @@
 
     const isScroll = ref(false);
 
-    const onScroll = (e) => {
+    const onScroll = e => {
         console.log("onScroll", e);
         isScroll.value = e.detail.scrollTop > 0;
     };
 
-    onMounted(async () => {
+    const loadHomeData = async () => {
         try {
-            const res = await Apis.contact.getContacts();
-            console.log("res", res);
+            await notebookStore.getNotebooks();
         } catch (e) {
-            console.log("e", e);
+            console.log("loadHomeData -> failed", e);
         }
-    });
+    };
+
+    onMounted(loadHomeData);
 </script>
 
 <template>
@@ -96,7 +99,7 @@
         >
             <view class="mb-22.9rpx flex items-center">
                 <view class="flex items-center" @click="onUseNotebook">
-                    <text class="text-30.53rpx lh-38.17rpx">默认记事本</text>
+                    <text class="text-30.53rpx lh-38.17rpx">{{ notebookStore.defaultNotebook?.name }}</text>
                     <text class="i-carbon:chevron-down ml-11.45rpx size-38.17rpx" />
                 </view>
                 <view class="ml-auto">
