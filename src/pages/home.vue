@@ -56,10 +56,35 @@
         }
     };
 
+    const show = ref(false);
+
+    const onAddContact = () => {
+        show.value = true;
+    };
+
     onMounted(loadHomeData);
 </script>
 
 <template>
+    <wd-popup v-model="show" custom-class="rd-19.08rpx">
+        <view class="box-border w-673.67rpx p-38.17rpx lh-38.17rpx">
+            <view class="flex items-center" @click="$Router.push({name: 'ContactCreate'})">
+                <view class="i-ant-design:user-add-outlined size-38.17rpx" />
+                <view class="ml-38.17rpx">
+                    <view class="text-22.90rpx">手动添加</view>
+                    <view class="text-19.08rpx c-primary6/50">日常手动记录联系人</view>
+                </view>
+            </view>
+            <view class="my-38.17rpx h-1px bg-primary6/10" />
+            <view class="flex items-center" @click="$Router.push({name: 'ContactSync'})">
+                <view class="i-ant-design:usergroup-add-outlined size-38.17rpx" />
+                <view class="ml-38.17rpx">
+                    <view class="text-22.90rpx">导入通讯录</view>
+                    <view class="text-19.08rpx c-primary6/50">自动同步通讯录中联系人姓名、联系方式等信息</view>
+                </view>
+            </view>
+        </view>
+    </wd-popup>
     <view class="h-full flex flex-col bg-#f3f4f4">
         <view
             v-if="isScroll"
@@ -198,7 +223,9 @@
                         <view class="flex flex-col items-center">
                             <view class="i-icon-park-outline:termination-file size-76.34rpx c-primary6/10" />
                             <view class="mt-19.08rpx text-22.90rpx c-primary6/50 lh-38.17rpx">千里之行，始于足下</view>
-                            <view class="text-19.08rpx c-#492FD3 lh-38.17rpx">添加一条试试</view>
+                            <view class="text-19.08rpx c-#492FD3 lh-38.17rpx" @click="onAddContact()">
+                                添加一条试试
+                            </view>
                         </view>
                     </view>
                 </template>

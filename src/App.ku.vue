@@ -14,6 +14,7 @@
         buttonHeightSmall: "57.25rpx",
         buttonHeightMedium: "76.34rpx",
         buttonHeightLarge: "83.97rpx",
+        buttonFontSizeSmall: "19.08rpx",
         buttonFontSizeMedium: "26.72rpx",
         /* checkbox */
         checkboxIconSize: "26.72rpx",
@@ -45,8 +46,14 @@
         cellGroupInsertRadius: "19.08rpx",
         /* input */
         inputInnerHeight: "38.17rpx",
+        inputPadding: "9.54rpx 19.08rpx",
         /* radio */
-        radioHorizontalMargin: "0 19.08rpx 0 0"
+        radioHorizontalMargin: "0 19.08rpx 0 0",
+        /* tabs */
+        tabsNavItemFontSize: "22.9rpx",
+        tabsNavItemLineHeight: "38.17rpx",
+        tabsNavColor: primary6$50,
+        tabsNavItemPadding: "19.08rpx"
     };
 </script>
 

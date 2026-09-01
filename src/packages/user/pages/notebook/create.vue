@@ -66,9 +66,9 @@
                 :model="model"
                 :schema="schema"
                 error-type="toast"
+                hide-asterisk
                 layout="vertical"
                 title-width="100%"
-                hide-asterisk
             >
                 <view class="mt-19.08rpx bg-#ffffff p-[38.17rpx_19.08rpx]">
                     <view class="mx-19.08rpx">
@@ -77,14 +77,14 @@
                                 <text>记事本名称</text>
                                 <text class="ml-7.63rpx text-22.9rpx c-[var(--wot-danger-main)] lh-38.17rpx">*</text>
                             </template>
-                            <view class="b-(1px primary6/10 solid) rd-7.63rpx p-[9.54rpx_19.08rpx]">
-                                <wd-input
-                                    v-model="model.name"
-                                    :maxlength="10"
-                                    placeholder="请输入记事本名称"
-                                    type="text"
-                                />
-                            </view>
+                            <wd-input
+                                v-model="model.name"
+                                :compact="false"
+                                :maxlength="10"
+                                placeholder="请输入记事本名称"
+                                show-word-limit
+                                type="text"
+                            />
                         </wd-form-item>
                     </view>
                     <!--                    <view class="my-38.17rpx h-1px bg-primary6/10" /> -->

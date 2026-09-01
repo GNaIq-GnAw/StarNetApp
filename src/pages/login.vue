@@ -27,7 +27,7 @@
 
     const schema = zodAdapter(
         z.object({
-            phone: z.string().min(1, "请输入手机号码").regex(Regex.Phone, {error: "手机号码格式不正确"}),
+            phone: z.string().min(1, "请输入手机号码").regex(Regex.Phone, "手机号码格式不正确"),
             password: z.string().min(1, "请输入密码")
         }),
         {
@@ -69,28 +69,25 @@
         class="box-border h-full flex flex-col of-auto bg-#ffffff"
     >
         <view class="mx-auto mt-95.42rpx size-152.67rpx">
-            <wd-img width="152.67rpx" height="152.67rpx" radius="19.08rpx" src="@/static/logo.png" />
+            <wd-img height="152.67rpx" radius="19.08rpx" src="@/static/logo.png" width="152.67rpx" />
         </view>
         <view class="mx-auto mt-19.08rpx text-26.72rpx c-primary6/50 fw-600 lh-38.17rpx">无他，惟手熟尔</view>
         <view :style="{'--wot-cell-padding': 0}" class="mx-143.13rpx mt-95.42rpx">
             <wd-form ref="formRef" :model="model" :schema="schema" error-type="toast" hide-asterisk layout="vertical">
                 <view class="mb-38.17rpx">
                     <wd-form-item prop="phone" title="手机号码">
-                        <view class="b-(1px primary6/10 solid) rd-7.63rpx p-[9.54rpx_19.08rpx]">
-                            <wd-input v-model="model.phone" placeholder="请输入手机号码" type="text" />
-                        </view>
+                        <wd-input v-model="model.phone" :compact="false" placeholder="请输入手机号码" type="text" />
                     </wd-form-item>
                 </view>
                 <view>
                     <wd-form-item prop="password" title="密码">
-                        <view class="b-(1px primary6/10 solid) rd-7.63rpx p-[9.54rpx_19.08rpx]">
-                            <wd-input
-                                v-model="model.password"
-                                placeholder="请输入密码"
-                                show-password
-                                type="safe-password"
-                            />
-                        </view>
+                        <wd-input
+                            v-model="model.password"
+                            :compact="false"
+                            placeholder="请输入密码"
+                            show-password
+                            type="safe-password"
+                        />
                     </wd-form-item>
                 </view>
             </wd-form>

@@ -31,7 +31,7 @@ export default defineConfig(configEnv => {
             // https://uni-helper.js.org/vite-plugin-uni-pages
             UniPages({
                 dts: false,
-                subPackages: ["src/packages/notebook", "src/packages/user"],
+                subPackages: ["src/packages/contact", "src/packages/user"],
                 exclude: ["**/components/**/*.*", "**/modules/**/*.*", "**/utils/**/*.*", "**/hooks/**/*.*"],
                 onAfterMergePageMetaData: handlePageName
             }),

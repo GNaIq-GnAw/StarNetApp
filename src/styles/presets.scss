@@ -18,6 +18,17 @@
     font-weight: 600;
 }
 
-.wd-cell__wrapper--vertical .wd-cell__title {
-    width: 100% !important;
+.wd-cell__wrapper--vertical {
+    .wd-cell__title {
+        width: 100% !important;
+    }
+
+    .wd-cell__label {
+        white-space: nowrap !important;
+    }
+
+}
+
+.wd-input {
+    @apply b-(1px primary6/10 solid) rd-7.63rpx
 }
