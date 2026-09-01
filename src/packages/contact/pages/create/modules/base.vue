@@ -34,14 +34,14 @@
         <view class="mx-19.08rpx">
             <wd-form-item prop="sex" title="性别">
                 <wd-radio-group v-model="form.sex" direction="horizontal">
-                    <wd-radio :value="1">
+                    <wd-radio value="男">
                         <template #icon="{isChecked}">
                             <wd-button :type="isChecked ? 'primary' : 'info'" custom-class="w-152.67rpx" size="small">
                                 男士
                             </wd-button>
                         </template>
                     </wd-radio>
-                    <wd-radio :value="2">
+                    <wd-radio value="女">
                         <template #icon="{isChecked}">
                             <wd-button :type="isChecked ? 'primary' : 'info'" custom-class="w-152.67rpx" size="small">
                                 女士

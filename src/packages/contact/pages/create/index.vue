@@ -4,6 +4,8 @@
     import {z} from "zod";
     import Modules from "./modules";
 
+    const notebookStore = useNotebookStore();
+
     const active = ref("base");
 
     const formRef = ref(null);
@@ -24,7 +26,7 @@
             }
         ],
         position: "",
-        sex: 1,
+        sex: "男",
         source: ""
     };
 
@@ -42,7 +44,15 @@
         }
     );
 
-    const {form} = useForm(null, {id: "contact-create", initialForm});
+    const {form, send} = useForm(
+        data => {
+            return Apis.contact.createContact({data: {...data, notebookId: notebookStore.defaultNotebook.id}});
+        },
+        {
+            id: "contact-create",
+            initialForm
+        }
+    );
 
     const onSubmit = async () => {
         // 不用表单验证使用数据验证
@@ -54,8 +64,14 @@
             return;
         }
 
+        send();
+
         console.log("valid");
     };
+
+    onMounted(() => {
+        notebookStore.getNotebooks();
+    });
 </script>
 
 <template>

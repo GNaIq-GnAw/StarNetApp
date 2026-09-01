@@ -32,11 +32,24 @@
         list.value = vlist;
     };
 
+    // 加载首页数据
+    const loadHomeData = async () => {
+        try {
+            await notebookStore.getNotebooks();
+            pagingRef.value?.reload();
+        } catch (e) {
+            console.log("loadHomeData -> failed", e);
+        }
+    };
+
     const onUseNotebook = () => {
         const to = resolvePage({name: "UserNotebookUse"});
 
         uni.navigateTo({
-            url: to.path
+            url: to.path,
+            events: {
+                "load:data": loadHomeData
+            }
         });
     };
 
@@ -45,15 +58,6 @@
     const onScroll = e => {
         console.log("onScroll", e);
         isScroll.value = e.detail.scrollTop > 0;
-    };
-
-    const loadHomeData = async () => {
-        try {
-            await notebookStore.getNotebooks();
-            pagingRef.value?.reload();
-        } catch (e) {
-            console.log("loadHomeData -> failed", e);
-        }
     };
 
     const show = ref(false);
@@ -97,7 +101,7 @@
                 <view class="h-38.17rpx w-257.63rpx rd-19.08rpx bg-primary6" />
                 <view class="ml-auto">
                     <text class="i-carbon:search size-38.17rpx" />
-                    <text class="i-carbon:add-large ml-30.53rpx size-38.17rpx" />
+                    <text class="i-carbon:add-large ml-30.53rpx size-38.17rpx" @click="onAddContact()" />
                 </view>
             </view>
             <view class="flex items-center">
@@ -133,7 +137,7 @@
                 </view>
                 <view class="ml-auto">
                     <text class="i-carbon:search size-38.17rpx" />
-                    <text class="i-carbon:add-large ml-30.53rpx size-38.17rpx" />
+                    <text class="i-carbon:add-large ml-30.53rpx size-38.17rpx" @click="onAddContact()" />
                 </view>
             </view>
             <view class="mb-19.08rpx flex">
