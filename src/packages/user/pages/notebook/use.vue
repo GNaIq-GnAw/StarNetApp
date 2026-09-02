@@ -1,6 +1,9 @@
 <script setup>
     import {resolvePage} from "@/router/resolve.js";
 
+    const instance = getCurrentInstance().proxy;
+    const eventChannel = instance.getOpenerEventChannel();
+
     const pagingRef = ref(null);
 
     const list = ref([]);
@@ -34,8 +37,15 @@
         });
     };
 
-    const setDefaultNotebook = id => {
-        notebookStore.defaultNotebook = id;
+    const setDefaultNotebook = async id => {
+        try {
+            await notebookStore.setDefaultNotebook(id);
+
+            eventChannel.emit("reload:data");
+            uni.navigateBack();
+        } catch (e) {
+            console.log("setDefaultNotebook -> failed", e);
+        }
     };
 </script>
 

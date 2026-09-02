@@ -48,7 +48,7 @@
         uni.navigateTo({
             url: to.path,
             events: {
-                "load:data": loadHomeData
+                "reload:data": loadHomeData
             }
         });
     };
@@ -195,21 +195,24 @@
                             <view class="size-76.34rpx rd-19.08rpx bg-red" />
                             <view class="ml-19.08rpx flex-1">
                                 <view class="flex items-center">
-                                    <view class="text-22.9rpx lh-38.17rpx">柳东</view>
-                                    <view class="ml-19.08rpx text-19.08rpx c-primary6/50 lh-38.17rpx">产品经理</view>
+                                    <view class="text-22.9rpx lh-38.17rpx">{{ row.name }}</view>
+                                    <view class="ml-19.08rpx text-19.08rpx c-primary6/50 lh-38.17rpx">
+                                        {{ row.position }}
+                                    </view>
                                 </view>
-                                <view class="text-19.08rpx c-primary6/50 lh-38.17rpx">
-                                    山东销掌门信息科技有限公司 · 产品技术中心
+                                <view
+                                    v-if="row.companyName || row.department"
+                                    class="text-19.08rpx c-primary6/50 lh-38.17rpx"
+                                >
+                                    <text>{{ row.companyName }}</text>
+                                    <text v-if="row.department">· {{ row.department }}</text>
                                 </view>
                                 <view class="mt-9.54rpx">
                                     <view class="flex flex-wrap text-19.08rpx c-#ffffff lh-26.72rpx -m-4.77rpx">
-                                        <view
-                                            v-for="i in 5"
-                                            :key="i"
-                                            class="m-4.77rpx rd-19.08rpx bg-#FBC050 px-9.54rpx"
-                                        >
-                                            电话联系 5次
+                                        <view class="m-4.77rpx rd-19.08rpx bg-primary6/50 px-9.54rpx">
+                                            {{ row.createTime }}
                                         </view>
+                                        <!--                                        <view class="m-4.77rpx rd-19.08rpx bg-#FBC050 px-9.54rpx">电话联系 5次</view> -->
                                     </view>
                                 </view>
                             </view>
