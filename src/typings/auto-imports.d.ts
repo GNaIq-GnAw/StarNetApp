@@ -122,10 +122,13 @@ declare global {
   const useAppInitialize: typeof import('../hooks/useAppInitialize.js').useAppInitialize
   const useAttrs: typeof import('vue').useAttrs
   const useCaptcha: typeof import('../hooks/useCaptcha.js').useCaptcha
+  const useContacts: typeof import('../hooks/useContacts.js').useContacts
   const useCssModule: typeof import('vue').useCssModule
   const useCssVars: typeof import('vue').useCssVars
   const useCurrentPage: typeof import('../hooks/useCurrentPage.js').useCurrentPage
   const useDialog: typeof import('@wot-ui/ui').useDialog
+  const useDisplayDate: typeof import('../hooks/useDisplaySetting.js').useDisplayDate
+  const useDisplaySetting: typeof import('../hooks/useDisplaySetting.js').useDisplaySetting
   const useFileDownload: typeof import('../hooks/useFileUpload/index.js').useFileDownload
   const useFileUpload: typeof import('../hooks/useFileUpload/index.js').useFileUpload
   const useGlobalDialog: typeof import('../hooks/useGlobalDialog.js').useGlobalDialog
@@ -282,6 +285,7 @@ declare module 'vue' {
     readonly useAppInitialize: UnwrapRef<typeof import('../hooks/useAppInitialize.js')['useAppInitialize']>
     readonly useAttrs: UnwrapRef<typeof import('vue')['useAttrs']>
     readonly useCaptcha: UnwrapRef<typeof import('../hooks/useCaptcha.js')['useCaptcha']>
+    readonly useContacts: UnwrapRef<typeof import('../hooks/useContacts.js')['useContacts']>
     readonly useCssModule: UnwrapRef<typeof import('vue')['useCssModule']>
     readonly useCssVars: UnwrapRef<typeof import('vue')['useCssVars']>
     readonly useCurrentPage: UnwrapRef<typeof import('../hooks/useCurrentPage.js')['useCurrentPage']>

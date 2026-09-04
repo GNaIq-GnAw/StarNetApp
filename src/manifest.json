@@ -2,8 +2,8 @@
   "name": "星网CRM",
   "appid": "__UNI__12A2B2B",
   "description": "",
-  "versionName": "1.0.8",
-  "versionCode": "108",
+  "versionName": "1.0.9",
+  "versionCode": "109",
   "transformPx": false,
   "app-plus": {
     "usingComponents": true,
@@ -17,8 +17,8 @@
     },
     "modules": {
       "Camera": {},
-      "VideoPlayer": {},
-      "SQLite": {}
+      "SQLite": {},
+      "Contacts": {}
     },
     "distribute": {
       "android": {
@@ -37,7 +37,10 @@
           "<uses-permission android:name='android.permission.FLASHLIGHT'/>",
           "<uses-feature android:name='android.hardware.camera'/>",
           "<uses-permission android:name='android.permission.WRITE_SETTINGS'/>",
-          "<uses-permission android:name='android.permission.CALL_PHONE'/>"
+          "<uses-permission android:name='android.permission.CALL_PHONE'/>",
+          "<uses-permission android:name='android.permission.GET_ACCOUNTS'/>",
+          "<uses-permission android:name='android.permission.WRITE_CONTACTS'/>",
+          "<uses-permission android:name='android.permission.READ_CONTACTS'/>"
         ],
         "enableOAID": false,
         "targetSdkVersion": 30,

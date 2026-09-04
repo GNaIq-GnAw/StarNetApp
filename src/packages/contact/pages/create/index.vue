@@ -4,30 +4,57 @@
     import {z} from "zod";
     import Modules from "./modules";
 
+    const instance = getCurrentInstance().proxy;
+    const eventChannel = instance.getOpenerEventChannel();
+
     const notebookStore = useNotebookStore();
 
     const active = ref("base");
 
     const formRef = ref(null);
 
+    // {
+    //     "birthday": "1973-01-01",
+    //     "companyAddress": "少时诵诗书所",
+    //     "companyCityCode": "110100",
+    //     "companyDistrictCode": "110101",
+    //     "companyName": "某企业",
+    //     "companyProvinceCode": "110000",
+    //     "department": "某部门",
+    //     "establishmentDate": "1970-01-01",
+    //     "homeAddress": "佛挡杀佛少的地方是分散分散",
+    //     "homeCityCode": "110100",
+    //     "homeDistrictCode": "110101",
+    //     "homeProvinceCode": "110000",
+    //     "isFollow": true,
+    //     "name": "狗子",
+    //     "notebookId": 3,
+    //     "phones": [{"phone": "18809871234", "type": 1}],
+    //     "position": "某职位",
+    //     "sex": "男",
+    //     "source": "是谁说"
+    // }
+
     const initialForm = {
-        birthday: "",
-        companyAddress: "",
-        companyName: "",
-        department: "",
-        homeAddress: "",
-        isFollow: true,
-        name: "",
-        notebookId: 0,
-        phones: [
-            {
-                phone: "",
-                type: 1
-            }
-        ],
-        position: "",
-        sex: "男",
-        source: ""
+        "birthday": "1973-01-01",
+        "companyAddress": "少时诵诗书所",
+        "companyCityCode": "110100",
+        "companyDistrictCode": "110101",
+        "companyName": "某企业",
+        "companyProvinceCode": "110000",
+        "department": "某部门",
+        "establishmentDate": "1970-01-01",
+        "homeAddress": "佛挡杀佛少的地方是分散分散",
+        "homeCityCode": "110100",
+        "homeDistrictCode": "110101",
+        "homeProvinceCode": "110000",
+        "isFollow": true,
+        "name": "三狗子",
+        "notebookId": 3,
+        "phones": [{"phone": "18809871234", "type": 1}],
+        "position": "某职位",
+        "sex": "男",
+        "source": "是谁说"
     };
 
     const schema = zodAdapter(
@@ -64,9 +91,29 @@
             return;
         }
 
-        send();
+        uni.showLoading({mask: true});
 
-        console.log("valid");
+        try {
+            await send();
+
+            uni.hideLoading();
+
+            uni.showToast({
+                title: "添加成功",
+                icon: "success",
+                mask: true,
+                success: () => {
+                    setTimeout(() => {
+                        eventChannel.emit("reload:data");
+
+                        uni.navigateBack();
+                    }, 1500);
+                }
+            });
+        } catch (e) {
+            console.log("onSubmit -> failed", e);
+            uni.hideLoading();
+        }
     };
 
     onMounted(() => {

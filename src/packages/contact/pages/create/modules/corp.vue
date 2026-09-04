@@ -23,8 +23,13 @@
             <wd-form-item title="企业位置">
                 <view :style="{'--wot-cell-vertical-padding-top': 0}">
                     <view>
-                        <wd-form-item>
-                            <custom-area-picker placeholder="请选择省/市/区" />
+                        <wd-form-item prop="companyDistrictCode">
+                            <custom-area-picker
+                                v-model:province="form.companyProvinceCode"
+                                v-model:city="form.companyCityCode"
+                                v-model:district="form.companyDistrictCode"
+                                placeholder="请选择省/市/区"
+                            />
                         </wd-form-item>
                     </view>
                     <view class="mt-19.08rpx">
@@ -44,7 +49,7 @@
         </view>
         <view class="my-38.17rpx h-1px bg-primary6/10" />
         <view class="mx-19.08rpx">
-            <wd-form-item title-width="100%">
+            <wd-form-item title-width="100%" prop="establishmentDate">
                 <template #title>
                     <view class="w-full flex items-center">
                         <view>成立日期</view>
@@ -56,7 +61,11 @@
                         </view>
                     </view>
                 </template>
-                <custom-datetime-picker placeholder="请选择成立日期" type="date" />
+                <custom-datetime-picker
+                    v-model:value="form.establishmentDate"
+                    placeholder="请选择成立日期"
+                    type="date"
+                />
             </wd-form-item>
         </view>
         <view class="my-38.17rpx h-1px bg-primary6/10" />

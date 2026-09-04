@@ -5,7 +5,8 @@
     definePage({
         layout: "tabbar",
         style: {
-            navigationBarTitleText: "首页"
+            navigationBarTitleText: "首页",
+            navigationBarTextStyle: "white"
         }
     });
 
@@ -36,21 +37,11 @@
     const loadHomeData = async () => {
         try {
             await notebookStore.getNotebooks();
+            await nextTick();
             pagingRef.value?.reload();
         } catch (e) {
             console.log("loadHomeData -> failed", e);
         }
-    };
-
-    const onUseNotebook = () => {
-        const to = resolvePage({name: "UserNotebookUse"});
-
-        uni.navigateTo({
-            url: to.path,
-            events: {
-                "reload:data": loadHomeData
-            }
-        });
     };
 
     const isScroll = ref(false);
@@ -66,13 +57,51 @@
         show.value = true;
     };
 
+    const to = name => {
+        const to = resolvePage({name});
+
+        uni.navigateTo({
+            url: to.path,
+            events: {
+                "reload:data": loadHomeData
+            },
+            success: () => {
+                if (show.value) show.value = false;
+            }
+        });
+    };
+
+    // 选择记事本
+    const onUseNotebook = () => {
+        const to = resolvePage({name: "UserNotebookUse"});
+
+        uni.navigateTo({
+            url: to.path,
+            events: {
+                "reload:data": loadHomeData
+            }
+        });
+    };
+
+    // 展示设置
+    const onDisplay = () => {
+        const to = resolvePage({name: "Display"});
+
+        uni.navigateTo({
+            url: to.path,
+            events: {
+                "reload:data": loadHomeData
+            }
+        });
+    };
+
     onMounted(loadHomeData);
 </script>
 
 <template>
     <wd-popup v-model="show" custom-class="rd-19.08rpx">
         <view class="box-border w-673.67rpx p-38.17rpx lh-38.17rpx">
-            <view class="flex items-center" @click="$Router.push({name: 'ContactCreate'})">
+            <view class="flex items-center" @click="to('ContactCreate')">
                 <view class="i-ant-design:user-add-outlined size-38.17rpx" />
                 <view class="ml-38.17rpx">
                     <view class="text-22.90rpx">手动添加</view>
@@ -80,7 +109,7 @@
                 </view>
             </view>
             <view class="my-38.17rpx h-1px bg-primary6/10" />
-            <view class="flex items-center" @click="$Router.push({name: 'ContactSync'})">
+            <view class="flex items-center" @click="to('ContactSync')">
                 <view class="i-ant-design:usergroup-add-outlined size-38.17rpx" />
                 <view class="ml-38.17rpx">
                     <view class="text-22.90rpx">导入通讯录</view>
@@ -100,7 +129,7 @@
             <view class="mx-38.17rpx mb-19.08rpx flex items-center">
                 <view class="h-38.17rpx w-257.63rpx rd-19.08rpx bg-primary6" />
                 <view class="ml-auto">
-                    <text class="i-carbon:search size-38.17rpx" />
+                    <text class="i-carbon:search size-38.17rpx" @click="to('Search')" />
                     <text class="i-carbon:add-large ml-30.53rpx size-38.17rpx" @click="onAddContact()" />
                 </view>
             </view>
@@ -131,12 +160,12 @@
             class="px-38.17rpx pb-38.17rpx c-#ffffff"
         >
             <view class="mb-22.9rpx flex items-center">
-                <view class="flex items-center" @click="onUseNotebook">
+                <view class="flex items-center" @click="onUseNotebook()">
                     <text class="text-30.53rpx lh-38.17rpx">{{ notebookStore.defaultNotebook?.name }}</text>
                     <text class="i-carbon:chevron-down ml-11.45rpx size-38.17rpx" />
                 </view>
                 <view class="ml-auto">
-                    <text class="i-carbon:search size-38.17rpx" />
+                    <text class="i-carbon:search size-38.17rpx" @click="to('Search')" />
                     <text class="i-carbon:add-large ml-30.53rpx size-38.17rpx" @click="onAddContact()" />
                 </view>
             </view>
@@ -166,7 +195,7 @@
             <wd-checkbox :false-value="0" :true-value="1" type="square">
                 <text class="c-primary6/50">仅看关注</text>
             </wd-checkbox>
-            <view class="ml-auto flex items-center c-primary6/50">
+            <view class="ml-auto flex items-center c-primary6/50" @click="onDisplay()">
                 <view class="text-19.08rpx lh-38.17rpx">新增</view>
                 <view class="i-icon-park-outline:filter ml-11.45rpx size-19.08rpx" />
             </view>
@@ -192,7 +221,13 @@
                         class="mx-19.08rpx b-b-(1px primary6/10 solid) bg-#ffffff p-19.08rpx last:b-b-none"
                     >
                         <view class="flex">
-                            <view class="size-76.34rpx rd-19.08rpx bg-red" />
+                            <view class="relative size-76.34rpx">
+                                <view class="size-76.34rpx rd-19.08rpx bg-red" />
+                                <view
+                                    v-if="row.isFollow"
+                                    class="i-tdesign:star-1-filled absolute size-38.17rpx c-#FBC050 -right-19.08rpx -top-19.08rpx"
+                                />
+                            </view>
                             <view class="ml-19.08rpx flex-1">
                                 <view class="flex items-center">
                                     <view class="text-22.9rpx lh-38.17rpx">{{ row.name }}</view>
@@ -210,18 +245,39 @@
                                 <view class="mt-9.54rpx">
                                     <view class="flex flex-wrap text-19.08rpx c-#ffffff lh-26.72rpx -m-4.77rpx">
                                         <view class="m-4.77rpx rd-19.08rpx bg-primary6/50 px-9.54rpx">
-                                            {{ row.createTime }}
+                                            {{ formatDate(new Date(row.createTime)) }} 新增
                                         </view>
-                                        <!--                                        <view class="m-4.77rpx rd-19.08rpx bg-#FBC050 px-9.54rpx">电话联系 5次</view> -->
+                                        <view class="m-4.77rpx rd-19.08rpx bg-#FBC050 px-9.54rpx">电话联系 5次</view>
+                                        <view class="m-4.77rpx rd-19.08rpx bg-#FBC050 px-9.54rpx">短信联系 5次</view>
+                                        <view class="m-4.77rpx rd-19.08rpx bg-#FBC050 px-9.54rpx">拜访 10次</view>
+                                        <view class="m-4.77rpx rd-19.08rpx bg-#FBC050 px-9.54rpx">撰写记事 5次</view>
+                                        <view class="m-4.77rpx rd-19.08rpx bg-#F95585 px-9.54rpx">成交 5笔</view>
+                                        <view class="m-4.77rpx rd-19.08rpx bg-#9BD073 px-9.54rpx">支出 5笔</view>
                                     </view>
                                 </view>
                             </view>
                             <view class="i-ri:more-line size-38.17rpx c-primary6/50" />
                         </view>
                         <view
-                            class="mt-19.08rpx rd-7.63rpx bg-#F3F4F4 p-[9.54rpx_19.08rpx] text-19.08rpx c-primary6/50 lh-28.63rpx"
+                            v-if="row.companyDistrictName"
+                            class="mt-19.08rpx rd-7.63rpx bg-#F3F4F4 p-[9.54rpx_19.08rpx]"
                         >
-                            记事：Chrome浏览器默认的最小字体大小取决于不同的版本和配置。在最新的Chrome浏览器版本中，最小字体大小通常设置为12px。此外，还可...
+                            <!--                            <view class="mb-9.54rpx"> -->
+                            <!--                                <wd-text -->
+                            <!--                                    :color="withAlpha(Theme.primary6, 0.5)" -->
+                            <!--                                    :lines="2" -->
+                            <!--                                    line-height="28.63rpx" -->
+                            <!--                                    size="19.08rpx" -->
+                            <!--                                    text="记事：Chrome浏览器默认的最小字体大小取决于不同的版本和配置。在最新的Chrome浏览器版本中，最小字体大小通常设置为12px。记事：Chrome浏览器默认的最小字体大小取决于不同的版本和配置。在最新的Chrome浏览器版本中，最小字体大小通常设置为12px。" -->
+                            <!--                                /> -->
+                            <!--                            </view> -->
+                            <view v-if="row.companyDistrictName" class="text-19.08rpx c-primary6/50 lh-28.63rpx">
+                                <text>位置：</text>
+                                <text>{{ row.companyProvinceName }}</text>
+                                <text>{{ row.companyCityName }}</text>
+                                <text>{{ row.companyDistrictName }}</text>
+                                <text>{{ row.companyAddress }}</text>
+                            </view>
                         </view>
                     </view>
                 </view>

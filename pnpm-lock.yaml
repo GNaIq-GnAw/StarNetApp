@@ -159,6 +159,9 @@ importers:
       '@iconify-json/streamline':
         specifier: ^1.2.5
         version: 1.2.5
+      '@iconify-json/tdesign':
+        specifier: ^1.2.18
+        version: 1.2.18
       '@mini-types/alipay':
         specifier: ^3.0.14
         version: 3.0.14
@@ -1553,6 +1556,9 @@ packages:
 
   '@iconify-json/streamline@1.2.5':
     resolution: {integrity: sha512-u6l9BOJoIIPjjDXWl6D/hPDzeBk5WiaEHZ+U9SbkQ14N9hgotaYyIZVMfgF175CG1TTS06j8k15D3FM2OYaFIw==}
+
+  '@iconify-json/tdesign@1.2.18':
+    resolution: {integrity: sha512-0YB1dbZJdg5ez6et4ABMd/8w3/v+ZrKKXMvrex22MYBA+AE6JdCrPns3lxsQG/Q8HnHxhPpa/fjbozlB47eP4g==}
 
   '@iconify/types@2.0.0':
     resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==}
@@ -8251,6 +8257,10 @@ snapshots:
       '@iconify/types': 2.0.0
 
   '@iconify-json/streamline@1.2.5':
+    dependencies:
+      '@iconify/types': 2.0.0
+
+  '@iconify-json/tdesign@1.2.18':
     dependencies:
       '@iconify/types': 2.0.0
 

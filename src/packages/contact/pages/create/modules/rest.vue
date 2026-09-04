@@ -10,8 +10,13 @@
             <wd-form-item title="家庭住址">
                 <view :style="{'--wot-cell-vertical-padding-top': 0}">
                     <view>
-                        <wd-form-item>
-                            <custom-area-picker placeholder="请选择省/市/区" />
+                        <wd-form-item prop="homeDistrictCode">
+                            <custom-area-picker
+                                v-model:province="form.homeProvinceCode"
+                                v-model:city="form.homeCityCode"
+                                v-model:district="form.homeDistrictCode"
+                                placeholder="请选择省/市/区"
+                            />
                         </wd-form-item>
                     </view>
                     <view class="mt-19.08rpx">

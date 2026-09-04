@@ -53,7 +53,20 @@
         tabsNavItemFontSize: "22.9rpx",
         tabsNavItemLineHeight: "38.17rpx",
         tabsNavColor: primary6$50,
-        tabsNavItemPadding: "19.08rpx"
+        tabsNavItemPadding: "19.08rpx",
+        /* search */
+        searchInputBg: "#f3f4f4",
+        searchInputRadius: "7.63rpx",
+        searchFieldPadding: "0 19.08rpx",
+        searchInputHeight: "57.25rpx",
+        searchIconSize: "38.17rpx",
+        searchLeftIconMarginRight: "11.45rpx",
+        searchInputFontSize: "22.9rpx",
+        searchInputLineHeight: "38.17rpx",
+        searchBlockMarginRight: "38.17rpx",
+        searchPadding: "13.36rpx 38.17rpx",
+        searchCancelFontSize: "22.9rpx",
+        searchCancelLineHeight: "38.17rpx"
     };
 </script>
 

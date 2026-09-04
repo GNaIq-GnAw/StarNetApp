@@ -3,7 +3,9 @@
 
     defineOptions({inheritAttrs: false});
 
-    const $modelValue = defineModel("value", {type: String, required: true});
+    const $province = defineModel("province", {type: String});
+    const $city = defineModel("city", {type: String});
+    const $district = defineModel("district", {type: String, required: true});
 
     const visible = ref(false);
 
@@ -13,7 +15,7 @@
     /**
      * 深度优先遍历，根据 value 找出从省到市/区的完整节点路径。
      * @param {Array} options 级联数据
-     * @param {string} target  目标 value（$modelValue）
+     * @param {string} target  目标 value（$district）
      * @returns {Array|null} 匹配节点的 text 数组，未找到返回 null
      */
     function findAreaPath(options, target) {
@@ -31,16 +33,23 @@
         return null;
     }
 
-    // 根据 $modelValue 反查省市区文字，拼接成展示文本
+    // 根据 $district 反查省市区文字，拼接成展示文本
     const $formatedValue = computed(() => {
-        if (!$modelValue.value) {
+        if (!$district.value) {
             return "";
         }
 
-        const path = findAreaPath(areaData, $modelValue.value);
+        const path = findAreaPath(areaData, $district.value);
 
         return path ? path.join(" / ") : "";
     });
+
+    const onConfirm = e => {
+        const [province, city] = e.selectedOptions;
+
+        $province.value = province.value;
+        $city.value = city.value;
+    };
 </script>
 
 <template>
@@ -54,7 +63,13 @@
         type="text"
         @click="visible = true"
     />
-    <wd-cascader v-model="$modelValue" v-model:visible="visible" :options="areaData" v-bind="$attrs" />
+    <wd-cascader
+        v-model="$district"
+        v-model:visible="visible"
+        :options="areaData"
+        v-bind="$attrs"
+        @confirm="onConfirm"
+    />
 </template>
 
 <style scoped></style>

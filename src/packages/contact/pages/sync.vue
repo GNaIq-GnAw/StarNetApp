@@ -1,7 +1,9 @@
-<script setup></script>
+<script setup>
+    const {contacts} = useContacts();
+</script>
 
 <template>
-    <view>sync</view>
+    <view>{{ contacts }}</view>
 </template>
 
 <style scoped></style>

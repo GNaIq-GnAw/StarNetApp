@@ -8,8 +8,8 @@ export default defineManifestConfig({
     name: env.VITE_APP_NAME,
     appid: "__UNI__12A2B2B",
     description: "",
-    versionName: "1.0.8",
-    versionCode: "108",
+    versionName: "1.0.9",
+    versionCode: "109",
     transformPx: false,
     /* 5+App特有相关 */
     "app-plus": {
@@ -25,8 +25,8 @@ export default defineManifestConfig({
         /* 模块配置 */
         modules: {
             Camera: {},
-            VideoPlayer: {},
-            SQLite: {}
+            SQLite: {},
+            Contacts: {}
         },
         /* 应用发布信息 */
         distribute: {
@@ -50,7 +50,10 @@ export default defineManifestConfig({
                     "<uses-permission android:name='android.permission.FLASHLIGHT'/>",
                     "<uses-feature android:name='android.hardware.camera'/>",
                     "<uses-permission android:name='android.permission.WRITE_SETTINGS'/>",
-                    "<uses-permission android:name='android.permission.CALL_PHONE'/>"
+                    "<uses-permission android:name='android.permission.CALL_PHONE'/>",
+                    "<uses-permission android:name='android.permission.GET_ACCOUNTS'/>",
+                    "<uses-permission android:name='android.permission.WRITE_CONTACTS'/>",
+                    "<uses-permission android:name='android.permission.READ_CONTACTS'/>"
                 ]
             },
             /* ios打包配置 */

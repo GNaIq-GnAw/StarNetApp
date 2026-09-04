@@ -883,20 +883,55 @@ export interface ContactDTO {
 
   companyAddress?: string;
   /**
+   * 企业位置城市编码
+   */
+
+  companyCityCode?: string;
+  /**
+   * 企业位置区县编码
+   */
+
+  companyDistrictCode?: string;
+  /**
    * 公司名称
    */
 
   companyName?: string;
+  /**
+   * 企业位置省份编码
+   */
+
+  companyProvinceCode?: string;
   /**
    * 部门
    */
 
   department?: string;
   /**
+   * 企业成立日期
+   */
+
+  establishmentDate?: string;
+  /**
    * 家庭地址
    */
 
   homeAddress?: string;
+  /**
+   * 家庭住址城市编码
+   */
+
+  homeCityCode?: string;
+  /**
+   * 家庭住址区县编码
+   */
+
+  homeDistrictCode?: string;
+  /**
+   * 家庭住址省份编码
+   */
+
+  homeProvinceCode?: string;
   /**
    * 是否关注
    */
@@ -996,20 +1031,55 @@ export interface ContactImportItemDTO {
 
   companyAddress?: string;
   /**
+   * 企业位置城市编码
+   */
+
+  companyCityCode?: string;
+  /**
+   * 企业位置区县编码
+   */
+
+  companyDistrictCode?: string;
+  /**
    * 公司名称
    */
 
   companyName?: string;
+  /**
+   * 企业位置省份编码
+   */
+
+  companyProvinceCode?: string;
   /**
    * 部门
    */
 
   department?: string;
   /**
+   * 企业成立日期，格式：yyyy-MM-dd
+   */
+
+  establishmentDate?: string;
+  /**
    * 家庭地址
    */
 
   homeAddress?: string;
+  /**
+   * 家庭住址城市编码
+   */
+
+  homeCityCode?: string;
+  /**
+   * 家庭住址区县编码
+   */
+
+  homeDistrictCode?: string;
+  /**
+   * 家庭住址省份编码
+   */
+
+  homeProvinceCode?: string;
   /**
    * 是否关注
    */
@@ -1431,10 +1501,40 @@ export interface ContactResponseDTO {
 
   companyAddress?: string;
   /**
+   * 企业位置城市编码
+   */
+
+  companyCityCode?: string;
+  /**
+   * 企业位置城市名称
+   */
+
+  companyCityName?: string;
+  /**
+   * 企业位置区县编码
+   */
+
+  companyDistrictCode?: string;
+  /**
+   * 企业位置区县名称
+   */
+
+  companyDistrictName?: string;
+  /**
    * 公司名称
    */
 
   companyName?: string;
+  /**
+   * 企业位置省份编码
+   */
+
+  companyProvinceCode?: string;
+  /**
+   * 企业位置省份名称
+   */
+
+  companyProvinceName?: string;
   /**
    * 创建时间
    */
@@ -1446,10 +1546,45 @@ export interface ContactResponseDTO {
 
   department?: string;
   /**
+   * 企业成立日期
+   */
+
+  establishmentDate?: string;
+  /**
    * 家庭地址
    */
 
   homeAddress?: string;
+  /**
+   * 家庭住址城市编码
+   */
+
+  homeCityCode?: string;
+  /**
+   * 家庭住址城市名称
+   */
+
+  homeCityName?: string;
+  /**
+   * 家庭住址区县编码
+   */
+
+  homeDistrictCode?: string;
+  /**
+   * 家庭住址区县名称
+   */
+
+  homeDistrictName?: string;
+  /**
+   * 家庭住址省份编码
+   */
+
+  homeProvinceCode?: string;
+  /**
+   * 家庭住址省份名称
+   */
+
+  homeProvinceName?: string;
   /**
    * 联系人ID
    */
@@ -2659,12 +2794,26 @@ declare global {
        *   birthday?: string
        *   // 公司地址
        *   companyAddress?: string
+       *   // 企业位置城市编码
+       *   companyCityCode?: string
+       *   // 企业位置区县编码
+       *   companyDistrictCode?: string
        *   // 公司名称
        *   companyName?: string
+       *   // 企业位置省份编码
+       *   companyProvinceCode?: string
        *   // 部门
        *   department?: string
+       *   // 企业成立日期
+       *   establishmentDate?: string
        *   // 家庭地址
        *   homeAddress?: string
+       *   // 家庭住址城市编码
+       *   homeCityCode?: string
+       *   // 家庭住址区县编码
+       *   homeDistrictCode?: string
+       *   // 家庭住址省份编码
+       *   homeProvinceCode?: string
        *   // 是否关注
        *   isFollow?: boolean
        *   // 联系人姓名
@@ -2705,14 +2854,40 @@ declare global {
        *     birthday?: string
        *     // 公司地址
        *     companyAddress?: string
+       *     // 企业位置城市编码
+       *     companyCityCode?: string
+       *     // 企业位置城市名称
+       *     companyCityName?: string
+       *     // 企业位置区县编码
+       *     companyDistrictCode?: string
+       *     // 企业位置区县名称
+       *     companyDistrictName?: string
        *     // 公司名称
        *     companyName?: string
+       *     // 企业位置省份编码
+       *     companyProvinceCode?: string
+       *     // 企业位置省份名称
+       *     companyProvinceName?: string
        *     // 创建时间
        *     createTime?: string
        *     // 部门
        *     department?: string
+       *     // 企业成立日期
+       *     establishmentDate?: string
        *     // 家庭地址
        *     homeAddress?: string
+       *     // 家庭住址城市编码
+       *     homeCityCode?: string
+       *     // 家庭住址城市名称
+       *     homeCityName?: string
+       *     // 家庭住址区县编码
+       *     homeDistrictCode?: string
+       *     // 家庭住址区县名称
+       *     homeDistrictName?: string
+       *     // 家庭住址省份编码
+       *     homeProvinceCode?: string
+       *     // 家庭住址省份名称
+       *     homeProvinceName?: string
        *     // 联系人ID
        *     id?: number
        *     // 是否关注
@@ -2777,14 +2952,40 @@ declare global {
        *     birthday?: string
        *     // 公司地址
        *     companyAddress?: string
+       *     // 企业位置城市编码
+       *     companyCityCode?: string
+       *     // 企业位置城市名称
+       *     companyCityName?: string
+       *     // 企业位置区县编码
+       *     companyDistrictCode?: string
+       *     // 企业位置区县名称
+       *     companyDistrictName?: string
        *     // 公司名称
        *     companyName?: string
+       *     // 企业位置省份编码
+       *     companyProvinceCode?: string
+       *     // 企业位置省份名称
+       *     companyProvinceName?: string
        *     // 创建时间
        *     createTime?: string
        *     // 部门
        *     department?: string
+       *     // 企业成立日期
+       *     establishmentDate?: string
        *     // 家庭地址
        *     homeAddress?: string
+       *     // 家庭住址城市编码
+       *     homeCityCode?: string
+       *     // 家庭住址城市名称
+       *     homeCityName?: string
+       *     // 家庭住址区县编码
+       *     homeDistrictCode?: string
+       *     // 家庭住址区县名称
+       *     homeDistrictName?: string
+       *     // 家庭住址省份编码
+       *     homeProvinceCode?: string
+       *     // 家庭住址省份名称
+       *     homeProvinceName?: string
        *     // 联系人ID
        *     id?: number
        *     // 是否关注
@@ -2869,14 +3070,40 @@ declare global {
        *     birthday?: string
        *     // 公司地址
        *     companyAddress?: string
+       *     // 企业位置城市编码
+       *     companyCityCode?: string
+       *     // 企业位置城市名称
+       *     companyCityName?: string
+       *     // 企业位置区县编码
+       *     companyDistrictCode?: string
+       *     // 企业位置区县名称
+       *     companyDistrictName?: string
        *     // 公司名称
        *     companyName?: string
+       *     // 企业位置省份编码
+       *     companyProvinceCode?: string
+       *     // 企业位置省份名称
+       *     companyProvinceName?: string
        *     // 创建时间
        *     createTime?: string
        *     // 部门
        *     department?: string
+       *     // 企业成立日期
+       *     establishmentDate?: string
        *     // 家庭地址
        *     homeAddress?: string
+       *     // 家庭住址城市编码
+       *     homeCityCode?: string
+       *     // 家庭住址城市名称
+       *     homeCityName?: string
+       *     // 家庭住址区县编码
+       *     homeDistrictCode?: string
+       *     // 家庭住址区县名称
+       *     homeDistrictName?: string
+       *     // 家庭住址省份编码
+       *     homeProvinceCode?: string
+       *     // 家庭住址省份名称
+       *     homeProvinceName?: string
        *     // 联系人ID
        *     id?: number
        *     // 是否关注
@@ -3019,14 +3246,40 @@ declare global {
        *     birthday?: string
        *     // 公司地址
        *     companyAddress?: string
+       *     // 企业位置城市编码
+       *     companyCityCode?: string
+       *     // 企业位置城市名称
+       *     companyCityName?: string
+       *     // 企业位置区县编码
+       *     companyDistrictCode?: string
+       *     // 企业位置区县名称
+       *     companyDistrictName?: string
        *     // 公司名称
        *     companyName?: string
+       *     // 企业位置省份编码
+       *     companyProvinceCode?: string
+       *     // 企业位置省份名称
+       *     companyProvinceName?: string
        *     // 创建时间
        *     createTime?: string
        *     // 部门
        *     department?: string
+       *     // 企业成立日期
+       *     establishmentDate?: string
        *     // 家庭地址
        *     homeAddress?: string
+       *     // 家庭住址城市编码
+       *     homeCityCode?: string
+       *     // 家庭住址城市名称
+       *     homeCityName?: string
+       *     // 家庭住址区县编码
+       *     homeDistrictCode?: string
+       *     // 家庭住址区县名称
+       *     homeDistrictName?: string
+       *     // 家庭住址省份编码
+       *     homeProvinceCode?: string
+       *     // 家庭住址省份名称
+       *     homeProvinceName?: string
        *     // 联系人ID
        *     id?: number
        *     // 是否关注
@@ -3099,12 +3352,26 @@ declare global {
        *   birthday?: string
        *   // 公司地址
        *   companyAddress?: string
+       *   // 企业位置城市编码
+       *   companyCityCode?: string
+       *   // 企业位置区县编码
+       *   companyDistrictCode?: string
        *   // 公司名称
        *   companyName?: string
+       *   // 企业位置省份编码
+       *   companyProvinceCode?: string
        *   // 部门
        *   department?: string
+       *   // 企业成立日期
+       *   establishmentDate?: string
        *   // 家庭地址
        *   homeAddress?: string
+       *   // 家庭住址城市编码
+       *   homeCityCode?: string
+       *   // 家庭住址区县编码
+       *   homeDistrictCode?: string
+       *   // 家庭住址省份编码
+       *   homeProvinceCode?: string
        *   // 是否关注
        *   isFollow?: boolean
        *   // 联系人姓名
@@ -3145,14 +3412,40 @@ declare global {
        *     birthday?: string
        *     // 公司地址
        *     companyAddress?: string
+       *     // 企业位置城市编码
+       *     companyCityCode?: string
+       *     // 企业位置城市名称
+       *     companyCityName?: string
+       *     // 企业位置区县编码
+       *     companyDistrictCode?: string
+       *     // 企业位置区县名称
+       *     companyDistrictName?: string
        *     // 公司名称
        *     companyName?: string
+       *     // 企业位置省份编码
+       *     companyProvinceCode?: string
+       *     // 企业位置省份名称
+       *     companyProvinceName?: string
        *     // 创建时间
        *     createTime?: string
        *     // 部门
        *     department?: string
+       *     // 企业成立日期
+       *     establishmentDate?: string
        *     // 家庭地址
        *     homeAddress?: string
+       *     // 家庭住址城市编码
+       *     homeCityCode?: string
+       *     // 家庭住址城市名称
+       *     homeCityName?: string
+       *     // 家庭住址区县编码
+       *     homeDistrictCode?: string
+       *     // 家庭住址区县名称
+       *     homeDistrictName?: string
+       *     // 家庭住址省份编码
+       *     homeProvinceCode?: string
+       *     // 家庭住址省份名称
+       *     homeProvinceName?: string
        *     // 联系人ID
        *     id?: number
        *     // 是否关注
@@ -3342,14 +3635,40 @@ declare global {
        *     birthday?: string
        *     // 公司地址
        *     companyAddress?: string
+       *     // 企业位置城市编码
+       *     companyCityCode?: string
+       *     // 企业位置城市名称
+       *     companyCityName?: string
+       *     // 企业位置区县编码
+       *     companyDistrictCode?: string
+       *     // 企业位置区县名称
+       *     companyDistrictName?: string
        *     // 公司名称
        *     companyName?: string
+       *     // 企业位置省份编码
+       *     companyProvinceCode?: string
+       *     // 企业位置省份名称
+       *     companyProvinceName?: string
        *     // 创建时间
        *     createTime?: string
        *     // 部门
        *     department?: string
+       *     // 企业成立日期
+       *     establishmentDate?: string
        *     // 家庭地址
        *     homeAddress?: string
+       *     // 家庭住址城市编码
+       *     homeCityCode?: string
+       *     // 家庭住址城市名称
+       *     homeCityName?: string
+       *     // 家庭住址区县编码
+       *     homeDistrictCode?: string
+       *     // 家庭住址区县名称
+       *     homeDistrictName?: string
+       *     // 家庭住址省份编码
+       *     homeProvinceCode?: string
+       *     // 家庭住址省份名称
+       *     homeProvinceName?: string
        *     // 联系人ID
        *     id?: number
        *     // 是否关注
@@ -3431,14 +3750,40 @@ declare global {
        *       birthday?: string
        *       // 公司地址
        *       companyAddress?: string
+       *       // 企业位置城市编码
+       *       companyCityCode?: string
+       *       // 企业位置城市名称
+       *       companyCityName?: string
+       *       // 企业位置区县编码
+       *       companyDistrictCode?: string
+       *       // 企业位置区县名称
+       *       companyDistrictName?: string
        *       // 公司名称
        *       companyName?: string
+       *       // 企业位置省份编码
+       *       companyProvinceCode?: string
+       *       // 企业位置省份名称
+       *       companyProvinceName?: string
        *       // 创建时间
        *       createTime?: string
        *       // 部门
        *       department?: string
+       *       // 企业成立日期
+       *       establishmentDate?: string
        *       // 家庭地址
        *       homeAddress?: string
+       *       // 家庭住址城市编码
+       *       homeCityCode?: string
+       *       // 家庭住址城市名称
+       *       homeCityName?: string
+       *       // 家庭住址区县编码
+       *       homeDistrictCode?: string
+       *       // 家庭住址区县名称
+       *       homeDistrictName?: string
+       *       // 家庭住址省份编码
+       *       homeProvinceCode?: string
+       *       // 家庭住址省份名称
+       *       homeProvinceName?: string
        *       // 联系人ID
        *       id?: number
        *       // 是否关注
@@ -3602,12 +3947,26 @@ declare global {
        *     birthday?: string
        *     // 公司地址
        *     companyAddress?: string
+       *     // 企业位置城市编码
+       *     companyCityCode?: string
+       *     // 企业位置区县编码
+       *     companyDistrictCode?: string
        *     // 公司名称
        *     companyName?: string
+       *     // 企业位置省份编码
+       *     companyProvinceCode?: string
        *     // 部门
        *     department?: string
+       *     // 企业成立日期，格式：yyyy-MM-dd
+       *     establishmentDate?: string
        *     // 家庭地址
        *     homeAddress?: string
+       *     // 家庭住址城市编码
+       *     homeCityCode?: string
+       *     // 家庭住址区县编码
+       *     homeDistrictCode?: string
+       *     // 家庭住址省份编码
+       *     homeProvinceCode?: string
        *     // 是否关注
        *     isFollow?: boolean
        *     // 联系人姓名
@@ -3655,14 +4014,40 @@ declare global {
        *       birthday?: string
        *       // 公司地址
        *       companyAddress?: string
+       *       // 企业位置城市编码
+       *       companyCityCode?: string
+       *       // 企业位置城市名称
+       *       companyCityName?: string
+       *       // 企业位置区县编码
+       *       companyDistrictCode?: string
+       *       // 企业位置区县名称
+       *       companyDistrictName?: string
        *       // 公司名称
        *       companyName?: string
+       *       // 企业位置省份编码
+       *       companyProvinceCode?: string
+       *       // 企业位置省份名称
+       *       companyProvinceName?: string
        *       // 创建时间
        *       createTime?: string
        *       // 部门
        *       department?: string
+       *       // 企业成立日期
+       *       establishmentDate?: string
        *       // 家庭地址
        *       homeAddress?: string
+       *       // 家庭住址城市编码
+       *       homeCityCode?: string
+       *       // 家庭住址城市名称
+       *       homeCityName?: string
+       *       // 家庭住址区县编码
+       *       homeDistrictCode?: string
+       *       // 家庭住址区县名称
+       *       homeDistrictName?: string
+       *       // 家庭住址省份编码
+       *       homeProvinceCode?: string
+       *       // 家庭住址省份名称
+       *       homeProvinceName?: string
        *       // 联系人ID
        *       id?: number
        *       // 是否关注
@@ -3985,14 +4370,40 @@ declare global {
        *       birthday?: string
        *       // 公司地址
        *       companyAddress?: string
+       *       // 企业位置城市编码
+       *       companyCityCode?: string
+       *       // 企业位置城市名称
+       *       companyCityName?: string
+       *       // 企业位置区县编码
+       *       companyDistrictCode?: string
+       *       // 企业位置区县名称
+       *       companyDistrictName?: string
        *       // 公司名称
        *       companyName?: string
+       *       // 企业位置省份编码
+       *       companyProvinceCode?: string
+       *       // 企业位置省份名称
+       *       companyProvinceName?: string
        *       // 创建时间
        *       createTime?: string
        *       // 部门
        *       department?: string
+       *       // 企业成立日期
+       *       establishmentDate?: string
        *       // 家庭地址
        *       homeAddress?: string
+       *       // 家庭住址城市编码
+       *       homeCityCode?: string
+       *       // 家庭住址城市名称
+       *       homeCityName?: string
+       *       // 家庭住址区县编码
+       *       homeDistrictCode?: string
+       *       // 家庭住址区县名称
+       *       homeDistrictName?: string
+       *       // 家庭住址省份编码
+       *       homeProvinceCode?: string
+       *       // 家庭住址省份名称
+       *       homeProvinceName?: string
        *       // 联系人ID
        *       id?: number
        *       // 是否关注
