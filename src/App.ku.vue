@@ -64,9 +64,10 @@
         searchInputFontSize: "22.9rpx",
         searchInputLineHeight: "38.17rpx",
         searchBlockMarginRight: "38.17rpx",
-        searchPadding: "13.36rpx 38.17rpx",
+        searchPadding: 0,
         searchCancelFontSize: "22.9rpx",
-        searchCancelLineHeight: "38.17rpx"
+        searchCancelLineHeight: "38.17rpx",
+        searchPlainBlockBorderColor: primary6$10
     };
 </script>
 

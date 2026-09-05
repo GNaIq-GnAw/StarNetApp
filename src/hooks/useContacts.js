@@ -13,14 +13,19 @@
  * 权限说明：
  *   - iOS：首次读取时由系统自动弹出授权框，无需手动申请。
  *   - Android：需运行时申请 READ_CONTACTS，须在 manifest.json 中声明权限，
- *     并在读取前申请，被拒时 error 置为提示信息。
  */
+
+/**
+ * 清理电话号码中的分隔符（-、空格、全角空格、括号等），保留 + 号与数字
+ * 用于去掉展示用的格式字符，便于后端匹配
+ */
+const cleanPhone = value => String(value || "").replace(/[\s\-—–()（）]/g, "");
 
 /** 归一化联系人，只保留前端需要的字段，丢弃 plus.contacts 的冗余结构 */
 const normalizeContact = contact => ({
     id: contact.id || "",
     name: contact.displayName || contact.name?.formatted || "",
-    phones: (contact.phoneNumbers || []).map(item => item.value),
+    phones: (contact.phoneNumbers || []).map(item => cleanPhone(item.value)).filter(Boolean),
     emails: (contact.emails || []).map(item => item.value)
 });
 
@@ -87,8 +92,8 @@ const ensurePermission = () => {
 const readContacts = (filter = null) => new Promise((resolve, reject) => {
     plus.contacts.getAddressBook(
         plus.contacts.ADDRESSBOOK_PHONE,
-        addressbook => {
-            addressbook.find(
+        addressBook => {
+            addressBook.find(
                 filter,
                 contacts => resolve(contacts || []),
                 err => reject(err),
@@ -105,9 +110,6 @@ export const useContacts = () => {
 
     /** 是否正在读取 */
     const loading = ref(false);
-
-    /** 错误信息（权限被拒 / 环境不支持等） */
-    const error = ref(null);
 
     /** 当前环境是否支持读取通讯录（仅 App 端为 true） */
     const supported = computed(() => typeof plus !== "undefined" && !!plus.contacts);
@@ -141,12 +143,11 @@ export const useContacts = () => {
      */
     const fetchAll = async () => {
         loading.value = true;
-        error.value = null;
 
         try {
             if (!supported.value) {
                 authorized.value = false;
-                error.value = "当前环境不支持读取通讯录，仅 App 端可用";
+
                 return [];
             }
 
@@ -154,20 +155,20 @@ export const useContacts = () => {
 
             if (!granted) {
                 authorized.value = false;
-                error.value = "通讯录权限被拒绝，请在系统设置中开启";
+
                 return [];
             }
 
-            const list = await readContacts(null);
+            const list = await readContacts();
 
             authorized.value = true;
             contacts.value = list.map(normalizeContact);
 
             return contacts.value;
-        } catch (e) {
-            error.value = e?.message || "获取通讯录失败";
+        } catch {
             // 读取失败时以系统查询为准刷新权限状态（iOS 拒绝授权会在读取时抛错）
             authorized.value = queryPermission();
+
             return [];
         } finally {
             loading.value = false;
@@ -192,12 +193,9 @@ export const useContacts = () => {
         });
     };
 
-    onMounted(fetchAll);
-
     return {
         contacts,
         loading,
-        error,
         supported,
         authorized,
         checkPermission,

@@ -205,6 +205,7 @@
                 ref="pagingRef"
                 :auto="false"
                 :empty-view-center="false"
+                :loading-more-enabled="false"
                 auto-show-system-loading
                 cell-height-mode="dynamic"
                 force-close-inner-list

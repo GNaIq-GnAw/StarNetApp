@@ -30,7 +30,7 @@
 
 <template>
     <view
-        :style="{'padding-top': `${systemInfo?.safeAreaInsets?.top}px`}"
+        :style="{'padding-top': `${systemInfo?.safeAreaInsets?.top}px`, '--wot-search-padding': '13.36rpx 38.17rpx'}"
         class="box-border h-full flex flex-col bg-#ffffff"
     >
         <wd-search placeholder-left variant="filled" />
