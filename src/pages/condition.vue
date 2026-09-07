@@ -1,23 +1,15 @@
 <script setup>
+    import {NoteType} from "@/dictionaries/contact.js";
+
     const instance = getCurrentInstance().proxy;
     const eventChannel = instance.getOpenerEventChannel();
 
-    const items = [
-        {label: "全部", value: 1},
-        {label: "新增", value: 2},
-        {label: "电话联系", value: 3},
-        {label: "短信联系", value: 4},
-        {label: "拜访", value: 5},
-        {label: "笔记", value: 6},
-        {label: "成交支出", value: 7}
-    ];
-
     const enabledSync = ref(false);
 
-    const model = reactive({startDate: "", endDate: "", noteType: 1});
+    const model = reactive({startTime: "", endTime: "", noteType: ""});
 
     const onSave = () => {
-        eventChannel.emit("reload:data");
+        eventChannel.emit("reload:data", {...model});
         uni.navigateBack();
     };
 </script>
@@ -56,13 +48,13 @@
                             </template>
                             <view class="flex items-center">
                                 <custom-datetime-picker
-                                    v-model:value="model.startDate"
+                                    v-model:value="model.startTime"
                                     placeholder="请选择开始月份"
-                                    type="date"
+                                    type="year-month"
                                 />
                                 <view class="mx-21.95rpx text-19.08rpx c-primary6 lh-38.17rpx">至</view>
                                 <custom-datetime-picker
-                                    v-model:value="model.endDate"
+                                    v-model:value="model.endTime"
                                     placeholder="请选择结束月份"
                                     type="date"
                                 />
@@ -74,7 +66,7 @@
                         <wd-form-item title="事件类型选择" label="仅展示所产生某种事件的内容">
                             <wd-radio-group v-model="model.noteType" direction="horizontal">
                                 <view class="flex flex-wrap -m-9.54rpx">
-                                    <view v-for="item in items" :key="item.value" class="m-9.54rpx">
+                                    <view v-for="item in NoteType.items" :key="item.value" class="m-9.54rpx">
                                         <wd-radio :value="item.value">
                                             <template #icon="{isChecked}">
                                                 <wd-button

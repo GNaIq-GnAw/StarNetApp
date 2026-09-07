@@ -1,4 +1,5 @@
 <script setup>
+    import {NoteType} from "@/dictionaries/contact.js";
     import {resolvePage} from "@/router/resolve.js";
     import HomeBgT from "@/static/home-bg-t.png";
 
@@ -18,12 +19,43 @@
 
     const list = ref([]);
 
-    const queryList = async () => {
-        try {
-            const notebookId = notebookStore.defaultNotebook.id;
-            const {data} = await Apis.contact.getContactsByNotebook({pathParams: {notebookId}});
+    const query = reactive({
+        onlyFollow: false,
+        startTime: "",
+        endTime: "",
+        noteType: ""
+    });
 
-            pagingRef.value.complete(data);
+    const {send, data: datum} = useRequest(
+        (pageNo, pageSize) => {
+            const notebookId = notebookStore.defaultNotebook.id;
+
+            return Apis.contactNotebook.pageContacts({
+                pathParams: {notebookId},
+                params: {pageNo, pageSize, ...query}
+            });
+        },
+        {
+            immediate: false,
+            middleware: async (_, next) => {
+                try {
+                    const {data} = await next();
+
+                    return data;
+                } catch {
+                    return null;
+                }
+            }
+        }
+    );
+
+    const queryList = async (pageNo, pageSize) => {
+        try {
+            await send(pageNo, pageSize);
+
+            const {records} = datum.value;
+
+            pagingRef.value.complete(records);
         } catch {
             pagingRef.value.complete(false);
         }
@@ -33,12 +65,16 @@
         list.value = vlist;
     };
 
+    const reloadData = () => {
+        pagingRef.value?.reload();
+    };
+
     // 加载首页数据
     const loadHomeData = async () => {
         try {
             await notebookStore.getNotebooks();
             await nextTick();
-            pagingRef.value?.reload();
+            reloadData();
         } catch (e) {
             console.log("loadHomeData -> failed", e);
         }
@@ -84,16 +120,28 @@
     };
 
     // 展示设置
-    const onDisplay = () => {
-        const to = resolvePage({name: "Display"});
+    const onSetCondition = () => {
+        const to = resolvePage({name: "Condition"});
 
         uni.navigateTo({
             url: to.path,
             events: {
-                "reload:data": loadHomeData
+                "reload:data": data => {
+                    Object.assign(query, data);
+                    reloadData();
+                }
             }
         });
     };
+
+    const $time = computed(() => {
+        const formated = [query.startTime, query.endTime]
+            .filter(Boolean)
+            .map(date => formatDate(new Date(date), "yyyy年MM月"))
+            .join(" - ");
+
+        return formated;
+    });
 
     onMounted(loadHomeData);
 </script>
@@ -136,17 +184,17 @@
             <view class="flex items-center">
                 <view class="pl-38.17rpx pr-101.15rpx">
                     <view class="text-19.08rpx c-primary6/50 lh-38.17rpx">新增人脉(名)</view>
-                    <view class="text-30.53rpx c-primary6 fw-600 lh-38.17rpx">300</view>
+                    <view class="text-30.53rpx c-primary6 fw-600 lh-38.17rpx">{{ datum?.stats?.newContacts }}</view>
                 </view>
                 <view class="h-19.08rpx w-1px bg-#bbbbbb" />
                 <view class="pl-38.17rpx pr-101.15rpx">
                     <view class="text-19.08rpx c-primary6/50 lh-38.17rpx">产生成交(名)</view>
-                    <view class="text-30.53rpx c-primary6 fw-600 lh-38.17rpx">22</view>
+                    <view class="text-30.53rpx c-primary6 fw-600 lh-38.17rpx">{{ datum?.stats?.dealContacts }}</view>
                 </view>
                 <view class="h-19.08rpx w-1px bg-#bbbbbb" />
                 <view class="pl-38.17rpx pr-101.15rpx">
                     <view class="text-19.08rpx c-primary6/50 lh-38.17rpx">产生支出(名)</view>
-                    <view class="text-30.53rpx c-primary6 fw-600 lh-38.17rpx">30</view>
+                    <view class="text-30.53rpx c-primary6 fw-600 lh-38.17rpx">{{ datum?.stats?.expenseContacts }}</view>
                 </view>
             </view>
         </view>
@@ -173,30 +221,35 @@
                 <view>
                     <view class="text-22.9rpx lh-38.17rpx">新增人脉</view>
                     <view class="my-5.73rpx flex items-center lh-none">
-                        <view class="text-45.8rpx">300</view>
+                        <view class="text-45.8rpx">{{ datum?.stats?.newContacts }}</view>
                         <view class="ml-11.45rpx text-22.9rpx">名</view>
                     </view>
                 </view>
-                <view class="ml-auto h-38.17rpx w-143.13rpx rd-19.08rpx bg-#ffffff" />
+                <view class="ml-auto h-38.17rpx w-143.13rpx rd-19.08rpx bg-#ffffff">
+                    <view class="text-19.08rpx c-primary6 lh-38.17rpx">
+                        <text v-if="$time">{{ $time }}</text>
+                        <text v-else>全部时间</text>
+                    </view>
+                </view>
             </view>
             <view class="flex items-center text-22.9rpx lh-38.17rpx">
                 <view>
                     <text>产生成交</text>
-                    <text class="ml-19.08rpx">22名</text>
+                    <text class="ml-19.08rpx">{{ datum?.stats?.dealContacts }} 名</text>
                 </view>
                 <view class="mx-30.53rpx h-19.08rpx w-1px bg-#ffffff" />
                 <view>
                     <text>产生支出</text>
-                    <text class="ml-19.08rpx">300名</text>
+                    <text class="ml-19.08rpx">{{ datum?.stats?.expenseContacts }} 名</text>
                 </view>
             </view>
         </view>
         <view class="flex items-center p-[19.08rpx_38.17rpx]">
-            <wd-checkbox :false-value="0" :true-value="1" type="square">
+            <wd-checkbox v-model="query.onlyFollow" type="square" @change="reloadData()">
                 <text class="c-primary6/50">仅看关注</text>
             </wd-checkbox>
-            <view class="ml-auto flex items-center c-primary6/50" @click="onDisplay()">
-                <view class="text-19.08rpx lh-38.17rpx">新增</view>
+            <view class="ml-auto flex items-center c-primary6/50" @click="onSetCondition()">
+                <view class="text-19.08rpx lh-38.17rpx">{{ NoteType.label(query.noteType) }}</view>
                 <view class="i-icon-park-outline:filter ml-11.45rpx size-19.08rpx" />
             </view>
         </view>
@@ -205,7 +258,6 @@
                 ref="pagingRef"
                 :auto="false"
                 :empty-view-center="false"
-                :loading-more-enabled="false"
                 auto-show-system-loading
                 cell-height-mode="dynamic"
                 force-close-inner-list

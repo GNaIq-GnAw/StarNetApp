@@ -151,7 +151,7 @@
     );
 
     const onSubmit = async () => {
-        uni.showLoading({title: "导入中..."});
+        uni.showLoading({title: "正在导入中，请稍后..."});
 
         try {
             await withTasks();
@@ -161,7 +161,7 @@
             await getContactsDatum();
 
             uni.showToast({
-                title: "导入成功",
+                title: "通讯录导入成功",
                 icon: "success",
                 mask: true,
                 success: () => {

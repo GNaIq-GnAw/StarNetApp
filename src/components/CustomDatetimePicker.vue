@@ -21,6 +21,15 @@
         }
     });
 
+    // const $bindValue = computed({
+    //     get: () => {
+    //         if (!$modelValue.value) return 0;
+    //
+    //         return +formatDate(new Date($modelValue.value), "T");
+    //     },
+    //     set: () => {}
+    // });
+
     const [minDate, maxDate] = ["1900-01-01", Date.now()].map(date => +formatDate(new Date(date), "T"));
 </script>
 
