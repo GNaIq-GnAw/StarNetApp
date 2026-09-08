@@ -48,15 +48,15 @@
                             </template>
                             <view class="flex items-center">
                                 <custom-datetime-picker
-                                    v-model:value="model.startTime"
+                                    v-model:formated-value="model.startTime"
                                     placeholder="请选择开始月份"
                                     type="year-month"
                                 />
                                 <view class="mx-21.95rpx text-19.08rpx c-primary6 lh-38.17rpx">至</view>
                                 <custom-datetime-picker
-                                    v-model:value="model.endTime"
+                                    v-model:formated-value="model.endTime"
                                     placeholder="请选择结束月份"
-                                    type="date"
+                                    type="year-month"
                                 />
                             </view>
                         </wd-form-item>

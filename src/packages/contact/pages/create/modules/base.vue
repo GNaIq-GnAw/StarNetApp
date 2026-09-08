@@ -65,7 +65,7 @@
                         </view>
                     </view>
                 </template>
-                <custom-datetime-picker v-model:value="form.birthday" placeholder="请选择生日日期" type="date" />
+                <custom-datetime-picker v-model:formated-value="form.birthday" placeholder="请选择生日日期" type="date" />
             </wd-form-item>
         </view>
         <view class="my-38.17rpx h-1px bg-primary6/10" />

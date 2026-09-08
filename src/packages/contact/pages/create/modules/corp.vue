@@ -62,7 +62,7 @@
                     </view>
                 </template>
                 <custom-datetime-picker
-                    v-model:value="form.establishmentDate"
+                    v-model:formated-value="form.establishmentDate"
                     placeholder="请选择成立日期"
                     type="date"
                 />
