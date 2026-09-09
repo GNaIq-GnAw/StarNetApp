@@ -1,12 +1,12 @@
 <script setup>
-    import {NoteType} from "@/dictionaries/contact.js";
+    import {RecordType} from "@/dictionaries/contact.js";
 
     const instance = getCurrentInstance().proxy;
     const eventChannel = instance.getOpenerEventChannel();
 
     const enabledSync = ref(false);
 
-    const model = reactive({startTime: "", endTime: "", noteType: ""});
+    const model = reactive({startTime: "", endTime: "", recordType: ""});
 
     const onSave = () => {
         eventChannel.emit("reload:data", {...model});
@@ -64,9 +64,9 @@
                     <view class="my-38.17rpx h-1px bg-primary6/10" />
                     <view class="mx-19.08rpx">
                         <wd-form-item title="事件类型选择" label="仅展示所产生某种事件的内容">
-                            <wd-radio-group v-model="model.noteType" direction="horizontal">
+                            <wd-radio-group v-model="model.recordType" direction="horizontal">
                                 <view class="flex flex-wrap -m-9.54rpx">
-                                    <view v-for="item in NoteType.items" :key="item.value" class="m-9.54rpx">
+                                    <view v-for="item in RecordType.items" :key="item.value" class="m-9.54rpx">
                                         <wd-radio :value="item.value">
                                             <template #icon="{isChecked}">
                                                 <wd-button

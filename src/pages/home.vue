@@ -1,7 +1,8 @@
 <script setup>
-    import {NoteType} from "@/dictionaries/contact.js";
+    import {RecordType} from "@/dictionaries/contact.js";
     import {resolvePage} from "@/router/resolve.js";
     import HomeBgT from "@/static/home-bg-t.png";
+    import UseContact from "./modules/UseContact.vue";
 
     definePage({
         layout: "tabbar",
@@ -23,7 +24,7 @@
         onlyFollow: false,
         startTime: "",
         endTime: "",
-        noteType: ""
+        recordType: ""
     });
 
     const {send, data: datum} = useRequest(
@@ -71,12 +72,16 @@
 
     // 加载首页数据
     const loadHomeData = async () => {
+        uni.showLoading({mask: true});
+
         try {
             await notebookStore.getNotebooks();
             await nextTick();
             reloadData();
         } catch (e) {
             console.log("loadHomeData -> failed", e);
+        } finally {
+            uni.hideLoading();
         }
     };
 
@@ -143,10 +148,18 @@
         return formated;
     });
 
+    const useContactRef = ref(null);
+
+    const onUseContact = row => {
+        console.log("onUseContact -> row", row);
+        useContactRef.value.open(row);
+    };
+
     onMounted(loadHomeData);
 </script>
 
 <template>
+    <use-contact ref="useContactRef" />
     <wd-popup v-model="show" custom-class="rd-19.08rpx">
         <view class="box-border w-673.67rpx p-38.17rpx lh-38.17rpx">
             <view class="flex items-center" @click="to('ContactCreate')">
@@ -175,7 +188,12 @@
             class="bg-#ffffff pb-19.08rpx"
         >
             <view class="mx-38.17rpx mb-19.08rpx flex items-center">
-                <view class="h-38.17rpx w-257.63rpx rd-19.08rpx bg-primary6" />
+                <view class="h-38.17rpx rd-19.08rpx bg-primary6 px-19.08rpx" @click="onSetCondition()">
+                    <view class="text-19.08rpx c-#ffffff lh-38.17rpx">
+                        <text v-if="$time">{{ $time }}</text>
+                        <text v-else>全部时间</text>
+                    </view>
+                </view>
                 <view class="ml-auto">
                     <text class="i-carbon:search size-38.17rpx" @click="to('Search')" />
                     <text class="i-carbon:add-large ml-30.53rpx size-38.17rpx" @click="onAddContact()" />
@@ -225,7 +243,7 @@
                         <view class="ml-11.45rpx text-22.9rpx">名</view>
                     </view>
                 </view>
-                <view class="ml-auto h-38.17rpx w-143.13rpx rd-19.08rpx bg-#ffffff">
+                <view class="ml-auto h-38.17rpx rd-19.08rpx bg-#ffffff px-19.08rpx" @click="onSetCondition()">
                     <view class="text-19.08rpx c-primary6 lh-38.17rpx">
                         <text v-if="$time">{{ $time }}</text>
                         <text v-else>全部时间</text>
@@ -249,7 +267,7 @@
                 <text class="c-primary6/50">仅看关注</text>
             </wd-checkbox>
             <view class="ml-auto flex items-center c-primary6/50" @click="onSetCondition()">
-                <view class="text-19.08rpx lh-38.17rpx">{{ NoteType.label(query.noteType) }}</view>
+                <view class="text-19.08rpx lh-38.17rpx">{{ RecordType.label(query.recordType) }}</view>
                 <view class="i-icon-park-outline:filter ml-11.45rpx size-19.08rpx" />
             </view>
         </view>
@@ -275,7 +293,10 @@
                     >
                         <view class="flex">
                             <view class="relative size-76.34rpx">
-                                <view class="size-76.34rpx rd-19.08rpx bg-red" />
+                                <view class="size-76.34rpx of-hidden rd-19.08rpx">
+                                    <image v-if="row.sex === '男'" class="size-76.34rpx" src="@/static/male.png" />
+                                    <image v-else class="size-76.34rpx" src="@/static/female.png" />
+                                </view>
                                 <view
                                     v-if="row.isFollow"
                                     class="i-tdesign:star-1-filled absolute size-38.17rpx c-#FBC050 -right-19.08rpx -top-19.08rpx"
@@ -293,7 +314,8 @@
                                     class="text-19.08rpx c-primary6/50 lh-38.17rpx"
                                 >
                                     <text>{{ row.companyName }}</text>
-                                    <text v-if="row.department">· {{ row.department }}</text>
+                                    <text v-if="row.department">&nbsp;·&nbsp;</text>
+                                    <text v-if="row.department">{{ row.department }}</text>
                                 </view>
                                 <view class="mt-9.54rpx">
                                     <view class="flex flex-wrap text-19.08rpx c-#ffffff lh-26.72rpx -m-4.77rpx">
@@ -309,7 +331,7 @@
                                     </view>
                                 </view>
                             </view>
-                            <view class="i-ri:more-line size-38.17rpx c-primary6/50" />
+                            <view class="i-ri:more-line size-38.17rpx c-primary6/50" @click="onUseContact(row)" />
                         </view>
                         <view
                             v-if="row.companyDistrictName"

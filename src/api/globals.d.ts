@@ -819,11 +819,6 @@ export interface ContactDisplaySettingDTO {
 
   endTime?: string;
   /**
-   * 跟进事件类型：call、sms、normal、visit
-   */
-
-  noteType?: string;
-  /**
    * 是否只看关注联系人
    */
 
@@ -833,6 +828,11 @@ export interface ContactDisplaySettingDTO {
    */
 
   pageSize?: number;
+  /**
+   * 记录类型：new、call、sms、visit、normal、deal、expense
+   */
+
+  recordType?: string;
   /**
    * 开始时间，格式：yyyy-MM-dd HH:mm:ss
    */
@@ -851,11 +851,6 @@ export interface ContactDisplaySettingResponseDTO {
 
   modifyTime?: string;
   /**
-   * 跟进事件类型：call、sms、normal、visit
-   */
-
-  noteType?: string;
-  /**
    * 是否只看关注联系人
    */
 
@@ -865,6 +860,11 @@ export interface ContactDisplaySettingResponseDTO {
    */
 
   pageSize?: number;
+  /**
+   * 记录类型：new、call、sms、visit、normal、deal、expense
+   */
+
+  recordType?: string;
   /**
    * 开始时间
    */
@@ -3046,10 +3046,10 @@ declare global {
        * type QueryParameters = {
        *   // keyword
        *   keyword?: string
-       *   // noteType
-       *   noteType?: string
        *   // onlyFollow
        *   onlyFollow?: boolean
+       *   // recordType
+       *   recordType?: string
        * }
        * ```
        *
@@ -3153,15 +3153,15 @@ declare global {
 
             keyword?: string;
             /**
-             * noteType
-             */
-
-            noteType?: string;
-            /**
              * onlyFollow
              */
 
             onlyFollow?: boolean;
+            /**
+             * recordType
+             */
+
+            recordType?: string;
           };
         }
       >(
@@ -4135,12 +4135,12 @@ declare global {
        *     endTime?: string
        *     // 设置更新时间
        *     modifyTime?: string
-       *     // 跟进事件类型：call、sms、normal、visit
-       *     noteType?: string
        *     // 是否只看关注联系人
        *     onlyFollow?: boolean
        *     // 分页大小
        *     pageSize?: number
+       *     // 记录类型：new、call、sms、visit、normal、deal、expense
+       *     recordType?: string
        *     // 开始时间
        *     startTime?: string
        *   }
@@ -4186,12 +4186,12 @@ declare global {
        * type RequestBody = {
        *   // 结束时间，格式：yyyy-MM-dd HH:mm:ss
        *   endTime?: string
-       *   // 跟进事件类型：call、sms、normal、visit
-       *   noteType?: string
        *   // 是否只看关注联系人
        *   onlyFollow?: boolean
        *   // 分页大小，范围1到100
        *   pageSize?: number
+       *   // 记录类型：new、call、sms、visit、normal、deal、expense
+       *   recordType?: string
        *   // 开始时间，格式：yyyy-MM-dd HH:mm:ss
        *   startTime?: string
        * }
@@ -4211,12 +4211,12 @@ declare global {
        *     endTime?: string
        *     // 设置更新时间
        *     modifyTime?: string
-       *     // 跟进事件类型：call、sms、normal、visit
-       *     noteType?: string
        *     // 是否只看关注联系人
        *     onlyFollow?: boolean
        *     // 分页大小
        *     pageSize?: number
+       *     // 记录类型：new、call、sms、visit、normal、deal、expense
+       *     recordType?: string
        *     // 开始时间
        *     startTime?: string
        *   }
@@ -4333,14 +4333,14 @@ declare global {
        *   endTime?: string
        *   // keyword
        *   keyword?: string
-       *   // noteType
-       *   noteType?: string
        *   // onlyFollow
        *   onlyFollow?: boolean
        *   // pageNo
        *   pageNo?: number
        *   // pageSize
        *   pageSize?: number
+       *   // recordType
+       *   recordType?: string
        *   // startTime
        *   startTime?: string
        * }
@@ -4479,11 +4479,6 @@ declare global {
 
             keyword?: string;
             /**
-             * noteType
-             */
-
-            noteType?: string;
-            /**
              * onlyFollow
              */
 
@@ -4498,6 +4493,11 @@ declare global {
              */
 
             pageSize?: number;
+            /**
+             * recordType
+             */
+
+            recordType?: string;
             /**
              * startTime
              */

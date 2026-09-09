@@ -1,12 +1,8 @@
 <script setup>
     import {useForm} from "alova/client";
+    import {ContactPhoneType} from "@/dictionaries/contact.js";
 
     const {form} = useForm(null, {id: "contact-create"});
-
-    const columns = [
-        {label: "工作号", value: 1},
-        {label: "生活号", value: 2}
-    ];
 
     const onAddPhone = () => {
         form.value.phones.push({
@@ -65,7 +61,11 @@
                         </view>
                     </view>
                 </template>
-                <custom-datetime-picker v-model:formated-value="form.birthday" placeholder="请选择生日日期" type="date" />
+                <custom-datetime-picker
+                    v-model:formated-value="form.birthday"
+                    placeholder="请选择生日日期"
+                    type="date"
+                />
             </wd-form-item>
         </view>
         <view class="my-38.17rpx h-1px bg-primary6/10" />
@@ -84,14 +84,17 @@
                         class="mb-19.08rpx flex items-center last:mb-0"
                     >
                         <view class="w-190.84rpx">
-                            <custom-picker v-model:value="row.type" :columns="columns" />
+                            <custom-picker v-model:value="row.type" :columns="ContactPhoneType.items" />
                         </view>
                         <view class="mx-19.08rpx flex-1">
                             <wd-form-item :prop="`phones.${index}.phone`">
                                 <wd-input v-model="row.phone" :compact="false" placeholder="请输入联系电话" />
                             </wd-form-item>
                         </view>
-                        <view class="i-mdi:minus size-38.17rpx c-primary6/50" />
+                        <view
+                            class="i-mdi:minus size-38.17rpx c-primary6/50"
+                            @click="form.phones.splice(index, 1)"
+                        />
                     </view>
                 </view>
             </wd-form-item>

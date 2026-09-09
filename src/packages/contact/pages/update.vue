@@ -2,38 +2,14 @@
     import {zodAdapter} from "@wot-ui/ui";
     import {useForm} from "alova/client";
     import {z} from "zod";
-    import Modules from "./modules";
+    import Modules from "./create/modules";
 
     const instance = getCurrentInstance().proxy;
     const eventChannel = instance.getOpenerEventChannel();
 
-    const notebookStore = useNotebookStore();
-
     const active = ref("base");
 
     const formRef = ref(null);
-
-    // {
-    //     "birthday": "1973-01-01",
-    //     "companyAddress": "少时诵诗书所",
-    //     "companyCityCode": "110100",
-    //     "companyDistrictCode": "110101",
-    //     "companyName": "某企业",
-    //     "companyProvinceCode": "110000",
-    //     "department": "某部门",
-    //     "establishmentDate": "1970-01-01",
-    //     "homeAddress": "佛挡杀佛少的地方是分散分散",
-    //     "homeCityCode": "110100",
-    //     "homeDistrictCode": "110101",
-    //     "homeProvinceCode": "110000",
-    //     "isFollow": true,
-    //     "name": "狗子",
-    //     "notebookId": 3,
-    //     "phones": [{"phone": "18809871234", "type": 1}],
-    //     "position": "某职位",
-    //     "sex": "男",
-    //     "source": "是谁说"
-    // }
 
     const initialForm = {
         birthday: "",
@@ -70,9 +46,11 @@
         }
     );
 
-    const {form, send} = useForm(
+    const $currentPage = useCurrentPage();
+
+    const {form, send, updateForm} = useForm(
         data => {
-            return Apis.contact.createContact({data: {...data, notebookId: notebookStore.defaultNotebook.id}});
+            return Apis.contact.updateContact({pathParams: {id: $currentPage.value.query.contactId}, data});
         },
         {
             id: "contact-create",
@@ -98,7 +76,7 @@
             uni.hideLoading();
 
             uni.showToast({
-                title: "添加成功",
+                title: "编辑成功",
                 icon: "success",
                 mask: true,
                 success: () => {
@@ -115,8 +93,16 @@
         }
     };
 
-    onMounted(() => {
-        notebookStore.getNotebooks();
+    onMounted(async () => {
+        uni.showLoading({mask: true});
+
+        try {
+            const {data} = await Apis.contact.getContact({pathParams: {id: $currentPage.value.query.contactId}});
+
+            updateForm(data);
+        } finally {
+            uni.hideLoading();
+        }
     });
 </script>
 
@@ -125,7 +111,7 @@
         <wd-navbar
             :bordered="false"
             left-arrow
-            left-text="添加联系人"
+            left-text="编辑联系人"
             safe-area-inset-top
             @click-left="$navigateBack()"
         />
