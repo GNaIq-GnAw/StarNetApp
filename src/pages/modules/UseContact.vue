@@ -120,7 +120,9 @@
                                         {{ ContactPhoneType.label(item.type) }}
                                     </view>
                                     <view class="ml-9.54rpx text-22.90rpx fw-600">{{ item.phone }}</view>
-                                    <view class="ml-19.08rpx rd-3.82rpx bg-#FBC050 px-9.54rpx text-19.08rpx c-#ffffff">
+                                    <view
+                                        class="ml-19.08rpx rd-3.82rpx bg-#FBC050 px-9.54rpx text-19.08rpx c-#ffffff lh-26.72rpx"
+                                    >
                                         近期联系
                                     </view>
                                 </view>

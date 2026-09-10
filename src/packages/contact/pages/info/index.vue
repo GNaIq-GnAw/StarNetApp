@@ -135,7 +135,7 @@
                                 {{ formatDate(new Date(form?.contact?.birthday), "yyyy年MM月dd日") }}
                             </view>
                         </view>
-                        <view class="ml-19.08rpx rd-3.82rpx bg-#FBC050 px-9.54rpx text-19.08rpx c-#ffffff">
+                        <view class="ml-9.54rpx rd-3.82rpx bg-#FBC050 px-9.54rpx text-19.08rpx c-#ffffff lh-26.72rpx">
                             近期生日
                         </view>
                     </view>
@@ -154,20 +154,20 @@
                 class="m-[0_19.08rpx_-19.08rpx] rd-7.63rpx bg-#ffffff p-[19.08rpx_38.17rpx]"
                 style="box-shadow: 0 3.82rpx 11.45rpx 0 rgba(0, 0, 0, 0.4)"
             >
-                <view class="flex items-center justify-between c-primary6 lh-38.17rpx">
-                    <view>
+                <view class="flex items-center c-primary6 lh-38.17rpx">
+                    <view class="flex-1">
                         <view class="text-19.08rpx">成交额</view>
-                        <view class="text-30.53rpx fw-600">9,362.81</view>
+                        <view class="text-30.53rpx fw-600">{{ form?.financeStats?.dealAmount }}</view>
                     </view>
-                    <view class="h-19.08rpx w-1px bg-primary6" />
-                    <view>
+                    <view class="mr-38.17rpx h-19.08rpx w-1px bg-primary6" />
+                    <view class="flex-1">
                         <view class="text-19.08rpx">支出额</view>
-                        <view class="text-30.53rpx fw-600">2,982.24</view>
+                        <view class="text-30.53rpx fw-600">{{ form?.financeStats?.expenseAmount }}</view>
                     </view>
-                    <view class="h-19.08rpx w-1px bg-primary6" />
-                    <view>
+                    <view class="mr-38.17rpx h-19.08rpx w-1px bg-primary6" />
+                    <view class="flex-1">
                         <view class="text-19.08rpx">差额</view>
-                        <view class="text-30.53rpx c-#F95585 fw-600">+6,380.57</view>
+                        <view class="text-30.53rpx c-#F95585 fw-600">+{{ form?.financeStats?.balance }}</view>
                     </view>
                 </view>
             </view>
