@@ -36,7 +36,7 @@
     };
 
     const onUpdateContact = () => {
-        const to = resolvePage({name: "ContactUpdate", params: {contactId: contact.value.id}});
+        const to = resolvePage({name: "ContactUpdate", params: {id: contact.value.id}});
 
         uni.navigateTo({
             url: to.fullPath,

@@ -290,6 +290,7 @@
                         :id="`zp-id-${row.zp_index}`"
                         :key="row.zp_index"
                         class="mx-19.08rpx b-b-(1px primary6/10 solid) bg-#ffffff p-19.08rpx last:b-b-none"
+                        @tap="$Router.push({name: 'ContactInfo', params: {id: row.id}})"
                     >
                         <view class="flex">
                             <view class="relative size-76.34rpx">
@@ -331,7 +332,7 @@
                                     </view>
                                 </view>
                             </view>
-                            <view class="i-ri:more-line size-38.17rpx c-primary6/50" @click="onUseContact(row)" />
+                            <view class="i-ri:more-line size-38.17rpx c-primary6/50" @tap.stop="onUseContact(row)" />
                         </view>
                         <view
                             v-if="row.companyDistrictName"

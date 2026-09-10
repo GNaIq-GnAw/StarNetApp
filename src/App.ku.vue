@@ -28,6 +28,7 @@
         navbarHeight: "83.97rpx",
         navbarLeftPadding: "0 38.17rpx",
         navbarDescColor: "#101010",
+        navbarBg: "transparent",
         /* cell */
         cellTitleFontSize: "22.9rpx",
         cellTitleLineHeight: "38.17rpx",
@@ -52,8 +53,13 @@
         /* tabs */
         tabsNavItemFontSize: "22.9rpx",
         tabsNavItemLineHeight: "38.17rpx",
+        tabsNavLineHeight: "3.82rpx",
+        tabsNavLineBottom: 0,
         tabsNavColor: primary6$50,
-        tabsNavItemPadding: "19.08rpx",
+        tabsNavItemPadding: "19.08rpx 19.08rpx 15.27rpx",
+        tabsMapBtnBeforeBg: "transparent",
+        tabsMapBtnWidth: "76.34rpx",
+        tabsMapBtnHeight: "76.34rpx",
         /* search */
         searchInputBg: "#f3f4f4",
         searchInputRadius: "7.63rpx",

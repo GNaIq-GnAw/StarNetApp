@@ -133,12 +133,7 @@
             填写姓名后即可完成创建，其他信息可在后续使用中逐渐完善。
         </view>
         <view class="mb-1px">
-            <wd-tabs
-                v-model="active"
-                custom-class="px-179.39rpx box-border"
-                line-theme="underline"
-                line-width="91.60rpx"
-            >
+            <wd-tabs v-model="active" custom-class="px-179.39rpx box-border" line-theme="text">
                 <wd-tab name="base" title="基本信息" />
                 <wd-tab name="corp" title="企业信息" />
                 <wd-tab name="rest" title="其他信息" />

@@ -40,7 +40,7 @@
                 '--wot-tabbar-height': '125.95rpx',
                 '--wot-tabbar-item-title-font-size': '26.72rpx',
                 '--wot-tabbar-item-title-line-height': '38.17rpx',
-                'box-shadow': '0px 2px 6px 0px rgba(0,0,0,0.4)'
+                'box-shadow': '0 3.82rpx 11.45rpx 0 rgba(0,0,0,0.4)'
             }"
             class="z-1 rd-t-38.17rpx"
         >

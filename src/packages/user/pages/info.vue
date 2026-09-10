@@ -47,18 +47,13 @@
                         title="登录密码"
                         value="未设置"
                     />
-                    <wd-cell
-                        clickable
-                        css-icon
-                        suffix-icon="i-carbon-chevron-right !size-38.17rpx"
-                        title="注销账号"
-                    />
+                    <wd-cell clickable css-icon suffix-icon="i-carbon-chevron-right !size-38.17rpx" title="注销账号" />
                 </wd-cell-group>
             </view>
         </view>
         <view
             class="rd-t-38.17rpx bg-#ffffff py-38.17rpx text-center"
-            style="box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.4)"
+            style="box-shadow: 0 3.82rpx 11.45rpx 0 rgba(0, 0, 0, 0.4)"
         >
             <text class="text-26.72rpx lh-38.17rpx">退出登录</text>
         </view>

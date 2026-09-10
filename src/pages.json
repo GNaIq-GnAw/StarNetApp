@@ -98,7 +98,17 @@
           "path": "pages/update",
           "type": "page",
           "name": "ContactUpdate"
+        },
+        // #ifdef H5
+        {
+          "path": "pages/info/index",
+          "type": "page",
+          "style": {
+            "navigationBarTextStyle": "white"
+          },
+          "name": "ContactInfo"
         }
+        // #endif
       ]
     },
     {

@@ -50,7 +50,7 @@
 
     const {form, send, updateForm} = useForm(
         data => {
-            return Apis.contact.updateContact({pathParams: {id: $currentPage.value.query.contactId}, data});
+            return Apis.contact.updateContact({pathParams: {id: $currentPage.value.query.id}, data});
         },
         {
             id: "contact-create",
@@ -97,7 +97,7 @@
         uni.showLoading({mask: true});
 
         try {
-            const {data} = await Apis.contact.getContact({pathParams: {id: $currentPage.value.query.contactId}});
+            const {data} = await Apis.contact.getContact({pathParams: {id: $currentPage.value.query.id}});
 
             updateForm(data);
         } finally {
