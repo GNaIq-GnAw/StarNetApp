@@ -73,7 +73,14 @@
         searchPadding: 0,
         searchCancelFontSize: "22.9rpx",
         searchCancelLineHeight: "38.17rpx",
-        searchPlainBlockBorderColor: primary6$10
+        searchPlainBlockBorderColor: primary6$10,
+        /* tag */
+        tagSmallFontSize: "19.08rpx",
+        tagSmallLineHeight: "38.17rpx",
+        tagSmallPadding: "0 19.08rpx",
+        tagSmallIconSize: "19.08rpx",
+        tagIconSpacing: "9.54rpx",
+        tagRadius: "7.63rpx"
     };
 </script>
 
