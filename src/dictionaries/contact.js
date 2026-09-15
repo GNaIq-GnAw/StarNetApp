@@ -16,3 +16,9 @@ export const ContactPhoneType = Enum([
     {label: "工作号", value: "1"},
     {label: "生活号", value: "2"}
 ]);
+
+// 标签类型
+export const TagType = Enum([
+    {label: "喜好", value: "like"},
+    {label: "禁忌", value: "hate"}
+]);

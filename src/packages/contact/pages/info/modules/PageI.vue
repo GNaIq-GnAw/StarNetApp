@@ -18,11 +18,11 @@
 
 <template>
     <view class="mb-19.08rpx rd-7.63rpx bg-#ffffff">
-        <view class="flex items-center p-[19.08rpx_38.17rpx_0]">
+        <view class="flex items-center p-[19.08rpx_38.17rpx]">
             <view class="h-19.08rpx w-3.82rpx bg-primary6" />
             <view class="ml-19.08rpx text-22.90rpx c-primary6 lh-38.17rpx">重要标记</view>
         </view>
-        <view class="flex flex-wrap p-[19.08rpx_38.17rpx_38.17rpx] text-19.08rpx c-#ffffff lh-26.72rpx -m-4.77rpx">
+        <view class="flex flex-wrap p-[0_38.17rpx_38.17rpx] text-19.08rpx c-#ffffff lh-26.72rpx -m-4.77rpx">
             <view v-if="form?.contact?.source" class="m-4.77rpx rd-19.08rpx bg-#FBC050 px-19.08rpx">
                 {{ form.contact.source }}
             </view>

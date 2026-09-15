@@ -101,6 +101,13 @@
         },
         // #ifdef H5
         {
+          "path": "pages/create-tag",
+          "type": "page",
+          "name": "ContactCreateTag"
+        },
+        // #endif
+        // #ifdef H5
+        {
           "path": "pages/info/index",
           "type": "page",
           "style": {
