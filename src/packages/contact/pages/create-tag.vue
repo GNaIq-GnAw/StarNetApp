@@ -87,7 +87,7 @@
             >
                 <view class="mt-19.08rpx bg-#ffffff p-[38.17rpx_19.08rpx]">
                     <view class="mx-19.08rpx">
-                        <wd-form-item prop="tagType" title="喜好与禁忌" title-width="133.59rpx">
+                        <wd-form-item prop="tagType" title="喜好与禁忌" title-width="135.50rpx">
                             <custom-picker
                                 v-model:value="model.tagType"
                                 :columns="TagType.items"

@@ -1,11 +1,46 @@
-<script setup></script>
+<script setup>
+    import {useForm} from "alova/client";
+    import {resolvePage} from "@/router/resolve.js";
+
+    const {form} = useForm(null, {id: "contact-info"});
+
+    const getRelations = async () => {
+        uni.showLoading({mask: true});
+
+        try {
+            const {data} = await Apis.contactRelation.list({pathParams: {contactId: form.value.contact.id}});
+
+            console.log("relations", data);
+        } finally {
+            uni.hideLoading();
+        }
+    };
+
+    const onCreateRelation = () => {
+        const to = resolvePage({
+            name: "ContactCreateRelation",
+            params: {contactId: form.value.contact.id}
+        });
+
+        uni.navigateTo({
+            url: to.fullPath,
+            events: {
+                "reload:data": () => {
+                    console.log("reload:data");
+                }
+            }
+        });
+    };
+
+    onMounted(getRelations);
+</script>
 
 <template>
     <view class="rd-7.63rpx bg-#ffffff">
         <view class="flex items-center p-[19.08rpx_38.17rpx_0]">
             <view class="h-19.08rpx w-3.82rpx bg-primary6" />
             <view class="ml-19.08rpx text-22.90rpx c-primary6 lh-38.17rpx">关系情况</view>
-            <view class="ml-auto text-19.08rpx c-#2F59F4 lh-38.17rpx">添加关系</view>
+            <view class="ml-auto text-19.08rpx c-#2F59F4 lh-38.17rpx" @click="onCreateRelation()">添加关系</view>
         </view>
         <view class="lh-38.17rpx">
             <view class="mx-19.08rpx b-b-(1px primary6/10 solid) bg-#ffffff p-19.08rpx last:b-b-none">
