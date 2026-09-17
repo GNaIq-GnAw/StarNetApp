@@ -1,5 +1,6 @@
 <script setup>
     import {zodAdapter} from "@wot-ui/ui";
+    import {useForm} from "alova/client";
     import groupBy from "lodash-es/groupBy.js";
     import {z} from "zod";
     import {resolvePage} from "@/router/resolve.js";
@@ -7,11 +8,20 @@
     const instance = getCurrentInstance().proxy;
     const eventChannel = instance.getOpenerEventChannel();
 
-    const route = useRoute();
-
     const formRef = ref(null);
 
-    const model = reactive({contactId: 0, relation: "", name: "", birthday: "", tags: []});
+    const {
+        form,
+        updateForm,
+        send: updateRelation
+    } = useForm(
+        ({contactId, ...rest}) => {
+            return Apis.contactRelation.update({pathParams: {contactId}, data: {...rest}});
+        },
+        {
+            initialForm: {contactId: 0, relation: "", name: "", birthday: "", tags: []}
+        }
+    );
 
     const schema = zodAdapter(
         z.object({
@@ -33,17 +43,12 @@
         uni.showLoading({mask: true});
 
         try {
-            const {contactId, ...rest} = model;
-
-            await Apis.contactRelation.create({
-                pathParams: {contactId},
-                data: {...rest}
-            });
+            await updateRelation();
 
             uni.hideLoading();
 
             uni.showToast({
-                title: "添加成功",
+                title: "编辑成功",
                 icon: "success",
                 mask: true,
                 success: () => {
@@ -60,7 +65,6 @@
         }
     };
 
-    // 创建标签
     const onCreateTag = type => {
         const to = resolvePage({name: "ContactCreateRelationTag", params: {tagType: type}});
 
@@ -76,20 +80,23 @@
 
     // 标签按类型分组
     const relationTags = computed(() => {
-        if (model.tags.length === 0) return null;
+        if (form.value.tags.length === 0) return null;
 
         return groupBy(
-            model.tags.map((tag, idx) => ({...tag, idx})),
+            form.value.tags.map((tag, idx) => ({...tag, idx})),
             "tagType"
         );
     });
 
     const removeTag = item => {
-        model.tags.splice(item.idx, 1);
+        form.value.tags.splice(item.idx, 1);
     };
 
     onMounted(() => {
-        model.contactId = route.query.contactId;
+        eventChannel.on("accept:relation-data", data => {
+            console.log(data);
+            updateForm(data);
+        });
     });
 </script>
 
@@ -98,14 +105,14 @@
         <wd-navbar
             :bordered="false"
             left-arrow
-            left-text="添加关系"
+            left-text="编辑关系"
             safe-area-inset-top
             @click-left="$navigateBack()"
         />
         <view :style="{'--wot-cell-padding': 0}" class="flex-1 of-auto">
             <wd-form
                 ref="formRef"
-                :model="model"
+                :model="form"
                 :schema="schema"
                 error-type="toast"
                 layout="vertical"
@@ -120,7 +127,7 @@
                             title-width="66.79rpx"
                         >
                             <wd-input
-                                v-model="model.name"
+                                v-model="form.name"
                                 :compact="false"
                                 :maxlength="20"
                                 placeholder="请输入姓名"
@@ -133,7 +140,7 @@
                     <view class="mx-19.08rpx">
                         <wd-form-item prop="relation" title="与联系人关系" title-width="158.40rpx">
                             <wd-input
-                                v-model="model.relation"
+                                v-model="form.relation"
                                 :compact="false"
                                 :maxlength="20"
                                 placeholder="请输入与联系人关系"
@@ -157,7 +164,7 @@
                                 </view>
                             </template>
                             <custom-datetime-picker
-                                v-model:formated-value="model.birthday"
+                                v-model:formated-value="form.birthday"
                                 placeholder="请选择生日日期"
                                 type="date"
                             />

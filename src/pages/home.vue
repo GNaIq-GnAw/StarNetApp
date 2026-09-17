@@ -161,17 +161,17 @@
 <template>
     <use-contact ref="useContactRef" />
     <wd-popup v-model="show" custom-class="rd-19.08rpx">
-        <view class="box-border w-673.67rpx p-38.17rpx lh-38.17rpx">
-            <view class="flex items-center" @click="to('ContactCreate')">
-                <view class="i-ant-design:user-add-outlined size-38.17rpx" />
+        <view class="box-border w-673.67rpx p-38.17rpx c-primary6 lh-38.17rpx">
+            <view class="mx-9.54rpx flex items-center" @click="to('ContactCreate')">
+                <view class="i-ant-design:user-add-outlined size-57.25rpx" />
                 <view class="ml-38.17rpx">
                     <view class="text-22.90rpx">手动添加</view>
                     <view class="text-19.08rpx c-primary6/50">日常手动记录联系人</view>
                 </view>
             </view>
             <view class="my-38.17rpx h-1px bg-primary6/10" />
-            <view class="flex items-center" @click="to('ContactSync')">
-                <view class="i-ant-design:usergroup-add-outlined size-38.17rpx" />
+            <view class="mx-9.54rpx flex items-center" @click="to('ContactSync')">
+                <view class="i-ant-design:usergroup-add-outlined size-57.25rpx" />
                 <view class="ml-38.17rpx">
                     <view class="text-22.90rpx">导入通讯录</view>
                     <view class="text-19.08rpx c-primary6/50">自动同步通讯录中联系人姓名、联系方式等信息</view>

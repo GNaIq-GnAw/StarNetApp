@@ -1,5 +1,6 @@
 <script setup>
     import {useForm} from "alova/client";
+    import groupBy from "lodash-es/groupBy.js";
     import {resolvePage} from "@/router/resolve.js";
     import Modules from "./modules";
 
@@ -17,13 +18,54 @@
 
     const {form, updateForm} = useForm(null, {id: "contact-info"});
 
+    const getTags = async () => {
+        try {
+            // 喜好
+            const {data: like} = await Apis.contactTag.list({
+                pathParams: {contactId: route.query.id},
+                params: {tagType: "like"}
+            });
+
+            // 禁忌
+            const {data: hate} = await Apis.contactTag.list({
+                pathParams: {contactId: route.query.id},
+                params: {tagType: "hate"}
+            });
+
+            return {like, hate};
+        } catch (e) {
+            return Promise.reject(e);
+        }
+    };
+
+    const getRelations = async () => {
+        try {
+            const {data} = await Apis.contactRelation.list({pathParams: {contactId: route.query.id}});
+
+            return data.map(item => {
+                const {tags, ...rest} = item;
+
+                return {
+                    ...rest,
+                    tags,
+                    formatedTags: groupBy(tags, "tagType")
+                };
+            });
+        } catch (e) {
+            return Promise.reject(e);
+        }
+    };
+
     const getOverview = async () => {
         uni.showLoading({mask: true});
 
         try {
             const {data} = await Apis.contact.getContactOverview({pathParams: {id: route.query.id}});
 
-            updateForm(data);
+            const tags = await getTags();
+            const relations = await getRelations();
+
+            updateForm({...data, tags, relations});
         } catch (e) {
             console.log("getContactOverview -> failed", e);
         } finally {
@@ -31,6 +73,7 @@
         }
     };
 
+    // 更新联系人信息
     const onUpdateContact = () => {
         const to = resolvePage({name: "ContactUpdate", params: {id: route.query.id}});
 
@@ -61,46 +104,62 @@
         }
     };
 
-    // {
-    //     "id": 5,
-    //     "notebookId": 3,
-    //     "name": "三狗子",
-    //     "sex": "男",
-    //     "birthday": "1973-01-01",
-    //     "companyName": "某企业",
-    //     "companyProvinceCode": "110000",
-    //     "companyCityCode": "110100",
-    //     "companyDistrictCode": "110101",
-    //     "companyProvinceName": "北京市",
-    //     "companyCityName": "市辖区",
-    //     "companyDistrictName": "东城区",
-    //     "companyAddress": "少时诵诗书所",
-    //     "establishmentDate": "1970-01-01",
-    //     "department": "某部门",
-    //     "position": "某职位",
-    //     "homeProvinceCode": "110000",
-    //     "homeCityCode": "110100",
-    //     "homeDistrictCode": "110101",
-    //     "homeProvinceName": "北京市",
-    //     "homeCityName": "市辖区",
-    //     "homeDistrictName": "东城区",
-    //     "homeAddress": "佛挡杀佛少的地方是分散分散",
-    //     "source": "是谁说",
-    //     "isFollow": true,
-    //     "phones": [
-    //         {
-    //             "type": "1",
-    //             "phone": "18809871234"
-    //         }
-    //     ],
-    //     "createTime": "2026-09-03 09:36:25",
-    //     "modifyTime": "2026-09-09 15:16:47"
-    // }
+    // 添加喜好与禁忌
+    const createTag = type => {
+        const to = resolvePage({
+            name: "ContactCreateTag",
+            params: {tagType: type, contactId: form.value.contact.id}
+        });
+
+        uni.navigateTo({
+            url: to.fullPath,
+            events: {
+                "reload:data": getOverview
+            }
+        });
+    };
+
+    // 添加关系
+    const createRelation = () => {
+        const to = resolvePage({name: "ContactCreateRelation", params: {contactId: form.value.contact.id}});
+
+        uni.navigateTo({
+            url: to.fullPath,
+            events: {
+                "reload:data": getOverview
+            }
+        });
+    };
+
+    provide("getOverview", getOverview);
+    provide("createTag", createTag);
+    provide("createRelation", createRelation);
+
+    const [show, toggleShow] = useToggle();
 
     onMounted(getOverview);
 </script>
 
 <template>
+    <wd-popup v-model="show" custom-class="rd-19.08rpx">
+        <view class="box-border w-673.67rpx p-38.17rpx c-primary6 lh-38.17rpx">
+            <view class="mx-9.54rpx flex items-center" @click="createTag()">
+                <view class="i-icon-park-outline:unlike size-57.25rpx" />
+                <view class="ml-38.17rpx">
+                    <view class="text-22.90rpx">添加喜好与禁忌</view>
+                    <view class="text-19.08rpx c-primary6/50">记录日常生活中的事与物</view>
+                </view>
+            </view>
+            <view class="my-38.17rpx h-1px bg-primary6/10" />
+            <view class="mx-9.54rpx flex items-center" @click="createRelation()">
+                <view class="iconfont icon-if-connection text-57.25rpx" />
+                <view class="ml-38.17rpx">
+                    <view class="text-22.90rpx">添加关系情况</view>
+                    <view class="text-19.08rpx c-primary6/50">掌握其他关系信息</view>
+                </view>
+            </view>
+        </view>
+    </wd-popup>
     <view class="h-full flex flex-col of-hidden bg-#f3f4f4">
         <view
             :style="{
@@ -189,7 +248,7 @@
         </view>
         <view class="flex items-center rd-7.63rpx bg-#ffffff p-[19.08rpx_38.17rpx]">
             <view class="flex-1">
-                <wd-button block variant="plain">更多功能</wd-button>
+                <wd-button block variant="plain" @click="toggleShow()">更多功能</wd-button>
             </view>
             <view class="ml-21.95rpx flex-1">
                 <wd-button block>记事</wd-button>

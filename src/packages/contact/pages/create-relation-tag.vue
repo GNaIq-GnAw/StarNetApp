@@ -10,7 +10,7 @@
 
     const formRef = ref(null);
 
-    const model = reactive({contactId: 0, tagType: "", tagContent: ""});
+    const model = reactive({tagType: "", tagContent: ""});
 
     const schema = zodAdapter(
         z.object({
@@ -23,44 +23,16 @@
     );
 
     const onSubmit = async () => {
-        const {valid, errors} = await formRef.value?.validate();
-
-        console.log("valid", valid, errors);
+        const {valid} = await formRef.value?.validate();
 
         if (!valid) return;
 
-        uni.showLoading({mask: true});
+        eventChannel.emit("create:tag", model);
 
-        try {
-            const {contactId, ...rest} = model;
-
-            await Apis.contactTag.create({
-                pathParams: {contactId},
-                data: {...rest}
-            });
-
-            uni.hideLoading();
-
-            uni.showToast({
-                title: "添加成功",
-                icon: "success",
-                mask: true,
-                success: () => {
-                    setTimeout(() => {
-                        eventChannel.emit("reload:data");
-
-                        uni.navigateBack();
-                    }, 1500);
-                }
-            });
-        } catch (e) {
-            uni.showToast({title: e.message, icon: "none", mask: true});
-            uni.hideLoading();
-        }
+        uni.navigateBack();
     };
 
     onMounted(() => {
-        model.contactId = route.query.contactId;
         model.tagType = route.query.tagType;
     });
 </script>

@@ -105,6 +105,11 @@
         },
         // #endif
         {
+          "path": "pages/create-relation-tag",
+          "type": "page",
+          "name": "ContactCreateRelationTag"
+        },
+        {
           "path": "pages/create-relation",
           "type": "page",
           "name": "ContactCreateRelation"
@@ -113,6 +118,11 @@
           "path": "pages/create-tag",
           "type": "page",
           "name": "ContactCreateTag"
+        },
+        {
+          "path": "pages/edit-relation",
+          "type": "page",
+          "name": "ContactEditRelation"
         },
         {
           "path": "pages/info/index",
