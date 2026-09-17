@@ -1,5 +1,5 @@
 export const useNotebookStore = defineStore("notebook", () => {
-    const list = ref([]);
+    const list = ref(uni.getStorageSync(Cache.Notebooks) || []);
 
     // 当前默认记事本
     const defaultNotebook = computed(() => {
@@ -26,6 +26,8 @@ export const useNotebookStore = defineStore("notebook", () => {
             const {data} = await Apis.notebook.getNotebooks();
 
             list.value = data.sort((a, b) => b.createTime - a.createTime);
+
+            uni.setStorageSync(Cache.Notebooks, list.value);
 
             return list.value;
         } catch (e) {

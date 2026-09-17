@@ -44,6 +44,7 @@ declare module 'vue' {
     WdTabbarItem: typeof import('@wot-ui/ui/components/wd-tabbar-item/wd-tabbar-item.vue')['WdTabbarItem']
     WdTabs: typeof import('@wot-ui/ui/components/wd-tabs/wd-tabs.vue')['WdTabs']
     WdTag: typeof import('@wot-ui/ui/components/wd-tag/wd-tag.vue')['WdTag']
+    WdTextarea: typeof import('@wot-ui/ui/components/wd-textarea/wd-textarea.vue')['WdTextarea']
     WdToast: typeof import('@wot-ui/ui/components/wd-toast/wd-toast.vue')['WdToast']
   }
 }
@@ -82,5 +83,6 @@ declare global {
   const WdTabbarItem: typeof import('@wot-ui/ui/components/wd-tabbar-item/wd-tabbar-item.vue')['WdTabbarItem']
   const WdTabs: typeof import('@wot-ui/ui/components/wd-tabs/wd-tabs.vue')['WdTabs']
   const WdTag: typeof import('@wot-ui/ui/components/wd-tag/wd-tag.vue')['WdTag']
+  const WdTextarea: typeof import('@wot-ui/ui/components/wd-textarea/wd-textarea.vue')['WdTextarea']
   const WdToast: typeof import('@wot-ui/ui/components/wd-toast/wd-toast.vue')['WdToast']
 }

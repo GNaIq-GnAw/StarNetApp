@@ -105,6 +105,11 @@
         },
         // #endif
         {
+          "path": "pages/create-note",
+          "type": "page",
+          "name": "ContactCreateNote"
+        },
+        {
           "path": "pages/create-relation-tag",
           "type": "page",
           "name": "ContactCreateRelationTag"

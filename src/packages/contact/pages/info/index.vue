@@ -12,7 +12,7 @@
 
     const {systemInfo} = useSystemInfo();
 
-    const route = useRoute();
+    const $currentPage = useCurrentPage();
 
     const active = ref("page-i");
 
@@ -22,13 +22,13 @@
         try {
             // 喜好
             const {data: like} = await Apis.contactTag.list({
-                pathParams: {contactId: route.query.id},
+                pathParams: {contactId: $currentPage.value.query.id},
                 params: {tagType: "like"}
             });
 
             // 禁忌
             const {data: hate} = await Apis.contactTag.list({
-                pathParams: {contactId: route.query.id},
+                pathParams: {contactId: $currentPage.value.query.id},
                 params: {tagType: "hate"}
             });
 
@@ -40,7 +40,7 @@
 
     const getRelations = async () => {
         try {
-            const {data} = await Apis.contactRelation.list({pathParams: {contactId: route.query.id}});
+            const {data} = await Apis.contactRelation.list({pathParams: {contactId: $currentPage.value.query.id}});
 
             return data.map(item => {
                 const {tags, ...rest} = item;
@@ -60,7 +60,7 @@
         uni.showLoading({mask: true});
 
         try {
-            const {data} = await Apis.contact.getContactOverview({pathParams: {id: route.query.id}});
+            const {data} = await Apis.contact.getContactOverview({pathParams: {id: $currentPage.value.query.id}});
 
             const tags = await getTags();
             const relations = await getRelations();
@@ -75,7 +75,7 @@
 
     // 更新联系人信息
     const onUpdateContact = () => {
-        const to = resolvePage({name: "ContactUpdate", params: {id: route.query.id}});
+        const to = resolvePage({name: "ContactUpdate", params: {id: $currentPage.value.query.id}});
 
         uni.navigateTo({
             url: to.fullPath,
@@ -122,6 +122,17 @@
     // 添加关系
     const createRelation = () => {
         const to = resolvePage({name: "ContactCreateRelation", params: {contactId: form.value.contact.id}});
+
+        uni.navigateTo({
+            url: to.fullPath,
+            events: {
+                "reload:data": getOverview
+            }
+        });
+    };
+
+    const createNote = () => {
+        const to = resolvePage({name: "ContactCreateNote", params: {contactId: form.value.contact.id}});
 
         uni.navigateTo({
             url: to.fullPath,
@@ -251,7 +262,7 @@
                 <wd-button block variant="plain" @click="toggleShow()">更多功能</wd-button>
             </view>
             <view class="ml-21.95rpx flex-1">
-                <wd-button block>记事</wd-button>
+                <wd-button block @click="createNote()">记事</wd-button>
             </view>
             <view class="ml-21.95rpx flex-1">
                 <wd-button block>记收支</wd-button>

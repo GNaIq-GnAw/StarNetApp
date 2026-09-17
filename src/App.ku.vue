@@ -48,6 +48,11 @@
         /* input */
         inputInnerHeight: "38.17rpx",
         inputPadding: "9.54rpx 19.08rpx",
+        inputInnerFontSize: "19.08rpx",
+        /* textarea */
+        textareaInnerFontSize: "19.08rpx",
+        textareaInnerLineHeight: "38.17rpx",
+        textareaPadding: "9.54rpx 19.08rpx",
         /* radio */
         radioHorizontalMargin: "0 19.08rpx 0 0",
         /* tabs */

@@ -1182,16 +1182,6 @@ export interface ContactNoteDTO {
 
   eventTime?: string;
   /**
-   * 拜访纬度
-   */
-
-  lat?: number;
-  /**
-   * 拜访经度
-   */
-
-  lng?: number;
-  /**
    * 记事类型：call-电话联系，sms-短信联系，normal-普通记事，visit-拜访记事
    */
 
@@ -1212,10 +1202,25 @@ export interface ContactNoteDTO {
 
   smsType?: string;
   /**
-   * 拜访地址
+   * 拜访详细地址
    */
 
   visitAddress?: string;
+  /**
+   * 拜访城市编码
+   */
+
+  visitCityCode?: string;
+  /**
+   * 拜访区县编码
+   */
+
+  visitDistrictCode?: string;
+  /**
+   * 拜访省份编码
+   */
+
+  visitProvinceCode?: string;
 }
 export interface ContactNotePageResponseDTO {
   /**
@@ -1276,16 +1281,6 @@ export interface ContactNoteResponseDTO {
 
   id?: number;
   /**
-   * 拜访纬度
-   */
-
-  lat?: number;
-  /**
-   * 拜访经度
-   */
-
-  lng?: number;
-  /**
    * 更新时间，格式：yyyy-MM-dd HH:mm:ss
    */
 
@@ -1311,10 +1306,40 @@ export interface ContactNoteResponseDTO {
 
   smsType?: string;
   /**
-   * 拜访地址
+   * 拜访详细地址
    */
 
   visitAddress?: string;
+  /**
+   * 拜访城市编码
+   */
+
+  visitCityCode?: string;
+  /**
+   * 拜访城市名称
+   */
+
+  visitCityName?: string;
+  /**
+   * 拜访区县编码
+   */
+
+  visitDistrictCode?: string;
+  /**
+   * 拜访区县名称
+   */
+
+  visitDistrictName?: string;
+  /**
+   * 拜访省份编码
+   */
+
+  visitProvinceCode?: string;
+  /**
+   * 拜访省份名称
+   */
+
+  visitProvinceName?: string;
 }
 export interface ContactNoteUpdateDTO {
   /**
@@ -1338,16 +1363,6 @@ export interface ContactNoteUpdateDTO {
 
   eventTime?: string;
   /**
-   * 拜访纬度
-   */
-
-  lat?: number;
-  /**
-   * 拜访经度
-   */
-
-  lng?: number;
-  /**
    * 记事类型：call、sms、normal、visit
    */
 
@@ -1363,10 +1378,25 @@ export interface ContactNoteUpdateDTO {
 
   smsType?: string;
   /**
-   * 拜访地址
+   * 拜访详细地址
    */
 
   visitAddress?: string;
+  /**
+   * 拜访城市编码
+   */
+
+  visitCityCode?: string;
+  /**
+   * 拜访区县编码
+   */
+
+  visitDistrictCode?: string;
+  /**
+   * 拜访省份编码
+   */
+
+  visitProvinceCode?: string;
 }
 export interface ContactOverviewResponseDTO {
   /**
@@ -1451,6 +1481,11 @@ export interface ContactRelationDTO {
    */
 
   relation: string;
+  /**
+   * 关系人喜好和禁忌标签
+   */
+
+  tags?: ContactTagDTO[];
 }
 export interface ContactRelationResponseDTO {
   /**
@@ -1488,6 +1523,11 @@ export interface ContactRelationResponseDTO {
    */
 
   relation?: string;
+  /**
+   * 关系人喜好和禁忌标签
+   */
+
+  tags?: ContactTagResponseDTO[];
 }
 export interface ContactResponseDTO {
   /**
@@ -1681,6 +1721,11 @@ export interface ContactTagResponseDTO {
    */
 
   id?: number;
+  /**
+   * 关系人 ID
+   */
+
+  relationId?: number;
   /**
    * 标签内容
    */
@@ -2095,10 +2140,6 @@ declare global {
        *     eventTime?: string
        *     // 跟进记事ID
        *     id?: number
-       *     // 拜访纬度
-       *     lat?: number
-       *     // 拜访经度
-       *     lng?: number
        *     // 更新时间，格式：yyyy-MM-dd HH:mm:ss
        *     modifyTime?: string
        *     // 记事类型：call-电话联系，sms-短信联系，normal-普通记事，visit-拜访记事
@@ -2109,8 +2150,20 @@ declare global {
        *     phone?: string
        *     // 短信类型
        *     smsType?: string
-       *     // 拜访地址
+       *     // 拜访详细地址
        *     visitAddress?: string
+       *     // 拜访城市编码
+       *     visitCityCode?: string
+       *     // 拜访城市名称
+       *     visitCityName?: string
+       *     // 拜访区县编码
+       *     visitDistrictCode?: string
+       *     // 拜访区县名称
+       *     visitDistrictName?: string
+       *     // 拜访省份编码
+       *     visitProvinceCode?: string
+       *     // 拜访省份名称
+       *     visitProvinceName?: string
        *   }>
        *   // 响应消息
        *   msg?: string
@@ -2159,10 +2212,6 @@ declare global {
        *   content?: string
        *   // 事件发生时间，格式：yyyy-MM-dd HH:mm:ss
        *   eventTime?: string
-       *   // 拜访纬度
-       *   lat?: number
-       *   // 拜访经度
-       *   lng?: number
        *   // 记事类型：call-电话联系，sms-短信联系，normal-普通记事，visit-拜访记事
        *   noteType: string
        *   // 记事本ID
@@ -2171,8 +2220,14 @@ declare global {
        *   phone?: string
        *   // 短信类型：in-接收，out-发送
        *   smsType?: string
-       *   // 拜访地址
+       *   // 拜访详细地址
        *   visitAddress?: string
+       *   // 拜访城市编码
+       *   visitCityCode?: string
+       *   // 拜访区县编码
+       *   visitDistrictCode?: string
+       *   // 拜访省份编码
+       *   visitProvinceCode?: string
        * }
        * ```
        *
@@ -2200,10 +2255,6 @@ declare global {
        *     eventTime?: string
        *     // 跟进记事ID
        *     id?: number
-       *     // 拜访纬度
-       *     lat?: number
-       *     // 拜访经度
-       *     lng?: number
        *     // 更新时间，格式：yyyy-MM-dd HH:mm:ss
        *     modifyTime?: string
        *     // 记事类型：call-电话联系，sms-短信联系，normal-普通记事，visit-拜访记事
@@ -2214,8 +2265,20 @@ declare global {
        *     phone?: string
        *     // 短信类型
        *     smsType?: string
-       *     // 拜访地址
+       *     // 拜访详细地址
        *     visitAddress?: string
+       *     // 拜访城市编码
+       *     visitCityCode?: string
+       *     // 拜访城市名称
+       *     visitCityName?: string
+       *     // 拜访区县编码
+       *     visitDistrictCode?: string
+       *     // 拜访区县名称
+       *     visitDistrictName?: string
+       *     // 拜访省份编码
+       *     visitProvinceCode?: string
+       *     // 拜访省份名称
+       *     visitProvinceName?: string
        *   }
        *   // 响应消息
        *   msg?: string
@@ -2270,10 +2333,6 @@ declare global {
        *     eventTime?: string
        *     // 跟进记事ID
        *     id?: number
-       *     // 拜访纬度
-       *     lat?: number
-       *     // 拜访经度
-       *     lng?: number
        *     // 更新时间，格式：yyyy-MM-dd HH:mm:ss
        *     modifyTime?: string
        *     // 记事类型：call-电话联系，sms-短信联系，normal-普通记事，visit-拜访记事
@@ -2284,8 +2343,20 @@ declare global {
        *     phone?: string
        *     // 短信类型
        *     smsType?: string
-       *     // 拜访地址
+       *     // 拜访详细地址
        *     visitAddress?: string
+       *     // 拜访城市编码
+       *     visitCityCode?: string
+       *     // 拜访城市名称
+       *     visitCityName?: string
+       *     // 拜访区县编码
+       *     visitDistrictCode?: string
+       *     // 拜访区县名称
+       *     visitDistrictName?: string
+       *     // 拜访省份编码
+       *     visitProvinceCode?: string
+       *     // 拜访省份名称
+       *     visitProvinceName?: string
        *   }
        *   // 响应消息
        *   msg?: string
@@ -2335,18 +2406,20 @@ declare global {
        *   content?: string
        *   // 事件发生时间，格式：yyyy-MM-dd HH:mm:ss
        *   eventTime?: string
-       *   // 拜访纬度
-       *   lat?: number
-       *   // 拜访经度
-       *   lng?: number
        *   // 记事类型：call、sms、normal、visit
        *   noteType: string
        *   // 联系电话
        *   phone?: string
        *   // 短信类型：in-接收，out-发送
        *   smsType?: string
-       *   // 拜访地址
+       *   // 拜访详细地址
        *   visitAddress?: string
+       *   // 拜访城市编码
+       *   visitCityCode?: string
+       *   // 拜访区县编码
+       *   visitDistrictCode?: string
+       *   // 拜访省份编码
+       *   visitProvinceCode?: string
        * }
        * ```
        *
@@ -2374,10 +2447,6 @@ declare global {
        *     eventTime?: string
        *     // 跟进记事ID
        *     id?: number
-       *     // 拜访纬度
-       *     lat?: number
-       *     // 拜访经度
-       *     lng?: number
        *     // 更新时间，格式：yyyy-MM-dd HH:mm:ss
        *     modifyTime?: string
        *     // 记事类型：call-电话联系，sms-短信联系，normal-普通记事，visit-拜访记事
@@ -2388,8 +2457,20 @@ declare global {
        *     phone?: string
        *     // 短信类型
        *     smsType?: string
-       *     // 拜访地址
+       *     // 拜访详细地址
        *     visitAddress?: string
+       *     // 拜访城市编码
+       *     visitCityCode?: string
+       *     // 拜访城市名称
+       *     visitCityName?: string
+       *     // 拜访区县编码
+       *     visitDistrictCode?: string
+       *     // 拜访区县名称
+       *     visitDistrictName?: string
+       *     // 拜访省份编码
+       *     visitProvinceCode?: string
+       *     // 拜访省份名称
+       *     visitProvinceName?: string
        *   }
        *   // 响应消息
        *   msg?: string
@@ -2513,10 +2594,6 @@ declare global {
        *     eventTime?: string
        *     // 跟进记事ID
        *     id?: number
-       *     // 拜访纬度
-       *     lat?: number
-       *     // 拜访经度
-       *     lng?: number
        *     // 更新时间，格式：yyyy-MM-dd HH:mm:ss
        *     modifyTime?: string
        *     // 记事类型：call-电话联系，sms-短信联系，normal-普通记事，visit-拜访记事
@@ -2527,8 +2604,20 @@ declare global {
        *     phone?: string
        *     // 短信类型
        *     smsType?: string
-       *     // 拜访地址
+       *     // 拜访详细地址
        *     visitAddress?: string
+       *     // 拜访城市编码
+       *     visitCityCode?: string
+       *     // 拜访城市名称
+       *     visitCityName?: string
+       *     // 拜访区县编码
+       *     visitDistrictCode?: string
+       *     // 拜访区县名称
+       *     visitDistrictName?: string
+       *     // 拜访省份编码
+       *     visitProvinceCode?: string
+       *     // 拜访省份名称
+       *     visitProvinceName?: string
        *   }
        *   // 响应消息
        *   msg?: string
@@ -2618,10 +2707,6 @@ declare global {
        *       eventTime?: string
        *       // 跟进记事ID
        *       id?: number
-       *       // 拜访纬度
-       *       lat?: number
-       *       // 拜访经度
-       *       lng?: number
        *       // 更新时间，格式：yyyy-MM-dd HH:mm:ss
        *       modifyTime?: string
        *       // 记事类型：call-电话联系，sms-短信联系，normal-普通记事，visit-拜访记事
@@ -2632,8 +2717,20 @@ declare global {
        *       phone?: string
        *       // 短信类型
        *       smsType?: string
-       *       // 拜访地址
+       *       // 拜访详细地址
        *       visitAddress?: string
+       *       // 拜访城市编码
+       *       visitCityCode?: string
+       *       // 拜访城市名称
+       *       visitCityName?: string
+       *       // 拜访区县编码
+       *       visitDistrictCode?: string
+       *       // 拜访区县名称
+       *       visitDistrictName?: string
+       *       // 拜访省份编码
+       *       visitProvinceCode?: string
+       *       // 拜访省份名称
+       *       visitProvinceName?: string
        *     }>
        *     // 总记录数
        *     total?: number
@@ -2740,10 +2837,6 @@ declare global {
        *     eventTime?: string
        *     // 跟进记事ID
        *     id?: number
-       *     // 拜访纬度
-       *     lat?: number
-       *     // 拜访经度
-       *     lng?: number
        *     // 更新时间，格式：yyyy-MM-dd HH:mm:ss
        *     modifyTime?: string
        *     // 记事类型：call-电话联系，sms-短信联系，normal-普通记事，visit-拜访记事
@@ -2754,8 +2847,20 @@ declare global {
        *     phone?: string
        *     // 短信类型
        *     smsType?: string
-       *     // 拜访地址
+       *     // 拜访详细地址
        *     visitAddress?: string
+       *     // 拜访城市编码
+       *     visitCityCode?: string
+       *     // 拜访城市名称
+       *     visitCityName?: string
+       *     // 拜访区县编码
+       *     visitDistrictCode?: string
+       *     // 拜访区县名称
+       *     visitDistrictName?: string
+       *     // 拜访省份编码
+       *     visitProvinceCode?: string
+       *     // 拜访省份名称
+       *     visitProvinceName?: string
        *   }
        *   // 响应消息
        *   msg?: string
@@ -3877,10 +3982,6 @@ declare global {
        *       eventTime?: string
        *       // 跟进记事ID
        *       id?: number
-       *       // 拜访纬度
-       *       lat?: number
-       *       // 拜访经度
-       *       lng?: number
        *       // 更新时间，格式：yyyy-MM-dd HH:mm:ss
        *       modifyTime?: string
        *       // 记事类型：call-电话联系，sms-短信联系，normal-普通记事，visit-拜访记事
@@ -3891,8 +3992,20 @@ declare global {
        *       phone?: string
        *       // 短信类型
        *       smsType?: string
-       *       // 拜访地址
+       *       // 拜访详细地址
        *       visitAddress?: string
+       *       // 拜访城市编码
+       *       visitCityCode?: string
+       *       // 拜访城市名称
+       *       visitCityName?: string
+       *       // 拜访区县编码
+       *       visitDistrictCode?: string
+       *       // 拜访区县名称
+       *       visitDistrictName?: string
+       *       // 拜访省份编码
+       *       visitProvinceCode?: string
+       *       // 拜访省份名称
+       *       visitProvinceName?: string
        *     }>
        *   }
        *   // 响应消息
@@ -4622,6 +4735,17 @@ declare global {
        *   name: string
        *   // 关系类型
        *   relation: string
+       *   // 关系人喜好和禁忌标签
+       *   // [items] start
+       *   // [title] ContactTagDTO
+       *   // 联系人喜好或禁忌请求参数
+       *   // [items] end
+       *   tags?: Array<{
+       *     // 标签内容
+       *     tagContent: string
+       *     // 标签类型：like-喜好，hate-禁忌
+       *     tagType: string
+       *   }>
        * }
        * ```
        *
@@ -4649,6 +4773,25 @@ declare global {
        *     name?: string
        *     // 关系类型
        *     relation?: string
+       *     // 关系人喜好和禁忌标签
+       *     // [items] start
+       *     // [title] ContactTagResponseDTO
+       *     // 联系人喜好或禁忌响应数据
+       *     // [items] end
+       *     tags?: Array<{
+       *       // 联系人 ID
+       *       contactId?: number
+       *       // 创建时间，格式：yyyy-MM-dd HH:mm:ss
+       *       createTime?: string
+       *       // 标签记录 ID
+       *       id?: number
+       *       // 关系人 ID
+       *       relationId?: number
+       *       // 标签内容
+       *       tagContent?: string
+       *       // 标签类型：like-喜好，hate-禁忌
+       *       tagType?: string
+       *     }>
        *   }
        *   // 响应消息
        *   msg?: string
@@ -4762,6 +4905,25 @@ declare global {
        *     name?: string
        *     // 关系类型
        *     relation?: string
+       *     // 关系人喜好和禁忌标签
+       *     // [items] start
+       *     // [title] ContactTagResponseDTO
+       *     // 联系人喜好或禁忌响应数据
+       *     // [items] end
+       *     tags?: Array<{
+       *       // 联系人 ID
+       *       contactId?: number
+       *       // 创建时间，格式：yyyy-MM-dd HH:mm:ss
+       *       createTime?: string
+       *       // 标签记录 ID
+       *       id?: number
+       *       // 关系人 ID
+       *       relationId?: number
+       *       // 标签内容
+       *       tagContent?: string
+       *       // 标签类型：like-喜好，hate-禁忌
+       *       tagType?: string
+       *     }>
        *   }>
        *   // 响应消息
        *   msg?: string
@@ -4811,6 +4973,17 @@ declare global {
        *   name: string
        *   // 关系类型
        *   relation: string
+       *   // 关系人喜好和禁忌标签
+       *   // [items] start
+       *   // [title] ContactTagDTO
+       *   // 联系人喜好或禁忌请求参数
+       *   // [items] end
+       *   tags?: Array<{
+       *     // 标签内容
+       *     tagContent: string
+       *     // 标签类型：like-喜好，hate-禁忌
+       *     tagType: string
+       *   }>
        * }
        * ```
        *
@@ -4838,6 +5011,25 @@ declare global {
        *     name?: string
        *     // 关系类型
        *     relation?: string
+       *     // 关系人喜好和禁忌标签
+       *     // [items] start
+       *     // [title] ContactTagResponseDTO
+       *     // 联系人喜好或禁忌响应数据
+       *     // [items] end
+       *     tags?: Array<{
+       *       // 联系人 ID
+       *       contactId?: number
+       *       // 创建时间，格式：yyyy-MM-dd HH:mm:ss
+       *       createTime?: string
+       *       // 标签记录 ID
+       *       id?: number
+       *       // 关系人 ID
+       *       relationId?: number
+       *       // 标签内容
+       *       tagContent?: string
+       *       // 标签类型：like-喜好，hate-禁忌
+       *       tagType?: string
+       *     }>
        *   }
        *   // 响应消息
        *   msg?: string
@@ -4910,6 +5102,8 @@ declare global {
        *     createTime?: string
        *     // 标签记录 ID
        *     id?: number
+       *     // 关系人 ID
+       *     relationId?: number
        *     // 标签内容
        *     tagContent?: string
        *     // 标签类型：like-喜好，hate-禁忌
@@ -5029,6 +5223,8 @@ declare global {
        *     createTime?: string
        *     // 标签记录 ID
        *     id?: number
+       *     // 关系人 ID
+       *     relationId?: number
        *     // 标签内容
        *     tagContent?: string
        *     // 标签类型：like-喜好，hate-禁忌
@@ -5106,6 +5302,8 @@ declare global {
        *     createTime?: string
        *     // 标签记录 ID
        *     id?: number
+       *     // 关系人 ID
+       *     relationId?: number
        *     // 标签内容
        *     tagContent?: string
        *     // 标签类型：like-喜好，hate-禁忌
