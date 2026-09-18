@@ -73,13 +73,24 @@ const NormalItem = defineComponent(
 // 拜访记事
 const VisitItem = defineComponent(
     props => {
+        const {content, visitAddress, visitProvinceName, visitCityName, visitDistrictName} = props.row;
+
         return () => {
             return h(
                 "view",
                 {
                     class: "rd-7.63rpx bg-#F3F4F4 p-[9.54rpx_19.08rpx] c-primary6/50 text-19.08rpx lh-28.63rpx block"
                 },
-                props.row.content
+                [
+                    h("view", {class: "block"}, `记事：${content}`),
+                    visitAddress
+                        ? h(
+                              "view",
+                              {class: "mt-9.54rpx block"},
+                              `位置：${visitProvinceName}${visitCityName}${visitDistrictName}${visitAddress}`
+                          )
+                        : null
+                ]
             );
         };
     },

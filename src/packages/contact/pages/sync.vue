@@ -73,59 +73,6 @@
 
     const notebookStore = useNotebookStore();
 
-    const withTasks = () => {
-        const notebookId = notebookStore.defaultNotebook.id;
-
-        const tasks = contacts.value
-            .filter(item => datum.checkedKeys.includes(item.id))
-            .map(e => {
-                return async () => {
-                    try {
-                        return await Apis.contact.createContact({
-                            data: {
-                                name: e.name,
-                                phones: e.phones.map(phone => ({type: 1, phone})),
-                                notebookId
-                            }
-                        });
-                    } catch (e) {
-                        return Promise.reject(e);
-                    }
-                };
-            });
-
-        return new Promise((resolve, reject) => {
-            // 按序递归执行
-            const run = async () => {
-                const runTask = tasks?.[0];
-
-                if (!runTask) {
-                    reject(new Error("任务不存在"));
-
-                    return;
-                }
-
-                try {
-                    await runTask();
-
-                    // 删除之前完成的任务
-                    tasks.shift();
-
-                    if (tasks.length > 0) {
-                        run();
-                    } else {
-                        // 最终返回结果
-                        resolve();
-                    }
-                } catch (e) {
-                    reject(e);
-                }
-            };
-
-            run();
-        });
-    };
-
     const {data: contactsDatum, send: getContactsDatum} = useRequest(
         () => {
             const notebookId = notebookStore.defaultNotebook.id;
@@ -153,8 +100,22 @@
     const onSubmit = async () => {
         uni.showLoading({title: "正在导入中，请稍后..."});
 
+        const notebookId = notebookStore.defaultNotebook.id;
+
         try {
-            await withTasks();
+            const selectedContacts = contacts.value
+                .filter(item => datum.checkedKeys.includes(item.id))
+                .map(e => {
+                    return {
+                        name: e.name,
+                        phones: e.phones.map(phone => ({type: 1, phone}))
+                    };
+                });
+
+            await Apis.contactNotebook.batchImport({
+                pathParams: {notebookId},
+                data: {contacts: selectedContacts, skipExisting: true}
+            });
 
             uni.hideLoading();
 
@@ -165,11 +126,11 @@
                 icon: "success",
                 mask: true,
                 success: () => {
-                    // setTimeout(() => {
-                    //     eventChannel.emit("reload:data");
-                    //
-                    //     uni.navigateBack();
-                    // }, 1500);
+                    setTimeout(() => {
+                        eventChannel.emit("reload:data");
+
+                        uni.navigateBack();
+                    }, 1500);
                 }
             });
         } catch (e) {

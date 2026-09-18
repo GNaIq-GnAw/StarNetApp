@@ -66,13 +66,13 @@
     };
 
     const onCreateTag = type => {
-        const to = resolvePage({name: "ContactCreateRelationTag", params: {tagType: type}});
+        const to = resolvePage({name: "ContactRelationCreateTag", params: {tagType: type}});
 
         uni.navigateTo({
             url: to.fullPath,
             events: {
                 "create:tag": tag => {
-                    model.tags.push(tag);
+                    form.value.tags.push(tag);
                 }
             }
         });

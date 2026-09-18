@@ -7,8 +7,8 @@
     const getOverview = inject("getOverview");
     const createRelation = inject("createRelation");
 
-    const editRelation = item => {
-        const to = resolvePage({name: "ContactEditRelation"});
+    const updateRelation = item => {
+        const to = resolvePage({name: "ContactRelationUpdate"});
 
         uni.navigateTo({
             url: to.path,
@@ -73,7 +73,7 @@
                 <view class="flex items-center">
                     <view class="text-22.90rpx">{{ item.name }}</view>
                     <view class="ml-11.45rpx text-19.08rpx c-primary6/50">{{ item.relation }}</view>
-                    <view class="i-ri:edit-box-line ml-auto size-30.53rpx c-primary6" @click="editRelation(item)" />
+                    <view class="i-ri:edit-box-line ml-auto size-30.53rpx c-primary6" @click="updateRelation(item)" />
                     <view
                         class="i-ri:close-large-line ml-30.53rpx size-30.53rpx c-primary6"
                         @click="removeRelation(item)"

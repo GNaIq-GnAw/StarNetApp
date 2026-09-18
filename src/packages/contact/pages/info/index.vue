@@ -121,7 +121,7 @@
 
     // 添加关系
     const createRelation = () => {
-        const to = resolvePage({name: "ContactCreateRelation", params: {contactId: form.value.contact.id}});
+        const to = resolvePage({name: "ContactRelationCreate", params: {contactId: form.value.contact.id}});
 
         uni.navigateTo({
             url: to.fullPath,
@@ -132,7 +132,7 @@
     };
 
     const createNote = () => {
-        const to = resolvePage({name: "ContactCreateNote", params: {contactId: form.value.contact.id}});
+        const to = resolvePage({name: "ContactNoteCreate", params: {contactId: form.value.contact.id}});
 
         uni.navigateTo({
             url: to.fullPath,

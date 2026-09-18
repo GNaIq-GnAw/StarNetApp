@@ -62,7 +62,7 @@
 
     // 创建标签
     const onCreateTag = type => {
-        const to = resolvePage({name: "ContactCreateRelationTag", params: {tagType: type}});
+        const to = resolvePage({name: "ContactRelationCreateTag", params: {tagType: type}});
 
         uni.navigateTo({
             url: to.fullPath,
