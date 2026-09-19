@@ -101,7 +101,7 @@
 </script>
 
 <template>
-    <view :style="{'--wot-navbar-bg': '#ffffff'}" class="h-full flex flex-col of-hidden bg-#f3f4f4">
+    <view class="h-full flex flex-col of-hidden bg-#f3f4f4">
         <wd-navbar
             :bordered="false"
             left-arrow

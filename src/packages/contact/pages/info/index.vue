@@ -20,19 +20,12 @@
 
     const getTags = async () => {
         try {
-            // 喜好
-            const {data: like} = await Apis.contactTag.list({
-                pathParams: {contactId: $currentPage.value.query.id},
-                params: {tagType: "like"}
+            // 喜好与禁忌
+            const {data} = await Apis.contactTag.list({
+                pathParams: {contactId: $currentPage.value.query.id}
             });
 
-            // 禁忌
-            const {data: hate} = await Apis.contactTag.list({
-                pathParams: {contactId: $currentPage.value.query.id},
-                params: {tagType: "hate"}
-            });
-
-            return {like, hate};
+            return groupBy(data, "tagType");
         } catch (e) {
             return Promise.reject(e);
         }
@@ -175,6 +168,7 @@
         <view
             :style="{
                 '--wot-navbar-color': '#ffffff',
+                '--wot-navbar-bg': 'transparent',
                 '--wot-navbar-desc-color': '#ffffff',
                 'padding-top': `${systemInfo.safeAreaInsets.top}px`,
                 'box-shadow': `0 3.82rpx 11.45rpx 0 ${withAlpha(Theme.primary6, 0.5)}`

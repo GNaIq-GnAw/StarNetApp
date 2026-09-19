@@ -28,7 +28,7 @@
         navbarHeight: "83.97rpx",
         navbarLeftPadding: "0 38.17rpx",
         navbarDescColor: "#101010",
-        navbarBg: "transparent",
+        // navbarBg: "transparent",
         /* cell */
         cellTitleFontSize: "22.9rpx",
         cellTitleLineHeight: "38.17rpx",
