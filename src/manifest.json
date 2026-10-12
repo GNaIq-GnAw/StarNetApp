@@ -2,8 +2,8 @@
   "name": "星网CRM",
   "appid": "__UNI__12A2B2B",
   "description": "",
-  "versionName": "1.0.9",
-  "versionCode": "109",
+  "versionName": "1.0.10",
+  "versionCode": "1010",
   "transformPx": false,
   "app-plus": {
     "usingComponents": true,
