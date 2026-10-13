@@ -1,4 +1,14 @@
-<script setup></script>
+<script setup>
+    const userStore = useUserStore();
+
+    const router = useRouter();
+
+    const onLogout = async () => {
+        await userStore.logout();
+
+        router.replaceAll({name: "Login"});
+    };
+</script>
 
 <template>
     <view class="h-full flex flex-col of-auto bg-#f3f4f4">
@@ -54,6 +64,7 @@
         <view
             class="rd-t-38.17rpx bg-#ffffff py-38.17rpx text-center"
             style="box-shadow: 0 3.82rpx 11.45rpx 0 rgba(0, 0, 0, 0.4)"
+            @click="onLogout"
         >
             <text class="text-26.72rpx lh-38.17rpx">退出登录</text>
         </view>

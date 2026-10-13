@@ -48,7 +48,7 @@ export const useUserStore = defineStore("user", () => {
 
     const logout = async () => {
         try {
-            await Apis.login.loginOut({params: {refreshToken: refreshToken.value}, meta: {authRole: "logout"}});
+            // await Apis.login.loginOut({params: {refreshToken: refreshToken.value}, meta: {authRole: "logout"}});
 
             return true;
         } catch (e) {
@@ -63,7 +63,7 @@ export const useUserStore = defineStore("user", () => {
     // 获取用户信息
     const getUserInfo = async () => {
         try {
-            const {data} = await Apis.login.getAppLoginInfo();
+            const {data} = await Apis.purchaser.current();
 
             uni.setStorageSync(Cache.UserInfo, data);
 

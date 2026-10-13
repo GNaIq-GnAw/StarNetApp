@@ -19,14 +19,6 @@ declare module 'vue' {
     GlobalToast: typeof import('./../components/GlobalToast.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    WdButton: typeof import('@wot-ui/ui/components/wd-button/wd-button.vue')['WdButton']
-    WdCheckbox: typeof import('@wot-ui/ui/components/wd-checkbox/wd-checkbox.vue')['WdCheckbox']
-    WdConfigProvider: typeof import('@wot-ui/ui/components/wd-config-provider/wd-config-provider.vue')['WdConfigProvider']
-    WdDialog: typeof import('@wot-ui/ui/components/wd-dialog/wd-dialog.vue')['WdDialog']
-    WdPopup: typeof import('@wot-ui/ui/components/wd-popup/wd-popup.vue')['WdPopup']
-    WdTabbar: typeof import('@wot-ui/ui/components/wd-tabbar/wd-tabbar.vue')['WdTabbar']
-    WdTabbarItem: typeof import('@wot-ui/ui/components/wd-tabbar-item/wd-tabbar-item.vue')['WdTabbarItem']
-    WdToast: typeof import('@wot-ui/ui/components/wd-toast/wd-toast.vue')['WdToast']
   }
 }
 
@@ -39,12 +31,4 @@ declare global {
   const GlobalToast: typeof import('./../components/GlobalToast.vue')['default']
   const RouterLink: typeof import('vue-router')['RouterLink']
   const RouterView: typeof import('vue-router')['RouterView']
-  const WdButton: typeof import('@wot-ui/ui/components/wd-button/wd-button.vue')['WdButton']
-  const WdCheckbox: typeof import('@wot-ui/ui/components/wd-checkbox/wd-checkbox.vue')['WdCheckbox']
-  const WdConfigProvider: typeof import('@wot-ui/ui/components/wd-config-provider/wd-config-provider.vue')['WdConfigProvider']
-  const WdDialog: typeof import('@wot-ui/ui/components/wd-dialog/wd-dialog.vue')['WdDialog']
-  const WdPopup: typeof import('@wot-ui/ui/components/wd-popup/wd-popup.vue')['WdPopup']
-  const WdTabbar: typeof import('@wot-ui/ui/components/wd-tabbar/wd-tabbar.vue')['WdTabbar']
-  const WdTabbarItem: typeof import('@wot-ui/ui/components/wd-tabbar-item/wd-tabbar-item.vue')['WdTabbarItem']
-  const WdToast: typeof import('@wot-ui/ui/components/wd-toast/wd-toast.vue')['WdToast']
 }
