@@ -156,7 +156,7 @@
             </view>
             <view class="flex items-center rd-7.63rpx bg-#ffffff p-[19.08rpx_38.17rpx]">
                 <view class="flex-1">
-                    <wd-button block variant="plain">更多信息</wd-button>
+                    <wd-button block variant="plain" @tap="$Router.push({name: 'ContactInfo', params: {id: contact.id}})">更多信息</wd-button>
                 </view>
                 <view class="ml-21.95rpx flex-1">
                     <wd-button block>添加记事</wd-button>
