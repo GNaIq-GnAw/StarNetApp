@@ -59,7 +59,7 @@ export const setupRouter = app => {
         }
 
         // 获取用户信息
-        // if (auth && !userStore.userInfo) await userStore.getUserInfo();
+        if (auth && !userStore.userInfo) await userStore.getUserInfo();
 
         next();
     });

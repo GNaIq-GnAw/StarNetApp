@@ -199,7 +199,10 @@
                                 {{ formatDate(new Date(form?.contact?.birthday), "yyyy年MM月dd日") }}
                             </view>
                         </view>
-                        <view class="ml-9.54rpx rd-3.82rpx bg-#FBC050 px-9.54rpx text-19.08rpx c-#ffffff lh-26.72rpx">
+                        <view
+                            v-if="isWithinDays(form?.contact?.birthday)"
+                            class="ml-9.54rpx rd-3.82rpx bg-#FBC050 px-9.54rpx text-19.08rpx c-#ffffff lh-26.72rpx"
+                        >
                             近期生日
                         </view>
                     </view>

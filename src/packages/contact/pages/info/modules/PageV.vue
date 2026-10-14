@@ -25,7 +25,7 @@
 
     const removeRelation = async item => {
         dialog.confirm({
-            msg: "确认删除该数据吗？",
+            title: "确认删除该数据吗？",
             beforeConfirm: async () => {
                 uni.showLoading({mask: true, title: "删除中..."});
 

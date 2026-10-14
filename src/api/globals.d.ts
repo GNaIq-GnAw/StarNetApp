@@ -1536,6 +1536,11 @@ export interface ContactResponseDTO {
 
   birthday?: string;
   /**
+   * 列表中该联系人的电话联系次数
+   */
+
+  callNoteCount?: number;
+  /**
    * 公司地址
    */
 
@@ -1581,6 +1586,11 @@ export interface ContactResponseDTO {
 
   createTime?: string;
   /**
+   * 列表中该联系人的成交笔数，不含退款
+   */
+
+  dealCount?: number;
+  /**
    * 部门
    */
 
@@ -1590,6 +1600,11 @@ export interface ContactResponseDTO {
    */
 
   establishmentDate?: string;
+  /**
+   * 列表中该联系人的支出笔数，不含退款
+   */
+
+  expenseCount?: number;
   /**
    * 家庭地址
    */
@@ -1646,6 +1661,11 @@ export interface ContactResponseDTO {
 
   name?: string;
   /**
+   * 列表中该联系人的普通记事次数
+   */
+
+  normalNoteCount?: number;
+  /**
    * 记事本ID
    */
 
@@ -1666,10 +1686,20 @@ export interface ContactResponseDTO {
 
   sex?: string;
   /**
+   * 列表中该联系人的短信联系次数
+   */
+
+  smsNoteCount?: number;
+  /**
    * 来源
    */
 
   source?: string;
+  /**
+   * 列表中该联系人的拜访次数
+   */
+
+  visitNoteCount?: number;
 }
 export interface ContactSmsDTO {
   /**
@@ -2957,6 +2987,8 @@ declare global {
        *   data?: {
        *     // 生日
        *     birthday?: string
+       *     // 列表中该联系人的电话联系次数
+       *     callNoteCount?: number
        *     // 公司地址
        *     companyAddress?: string
        *     // 企业位置城市编码
@@ -2975,10 +3007,14 @@ declare global {
        *     companyProvinceName?: string
        *     // 创建时间
        *     createTime?: string
+       *     // 列表中该联系人的成交笔数，不含退款
+       *     dealCount?: number
        *     // 部门
        *     department?: string
        *     // 企业成立日期
        *     establishmentDate?: string
+       *     // 列表中该联系人的支出笔数，不含退款
+       *     expenseCount?: number
        *     // 家庭地址
        *     homeAddress?: string
        *     // 家庭住址城市编码
@@ -3001,6 +3037,8 @@ declare global {
        *     modifyTime?: string
        *     // 联系人姓名
        *     name?: string
+       *     // 列表中该联系人的普通记事次数
+       *     normalNoteCount?: number
        *     // 记事本ID
        *     notebookId?: number
        *     // 联系电话列表
@@ -3018,8 +3056,12 @@ declare global {
        *     position?: string
        *     // 性别
        *     sex?: string
+       *     // 列表中该联系人的短信联系次数
+       *     smsNoteCount?: number
        *     // 来源
        *     source?: string
+       *     // 列表中该联系人的拜访次数
+       *     visitNoteCount?: number
        *   }
        *   // 响应消息
        *   msg?: string
@@ -3055,6 +3097,8 @@ declare global {
        *   data?: Array<{
        *     // 生日
        *     birthday?: string
+       *     // 列表中该联系人的电话联系次数
+       *     callNoteCount?: number
        *     // 公司地址
        *     companyAddress?: string
        *     // 企业位置城市编码
@@ -3073,10 +3117,14 @@ declare global {
        *     companyProvinceName?: string
        *     // 创建时间
        *     createTime?: string
+       *     // 列表中该联系人的成交笔数，不含退款
+       *     dealCount?: number
        *     // 部门
        *     department?: string
        *     // 企业成立日期
        *     establishmentDate?: string
+       *     // 列表中该联系人的支出笔数，不含退款
+       *     expenseCount?: number
        *     // 家庭地址
        *     homeAddress?: string
        *     // 家庭住址城市编码
@@ -3099,6 +3147,8 @@ declare global {
        *     modifyTime?: string
        *     // 联系人姓名
        *     name?: string
+       *     // 列表中该联系人的普通记事次数
+       *     normalNoteCount?: number
        *     // 记事本ID
        *     notebookId?: number
        *     // 联系电话列表
@@ -3116,8 +3166,12 @@ declare global {
        *     position?: string
        *     // 性别
        *     sex?: string
+       *     // 列表中该联系人的短信联系次数
+       *     smsNoteCount?: number
        *     // 来源
        *     source?: string
+       *     // 列表中该联系人的拜访次数
+       *     visitNoteCount?: number
        *   }>
        *   // 响应消息
        *   msg?: string
@@ -3173,6 +3227,8 @@ declare global {
        *   data?: Array<{
        *     // 生日
        *     birthday?: string
+       *     // 列表中该联系人的电话联系次数
+       *     callNoteCount?: number
        *     // 公司地址
        *     companyAddress?: string
        *     // 企业位置城市编码
@@ -3191,10 +3247,14 @@ declare global {
        *     companyProvinceName?: string
        *     // 创建时间
        *     createTime?: string
+       *     // 列表中该联系人的成交笔数，不含退款
+       *     dealCount?: number
        *     // 部门
        *     department?: string
        *     // 企业成立日期
        *     establishmentDate?: string
+       *     // 列表中该联系人的支出笔数，不含退款
+       *     expenseCount?: number
        *     // 家庭地址
        *     homeAddress?: string
        *     // 家庭住址城市编码
@@ -3217,6 +3277,8 @@ declare global {
        *     modifyTime?: string
        *     // 联系人姓名
        *     name?: string
+       *     // 列表中该联系人的普通记事次数
+       *     normalNoteCount?: number
        *     // 记事本ID
        *     notebookId?: number
        *     // 联系电话列表
@@ -3234,8 +3296,12 @@ declare global {
        *     position?: string
        *     // 性别
        *     sex?: string
+       *     // 列表中该联系人的短信联系次数
+       *     smsNoteCount?: number
        *     // 来源
        *     source?: string
+       *     // 列表中该联系人的拜访次数
+       *     visitNoteCount?: number
        *   }>
        *   // 响应消息
        *   msg?: string
@@ -3349,6 +3415,8 @@ declare global {
        *   data?: {
        *     // 生日
        *     birthday?: string
+       *     // 列表中该联系人的电话联系次数
+       *     callNoteCount?: number
        *     // 公司地址
        *     companyAddress?: string
        *     // 企业位置城市编码
@@ -3367,10 +3435,14 @@ declare global {
        *     companyProvinceName?: string
        *     // 创建时间
        *     createTime?: string
+       *     // 列表中该联系人的成交笔数，不含退款
+       *     dealCount?: number
        *     // 部门
        *     department?: string
        *     // 企业成立日期
        *     establishmentDate?: string
+       *     // 列表中该联系人的支出笔数，不含退款
+       *     expenseCount?: number
        *     // 家庭地址
        *     homeAddress?: string
        *     // 家庭住址城市编码
@@ -3393,6 +3465,8 @@ declare global {
        *     modifyTime?: string
        *     // 联系人姓名
        *     name?: string
+       *     // 列表中该联系人的普通记事次数
+       *     normalNoteCount?: number
        *     // 记事本ID
        *     notebookId?: number
        *     // 联系电话列表
@@ -3410,8 +3484,12 @@ declare global {
        *     position?: string
        *     // 性别
        *     sex?: string
+       *     // 列表中该联系人的短信联系次数
+       *     smsNoteCount?: number
        *     // 来源
        *     source?: string
+       *     // 列表中该联系人的拜访次数
+       *     visitNoteCount?: number
        *   }
        *   // 响应消息
        *   msg?: string
@@ -3515,6 +3593,8 @@ declare global {
        *   data?: {
        *     // 生日
        *     birthday?: string
+       *     // 列表中该联系人的电话联系次数
+       *     callNoteCount?: number
        *     // 公司地址
        *     companyAddress?: string
        *     // 企业位置城市编码
@@ -3533,10 +3613,14 @@ declare global {
        *     companyProvinceName?: string
        *     // 创建时间
        *     createTime?: string
+       *     // 列表中该联系人的成交笔数，不含退款
+       *     dealCount?: number
        *     // 部门
        *     department?: string
        *     // 企业成立日期
        *     establishmentDate?: string
+       *     // 列表中该联系人的支出笔数，不含退款
+       *     expenseCount?: number
        *     // 家庭地址
        *     homeAddress?: string
        *     // 家庭住址城市编码
@@ -3559,6 +3643,8 @@ declare global {
        *     modifyTime?: string
        *     // 联系人姓名
        *     name?: string
+       *     // 列表中该联系人的普通记事次数
+       *     normalNoteCount?: number
        *     // 记事本ID
        *     notebookId?: number
        *     // 联系电话列表
@@ -3576,8 +3662,12 @@ declare global {
        *     position?: string
        *     // 性别
        *     sex?: string
+       *     // 列表中该联系人的短信联系次数
+       *     smsNoteCount?: number
        *     // 来源
        *     source?: string
+       *     // 列表中该联系人的拜访次数
+       *     visitNoteCount?: number
        *   }
        *   // 响应消息
        *   msg?: string
@@ -3738,6 +3828,8 @@ declare global {
        *   data?: {
        *     // 生日
        *     birthday?: string
+       *     // 列表中该联系人的电话联系次数
+       *     callNoteCount?: number
        *     // 公司地址
        *     companyAddress?: string
        *     // 企业位置城市编码
@@ -3756,10 +3848,14 @@ declare global {
        *     companyProvinceName?: string
        *     // 创建时间
        *     createTime?: string
+       *     // 列表中该联系人的成交笔数，不含退款
+       *     dealCount?: number
        *     // 部门
        *     department?: string
        *     // 企业成立日期
        *     establishmentDate?: string
+       *     // 列表中该联系人的支出笔数，不含退款
+       *     expenseCount?: number
        *     // 家庭地址
        *     homeAddress?: string
        *     // 家庭住址城市编码
@@ -3782,6 +3878,8 @@ declare global {
        *     modifyTime?: string
        *     // 联系人姓名
        *     name?: string
+       *     // 列表中该联系人的普通记事次数
+       *     normalNoteCount?: number
        *     // 记事本ID
        *     notebookId?: number
        *     // 联系电话列表
@@ -3799,8 +3897,12 @@ declare global {
        *     position?: string
        *     // 性别
        *     sex?: string
+       *     // 列表中该联系人的短信联系次数
+       *     smsNoteCount?: number
        *     // 来源
        *     source?: string
+       *     // 列表中该联系人的拜访次数
+       *     visitNoteCount?: number
        *   }
        *   // 响应消息
        *   msg?: string
@@ -3853,6 +3955,8 @@ declare global {
        *     contact?: {
        *       // 生日
        *       birthday?: string
+       *       // 列表中该联系人的电话联系次数
+       *       callNoteCount?: number
        *       // 公司地址
        *       companyAddress?: string
        *       // 企业位置城市编码
@@ -3871,10 +3975,14 @@ declare global {
        *       companyProvinceName?: string
        *       // 创建时间
        *       createTime?: string
+       *       // 列表中该联系人的成交笔数，不含退款
+       *       dealCount?: number
        *       // 部门
        *       department?: string
        *       // 企业成立日期
        *       establishmentDate?: string
+       *       // 列表中该联系人的支出笔数，不含退款
+       *       expenseCount?: number
        *       // 家庭地址
        *       homeAddress?: string
        *       // 家庭住址城市编码
@@ -3897,6 +4005,8 @@ declare global {
        *       modifyTime?: string
        *       // 联系人姓名
        *       name?: string
+       *       // 列表中该联系人的普通记事次数
+       *       normalNoteCount?: number
        *       // 记事本ID
        *       notebookId?: number
        *       // 联系电话列表
@@ -3914,8 +4024,12 @@ declare global {
        *       position?: string
        *       // 性别
        *       sex?: string
+       *       // 列表中该联系人的短信联系次数
+       *       smsNoteCount?: number
        *       // 来源
        *       source?: string
+       *       // 列表中该联系人的拜访次数
+       *       visitNoteCount?: number
        *     }
        *     // 联系人收支记录
        *     // [items] start
@@ -4125,6 +4239,8 @@ declare global {
        *     importedContacts?: Array<{
        *       // 生日
        *       birthday?: string
+       *       // 列表中该联系人的电话联系次数
+       *       callNoteCount?: number
        *       // 公司地址
        *       companyAddress?: string
        *       // 企业位置城市编码
@@ -4143,10 +4259,14 @@ declare global {
        *       companyProvinceName?: string
        *       // 创建时间
        *       createTime?: string
+       *       // 列表中该联系人的成交笔数，不含退款
+       *       dealCount?: number
        *       // 部门
        *       department?: string
        *       // 企业成立日期
        *       establishmentDate?: string
+       *       // 列表中该联系人的支出笔数，不含退款
+       *       expenseCount?: number
        *       // 家庭地址
        *       homeAddress?: string
        *       // 家庭住址城市编码
@@ -4169,6 +4289,8 @@ declare global {
        *       modifyTime?: string
        *       // 联系人姓名
        *       name?: string
+       *       // 列表中该联系人的普通记事次数
+       *       normalNoteCount?: number
        *       // 记事本ID
        *       notebookId?: number
        *       // 联系电话列表
@@ -4186,8 +4308,12 @@ declare global {
        *       position?: string
        *       // 性别
        *       sex?: string
+       *       // 列表中该联系人的短信联系次数
+       *       smsNoteCount?: number
        *       // 来源
        *       source?: string
+       *       // 列表中该联系人的拜访次数
+       *       visitNoteCount?: number
        *     }>
        *     // 成功导入联系人数量
        *     importedCount?: number
@@ -4481,6 +4607,8 @@ declare global {
        *     records?: Array<{
        *       // 生日
        *       birthday?: string
+       *       // 列表中该联系人的电话联系次数
+       *       callNoteCount?: number
        *       // 公司地址
        *       companyAddress?: string
        *       // 企业位置城市编码
@@ -4499,10 +4627,14 @@ declare global {
        *       companyProvinceName?: string
        *       // 创建时间
        *       createTime?: string
+       *       // 列表中该联系人的成交笔数，不含退款
+       *       dealCount?: number
        *       // 部门
        *       department?: string
        *       // 企业成立日期
        *       establishmentDate?: string
+       *       // 列表中该联系人的支出笔数，不含退款
+       *       expenseCount?: number
        *       // 家庭地址
        *       homeAddress?: string
        *       // 家庭住址城市编码
@@ -4525,6 +4657,8 @@ declare global {
        *       modifyTime?: string
        *       // 联系人姓名
        *       name?: string
+       *       // 列表中该联系人的普通记事次数
+       *       normalNoteCount?: number
        *       // 记事本ID
        *       notebookId?: number
        *       // 联系电话列表
@@ -4542,8 +4676,12 @@ declare global {
        *       position?: string
        *       // 性别
        *       sex?: string
+       *       // 列表中该联系人的短信联系次数
+       *       smsNoteCount?: number
        *       // 来源
        *       source?: string
+       *       // 列表中该联系人的拜访次数
+       *       visitNoteCount?: number
        *     }>
        *     // [title] ContactListStatsDTO
        *     // 人脉列表统计数据

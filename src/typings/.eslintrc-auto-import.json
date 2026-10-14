@@ -132,6 +132,7 @@
     "isReadonly": true,
     "isRef": true,
     "isShallow": true,
+    "isWithinDays": true,
     "mapActions": true,
     "mapGetters": true,
     "mapState": true,

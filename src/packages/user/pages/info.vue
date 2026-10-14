@@ -3,10 +3,37 @@
 
     const router = useRouter();
 
-    const onLogout = async () => {
-        await userStore.logout();
+    const info = computed(() => userStore.userInfo);
 
-        router.replaceAll({name: "Login"});
+    const dialog = useDialog();
+
+    const onLogout = async () => {
+        try {
+            await dialog.confirm({
+                title: "确定要退出登录当前账号吗？",
+                beforeConfirm: async ({resolve}) => {
+                    uni.showLoading({title: "正在退出登录", mask: true});
+
+                    try {
+                        await userStore.logout();
+                        uni.hideLoading();
+
+                        resolve(true);
+                    } catch (e) {
+                        console.log("logout", e);
+                        resolve(true);
+                    }
+                }
+            });
+
+            await sleep(100);
+
+            uni.showToast({title: "退出成功", icon: "none", mask: true});
+
+            router.replaceAll({name: "Login"});
+        } catch {
+            console.log("点击了取消按钮");
+        }
     };
 </script>
 
@@ -31,24 +58,45 @@
                 <wd-cell-group border title-width="91.60rpx">
                     <wd-cell clickable css-icon suffix-icon="i-carbon-chevron-right !size-38.17rpx" title="头像">
                         <view class="relative flex justify-end">
-                            <view class="absolute size-76.34rpx rd-38.17rpx bg-red -top-19.08rpx" />
+                            <view class="absolute -top-19.08rpx">
+                                <wd-img
+                                    :src="info?.avatar || 'avatar.png'"
+                                    enable-preview
+                                    height="76.34rpx"
+                                    radius="38.17rpx"
+                                    width="76.34rpx"
+                                >
+                                    <template #error>
+                                        <image class="size-80rpx rd-38.17rpx" src="@/static/default-avatar.png" />
+                                    </template>
+                                </wd-img>
+                            </view>
                         </view>
                     </wd-cell>
                     <wd-cell clickable css-icon suffix-icon="i-carbon-chevron-right !size-38.17rpx" title="昵称">
-                        <view class="c-primary6">昵称昵称</view>
+                        <view class="c-primary6">{{ info?.name }}</view>
                     </wd-cell>
                     <wd-cell clickable css-icon suffix-icon="i-carbon-chevron-right !size-38.17rpx" title="性别">
-                        <view>未知</view>
+                        <view>{{ info?.sex }}</view>
                     </wd-cell>
                     <wd-cell clickable css-icon suffix-icon="i-carbon-chevron-right !size-38.17rpx" title="生日">
-                        <view class="c-primary6">2023/10/13</view>
+                        <view class="c-primary6">{{ info?.birthday }}</view>
                     </wd-cell>
                 </wd-cell-group>
             </view>
             <view class="mt-19.08rpx">
                 <wd-cell-group border title-width="91.60rpx">
                     <wd-cell clickable css-icon suffix-icon="i-carbon-chevron-right !size-38.17rpx" title="手机号码">
-                        <view class="c-primary6">153****1521</view>
+                        <view class="c-primary6">
+                            <wd-text
+                                :text="info?.phone"
+                                color="var(--wot-cell-value-color)"
+                                format
+                                line-height="var(--wot-cell-value-line-height)"
+                                mode="phone"
+                                size="var(--wot-cell-value-font-size)"
+                            />
+                        </view>
                     </wd-cell>
                     <wd-cell
                         clickable

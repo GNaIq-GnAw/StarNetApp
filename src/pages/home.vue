@@ -323,12 +323,42 @@
                                         <view class="m-4.77rpx rd-19.08rpx bg-primary6/50 px-9.54rpx">
                                             {{ formatDate(new Date(row.createTime)) }} 新增
                                         </view>
-                                        <view class="m-4.77rpx rd-19.08rpx bg-#FBC050 px-9.54rpx">电话联系 5次</view>
-                                        <view class="m-4.77rpx rd-19.08rpx bg-#FBC050 px-9.54rpx">短信联系 5次</view>
-                                        <view class="m-4.77rpx rd-19.08rpx bg-#FBC050 px-9.54rpx">拜访 10次</view>
-                                        <view class="m-4.77rpx rd-19.08rpx bg-#FBC050 px-9.54rpx">撰写记事 5次</view>
-                                        <view class="m-4.77rpx rd-19.08rpx bg-#F95585 px-9.54rpx">成交 5笔</view>
-                                        <view class="m-4.77rpx rd-19.08rpx bg-#9BD073 px-9.54rpx">支出 5笔</view>
+                                        <view
+                                            v-if="row?.callNoteCount > 0"
+                                            class="m-4.77rpx rd-19.08rpx bg-#FBC050 px-9.54rpx"
+                                        >
+                                            电话联系 {{ row.callNoteCount }}次
+                                        </view>
+                                        <view
+                                            v-if="row?.smsNoteCount > 0"
+                                            class="m-4.77rpx rd-19.08rpx bg-#FBC050 px-9.54rpx"
+                                        >
+                                            短信联系 {{ row.smsNoteCount }}次
+                                        </view>
+                                        <view
+                                            v-if="row?.visitNoteCount > 0"
+                                            class="m-4.77rpx rd-19.08rpx bg-#FBC050 px-9.54rpx"
+                                        >
+                                            拜访 {{ row.visitNoteCount }}次
+                                        </view>
+                                        <view
+                                            v-if="row?.normalNoteCount > 0"
+                                            class="m-4.77rpx rd-19.08rpx bg-#FBC050 px-9.54rpx"
+                                        >
+                                            撰写记事 {{ row.normalNoteCount }}次
+                                        </view>
+                                        <view
+                                            v-if="row?.dealCount > 0"
+                                            class="m-4.77rpx rd-19.08rpx bg-#F95585 px-9.54rpx"
+                                        >
+                                            成交 {{ row.dealCount }}笔
+                                        </view>
+                                        <view
+                                            v-if="row?.expenseCount > 0"
+                                            class="m-4.77rpx rd-19.08rpx bg-#9BD073 px-9.54rpx"
+                                        >
+                                            支出 {{ row.expenseCount }}笔
+                                        </view>
                                     </view>
                                 </view>
                             </view>

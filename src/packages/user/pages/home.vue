@@ -8,6 +8,10 @@
 
     const {systemInfo} = useSystemInfo();
 
+    const userStore = useUserStore();
+
+    const info = computed(() => userStore.userInfo);
+
     const onToast = () => {
         uni.showToast({title: "敬请期待..", icon: "none"});
     };
@@ -23,7 +27,18 @@
             class="p-[38.17rpx_19.08rpx]"
         >
             <view class="mx-19.08rpx mb-38.17rpx flex">
-                <view class="size-95.42rpx rd-47.71rpx bg-red" @click="$Router.push({name: 'UserInfo'})" />
+                <wd-img
+                    :src="info?.avatar || 'avatar.png'"
+                    enable-preview
+                    height="95.42rpx"
+                    radius="47.71rpx"
+                    width="95.42rpx"
+                    @click="$Router.push({name: 'UserInfo'})"
+                >
+                    <template #error>
+                        <image class="size-95.42rpx rd-47.71rpx" src="@/static/default-avatar.png" />
+                    </template>
+                </wd-img>
                 <view class="ml-19.08rpx">
                     <view class="text-26.72rpx lh-57.25rpx">名字</view>
                     <view class="flex items-center c-#ffffff">
