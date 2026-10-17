@@ -8,8 +8,8 @@ export default defineManifestConfig({
     name: env.VITE_APP_NAME,
     appid: "__UNI__12A2B2B",
     description: "",
-    versionName: "1.0.11",
-    versionCode: "1011",
+    versionName: "1.0.14",
+    versionCode: "1014",
     transformPx: false,
     /* 5+App特有相关 */
     "app-plus": {
@@ -53,7 +53,8 @@ export default defineManifestConfig({
                     "<uses-permission android:name='android.permission.CALL_PHONE'/>",
                     "<uses-permission android:name='android.permission.GET_ACCOUNTS'/>",
                     "<uses-permission android:name='android.permission.WRITE_CONTACTS'/>",
-                    "<uses-permission android:name='android.permission.READ_CONTACTS'/>"
+                    "<uses-permission android:name='android.permission.READ_CONTACTS'/>",
+                    "<uses-permission android:name='android.permission.READ_CALL_LOG'/>"
                 ]
             },
             /* ios打包配置 */

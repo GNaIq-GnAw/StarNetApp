@@ -14,6 +14,20 @@
     const onMakePhoneCall = item => {
         uni.makePhoneCall({phoneNumber: item.phone});
     };
+
+    const {checkPermission, fetchAll} = useCallLog();
+
+    onMounted(async () => {
+        try {
+            checkPermission();
+
+            const list = await fetchAll();
+
+            console.log("list", list);
+        } catch (e) {
+            console.log("useCallLog -> failed", e);
+        }
+    });
 </script>
 
 <template>
@@ -45,7 +59,7 @@
         </view>
         <view class="px-38.17rpx">
             <view
-                v-for="(item, i) in [...form.contact.phones, ...form.contact.phones]"
+                v-for="(item, i) in form.contact.phones"
                 :key="i"
                 class="b-b-(1px primary6/10 solid) p-[19.08rpx_0] last:b-b-none"
             >

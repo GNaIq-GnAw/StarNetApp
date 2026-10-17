@@ -55,7 +55,7 @@
                     <template #icon="{active}">
                         <view
                             :class="[item.icon, active ? 'c-primary6' : 'c-#9396a0']"
-                            class="iconfont mb-11.45rpx text-38.17rpx"
+                            class="iconfont mb-11.45rpx !text-38.17rpx"
                         />
                     </template>
                 </wd-tabbar-item>

@@ -10,6 +10,7 @@ export {}
 declare global {
   const $$userConfigMap: typeof import('../api/index.js').$$userConfigMap
   const Apis: typeof import('../api/index.js').Apis
+  const CALL_TYPES: typeof import('../hooks/useCallLog.js').CALL_TYPES
   const Cache: typeof import('../enums/Cache.js').default
   const CommonUtil: typeof import('@wot-ui/ui').CommonUtil
   const EffectScope: typeof import('vue').EffectScope
@@ -21,6 +22,7 @@ declare global {
   const alovaInstance: typeof import('../api/index.js').alovaInstance
   const api: typeof import('../api/index.js').default
   const apiDefinitions: typeof import('../api/apiDefinitions.js').default
+  const cleanCallPhone: typeof import('../hooks/useCallLog.js').cleanCallPhone
   const computed: typeof import('vue').computed
   const createApis: typeof import('../api/createApis.js').createApis
   const createApp: typeof import('vue').createApp
@@ -58,6 +60,7 @@ declare global {
   const markRaw: typeof import('vue').markRaw
   const mountApis: typeof import('../api/createApis.js').mountApis
   const nextTick: typeof import('vue').nextTick
+  const normalizeCallRecord: typeof import('../hooks/useCallLog.js').normalizeCallRecord
   const onActivated: typeof import('vue').onActivated
   const onAddToFavorites: typeof import('@dcloudio/uni-app').onAddToFavorites
   const onBackPress: typeof import('@dcloudio/uni-app').onBackPress
@@ -102,6 +105,7 @@ declare global {
   const reactive: typeof import('vue').reactive
   const readonly: typeof import('vue').readonly
   const ref: typeof import('vue').ref
+  const resolveCallType: typeof import('../hooks/useCallLog.js').resolveCallType
   const resolveComponent: typeof import('vue').resolveComponent
   const setActivePinia: typeof import('pinia').setActivePinia
   const setMapStoreSuffix: typeof import('pinia').setMapStoreSuffix
@@ -111,6 +115,7 @@ declare global {
   const shallowReadonly: typeof import('vue').shallowReadonly
   const shallowRef: typeof import('vue').shallowRef
   const sleep: typeof import('../utils/index.js').sleep
+  const sortAndDedupe: typeof import('../hooks/useCallLog.js').sortAndDedupe
   const store: typeof import('../stores/index.js').store
   const storeToRefs: typeof import('pinia').storeToRefs
   const toRaw: typeof import('vue').toRaw
@@ -122,6 +127,7 @@ declare global {
   const unref: typeof import('vue').unref
   const useAppInitialize: typeof import('../hooks/useAppInitialize.js').useAppInitialize
   const useAttrs: typeof import('vue').useAttrs
+  const useCallLog: typeof import('../hooks/useCallLog.js').useCallLog
   const useCaptcha: typeof import('../hooks/useCaptcha.js').useCaptcha
   const useContacts: typeof import('../hooks/useContacts.js').useContacts
   const useCssModule: typeof import('vue').useCssModule
@@ -174,6 +180,7 @@ declare module 'vue' {
   interface ComponentCustomProperties {
     readonly $$userConfigMap: UnwrapRef<typeof import('../api/index.js')['$$userConfigMap']>
     readonly Apis: UnwrapRef<typeof import('../api/index.js')['Apis']>
+    readonly CALL_TYPES: UnwrapRef<typeof import('../hooks/useCallLog.js')['CALL_TYPES']>
     readonly Cache: UnwrapRef<typeof import('../enums/Cache.js')['default']>
     readonly CommonUtil: UnwrapRef<typeof import('@wot-ui/ui')['CommonUtil']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
@@ -185,6 +192,7 @@ declare module 'vue' {
     readonly alovaInstance: UnwrapRef<typeof import('../api/index.js')['alovaInstance']>
     readonly api: UnwrapRef<typeof import('../api/index.js')['default']>
     readonly apiDefinitions: UnwrapRef<typeof import('../api/apiDefinitions.js')['default']>
+    readonly cleanCallPhone: UnwrapRef<typeof import('../hooks/useCallLog.js')['cleanCallPhone']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
     readonly createApis: UnwrapRef<typeof import('../api/createApis.js')['createApis']>
     readonly createApp: UnwrapRef<typeof import('vue')['createApp']>
@@ -222,6 +230,7 @@ declare module 'vue' {
     readonly markRaw: UnwrapRef<typeof import('vue')['markRaw']>
     readonly mountApis: UnwrapRef<typeof import('../api/createApis.js')['mountApis']>
     readonly nextTick: UnwrapRef<typeof import('vue')['nextTick']>
+    readonly normalizeCallRecord: UnwrapRef<typeof import('../hooks/useCallLog.js')['normalizeCallRecord']>
     readonly onActivated: UnwrapRef<typeof import('vue')['onActivated']>
     readonly onAddToFavorites: UnwrapRef<typeof import('@dcloudio/uni-app')['onAddToFavorites']>
     readonly onBackPress: UnwrapRef<typeof import('@dcloudio/uni-app')['onBackPress']>
@@ -266,6 +275,7 @@ declare module 'vue' {
     readonly reactive: UnwrapRef<typeof import('vue')['reactive']>
     readonly readonly: UnwrapRef<typeof import('vue')['readonly']>
     readonly ref: UnwrapRef<typeof import('vue')['ref']>
+    readonly resolveCallType: UnwrapRef<typeof import('../hooks/useCallLog.js')['resolveCallType']>
     readonly resolveComponent: UnwrapRef<typeof import('vue')['resolveComponent']>
     readonly setActivePinia: UnwrapRef<typeof import('pinia')['setActivePinia']>
     readonly setMapStoreSuffix: UnwrapRef<typeof import('pinia')['setMapStoreSuffix']>
@@ -275,6 +285,7 @@ declare module 'vue' {
     readonly shallowReadonly: UnwrapRef<typeof import('vue')['shallowReadonly']>
     readonly shallowRef: UnwrapRef<typeof import('vue')['shallowRef']>
     readonly sleep: UnwrapRef<typeof import('../utils/index.js')['sleep']>
+    readonly sortAndDedupe: UnwrapRef<typeof import('../hooks/useCallLog.js')['sortAndDedupe']>
     readonly store: UnwrapRef<typeof import('../stores/index.js')['store']>
     readonly storeToRefs: UnwrapRef<typeof import('pinia')['storeToRefs']>
     readonly toRaw: UnwrapRef<typeof import('vue')['toRaw']>
@@ -286,6 +297,7 @@ declare module 'vue' {
     readonly unref: UnwrapRef<typeof import('vue')['unref']>
     readonly useAppInitialize: UnwrapRef<typeof import('../hooks/useAppInitialize.js')['useAppInitialize']>
     readonly useAttrs: UnwrapRef<typeof import('vue')['useAttrs']>
+    readonly useCallLog: UnwrapRef<typeof import('../hooks/useCallLog.js')['useCallLog']>
     readonly useCaptcha: UnwrapRef<typeof import('../hooks/useCaptcha.js')['useCaptcha']>
     readonly useContacts: UnwrapRef<typeof import('../hooks/useContacts.js')['useContacts']>
     readonly useCssModule: UnwrapRef<typeof import('vue')['useCssModule']>
