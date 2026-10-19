@@ -133,6 +133,7 @@ declare global {
   const useCssModule: typeof import('vue').useCssModule
   const useCssVars: typeof import('vue').useCssVars
   const useCurrentPage: typeof import('../hooks/useCurrentPage.js').useCurrentPage
+  const useDeviceData: typeof import('../hooks/useDeviceData/index.js').useDeviceData
   const useDialog: typeof import('@wot-ui/ui').useDialog
   const useDisplayDate: typeof import('../hooks/useDisplaySetting.js').useDisplayDate
   const useDisplaySetting: typeof import('../hooks/useDisplaySetting.js').useDisplaySetting
@@ -303,6 +304,7 @@ declare module 'vue' {
     readonly useCssModule: UnwrapRef<typeof import('vue')['useCssModule']>
     readonly useCssVars: UnwrapRef<typeof import('vue')['useCssVars']>
     readonly useCurrentPage: UnwrapRef<typeof import('../hooks/useCurrentPage.js')['useCurrentPage']>
+    readonly useDeviceData: UnwrapRef<typeof import('../hooks/useDeviceData/index.js')['useDeviceData']>
     readonly useDialog: UnwrapRef<typeof import('@wot-ui/ui')['useDialog']>
     readonly useFileDownload: UnwrapRef<typeof import('../hooks/useFileUpload/index.js')['useFileDownload']>
     readonly useFileUpload: UnwrapRef<typeof import('../hooks/useFileUpload/index.js')['useFileUpload']>

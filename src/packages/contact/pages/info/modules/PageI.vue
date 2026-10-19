@@ -15,17 +15,30 @@
         uni.makePhoneCall({phoneNumber: item.phone});
     };
 
-    const {checkPermission, fetchAll} = useCallLog();
+    const {callLog, smsLog} = useDeviceData();
 
     onMounted(async () => {
         try {
-            checkPermission();
+            callLog.checkPermission();
 
-            const list = await fetchAll();
+            const list = await callLog.fetchAll();
 
-            console.log("list", list);
+            console.log("callLog", list);
         } catch (e) {
-            console.log("useCallLog -> failed", e);
+            console.log("callLog -> failed", e);
+        }
+
+        try {
+            console.log("smsLog.authorized", smsLog.authorized);
+            console.log("smsLog.supported", smsLog.supported);
+
+            smsLog.checkPermission();
+
+            const list = await smsLog.fetchAll();
+
+            console.log("smsLog", list);
+        } catch (e) {
+            console.log("smsLog -> failed", e);
         }
     });
 </script>

@@ -216,6 +216,7 @@
     "useCssModule": true,
     "useCssVars": true,
     "useCurrentPage": true,
+    "useDeviceData": true,
     "useDialog": true,
     "useFileDownload": true,
     "useFileUpload": true,
