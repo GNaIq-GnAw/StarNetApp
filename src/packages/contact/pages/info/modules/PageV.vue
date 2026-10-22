@@ -71,7 +71,7 @@
                 class="mx-19.08rpx b-b-(1px primary6/10 solid) bg-#ffffff p-19.08rpx last:b-b-none"
             >
                 <view class="flex items-center">
-                    <view class="text-22.90rpx">{{ item.name }}</view>
+                    <view class="text-22.90rpx fw-600">{{ item.name }}</view>
                     <view class="ml-11.45rpx text-19.08rpx c-primary6/50">{{ item.relation }}</view>
                     <view class="i-ri:edit-box-line ml-auto size-30.53rpx c-primary6" @click="updateRelation(item)" />
                     <view

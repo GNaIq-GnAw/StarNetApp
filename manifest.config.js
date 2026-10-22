@@ -8,8 +8,8 @@ export default defineManifestConfig({
     name: env.VITE_APP_NAME,
     appid: "__UNI__12A2B2B",
     description: "",
-    versionName: "1.0.15",
-    versionCode: "1015",
+    versionName: "1.0.16",
+    versionCode: "1016",
     transformPx: false,
     /* 5+App特有相关 */
     "app-plus": {

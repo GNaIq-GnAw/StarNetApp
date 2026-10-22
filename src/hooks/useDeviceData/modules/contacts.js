@@ -41,11 +41,11 @@ const readContacts = (filter = null) =>
 
 /**
  * 创建通讯录通道，返回一组响应式状态与操作方法
- * @returns {object} 通讯录通道：contacts / loading / supported / authorized / checkPermission / fetchAll / search / clear
+ * @returns {object} 通讯录通道：list / loading / supported / authorized / checkPermission / fetchAll / search / clear
  */
 export const createContactsChannel = () => {
     /** 归一化后的联系人列表 */
-    const contacts = ref([]);
+    const list = ref([]);
 
     /** 是否正在读取 */
     const loading = ref(false);
@@ -100,12 +100,12 @@ export const createContactsChannel = () => {
                 return [];
             }
 
-            const list = await readContacts();
+            const contacts = await readContacts();
 
             authorized.value = true;
-            contacts.value = list.map(normalizeContact);
+            list.value = contacts.map(normalizeContact);
 
-            return contacts.value;
+            return list.value;
         } catch {
             // 读取失败时以系统查询为准刷新权限状态（iOS 拒绝授权会在读取时抛错）
             authorized.value = queryPermission(READ_CONTACTS);
@@ -124,9 +124,9 @@ export const createContactsChannel = () => {
     const search = (keyword = "") => {
         const kw = String(keyword).trim().toLowerCase();
 
-        if (!kw) return contacts.value;
+        if (!kw) return list.value;
 
-        return contacts.value.filter(item => {
+        return list.value.filter(item => {
             const nameMatched = item.name.toLowerCase().includes(kw);
             const phoneMatched = item.phones.some(phone => String(phone).includes(kw));
 
@@ -138,8 +138,8 @@ export const createContactsChannel = () => {
      * 清空已加载数据（不撤销权限）
      */
     const clear = () => {
-        contacts.value = [];
+        list.value = [];
     };
 
-    return {contacts, loading, supported, authorized, checkPermission, fetchAll, search, clear};
+    return {list, loading, supported, authorized, checkPermission, fetchAll, search, clear};
 };

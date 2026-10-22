@@ -6,12 +6,34 @@
 
     const enabledSync = ref(false);
 
-    const model = reactive({startTime: "", endTime: "", recordType: ""});
+    const model = reactive({isAll: false, startTime: "", endTime: "", recordType: ""});
 
     const onSave = () => {
-        eventChannel.emit("reload:data", {...model});
+        eventChannel.emit("reload:data", {
+            startTime: model.startTime,
+            endTime: model.endTime,
+            recordType: model.recordType
+        });
         uni.navigateBack();
     };
+
+    const onReset = () => {
+        model.isAll = true;
+        model.startTime = "";
+        model.endTime = "";
+        model.recordType = "";
+
+        onSave();
+    };
+
+    onMounted(() => {
+        eventChannel.on("update:query", data => {
+            model.isAll = !(data.startTime || data.endTime);
+            model.startTime = data.startTime;
+            model.endTime = data.endTime;
+            model.recordType = data.recordType;
+        });
+    });
 </script>
 
 <template>
@@ -40,7 +62,7 @@
                                 <view class="w-full flex items-center">
                                     <view>时间选择</view>
                                     <view class="ml-auto flex items-center">
-                                        <wd-checkbox type="square">
+                                        <wd-checkbox v-model="model.isAll" type="square">
                                             <text class="c-primary6/50">全部</text>
                                         </wd-checkbox>
                                     </view>
@@ -49,12 +71,14 @@
                             <view class="flex items-center">
                                 <custom-datetime-picker
                                     v-model:formated-value="model.startTime"
+                                    :disabled="model.isAll"
                                     placeholder="请选择开始月份"
                                     type="year-month"
                                 />
                                 <view class="mx-21.95rpx text-19.08rpx c-primary6 lh-38.17rpx">至</view>
                                 <custom-datetime-picker
                                     v-model:formated-value="model.endTime"
+                                    :disabled="model.isAll"
                                     placeholder="请选择结束月份"
                                     type="year-month"
                                 />
@@ -63,7 +87,7 @@
                     </view>
                     <view class="my-38.17rpx h-1px bg-primary6/10" />
                     <view class="mx-19.08rpx">
-                        <wd-form-item title="事件类型选择" label="仅展示所产生某种事件的内容">
+                        <wd-form-item label="仅展示所产生某种事件的内容" title="事件类型选择">
                             <wd-radio-group v-model="model.recordType" direction="horizontal">
                                 <view class="flex flex-wrap -m-9.54rpx">
                                     <view v-for="item in RecordType.items" :key="item.value" class="m-9.54rpx">
@@ -88,7 +112,7 @@
         </view>
         <view class="flex items-center rd-7.63rpx bg-#ffffff p-[19.08rpx_38.17rpx]">
             <view class="w-190.84rpx">
-                <wd-button block variant="plain" @click="reset()">重置</wd-button>
+                <wd-button block variant="plain" @click="onReset()">重置</wd-button>
             </view>
             <view class="ml-19.08rpx flex-1">
                 <wd-button block @click="onSave()">使用当前设置</wd-button>

@@ -51,7 +51,7 @@
         get: () => {
             const $value = $modelValue.value || $formatedValue.value;
 
-            if (!$value) return 0;
+            if (!$value) return Date.now();
 
             return +formatDate(new Date($value), "T");
         },
@@ -69,6 +69,12 @@
     });
 
     const [minDate, maxDate] = ["1900-01-01", Date.now()].map(date => +formatDate(new Date(date), "T"));
+
+    const onInputClick = () => {
+        if (attr?.disabled) return;
+
+        visible.value = true;
+    };
 </script>
 
 <template>
@@ -78,7 +84,8 @@
         :placeholder="$attrs?.placeholder || '请选择'"
         readonly
         type="text"
-        @click="visible = true"
+        v-bind="$attrs"
+        @click="onInputClick"
     />
     <wd-datetime-picker
         v-model="$bindValue"

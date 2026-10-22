@@ -1,4 +1,12 @@
 <script setup>
+    definePage({
+        style: {
+            "app-plus": {
+                softinputMode: "adjustResize"
+            }
+        }
+    });
+
     const {systemInfo} = useSystemInfo();
 
     const notebookStore = useNotebookStore();
@@ -11,47 +19,40 @@
 
     const [historyShow, toggleHistoryShow] = useToggle(true);
 
-    // 历史搜索记录
-    const $history = reactive({
-        list: uni.getStorageSync(Cache.ContactSearchHistory) || [],
-        append: value => {
-            if (!$history.list.includes(value)) {
-                $history.list.push(value);
-                uni.setStorageSync(Cache.ContactSearchHistory, $history.list);
-            }
-        },
-        clear: () => {
-            $history.list = [];
-            uni.removeStorageSync(Cache.ContactSearchHistory);
+    const {list: historyList, add: addHistory, clear: clearHistory} = useSearchHistory();
 
-            uni.showToast({title: "搜索记录已清除", icon: "success"});
-        },
-        select: index => {
-            query.keyword = $history.list[index];
-            reloadData();
-        }
-    });
+    // 关键字去空格，顺带兜底非字符串
+    const currentKeyword = () => `${query.keyword ?? ""}`.trim();
+
+    // 请求序号：连续搜索时只认最后一次响应，避免旧结果覆盖新结果
+    let requestSeq = 0;
 
     const queryList = async () => {
-        if (!query.keyword) {
-            toggleHistoryShow(true);
+        const seq = ++requestSeq;
+        const keyword = currentKeyword();
+
+        if (!keyword) {
+            // 空关键字直接给空结果，避免 z-paging 卡在 loading
+            pagingRef.value.complete([]);
 
             return;
         }
 
         try {
-            const notebookId = notebookStore.defaultNotebook.id;
             const {data} = await Apis.contact.getContactsByNotebook({
-                pathParams: {notebookId},
-                params: {keyword: query.keyword}
+                pathParams: {notebookId: notebookStore.defaultNotebook.id},
+                params: {keyword}
             });
 
-            // 记录搜索关键字
-            $history.append(query.keyword);
+            // 已有更新的搜索发出，丢弃本次结果
+            if (seq !== requestSeq) return;
 
             pagingRef.value.complete(data);
         } catch (e) {
-            console.log("eeeeeee", e);
+            console.log("search contacts failed", e);
+
+            if (seq !== requestSeq) return;
+
             pagingRef.value.complete(false);
         }
     };
@@ -60,11 +61,32 @@
         list.value = vlist;
     };
 
+    // 发起搜索即记入历史，不依赖接口成败
     const reloadData = async () => {
+        const keyword = currentKeyword();
+
+        if (!keyword) {
+            toggleHistoryShow(true);
+
+            return;
+        }
+
+        addHistory(keyword);
         toggleHistoryShow(false);
 
         await nextTick();
         pagingRef.value.reload();
+    };
+
+    const onSelectHistory = text => {
+        query.keyword = text;
+        reloadData();
+    };
+
+    const onClearHistory = () => {
+        clearHistory();
+
+        uni.showToast({title: "搜索记录已清除", icon: "success"});
     };
 </script>
 
@@ -87,23 +109,25 @@
             />
         </view>
         <view v-if="historyShow" class="flex-1">
-            <view v-if="$history.list.length" class="bg-#ffffff p-[38.17rpx_38.17rpx_19.08rpx]">
-                <view class="mb-19.08rpx flex items-center">
-                    <view class="text-22.90rpx lh-38.17rpx">搜索历史</view>
-                    <view class="i-icon-park-outline:delete ml-auto size-38.17rpx" @click="$history.clear()" />
-                </view>
-                <view class="mb-38.17rpx text-19.08rpx c-primary6 lh-38.17rpx">
-                    <view class="flex flex-wrap items-center -m-4.77rpx">
-                        <view
-                            v-for="(text, index) in $history.list"
-                            :key="index"
-                            class="m-4.77rpx rd-19.08rpx bg-#f3f4f4 px-19.08rpx"
-                            @click="$history.select(index)"
-                        >
-                            {{ text }}
+            <view class="bg-#ffffff p-[38.17rpx_38.17rpx_19.08rpx]">
+                <template v-if="historyList.length">
+                    <view class="mb-19.08rpx flex items-center">
+                        <view class="text-22.90rpx lh-38.17rpx">搜索历史</view>
+                        <view class="i-icon-park-outline:delete ml-auto size-38.17rpx" @click="onClearHistory()" />
+                    </view>
+                    <view class="mb-38.17rpx text-19.08rpx c-primary6 lh-38.17rpx">
+                        <view class="flex flex-wrap items-center -m-4.77rpx">
+                            <view
+                                v-for="text in historyList"
+                                :key="text"
+                                class="m-4.77rpx rd-19.08rpx bg-#f3f4f4 px-19.08rpx"
+                                @click="onSelectHistory(text)"
+                            >
+                                {{ text }}
+                            </view>
                         </view>
                     </view>
-                </view>
+                </template>
                 <view class="text-19.08rpx c-#FBC050 lh-38.17rpx">可通过姓名、联系电话、职位或公司名称进行搜索</view>
             </view>
         </view>
@@ -139,7 +163,10 @@
                         >
                             <view class="flex">
                                 <view class="relative size-76.34rpx">
-                                    <view class="size-76.34rpx rd-19.08rpx bg-red" />
+                                    <view class="size-76.34rpx of-hidden rd-19.08rpx">
+                                        <image v-if="row.sex === '男'" class="size-76.34rpx" src="@/static/male.png" />
+                                        <image v-else class="size-76.34rpx" src="@/static/female.png" />
+                                    </view>
                                     <view
                                         v-if="row.isFollow"
                                         class="i-tdesign:star-1-filled absolute size-38.17rpx c-#FBC050 -right-19.08rpx -top-19.08rpx"
@@ -164,18 +191,42 @@
                                             <view class="m-4.77rpx rd-19.08rpx bg-primary6/50 px-9.54rpx">
                                                 {{ formatDate(new Date(row.createTime)) }} 新增
                                             </view>
-                                            <view class="m-4.77rpx rd-19.08rpx bg-#FBC050 px-9.54rpx">
-                                                电话联系 5次
+                                            <view
+                                                v-if="row?.callNoteCount > 0"
+                                                class="m-4.77rpx rd-19.08rpx bg-#FBC050 px-9.54rpx"
+                                            >
+                                                电话联系 {{ row.callNoteCount }}次
                                             </view>
-                                            <view class="m-4.77rpx rd-19.08rpx bg-#FBC050 px-9.54rpx">
-                                                短信联系 5次
+                                            <view
+                                                v-if="row?.smsNoteCount > 0"
+                                                class="m-4.77rpx rd-19.08rpx bg-#FBC050 px-9.54rpx"
+                                            >
+                                                短信联系 {{ row.smsNoteCount }}次
                                             </view>
-                                            <view class="m-4.77rpx rd-19.08rpx bg-#FBC050 px-9.54rpx">拜访 10次</view>
-                                            <view class="m-4.77rpx rd-19.08rpx bg-#FBC050 px-9.54rpx">
-                                                撰写记事 5次
+                                            <view
+                                                v-if="row?.visitNoteCount > 0"
+                                                class="m-4.77rpx rd-19.08rpx bg-#FBC050 px-9.54rpx"
+                                            >
+                                                拜访 {{ row.visitNoteCount }}次
                                             </view>
-                                            <view class="m-4.77rpx rd-19.08rpx bg-#F95585 px-9.54rpx">成交 5笔</view>
-                                            <view class="m-4.77rpx rd-19.08rpx bg-#9BD073 px-9.54rpx">支出 5笔</view>
+                                            <view
+                                                v-if="row?.normalNoteCount > 0"
+                                                class="m-4.77rpx rd-19.08rpx bg-#FBC050 px-9.54rpx"
+                                            >
+                                                撰写记事 {{ row.normalNoteCount }}次
+                                            </view>
+                                            <view
+                                                v-if="row?.dealCount > 0"
+                                                class="m-4.77rpx rd-19.08rpx bg-#F95585 px-9.54rpx"
+                                            >
+                                                成交 {{ row.dealCount }}笔
+                                            </view>
+                                            <view
+                                                v-if="row?.expenseCount > 0"
+                                                class="m-4.77rpx rd-19.08rpx bg-#9BD073 px-9.54rpx"
+                                            >
+                                                支出 {{ row.expenseCount }}笔
+                                            </view>
                                         </view>
                                     </view>
                                 </view>

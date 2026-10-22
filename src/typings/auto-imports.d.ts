@@ -149,6 +149,7 @@ declare global {
   const useRequest: typeof import('alova/client').useRequest
   const useRoute: typeof import('@wot-ui/router').useRoute
   const useRouter: typeof import('@wot-ui/router').useRouter
+  const useSearchHistory: typeof import('../hooks/useSearchHistory/index.js').useSearchHistory
   const useSlots: typeof import('vue').useSlots
   const useSqlite: typeof import('../hooks/useSqlite/index.js').useSqlite
   const useSystemInfo: typeof import('../hooks/useSystemInfo.js').useSystemInfo
@@ -181,7 +182,6 @@ declare module 'vue' {
   interface ComponentCustomProperties {
     readonly $$userConfigMap: UnwrapRef<typeof import('../api/index.js')['$$userConfigMap']>
     readonly Apis: UnwrapRef<typeof import('../api/index.js')['Apis']>
-    readonly CALL_TYPES: UnwrapRef<typeof import('../hooks/useCallLog.js')['CALL_TYPES']>
     readonly Cache: UnwrapRef<typeof import('../enums/Cache.js')['default']>
     readonly CommonUtil: UnwrapRef<typeof import('@wot-ui/ui')['CommonUtil']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
@@ -193,7 +193,6 @@ declare module 'vue' {
     readonly alovaInstance: UnwrapRef<typeof import('../api/index.js')['alovaInstance']>
     readonly api: UnwrapRef<typeof import('../api/index.js')['default']>
     readonly apiDefinitions: UnwrapRef<typeof import('../api/apiDefinitions.js')['default']>
-    readonly cleanCallPhone: UnwrapRef<typeof import('../hooks/useCallLog.js')['cleanCallPhone']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
     readonly createApis: UnwrapRef<typeof import('../api/createApis.js')['createApis']>
     readonly createApp: UnwrapRef<typeof import('vue')['createApp']>
@@ -231,7 +230,6 @@ declare module 'vue' {
     readonly markRaw: UnwrapRef<typeof import('vue')['markRaw']>
     readonly mountApis: UnwrapRef<typeof import('../api/createApis.js')['mountApis']>
     readonly nextTick: UnwrapRef<typeof import('vue')['nextTick']>
-    readonly normalizeCallRecord: UnwrapRef<typeof import('../hooks/useCallLog.js')['normalizeCallRecord']>
     readonly onActivated: UnwrapRef<typeof import('vue')['onActivated']>
     readonly onAddToFavorites: UnwrapRef<typeof import('@dcloudio/uni-app')['onAddToFavorites']>
     readonly onBackPress: UnwrapRef<typeof import('@dcloudio/uni-app')['onBackPress']>
@@ -276,7 +274,6 @@ declare module 'vue' {
     readonly reactive: UnwrapRef<typeof import('vue')['reactive']>
     readonly readonly: UnwrapRef<typeof import('vue')['readonly']>
     readonly ref: UnwrapRef<typeof import('vue')['ref']>
-    readonly resolveCallType: UnwrapRef<typeof import('../hooks/useCallLog.js')['resolveCallType']>
     readonly resolveComponent: UnwrapRef<typeof import('vue')['resolveComponent']>
     readonly setActivePinia: UnwrapRef<typeof import('pinia')['setActivePinia']>
     readonly setMapStoreSuffix: UnwrapRef<typeof import('pinia')['setMapStoreSuffix']>
@@ -286,7 +283,6 @@ declare module 'vue' {
     readonly shallowReadonly: UnwrapRef<typeof import('vue')['shallowReadonly']>
     readonly shallowRef: UnwrapRef<typeof import('vue')['shallowRef']>
     readonly sleep: UnwrapRef<typeof import('../utils/index.js')['sleep']>
-    readonly sortAndDedupe: UnwrapRef<typeof import('../hooks/useCallLog.js')['sortAndDedupe']>
     readonly store: UnwrapRef<typeof import('../stores/index.js')['store']>
     readonly storeToRefs: UnwrapRef<typeof import('pinia')['storeToRefs']>
     readonly toRaw: UnwrapRef<typeof import('vue')['toRaw']>
@@ -298,9 +294,7 @@ declare module 'vue' {
     readonly unref: UnwrapRef<typeof import('vue')['unref']>
     readonly useAppInitialize: UnwrapRef<typeof import('../hooks/useAppInitialize.js')['useAppInitialize']>
     readonly useAttrs: UnwrapRef<typeof import('vue')['useAttrs']>
-    readonly useCallLog: UnwrapRef<typeof import('../hooks/useCallLog.js')['useCallLog']>
     readonly useCaptcha: UnwrapRef<typeof import('../hooks/useCaptcha.js')['useCaptcha']>
-    readonly useContacts: UnwrapRef<typeof import('../hooks/useContacts.js')['useContacts']>
     readonly useCssModule: UnwrapRef<typeof import('vue')['useCssModule']>
     readonly useCssVars: UnwrapRef<typeof import('vue')['useCssVars']>
     readonly useCurrentPage: UnwrapRef<typeof import('../hooks/useCurrentPage.js')['useCurrentPage']>
@@ -318,6 +312,7 @@ declare module 'vue' {
     readonly useRequest: UnwrapRef<typeof import('alova/client')['useRequest']>
     readonly useRoute: UnwrapRef<typeof import('@wot-ui/router')['useRoute']>
     readonly useRouter: UnwrapRef<typeof import('@wot-ui/router')['useRouter']>
+    readonly useSearchHistory: UnwrapRef<typeof import('../hooks/useSearchHistory/index.js')['useSearchHistory']>
     readonly useSlots: UnwrapRef<typeof import('vue')['useSlots']>
     readonly useSqlite: UnwrapRef<typeof import('../hooks/useSqlite/index.js')['useSqlite']>
     readonly useSystemInfo: UnwrapRef<typeof import('../hooks/useSystemInfo.js')['useSystemInfo']>

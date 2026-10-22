@@ -138,7 +138,7 @@
                 asterisk-position="end"
                 error-type="toast"
                 layout="vertical"
-                title-width="133.59rpx"
+                title-width="135.50rpx"
             >
                 <component :is="Modules[active]" />
             </wd-form>

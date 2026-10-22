@@ -135,6 +135,9 @@
                     Object.assign(query, data);
                     reloadData();
                 }
+            },
+            success: e => {
+                e.eventChannel.emit("update:query", {...query});
             }
         });
     };

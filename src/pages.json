@@ -68,6 +68,11 @@
     {
       "path": "pages/search",
       "type": "page",
+      "style": {
+        "app-plus": {
+          "softinputMode": "adjustResize"
+        }
+      },
       "name": "Search"
     }
   ],

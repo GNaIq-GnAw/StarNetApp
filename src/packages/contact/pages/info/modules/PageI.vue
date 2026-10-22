@@ -15,31 +15,31 @@
         uni.makePhoneCall({phoneNumber: item.phone});
     };
 
-    const {callLog, smsLog} = useDeviceData();
+    // const {callLog, smsLog} = useDeviceData();
 
     onMounted(async () => {
-        try {
-            callLog.checkPermission();
-
-            const list = await callLog.fetchAll();
-
-            console.log("callLog", list);
-        } catch (e) {
-            console.log("callLog -> failed", e);
-        }
-
-        try {
-            console.log("smsLog.authorized", smsLog.authorized);
-            console.log("smsLog.supported", smsLog.supported);
-
-            smsLog.checkPermission();
-
-            const list = await smsLog.fetchAll();
-
-            console.log("smsLog", list);
-        } catch (e) {
-            console.log("smsLog -> failed", e);
-        }
+        // try {
+        //     callLog.checkPermission();
+        //
+        //     const list = await callLog.fetchAll();
+        //
+        //     console.log("callLog", list);
+        // } catch (e) {
+        //     console.log("callLog -> failed", e);
+        // }
+        //
+        // try {
+        //     console.log("smsLog.authorized", smsLog.authorized);
+        //     console.log("smsLog.supported", smsLog.supported);
+        //
+        //     smsLog.checkPermission();
+        //
+        //     const list = await smsLog.fetchAll();
+        //
+        //     console.log("smsLog", list);
+        // } catch (e) {
+        //     console.log("smsLog -> failed", e);
+        // }
     });
 </script>
 
@@ -126,17 +126,17 @@
                 <wd-cell title="企业名称">
                     <view class="flex items-center">
                         <view>{{ form?.contact?.companyName }}</view>
-                        <view class="ml-9.54rpx rd-3.82rpx bg-#F95585 px-9.54rpx text-19.08rpx c-#ffffff lh-26.72rpx">
-                            停业
-                        </view>
+                        <!--                        <view class="ml-9.54rpx rd-3.82rpx bg-#F95585 px-9.54rpx text-19.08rpx c-#ffffff lh-26.72rpx"> -->
+                        <!--                            停业 -->
+                        <!--                        </view> -->
                     </view>
                 </wd-cell>
                 <wd-cell title="成立时间">
                     <view class="flex items-center">
                         <view>{{ formatDate(new Date(form?.contact?.establishmentDate), "yyyy年MM月dd日") }}</view>
-                        <view class="ml-9.54rpx rd-3.82rpx bg-#FBC050 px-9.54rpx text-19.08rpx c-#ffffff lh-26.72rpx">
-                            剩余10日
-                        </view>
+                        <!--                        <view class="ml-9.54rpx rd-3.82rpx bg-#FBC050 px-9.54rpx text-19.08rpx c-#ffffff lh-26.72rpx"> -->
+                        <!--                            剩余10日 -->
+                        <!--                        </view> -->
                     </view>
                 </wd-cell>
                 <wd-cell title="企业位置">

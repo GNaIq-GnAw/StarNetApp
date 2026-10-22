@@ -192,7 +192,7 @@
                 </view>
                 <view class="ml-19.08rpx c-#ffffff lh-38.17rpx">
                     <view class="flex items-center">
-                        <view class="text-26.72rpx">{{ form?.contact?.name }}</view>
+                        <view class="text-26.72rpx fw-600">{{ form?.contact?.name }}</view>
                         <view class="ml-19.08rpx flex items-center">
                             <view class="i-ri:cake-fill size-19.08rpx" />
                             <view class="ml-9.54rpx text-19.08rpx">
@@ -224,17 +224,20 @@
                 <view class="flex items-center c-primary6 lh-38.17rpx">
                     <view class="flex-1">
                         <view class="text-19.08rpx">成交额</view>
-                        <view class="text-30.53rpx fw-600">{{ (form?.financeStats?.dealAmount)?.toFixed(2) }}</view>
+                        <view class="text-30.53rpx fw-600">{{ form?.financeStats?.dealAmount?.toFixed(2) }}</view>
                     </view>
                     <view class="mr-38.17rpx h-19.08rpx w-1px bg-primary6" />
                     <view class="flex-1">
                         <view class="text-19.08rpx">支出额</view>
-                        <view class="text-30.53rpx fw-600">{{ (form?.financeStats?.expenseAmount)?.toFixed(2) }}</view>
+                        <view class="text-30.53rpx fw-600">{{ form?.financeStats?.expenseAmount?.toFixed(2) }}</view>
                     </view>
                     <view class="mr-38.17rpx h-19.08rpx w-1px bg-primary6" />
                     <view class="flex-1">
                         <view class="text-19.08rpx">差额</view>
-                        <view class="text-30.53rpx c-#F95585 fw-600">+{{ (form?.financeStats?.balance)?.toFixed(2) }}</view>
+                        <view class="text-30.53rpx c-#F95585 fw-600">
+                            <text v-if="form?.financeStats?.balance">+</text>
+                            <text>{{ form?.financeStats?.balance?.toFixed(2) }}</text>
+                        </view>
                     </view>
                 </view>
             </view>

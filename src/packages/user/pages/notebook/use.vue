@@ -50,7 +50,7 @@
 </script>
 
 <template>
-    <view class="h-full flex flex-col of-hidden bg-#ffffff">
+    <view class="h-full flex flex-col of-hidden bg-#F3F4F4">
         <wd-navbar
             :bordered="false"
             left-arrow
@@ -87,7 +87,9 @@
                     >
                         <view class="lh-38.17rpx">
                             <view class="text-22.9rpx fw-600">{{ row.name }}</view>
-                            <!--                            <view class="text-19.08rpx c-primary6/50">联系人记录30条 · 收支记录442条</view> -->
+                            <view class="text-19.08rpx c-primary6/50">
+                                联系人记录{{ row.contactCount }}条 · 收支记录{{ row.financeCount }}条
+                            </view>
                         </view>
                         <view v-if="row.isDefault" class="i-icon-park-outline:check-small ml-auto size-38.17rpx" />
                     </view>

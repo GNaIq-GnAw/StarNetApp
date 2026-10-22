@@ -10,7 +10,7 @@
         }
     });
 
-    const {checkPermission, fetchAll, contacts, search, authorized} = useContacts();
+    const {contacts} = useDeviceData();
 
     const pagingRef = ref(null);
 
@@ -24,11 +24,11 @@
 
     const queryList = async () => {
         try {
-            await fetchAll();
-            const list = search(datum.keyword);
+            await contacts.fetchAll();
+            const items = contacts.search(datum.keyword);
 
             pagingRef.value.complete(
-                list.filter(item => {
+                items.filter(item => {
                     // 过滤已导入的
                     if (datum.excludeExisted) {
                         // [] 占位
@@ -103,7 +103,7 @@
         const notebookId = notebookStore.defaultNotebook.id;
 
         try {
-            const selectedContacts = contacts.value
+            const selectedContacts = contacts.list.value
                 .filter(item => datum.checkedKeys.includes(item.id))
                 .map(e => {
                     return {
@@ -140,8 +140,8 @@
     };
 
     onMounted(() => {
-        checkPermission();
-        fetchAll();
+        contacts.checkPermission();
+        contacts.fetchAll();
     });
 </script>
 
@@ -160,7 +160,7 @@
                 </view>
             </template>
         </wd-navbar>
-        <view v-if="authorized" class="flex flex-1 flex-col of-hidden">
+        <view v-if="contacts?.authorized" class="flex flex-1 flex-col of-hidden">
             <view class="bg-#f3f4f4 p-[19.08rpx_38.17rpx] text-19.08rpx c-#FA8C16 lh-38.17rpx">
                 <view>当联系人存在多个联系方式时，系统支出自动记录这些号码；</view>
                 <view>当联系人未设置姓名时，系统默认将第一个号码作为联系人姓名进行记录。</view>
@@ -242,7 +242,7 @@
             <view class="m-19.08rpx flex flex-col items-center rd-7.63rpx bg-#ffffff p-[57.25rpx_0] lh-38.17rpx">
                 <view class="i-ri:list-settings-line size-76.34rpx c-primary6/10" />
                 <view class="mt-19.08rpx text-22.90rpx c-primary6/50">功能需要开启权限</view>
-                <view class="text-19.08rpx c-#2F59F4" @click="fetchAll()">功能刷新</view>
+                <view class="text-19.08rpx c-#2F59F4" @click="contacts?.fetchAll()">功能刷新</view>
             </view>
         </view>
         <view class="flex items-center rd-7.63rpx bg-#ffffff p-[19.08rpx_38.17rpx]">
@@ -250,7 +250,12 @@
                 <wd-button block variant="plain">取消</wd-button>
             </view>
             <view class="ml-19.08rpx flex-1">
-                <wd-button v-if="authorized" :disabled="datum.checkedKeys.length === 0" block @click="onSubmit()">
+                <wd-button
+                    v-if="contacts?.authorized"
+                    :disabled="datum.checkedKeys.length === 0"
+                    block
+                    @click="onSubmit()"
+                >
                     导入
                 </wd-button>
                 <wd-button v-else block @click="openAuthorizeSetting()">开启权限设置</wd-button>

@@ -21,11 +21,11 @@
             plus.navigator.closeSplashscreen();
             // #endif
 
-            uni.showLoading({mask: true});
+            // uni.showLoading({mask: true});
 
             await router.replaceAll({name: "Home"});
 
-            uni.hideLoading();
+            // uni.hideLoading();
         } catch (e) {
             console.log("defineSqlite -> failed", e);
         }
